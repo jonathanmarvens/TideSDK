@@ -5,12 +5,6 @@
  */
 
 #include "../kroll.h"
-#include <cstdio>
-#include <cstring>
-#include <iostream>
-#include <sstream>
-#include <Poco/Stopwatch.h>
-#include <Poco/ScopedLock.h>
 
 namespace kroll
 {

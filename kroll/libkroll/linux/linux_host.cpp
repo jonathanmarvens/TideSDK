@@ -14,8 +14,6 @@
 #include <pthread.h>
 
 GCRY_THREAD_OPTION_PTHREAD_IMPL;
-using Poco::ScopedLock;
-using Poco::Mutex;
 
 namespace kroll
 {
