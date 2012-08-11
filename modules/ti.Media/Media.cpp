@@ -18,14 +18,12 @@
 
 #include <cstring>
 
-#include <Poco/URI.h>
-
-namespace Titanium {
-
-Media::Media(KObjectRef global) :
-    StaticBoundObject("Media"),
-    global(global)
+namespace Titanium
 {
+  Media::Media(KObjectRef global)
+    : StaticBoundObject("Media"),
+    global(global)
+  {
     /**
      * @tiapi(method=True,name=Media.createSound,since=0.2) Creates a sound object
      * @tiarg(for=Media.createSound,name=path,type=String) path or url to the sound file
@@ -36,24 +34,23 @@ Media::Media(KObjectRef global) :
      * @tiapi(method=True,name=Media.beep,since=0.2) Causes the system to beep
      */
     this->SetMethod("beep", &Media::_Beep);
-}
+  }
 
-Media::~Media()
-{
-}
+  Media::~Media()
+  {
+  }
 
-void Media::_CreateSound(const ValueList& args, KValueRef result)
-{
+  void Media::_CreateSound(const ValueList& args, KValueRef result)
+  {
     if (args.size()!=1)
-        throw ValueException::FromString("createSound takes 1 parameter");
+      throw ValueException::FromString("createSound takes 1 parameter");
 
     std::string path(args.at(0)->ToString());
     result->SetObject(this->CreateSound(path));
-}
+  }
 
-void Media::_Beep(const ValueList& args, KValueRef result)
-{
+  void Media::_Beep(const ValueList& args, KValueRef result)
+  {
     this->Beep();
+  }
 }
-
-} // namespace Titanium
