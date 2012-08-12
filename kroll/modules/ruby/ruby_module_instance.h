@@ -8,7 +8,7 @@
 
 #include "ruby_module.h"
 
-namespace kroll
+namespace tide
 {
 	class RubyModuleInstance : public Module
 	{

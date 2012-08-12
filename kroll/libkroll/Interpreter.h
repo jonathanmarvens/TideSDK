@@ -17,13 +17,13 @@
 #ifndef Interpreter_h
 #define Interpreter_h
 
-namespace kroll {
+namespace tide {
 
 class Interpreter {
 public:
     virtual KValueRef EvaluateFile(const char* filepath, KObjectRef context) = 0;
 };
 
-} // namespace kroll
+} // namespace tide
 
 #endif

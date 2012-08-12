@@ -12,7 +12,7 @@
 
 #include <Poco/Mutex.h>
 
-namespace kroll
+namespace tide
 {
 	/**
 	 * The KDelegatingObject lets you wrap a globally accessible

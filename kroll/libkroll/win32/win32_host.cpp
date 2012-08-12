@@ -13,7 +13,7 @@
 #include <ole2.h>
 #define MAX_CONSOLE_LINES 500;
 
-namespace kroll
+namespace tide
 {
 	static void RedirectIOToConsole();
 	static UINT tickleRequestMessage =

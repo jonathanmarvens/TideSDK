@@ -21,12 +21,12 @@
 
 namespace ti {
 
-class EXPORT CodecModule : public kroll::Module
+class EXPORT CodecModule : public tide::Module
 {
     KROLL_MODULE_CLASS(CodecModule)
     
 private:
-    kroll::KObjectRef binding;
+    tide::KObjectRef binding;
 };
 
 } // namespace ti

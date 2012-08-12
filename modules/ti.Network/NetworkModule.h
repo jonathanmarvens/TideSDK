@@ -26,7 +26,7 @@ namespace ti {
 class Network;
 class Analytics;
 
-class EXPORT NetworkModule : public kroll::Module {
+class EXPORT NetworkModule : public tide::Module {
     KROLL_MODULE_CLASS(NetworkModule)
 
 public:

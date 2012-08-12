@@ -87,7 +87,7 @@
 
 -(NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication*)sender
 {
-    kroll::Host::GetInstance()->Exit(0);
+    tide::Host::GetInstance()->Exit(0);
     return NO;
 }
 

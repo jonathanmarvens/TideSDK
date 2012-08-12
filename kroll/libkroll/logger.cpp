@@ -20,7 +20,7 @@ using Poco::PatternFormatter;
 using Poco::Path;
 using Poco::File;
 
-namespace kroll
+namespace tide
 {
 	std::map<std::string, Logger*> Logger::loggers;
 	char Logger::buffer[LOGGER_MAX_ENTRY_SIZE];

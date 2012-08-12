@@ -31,11 +31,11 @@ namespace ti {
  * Inspector.
  *
  */
-class EXPORT DatabaseModule : public kroll::Module, public StaticBoundObject {
+class EXPORT DatabaseModule : public tide::Module, public StaticBoundObject {
     KROLL_MODULE_CLASS(DatabaseModule)
 
 private:
-    kroll::KObjectRef binding;
+    tide::KObjectRef binding;
     void Open(const ValueList& args, KValueRef result);
     void OpenFile(const ValueList& args, KValueRef result);
 };

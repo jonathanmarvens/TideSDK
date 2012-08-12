@@ -11,7 +11,7 @@
 #include <iostream>
 #include <fstream>
 
-namespace kroll
+namespace tide
 {
 	class RootLogger;
 	class KROLL_API Logger

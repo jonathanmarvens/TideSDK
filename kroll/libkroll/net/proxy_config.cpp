@@ -14,7 +14,7 @@ using Poco::StringTokenizer;
 using Poco::NumberParser;
 using Poco::URI;
 
-namespace kroll
+namespace tide
 {
 
 static std::string& ProxyTypeToString(ProxyType type)
@@ -351,4 +351,4 @@ void ParseProxyList(string proxyListString,
 }
 
 } // namespace ProxyConfig
-} // namespace kroll
+} // namespace tide

@@ -34,7 +34,7 @@ public:
     std::string source;
 };
 
-class Monkey : public kroll::StaticBoundObject {
+class Monkey : public tide::StaticBoundObject {
 public:
     Monkey(Host*, KObjectRef);
 

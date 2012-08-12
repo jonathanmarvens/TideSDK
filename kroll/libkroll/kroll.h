@@ -31,7 +31,7 @@ using Poco::AutoPtr;
 	#pragma GCC visibility push(default)
 #endif
 
-namespace kroll
+namespace tide
 {
 	class Value;
 	class KObject;

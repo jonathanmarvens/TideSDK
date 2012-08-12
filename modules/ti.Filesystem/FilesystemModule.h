@@ -21,7 +21,7 @@
 
 namespace ti {
 
-class EXPORT FilesystemModule : public kroll::Module {
+class EXPORT FilesystemModule : public tide::Module {
     KROLL_MODULE_CLASS(FilesystemModule)
     
 private:

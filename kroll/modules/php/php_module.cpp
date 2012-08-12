@@ -23,7 +23,7 @@ static const char* supportedScriptTypes[2] = {"php", 0};
 void ***tsrm_ls;
 #endif
 
-namespace kroll
+namespace tide
 {
 	static Logger* logger = Logger::Get("PHPModule");
 	const static std::string phpSuffix("module.php");

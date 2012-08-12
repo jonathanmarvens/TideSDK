@@ -6,7 +6,7 @@
 
 #include "../kroll.h"
 
-namespace kroll
+namespace tide
 {
 	KEventObject::KEventObject(const char *type) :
 		KAccessorObject(type)

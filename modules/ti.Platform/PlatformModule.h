@@ -21,7 +21,7 @@
 
 namespace ti {
 
-class EXPORT PlatformModule : public kroll::Module {
+class EXPORT PlatformModule : public tide::Module {
 public:
     KROLL_MODULE_CLASS(PlatformModule)
     virtual void Start();

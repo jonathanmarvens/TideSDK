@@ -21,7 +21,7 @@
 
 #include "kroll.h"
 
-namespace kroll {
+namespace tide {
 
 class Interpreter;
 
@@ -41,6 +41,6 @@ private:
     InterpreterMapping interpreters;
 };
 
-} // namespace kroll
+} // namespace tide
 
 #endif

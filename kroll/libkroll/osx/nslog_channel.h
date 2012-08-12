@@ -12,7 +12,7 @@
 #include "Poco/Mutex.h"
 //#include "Poco/UnWindows.h"
 
-namespace kroll
+namespace tide
 {
 	class NSLogChannel : public Poco::Channel
 	{

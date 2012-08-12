@@ -579,7 +579,7 @@ void UserWindowMac::SetURL(string& url)
 {
     if (nativeWindow != nil)
     {
-        string nurl = kroll::URLUtils::NormalizeURL(url);
+        string nurl = tide::URLUtils::NormalizeURL(url);
         NSURL* nsurl = [NSURL URLWithString: [NSString stringWithUTF8String:nurl.c_str()]];
         [[[nativeWindow webView] mainFrame] loadRequest:[NSURLRequest requestWithURL:nsurl]];
     }

@@ -9,7 +9,7 @@
 
 #include <kroll/Interpreter.h>
 
-namespace kroll {
+namespace tide {
 
 class RubyInterpreter : public Interpreter {
 public:
@@ -23,6 +23,6 @@ private:
 	void ContextToGlobal(VALUE ctx, KObjectRef o);
 };
 
-} // namespace kroll
+} // namespace tide
 
 #endif

@@ -18,9 +18,9 @@
 
 namespace ti {
 
-static kroll::Logger* GetLogger()
+static tide::Logger* GetLogger()
 {
-    return kroll::Logger::Get("Network.TCPServerSocketConnection");
+    return tide::Logger::Get("Network.TCPServerSocketConnection");
 }
 
 TCPServerConnection::TCPServerConnection(Poco::Net::StreamSocket& s, Poco::Net::SocketReactor & r)

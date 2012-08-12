@@ -20,7 +20,7 @@
 
 #include "Interpreter.h"
 
-namespace kroll {
+namespace tide {
 
 ScriptController::ScriptController()
 {
@@ -67,4 +67,4 @@ Interpreter* ScriptController::findInterpreterForType(const char* scriptType)
     return i->second;
 }
 
-} // namespace kroll
+} // namespace tide

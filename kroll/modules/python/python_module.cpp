@@ -15,7 +15,7 @@ extern "C" EXPORT PythonModule* CreateModule(Host *host, const char* path)
 
 static const char* supportedScriptTypes[3] = {"py", "python", 0};
 
-namespace kroll
+namespace tide
 {
 	PythonModule* PythonModule::instance_ = NULL;
 

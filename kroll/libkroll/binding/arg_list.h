@@ -12,7 +12,7 @@
 #include <map>
 #include "callback.h"
 
-namespace kroll
+namespace tide
 {
 	/**
 	 * An argument list

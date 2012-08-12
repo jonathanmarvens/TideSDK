@@ -9,7 +9,7 @@
 
 #include "python_module.h"
 
-namespace kroll
+namespace tide
 {
 	class KPythonDict : public KObject
 	{

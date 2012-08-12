@@ -21,7 +21,7 @@
 
 namespace ti {
 
-class EXPORT MediaModule : public kroll::Module
+class EXPORT MediaModule : public tide::Module
 {
     KROLL_MODULE_CLASS(MediaModule)
 
