@@ -21,7 +21,7 @@
 
 #include "../Media.h"
 
-using namespace kroll;
+using namespace tide;
 
 namespace ti {
 
