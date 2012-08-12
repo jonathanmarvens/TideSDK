@@ -40,7 +40,7 @@ namespace tide
 	{
 		if (index >= 0 && index < this->Size())
 		{
-			return RubyUtils::ToKrollValue(rb_ary_entry(list, index));
+			return RubyUtils::ToTideValue(rb_ary_entry(list, index));
 		}
 		else
 		{

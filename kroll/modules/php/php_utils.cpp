@@ -10,7 +10,7 @@ namespace tide
 {
 	namespace PHPUtils
 	{
-		KValueRef ToKrollValue(zval *value TSRMLS_DC)
+		KValueRef ToTideValue(zval *value TSRMLS_DC)
 		{
 			KValueRef returnValue = Value::NewNull();
 			int type = Z_TYPE_P(value);
@@ -174,11 +174,11 @@ namespace tide
 					if (ignoreGlobals && !strcmp(key, "GLOBALS"))
 						continue;
 
-					list->Set(key, ToKrollValue(*value TSRMLS_CC));
+					list->Set(key, ToTideValue(*value TSRMLS_CC));
 				}
 				else // Numeric key
 				{
-					list->SetAt(index, ToKrollValue(*value TSRMLS_CC));
+					list->SetAt(index, ToTideValue(*value TSRMLS_CC));
 				}
 			}
 

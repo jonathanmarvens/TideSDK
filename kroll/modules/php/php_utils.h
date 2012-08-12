@@ -22,7 +22,7 @@ namespace tide
 
 	namespace PHPUtils
 	{
-		KValueRef ToKrollValue(zval* value TSRMLS_DC);
+		KValueRef ToTideValue(zval* value TSRMLS_DC);
 		zval* ToPHPValue(KValueRef value);
 		void ToPHPValue(KValueRef value, zval** returnValue);
 		std::string ZvalToPropertyName(zval* property);

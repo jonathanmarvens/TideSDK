@@ -45,11 +45,11 @@ namespace tide
 	{
 		VALUE keyAsSymbol = ID2SYM(rb_intern(name));
 		if (rb_funcall(hash, rb_intern("has_key?"), 1, keyAsSymbol))
-			return RubyUtils::ToKrollValue(rb_hash_aref(hash, keyAsSymbol));
+			return RubyUtils::ToTideValue(rb_hash_aref(hash, keyAsSymbol));
 
 		VALUE keyAsString = rb_str_new2(name);
 		if (rb_funcall(hash, rb_intern("has_key?"), 1, keyAsString))
-			return RubyUtils::ToKrollValue(rb_hash_aref(hash, keyAsString));
+			return RubyUtils::ToTideValue(rb_hash_aref(hash, keyAsString));
 
 		return this->object->Get(name);
 	}

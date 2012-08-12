@@ -51,7 +51,7 @@ namespace tide
 		if (assignment) // Assignment
 		{
 			rval = rb_ary_entry(args, 0);
-			KValueRef val = RubyUtils::ToKrollValue(rval);
+			KValueRef val = RubyUtils::ToTideValue(rval);
 			global_object->Set(name, val);
 		}
 		else if (v->IsMethod()) // Method call
@@ -128,7 +128,7 @@ namespace tide
 
 			// Display a stringified version of the exception.
 			VALUE exception = rb_gv_get("$!");
-			KValueRef v = RubyUtils::ToKrollValue(exception);
+			KValueRef v = RubyUtils::ToTideValue(exception);
 			SharedString ss = v->DisplayString();
 			error.append(ss->c_str());
 
@@ -146,7 +146,7 @@ namespace tide
             throw ValueException::FromString(error);
 		}
 
-        return RubyUtils::ToKrollValue(returnValue);
+        return RubyUtils::ToTideValue(returnValue);
 	}
 
 	void RubyInterpreter::ContextToGlobal(VALUE ctx, KObjectRef o)

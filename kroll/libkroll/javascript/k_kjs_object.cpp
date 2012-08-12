@@ -52,11 +52,11 @@ namespace tide
 
 		if (exception != NULL) //exception thrown
 		{
-			KValueRef tv_exp = KJSUtil::ToKrollValue(exception, this->context, NULL);
+			KValueRef tv_exp = KJSUtil::ToTideValue(exception, this->context, NULL);
 			throw ValueException(tv_exp);
 		}
 
-		KValueRef kvalue = KJSUtil::ToKrollValue(jsValue, this->context, this->jsobject);
+		KValueRef kvalue = KJSUtil::ToTideValue(jsValue, this->context, this->jsobject);
 		return kvalue;
 	}
 
@@ -72,7 +72,7 @@ namespace tide
 
 		if (exception != NULL) // An exception was thrown.
 		{
-			KValueRef exceptionValue = KJSUtil::ToKrollValue(exception, this->context, NULL);
+			KValueRef exceptionValue = KJSUtil::ToTideValue(exception, this->context, NULL);
 			throw ValueException(exceptionValue);
 		}
 	}
