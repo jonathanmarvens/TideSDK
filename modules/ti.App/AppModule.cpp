@@ -22,7 +22,7 @@
 #include "Application.h"
 #include "Properties.h"
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(AppModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -62,4 +62,4 @@ void AppModule::Stop()
     host->GetGlobalObject()->SetNull("App");
 }
 
-} // namespace Titanium
+} // namespace ti

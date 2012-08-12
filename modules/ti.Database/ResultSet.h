@@ -20,7 +20,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Data/RecordSet.h>
 
-namespace Titanium {
+namespace ti {
 
 class ResultSet : public StaticBoundObject {
 public:
@@ -46,6 +46,6 @@ private:
     bool eof;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

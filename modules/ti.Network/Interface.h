@@ -22,7 +22,7 @@
 
 #undef interface
 
-namespace Titanium {
+namespace ti {
 
 class Interface : public KAccessorObject {
 public:
@@ -41,6 +41,6 @@ private:
     Poco::Net::NetworkInterface interface;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -21,7 +21,7 @@
 
 using Poco::Data::MetaColumn;
 
-namespace Titanium {
+namespace ti {
 
 ResultSet::ResultSet() :
     StaticBoundObject("Database.ResultSet"),
@@ -230,4 +230,4 @@ void ResultSet::TransformValue(size_t index, KValueRef result)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

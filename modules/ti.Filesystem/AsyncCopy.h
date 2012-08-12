@@ -35,7 +35,7 @@
 
 #include "Filesystem.h"
 
-namespace Titanium {
+namespace ti {
 
 class AsyncCopy : public StaticBoundObject {
 public:
@@ -58,6 +58,6 @@ private:
     bool stopped;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

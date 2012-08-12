@@ -20,7 +20,7 @@
 
 #include "PipeWin.h"
 
-namespace Titanium {
+namespace ti {
 
 ProcessWin::ProcessWin()
     : logger(Logger::Get("Process.ProcessWin"))
@@ -308,4 +308,4 @@ void ProcessWin::SendSignal(int signal)
     logger->Warn("Signals are not supported in Windows");
 }
 
-} // namespace Titanium
+} // namespace ti

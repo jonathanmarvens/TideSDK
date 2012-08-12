@@ -20,7 +20,7 @@
 
 using namespace Poco;
 
-namespace Titanium {
+namespace ti {
 
 Clipboard::Clipboard()
     : KAccessorObject("UI.Clipboard")
@@ -324,4 +324,4 @@ void Clipboard::ClearURIList()
     this->ClearURIListImpl();
 }
 
-} // namespace Titanium
+} // namespace ti

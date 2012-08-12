@@ -27,7 +27,7 @@
 
 #include <curl/curl.h>
 
-namespace Titanium {
+namespace ti {
 
 class Analytics : public KEventObject, public Poco::Runnable {
 public:
@@ -51,6 +51,6 @@ private:
     void _StartAnalyticsThread(const ValueList &args, KValueRef result);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

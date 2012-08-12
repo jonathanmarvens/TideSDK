@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 /**
  * Database module which exposes a synchronous API for Database
@@ -40,6 +40,6 @@ private:
     void OpenFile(const ValueList& args, KValueRef result);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

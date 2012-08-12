@@ -32,7 +32,7 @@
 
 extern char **environ;
 
-namespace Titanium {
+namespace ti {
 
 PosixProcess::PosixProcess()
     : logger(Logger::Get("Process.PosixProcess"))
@@ -226,4 +226,4 @@ void PosixProcess::Terminate()
     SendSignal(SIGINT);
 }
 
-} // namespace Titanium
+} // namespace ti

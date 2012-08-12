@@ -16,7 +16,7 @@
 
 #include "HTTPServerRequest.h"
 
-namespace Titanium {
+namespace ti {
 
 HTTPServerRequest::HTTPServerRequest(Poco::Net::HTTPServerRequest& request)
     : StaticBoundObject("Network.HTTPServerRequest")
@@ -124,4 +124,4 @@ void HTTPServerRequest::Read(const ValueList& args, KValueRef result)
     delete [] buf;
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -18,7 +18,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-namespace Titanium {
+namespace ti {
 
 NSArray* textTypes = [NSArray arrayWithObjects:
         NSStringPboardType, NSRTFDPboardType, NSRTFPboardType, nil];
@@ -238,4 +238,4 @@ void Clipboard::ClearURIListImpl()
     [pasteboard declareTypes:newTypes owner:nil];
 }
 
-} // namespace Titanium
+} // namespace ti

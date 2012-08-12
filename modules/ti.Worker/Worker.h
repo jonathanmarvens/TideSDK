@@ -26,7 +26,7 @@
 #include <Poco/ScopedLock.h>
 #include <Poco/Thread.h>
 
-namespace Titanium {
+namespace ti {
 
 class WorkerContext;
 
@@ -54,6 +54,6 @@ private:
     void _PostMessage(const ValueList& args, KValueRef result);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

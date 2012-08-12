@@ -21,7 +21,7 @@
 
 typedef void CURLSH;
 
-namespace Titanium {
+namespace ti {
 
 class Network;
 class Analytics;
@@ -38,6 +38,6 @@ private:
     AutoPtr<Analytics> analyticsBinding;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

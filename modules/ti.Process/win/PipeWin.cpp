@@ -16,7 +16,7 @@
 
 #include "PipeWin.h"
 
-namespace Titanium {
+namespace ti {
 
 PipeWin::PipeWin(bool isReader)
     : NativePipe(isReader)
@@ -110,4 +110,4 @@ void PipeWin::CloseNativeWrite()
     }
 }
 
-} // namespace Titanium
+} // namespace ti

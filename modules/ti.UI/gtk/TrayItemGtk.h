@@ -21,7 +21,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Titanium {
+namespace ti {
 
 class MenuGtk;
 
@@ -46,7 +46,7 @@ protected:
     bool active;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif
 

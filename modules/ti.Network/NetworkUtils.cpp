@@ -64,7 +64,7 @@ void SetStandardCurlHandleOptions(CURL* handle)
     // make this configurable in the future
     SET_CURL_OPTION(handle, CURLOPT_SSL_VERIFYPEER, 1);
     SET_CURL_OPTION(handle, CURLOPT_CAINFO,
-        ::UTF8ToSystem(Titanium::NetworkModule::GetRootCertPath()).c_str());
+        ::UTF8ToSystem(ti::NetworkModule::GetRootCertPath()).c_str());
 
     // If a timeout happens, this normally causes cURL to fire a signal.
     // Since we're running multiple threads and possibily have multiple HTTP
@@ -87,7 +87,7 @@ void SetStandardCurlHandleOptions(CURL* handle)
 
     // cURL doesn't have built in thread support, so we must handle thread-safety
     // via the CURLSH callback API.
-    SET_CURL_OPTION(handle, CURLOPT_SHARE, Titanium::NetworkModule::GetCurlShareHandle());
+    SET_CURL_OPTION(handle, CURLOPT_SHARE, ti::NetworkModule::GetCurlShareHandle());
     SET_CURL_OPTION(handle, CURLOPT_COOKIEFILE, cookieJarFilename.c_str());
     SET_CURL_OPTION(handle, CURLOPT_COOKIEJAR, cookieJarFilename.c_str());
 }

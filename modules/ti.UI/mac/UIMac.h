@@ -21,7 +21,7 @@
 
 #import <AppKit/NSMenu.h>
 
-namespace Titanium {
+namespace ti {
 
 class MenuItemMac;
 class MenuMac;
@@ -77,6 +77,6 @@ protected:
     void InstallMenu (MenuItemMac*);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

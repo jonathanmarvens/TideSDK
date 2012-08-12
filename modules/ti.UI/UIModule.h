@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class UI;
 
@@ -39,6 +39,6 @@ protected:
     DISALLOW_EVIL_CONSTRUCTORS(UIModule);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

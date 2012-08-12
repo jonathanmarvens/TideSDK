@@ -35,7 +35,7 @@ using Poco::Data::now;
 
 //FIXME: add SessionPool
 
-namespace Titanium {
+namespace ti {
 
 static Logger* GetLogger()
 {
@@ -211,4 +211,4 @@ bool WebKitDatabases::Exists(std::string name)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -22,7 +22,7 @@
 #include "UserWindowMac.h"
 #include "../UI.h"
 
-using namespace Titanium;
+using namespace ti;
 
 @interface NSApplication (DeclarationStolenFromAppKit)
 - (void)_cycleWindowsReversed:(BOOL)reversed;

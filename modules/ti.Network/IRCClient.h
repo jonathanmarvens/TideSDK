@@ -26,7 +26,7 @@
 
 #include "IRC.h"
 
-namespace Titanium {
+namespace ti {
 
 class IRCClient : public StaticBoundObject {
 public:
@@ -54,6 +54,6 @@ private:
     Poco::Thread *thread;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

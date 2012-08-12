@@ -16,7 +16,7 @@
 
 #include "HTTPCookie.h"
 
-namespace Titanium {
+namespace ti {
 
 HTTPCookie::HTTPCookie()
     : KAccessorObject("Network.HTTPCookie")
@@ -283,4 +283,4 @@ SharedString HTTPCookie::DisplayString(int levels)
     return cookieString;
 }
 
-} // namespace Titanium
+} // namespace ti

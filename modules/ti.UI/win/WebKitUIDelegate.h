@@ -19,7 +19,7 @@
 
 #include "UserWindowWin.h"
 
-namespace Titanium {
+namespace ti {
 
 class UserWindowWin;
 
@@ -397,6 +397,6 @@ private:
     int referenceCount;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

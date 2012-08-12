@@ -23,7 +23,7 @@
 
 #include "UserWindowWin.h"
 
-namespace Titanium {
+namespace ti {
 
 WebKitFrameLoadDelegate::WebKitFrameLoadDelegate(UserWindowWin *window)
     : window(window)
@@ -116,4 +116,4 @@ HRESULT STDMETHODCALLTYPE WebKitFrameLoadDelegate::didReceiveTitle(
     return S_OK;
 }
 
-} // namespace Titanium
+} // namespace ti

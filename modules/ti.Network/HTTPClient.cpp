@@ -24,7 +24,7 @@
 
 using namespace Poco::Net;
 
-namespace Titanium {
+namespace ti {
 
 static Logger* GetLogger()
 {
@@ -944,4 +944,4 @@ void HTTPClient::ExecuteRequest()
     }
 }
 
-} // namespace Titanium
+} // namespace ti

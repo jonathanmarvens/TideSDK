@@ -21,7 +21,7 @@
 #include <Poco/Thread.h>
 #include <Poco/Net/HTTPServer.h>
 
-namespace Titanium {
+namespace ti {
 
 class HTTPServer : public StaticBoundObject {
 public:
@@ -46,6 +46,6 @@ private:
     Poco::Net::HTTPServer* connection;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

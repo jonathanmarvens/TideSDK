@@ -20,7 +20,7 @@
 
 using namespace Poco::Net;
 
-namespace Titanium {
+namespace ti {
 
 IPAddress::IPAddress(const std::string& ip)
     : KAccessorObject("Network.IPAddress")
@@ -256,4 +256,4 @@ void IPAddress::IsGlobalMC(const ValueList& args, KValueRef result)
     result->SetBool(!this->invalid && this->address->isGlobalMC());
 }
 
-} // namespace Titanium
+} // namespace ti

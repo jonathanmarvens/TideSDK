@@ -25,7 +25,7 @@
 #include "WindowConfig.h"
 #include "Properties.h"
 
-namespace Titanium {
+namespace ti {
 
 class EXPORT ApplicationConfig {
 public:
@@ -64,6 +64,6 @@ private:
     static ApplicationConfig* instance_;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

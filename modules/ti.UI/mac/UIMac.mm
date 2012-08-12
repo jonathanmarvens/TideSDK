@@ -44,7 +44,7 @@
 - (id)owner;
 @end
 
-namespace Titanium {
+namespace ti {
 
 UIMac::UIMac()
     : defaultMenu(nil)
@@ -376,4 +376,4 @@ void UIMac::ErrorDialog(string msg)
     UI::ErrorDialog(msg);
 }
 
-} // namespace Titanium
+} // namespace ti

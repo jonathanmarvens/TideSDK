@@ -31,7 +31,7 @@
 #include "TrayItemGtk.h"
 #include "../url/URLUtils.h"
 
-namespace Titanium {
+namespace ti {
 
 UIGtk::UIGtk()
     : menu(0)
@@ -131,5 +131,5 @@ void UIGtk::ErrorDialog(std::string msg)
     UI::ErrorDialog(msg);
 }
 
-} // namespace Titanium
+} // namespace ti
 

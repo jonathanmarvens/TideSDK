@@ -18,7 +18,7 @@
 
 #include "MenuGtk.h"
 
-namespace Titanium {
+namespace ti {
 
 static void MenuCallback(MenuItemGtk* nativeItem, gpointer data)
 {
@@ -225,5 +225,5 @@ void MenuItemGtk::DestroyNative(GtkMenuItem* nativeItem)
     this->SetNativeItemSubmenu(nativeItem, 0);
 }
 
-} // namespace Titanium
+} // namespace ti
 

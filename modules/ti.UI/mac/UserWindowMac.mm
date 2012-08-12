@@ -26,7 +26,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 static unsigned int toWindowMask(AutoPtr<WindowConfig> config)
 {
@@ -885,4 +885,4 @@ void UserWindowMac::SetDocumentEdited(bool edited)
     [nativeWindow setDocumentEdited:edited];
 }
 
-} // namespace Titanium
+} // namespace ti

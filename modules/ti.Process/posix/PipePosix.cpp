@@ -16,7 +16,7 @@
 
 #include "PipePosix.h"
 
-namespace Titanium {
+namespace ti {
 
 PosixPipe::PosixPipe(bool isReader)
     : NativePipe(isReader)
@@ -105,4 +105,4 @@ void PosixPipe::CloseNativeWrite()
     }
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -36,7 +36,7 @@ using Poco::Data::use;
 using Poco::Data::into;
 using Poco::Data::now;
 
-namespace Titanium {
+namespace ti {
 
 static Logger* GetLogger()
 {
@@ -314,4 +314,4 @@ void Database::Remove(const ValueList& args, KValueRef result)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

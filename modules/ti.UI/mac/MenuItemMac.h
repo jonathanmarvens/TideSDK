@@ -21,7 +21,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-namespace Titanium {
+namespace ti {
 
 class Menu;
 
@@ -54,6 +54,6 @@ private:
     std::vector<NSMenuItem*> nativeItems;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

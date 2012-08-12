@@ -23,7 +23,7 @@
 
 #include "HTTPServerRequestFactory.h"
 
-namespace Titanium {
+namespace ti {
 
 HTTPServer::HTTPServer()
     : StaticBoundObject("Network.HTTPServer")
@@ -97,4 +97,4 @@ void HTTPServer::IsClosed(const ValueList& args, KValueRef result)
     result->SetBool(this->connection==NULL);
 }
 
-} // namespace Titanium
+} // namespace ti

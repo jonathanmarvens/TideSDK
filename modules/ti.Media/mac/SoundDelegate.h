@@ -18,7 +18,7 @@
 
 #import <Foundation/NSObject.h>
 
-using namespace Titanium;
+using namespace ti;
 
 @interface SoundDelegate : NSObject
 {

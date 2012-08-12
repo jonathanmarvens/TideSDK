@@ -16,7 +16,7 @@
 
 #include "../Clipboard.h"
 
-namespace Titanium {
+namespace ti {
 
 Clipboard::~Clipboard()
 {
@@ -192,4 +192,4 @@ void Clipboard::ClearURIListImpl()
 {
 }
 
-} // namespace Titanium
+} // namespace ti

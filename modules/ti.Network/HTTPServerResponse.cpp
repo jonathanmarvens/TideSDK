@@ -21,7 +21,7 @@
 
 #include "NetworkUtils.h"
 
-namespace Titanium {
+namespace ti {
 
 HTTPServerResponse::HTTPServerResponse(Poco::Net::HTTPServerResponse &response)
     : StaticBoundObject("Network.HTTPServerResponse")
@@ -123,4 +123,4 @@ void HTTPServerResponse::Write(const ValueList& args, KValueRef result)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

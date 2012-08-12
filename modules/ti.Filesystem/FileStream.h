@@ -26,7 +26,7 @@
 #include <kroll/kroll.h>
 #include <Poco/FileStream.h>
 
-namespace Titanium {
+namespace ti {
 
 class FileStream : public Stream {
 public:
@@ -73,6 +73,6 @@ private:
     Poco::FileIOS* stream;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif 

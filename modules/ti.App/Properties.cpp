@@ -21,7 +21,7 @@
 
 using Poco::Util::TitaniumPropertyFileConfiguration;
 
-namespace Titanium {
+namespace ti {
 
 Properties::Properties(const std::string& filePath) :
     StaticBoundObject("App.Properties"),
@@ -289,4 +289,4 @@ void Properties::SaveTo(const ValueList& args, KValueRef result)
     this->SaveConfig();
 }
 
-} // namespace Titanium
+} // namespace ti

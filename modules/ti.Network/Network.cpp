@@ -33,7 +33,7 @@
 
 using namespace Poco::Net;
 
-namespace Titanium {
+namespace ti {
 
 static KListRef interfaceList(0);
 static std::string firstIPv4Address = "127.0.0.1";
@@ -440,4 +440,4 @@ void Network::_GetInterfaces(const ValueList& args, KValueRef result)
     result->SetList(interfaceList);
 }
 
-} // namespace Titanium
+} // namespace ti

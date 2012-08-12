@@ -25,7 +25,7 @@
 
 #include "Pipe.h"
 
-namespace Titanium {
+namespace ti {
 
 class NativePipe : public Pipe {
 public:
@@ -63,6 +63,6 @@ protected:
     std::queue<BytesRef> buffers;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

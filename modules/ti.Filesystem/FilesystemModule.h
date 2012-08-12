@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class EXPORT FilesystemModule : public kroll::Module {
     KROLL_MODULE_CLASS(FilesystemModule)
@@ -28,6 +28,6 @@ private:
     KObjectRef binding;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

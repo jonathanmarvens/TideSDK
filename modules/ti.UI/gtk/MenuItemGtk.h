@@ -24,7 +24,7 @@
 #include <string>
 #include <vector>
 
-namespace Titanium {
+namespace ti {
 
 class MenuGtk;
 
@@ -51,7 +51,7 @@ private:
     AutoPtr<MenuGtk> oldSubmenu;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif
 

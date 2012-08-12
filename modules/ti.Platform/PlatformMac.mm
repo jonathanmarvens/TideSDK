@@ -27,7 +27,7 @@
 - (unsigned int) processorCount;
 @end
 
-namespace Titanium {
+namespace ti {
 
 std::string Platform::GetVersionImpl()
 {
@@ -95,4 +95,4 @@ void Platform::TakeScreenshotImpl(const std::string& targetFile)
     CGImageDestinationFinalize(imageDestination.get());
 }
 
-} // namespace Titanium
+} // namespace ti

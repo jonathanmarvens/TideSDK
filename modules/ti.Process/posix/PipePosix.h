@@ -21,7 +21,7 @@
 
 #include "../NativePipe.h"
 
-namespace Titanium {
+namespace ti {
 
 class PosixPipe : public NativePipe {
 public:
@@ -42,6 +42,6 @@ protected:
     int writeHandle;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

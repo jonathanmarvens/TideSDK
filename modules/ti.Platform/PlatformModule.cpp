@@ -20,7 +20,7 @@
 
 #include "Platform.h"
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(PlatformModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -51,4 +51,4 @@ void PlatformModule::Stop()
     host->GetGlobalObject()->SetNull("Desktop");
 }
     
-} // namespace Titanium
+} // namespace ti

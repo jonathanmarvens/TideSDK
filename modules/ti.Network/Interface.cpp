@@ -20,7 +20,7 @@
 
 using namespace Poco::Net;
 
-namespace Titanium {
+namespace ti {
 
 Interface::Interface(const NetworkInterface& interface)
     : KAccessorObject("Network.Interface")
@@ -110,4 +110,4 @@ void Interface::_SupportsIPv6(const ValueList& args, KValueRef result)
     result->SetBool(interface.supportsIPv6());
 }
 
-} // namespace Titanium
+} // namespace ti

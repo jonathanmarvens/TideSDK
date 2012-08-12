@@ -21,7 +21,7 @@
 
 #include "../NativePipe.h"
 
-namespace Titanium {
+namespace ti {
 
 class PipeWin : public NativePipe {
 public:
@@ -45,6 +45,6 @@ protected:
     Logger *logger;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -20,7 +20,7 @@
 
 #include "WorkerBinding.h"
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(WorkerModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -34,4 +34,4 @@ void WorkerModule::Stop()
     GlobalObject::GetInstance()->SetNull("Worker");
 }
 
-} // namespace Titanium
+} // namespace ti

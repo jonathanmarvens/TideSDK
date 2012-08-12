@@ -26,7 +26,7 @@
 
 #define MARGIN 20
 
-namespace Titanium {
+namespace ti {
 
 WebKitUIDelegate::WebKitUIDelegate(UserWindowWin *window_)
     : window(window_)
@@ -562,4 +562,4 @@ HRESULT STDMETHODCALLTYPE WebKitUIDelegate::webViewPrintingMarginRect(
     return S_OK;
 }
 
-} // namespace Titanium
+} // namespace ti

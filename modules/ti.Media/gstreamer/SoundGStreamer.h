@@ -22,7 +22,7 @@
 #include <gst/gst.h>
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class SoundGStreamer : public Sound {
 public:
@@ -42,6 +42,6 @@ private:
     std::string fileURL;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

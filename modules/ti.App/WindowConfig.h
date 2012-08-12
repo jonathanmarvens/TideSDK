@@ -24,7 +24,7 @@
 typedef struct _xmlNode xmlNode;
 typedef xmlNode* xmlNodePtr;
 
-namespace Titanium {
+namespace ti {
 
 class EXPORT WindowConfig : public ReferenceCounted
 {
@@ -137,6 +137,6 @@ private:
     WindowConfig();
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

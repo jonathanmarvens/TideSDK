@@ -21,7 +21,7 @@
 #include "HTTPServerRequest.h"
 #include "HTTPServerResponse.h"
 
-namespace Titanium {
+namespace ti {
 
 class HTTPRequestHandler : public Poco::Net::HTTPRequestHandler {
 public:
@@ -56,4 +56,4 @@ Poco::Net::HTTPRequestHandler* HTTPServerRequestFactory::createRequestHandler(co
     return new HTTPRequestHandler(m_callback);
 }
 
-} // namespace Titanium
+} // namespace ti

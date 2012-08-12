@@ -16,7 +16,7 @@
 
 #include "WebKitResourceLoadDelegate.h"
 
-namespace Titanium {
+namespace ti {
 
 WebKitResourceLoadDelegate::WebKitResourceLoadDelegate(UserWindowWin* userWindow)
     : userWindow(userWindow)
@@ -138,4 +138,4 @@ HRESULT STDMETHODCALLTYPE WebKitResourceLoadDelegate::plugInFailedWithError(
     return E_NOTIMPL;
 }
 
-} // namespace Titanium
+} // namespace ti

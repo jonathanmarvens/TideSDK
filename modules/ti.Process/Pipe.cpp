@@ -26,7 +26,7 @@
 # include "posix/PipePosix.h"
 #endif
 
-namespace Titanium {
+namespace ti {
 
 static void FireEvents();
 static Poco::ThreadTarget eventsThreadTarget(&FireEvents);
@@ -377,4 +377,4 @@ static void FireEvents()
     }
 }
 
-} // namespace Titanium
+} // namespace ti

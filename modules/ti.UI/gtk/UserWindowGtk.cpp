@@ -32,7 +32,7 @@
 extern const guint gtk_major_version;
 extern const guint gtk_minor_version;
 
-namespace Titanium {
+namespace ti {
 
 enum FileChooserMode
 {
@@ -1540,5 +1540,5 @@ void UserWindowGtk::SetPluginsEnabled(bool enabled)
     // TODO: implement
 }
 
-} // namespace Titanium
+} // namespace ti
 

@@ -21,7 +21,7 @@
 
 #include "TCPServerConnection.h"
 
-namespace Titanium {
+namespace ti {
 
 TCPServerSocketConnector::TCPServerSocketConnector(KMethodRef callback_, Poco::Net::ServerSocket& socket_, Poco::Net::SocketReactor & reactor_)
     : callback(callback_)
@@ -137,4 +137,4 @@ void TCPServerSocket::Close(const ValueList& args, KValueRef result)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

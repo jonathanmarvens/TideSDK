@@ -26,7 +26,7 @@
 #include <Poco/RunnableAdapter.h>
 #include <Poco/Thread.h>
 
-namespace Titanium {
+namespace ti {
 
 class Worker;
 
@@ -56,6 +56,6 @@ private:
     void MessageLoop();
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

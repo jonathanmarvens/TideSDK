@@ -19,7 +19,7 @@
 
 #include "../UI.h"
 
-namespace Titanium {
+namespace ti {
 
 class MenuGtk;
 class MenuItemGtk;
@@ -49,7 +49,7 @@ protected:
     std::string iconPath;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif
 
