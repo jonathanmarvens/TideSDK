@@ -51,7 +51,7 @@ namespace tide
 			if (rb_obj_is_kind_of(exception, rb_eNoMethodError) != Qtrue
 				&& rb_obj_is_kind_of(exception,rb_eNameError) == Qtrue)
 			{
-				KValueRef exceptionValue = RubyUtils::ToKrollValue(exception);
+				KValueRef exceptionValue = RubyUtils::ToTideValue(exception);
 				ValueException e = ValueException(exceptionValue);
 				throw e;
 			}
@@ -100,13 +100,13 @@ namespace tide
 			}
 			else
 			{
-				KValueRef exceptionValue = RubyUtils::ToKrollValue(exception);
+				KValueRef exceptionValue = RubyUtils::ToTideValue(exception);
 				ValueException e = ValueException(exceptionValue);
 				throw e;
 			}
 		}
 
-		return RubyUtils::ToKrollValue(ruby_value);
+		return RubyUtils::ToTideValue(ruby_value);
 	}
 
 	bool KRubyObject::Equals(KObjectRef other)

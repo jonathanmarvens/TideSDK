@@ -53,7 +53,7 @@ namespace tide
 			std::string sk = PythonUtils::ToString(k);
 			if (sk.find("__") != 0)
 			{
-				KValueRef newValue = PythonUtils::ToKrollValue(v);
+				KValueRef newValue = PythonUtils::ToTideValue(v);
 				KValueRef existingValue = context->Get(sk.c_str());
 				if (!newValue->Equals(existingValue))
 				{
@@ -85,7 +85,7 @@ namespace tide
         MergePyGlobalsWithContext(globals, context);
         Py_DECREF(globals);
 
-        KValueRef result = PythonUtils::ToKrollValue(pyResult);
+        KValueRef result = PythonUtils::ToTideValue(pyResult);
         Py_DECREF(pyResult);
         return result;
     }

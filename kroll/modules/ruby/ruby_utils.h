@@ -14,7 +14,7 @@ namespace tide
 	class RubyUtils
 	{
 	public:
-		static KValueRef ToKrollValue(VALUE value);
+		static KValueRef ToTideValue(VALUE value);
 		static VALUE ToRubyValue(KValueRef value);
 		static VALUE KObjectToRubyValue(KValueRef value);
 		static VALUE KMethodToRubyValue(KValueRef value);

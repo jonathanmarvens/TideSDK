@@ -21,7 +21,7 @@ namespace tide
 		return rb_obj_is_kind_of(value, klass) == Qtrue;
 	}
 
-	KValueRef RubyUtils::ToKrollValue(VALUE value)
+	KValueRef RubyUtils::ToTideValue(VALUE value)
 	{
 		KValueRef kvalue = Value::Undefined;
 
@@ -180,7 +180,7 @@ namespace tide
 		for (int i = 0; i < RARRAY_LEN(args); i++)
 		{
 			VALUE rarg = rb_ary_entry(args, i);
-			KValueRef arg = RubyUtils::ToKrollValue(rarg);
+			KValueRef arg = RubyUtils::ToTideValue(rarg);
 			Value::Unwrap(arg);
 			kargs.push_back(arg);
 		}
@@ -255,7 +255,7 @@ namespace tide
 		{
 			char* mod_name = strdup(name);
 			mod_name[strlen(mod_name) - 1] = '\0';
-			value = RubyUtils::ToKrollValue(argv[1]);
+			value = RubyUtils::ToTideValue(argv[1]);
 			object->Set(mod_name, value);
 			free(mod_name);
 			return argv[1];
@@ -395,7 +395,7 @@ namespace tide
 		if (idx < 0)
 			return Qnil;
 
-		KValueRef value = RubyUtils::ToKrollValue(argv[1]);
+		KValueRef value = RubyUtils::ToTideValue(argv[1]);
 		klist->SetAt(idx, value);
 
 		return argv[1];
@@ -489,7 +489,7 @@ namespace tide
 	ValueException RubyUtils::GetException()
 	{
 		VALUE e = rb_gv_get("$!");
-		KValueRef v = RubyUtils::ToKrollValue(e);
+		KValueRef v = RubyUtils::ToTideValue(e);
 		return ValueException(v);
 	}
 }

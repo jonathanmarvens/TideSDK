@@ -12,7 +12,7 @@ namespace tide
 namespace KJSUtil
 {
 
-KROLL_API KValueRef ToKrollValue(JSValueRef, JSContextRef, JSObjectRef);
+KROLL_API KValueRef ToTideValue(JSValueRef, JSContextRef, JSObjectRef);
 KROLL_API JSValueRef ToJSValue(KValueRef, JSContextRef);
 KROLL_API JSValueRef KObjectToJSValue(KValueRef, JSContextRef);
 KROLL_API JSValueRef KMethodToJSValue(KValueRef, JSContextRef);

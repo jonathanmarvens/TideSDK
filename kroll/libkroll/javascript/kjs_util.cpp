@@ -48,10 +48,10 @@ namespace KJSUtil
 	static JSValueRef GetFunctionPrototype(JSContextRef jsContext, JSValueRef* exception);
 	static JSValueRef GetArrayPrototype(JSContextRef jsContext, JSValueRef* exception);
 
-	KValueRef ToKrollValue(JSValueRef value, JSContextRef jsContext,
+	KValueRef ToTideValue(JSValueRef value, JSContextRef jsContext,
 		JSObjectRef thisObject)
 	{
-		KValueRef krollValue = 0;
+		KValueRef tideValue = 0;
 		JSValueRef exception = NULL;
 
 		if (value == NULL)
@@ -62,11 +62,11 @@ namespace KJSUtil
 
 		if (JSValueIsNumber(jsContext, value))
 		{
-			krollValue = Value::NewDouble(JSValueToNumber(jsContext, value, &exception));
+			tideValue = Value::NewDouble(JSValueToNumber(jsContext, value, &exception));
 		}
 		else if (JSValueIsBoolean(jsContext, value))
 		{
-			krollValue = Value::NewBool(JSValueToBoolean(jsContext, value));
+			tideValue = Value::NewBool(JSValueToBoolean(jsContext, value));
 		}
 		else if (JSValueIsString(jsContext, value))
 		{
@@ -75,7 +75,7 @@ namespace KJSUtil
 			{
 				std::string stringValue(ToChars(jsString));
 				JSStringRelease(jsString);
-				krollValue = Value::NewString(stringValue);
+				tideValue = Value::NewString(stringValue);
 			}
 		}
 		else if (JSValueIsObject(jsContext, value))
@@ -93,37 +93,37 @@ namespace KJSUtil
 				{
 					// this is a pure JS method: proxy it
 					KMethodRef tibm = new KKJSMethod(jsContext, o, thisObject);
-					krollValue = Value::NewMethod(tibm);
+					tideValue = Value::NewMethod(tibm);
 				}
 				else if (IsArrayLike(o, jsContext))
 				{
 					// this is a pure JS array: proxy it
 					KListRef tibl = new KKJSList(jsContext, o);
-					krollValue = Value::NewList(tibl);
+					tideValue = Value::NewList(tibl);
 				}
 				else
 				{
 					// this is a pure JS object: proxy it
 					KObjectRef tibo = new KKJSObject(jsContext, o);
-					krollValue = Value::NewObject(tibo);
+					tideValue = Value::NewObject(tibo);
 				}
 			}
 		}
 		else if (JSValueIsNull(jsContext, value))
 		{
-			krollValue = tide::Value::Null;
+			tideValue = tide::Value::Null;
 		}
 		else
 		{
-			krollValue = tide::Value::Undefined;
+			tideValue = tide::Value::Undefined;
 		}
-		if (!krollValue.isNull() && exception == NULL)
+		if (!tideValue.isNull() && exception == NULL)
 		{
-			return krollValue;
+			return tideValue;
 		}
 		else if (exception != NULL)
 		{
-			throw ToKrollValue(exception, jsContext, NULL);
+			throw ToTideValue(exception, jsContext, NULL);
 		}
 		else
 		{
@@ -413,7 +413,7 @@ namespace KJSUtil
 		std::string propertyName(ToChars(jsProperty));
 		try
 		{
-			KValueRef newValue = ToKrollValue(jsValue, jsContext, jsObject);
+			KValueRef newValue = ToTideValue(jsValue, jsContext, jsObject);
 
 			// Arrays in particular have a special behavior when
 			// you do something like set the "length" property
@@ -455,7 +455,7 @@ namespace KJSUtil
 		ValueList args;
 		for (size_t i = 0; i < argCount; i++)
 		{
-			KValueRef argVal = ToKrollValue(jsArgs[i], jsContext, jsThis);
+			KValueRef argVal = ToTideValue(jsArgs[i], jsContext, jsThis);
 			Value::Unwrap(argVal);
 			args.push_back(argVal);
 		}
@@ -743,9 +743,9 @@ namespace KJSUtil
 		JSStringRelease(scriptContents);
 
 		if (exception)
-			throw ValueException(ToKrollValue(exception, jsContext, NULL));
+			throw ValueException(ToTideValue(exception, jsContext, NULL));
 
-		return ToKrollValue(returnValue, jsContext, globalObject);
+		return ToTideValue(returnValue, jsContext, globalObject);
 	}
 
 	KValueRef EvaluateFile(JSContextRef jsContext, const std::string& fullPath)
@@ -853,7 +853,7 @@ namespace KJSUtil
 		JSStringRef jsName = JSStringCreateWithUTF8CString(name.c_str());
 		JSValueRef prop = JSObjectGetProperty(jsContext, globalObject, jsName, NULL);
 		JSStringRelease(jsName);
-		return ToKrollValue(prop, jsContext, globalObject);
+		return ToTideValue(prop, jsContext, globalObject);
 	}
 }
 }

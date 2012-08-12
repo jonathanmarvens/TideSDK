@@ -269,7 +269,7 @@ namespace tide
 		}
 	}
 
-	KValueRef PythonUtils::ToKrollValue(PyObject* value)
+	KValueRef PythonUtils::ToTideValue(PyObject* value)
 	{
 		PyLockGIL lock;
 
@@ -422,7 +422,7 @@ namespace tide
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
 		Py_INCREF(self);
-		KValueRef tiValue = PythonUtils::ToKrollValue(value);
+		KValueRef tiValue = PythonUtils::ToTideValue(value);
 
 		{
 			PyAllowThreads allow;
@@ -520,7 +520,7 @@ namespace tide
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
 		KListRef klist = pyko->value->get()->ToList();
-		KValueRef kv = PythonUtils::ToKrollValue(v);
+		KValueRef kv = PythonUtils::ToTideValue(v);
 
 		{
 			PyAllowThreads allow;
@@ -535,7 +535,7 @@ namespace tide
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
 		KListRef klist = pyko->value->get()->ToList();
-		KValueRef kv = PythonUtils::ToKrollValue(value);
+		KValueRef kv = PythonUtils::ToTideValue(value);
 
 		{
 			PyAllowThreads allow;
@@ -558,7 +558,7 @@ namespace tide
 		for (int i = 0; i < size; i++)
 		{
 			PyObject* v = PySequence_GetItem(o2, i);
-			KValueRef kv = PythonUtils::ToKrollValue(v);
+			KValueRef kv = PythonUtils::ToTideValue(v);
 
 			{
 				PyAllowThreads allow;
@@ -613,7 +613,7 @@ namespace tide
 			for (int c = 0; c < PyTuple_Size(args); c++)
 			{
 				PyObject* arg = PyTuple_GetItem(args, c);
-				KValueRef kValue = PythonUtils::ToKrollValue(arg);
+				KValueRef kValue = PythonUtils::ToTideValue(arg);
 				Value::Unwrap(kValue);
 				a.push_back(kValue);
 			}
