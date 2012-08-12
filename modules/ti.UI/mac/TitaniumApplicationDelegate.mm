@@ -25,7 +25,7 @@
 
 - (NSMenu *)applicationDockMenu:(NSApplication *)sender
 {
-    AutoPtr<Titanium::MenuMac> menu = binding->GetDockMenu().cast<Titanium::MenuMac>();
+    AutoPtr<ti::MenuMac> menu = binding->GetDockMenu().cast<ti::MenuMac>();
     if (!menu.isNull()) {
         NSMenu* nativeMenu = menu->CreateNativeNow(false);
         return nativeMenu;
@@ -34,7 +34,7 @@
     }
 }
 
-- (id)initWithBinding:(Titanium::UIMac*)b
+- (id)initWithBinding:(ti::UIMac*)b
 {
     self = [super init];
     if (self)

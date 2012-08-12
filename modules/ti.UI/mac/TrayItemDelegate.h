@@ -20,10 +20,10 @@
 
 @interface TrayItemDelegate : NSObject
 {
-    Titanium::TrayItemMac *trayItem;
+    ti::TrayItemMac *trayItem;
 }
 
--(id)initWithTray:(Titanium::TrayItemMac*)item;
+-(id)initWithTray:(ti::TrayItemMac*)item;
 -(void)invoke:(id)sender;
 
 @end

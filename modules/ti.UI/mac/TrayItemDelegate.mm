@@ -20,7 +20,7 @@
 
 @implementation TrayItemDelegate
 
--(id)initWithTray:(Titanium::TrayItemMac*)inTrayItem
+-(id)initWithTray:(ti::TrayItemMac*)inTrayItem
 {
     trayItem = inTrayItem;
     self = [super init];

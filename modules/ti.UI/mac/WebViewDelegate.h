@@ -25,13 +25,13 @@
 @class NativeWindow;
 @interface WebViewDelegate : NSObject
 {
-    Titanium::NativeWindow* window;
+    ti::NativeWindow* window;
     BOOL initialDisplay;
     std::map<WebFrame*, KObjectRef>* frameToGlobalObject;
     Logger* logger;
 }
 
--(id)initWithWindow:(Titanium::NativeWindow*)window;
+-(id)initWithWindow:(ti::NativeWindow*)window;
 -(void)setupPreferences;
 -(void)registerGlobalObject:(KObjectRef) globalObject forFrame:(WebFrame *)frame;
 -(KObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
