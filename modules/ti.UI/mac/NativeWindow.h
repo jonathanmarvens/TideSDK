@@ -37,13 +37,13 @@ class UserWindowMac;
     WebView* webView;
     WebViewDelegate* delegate;
     BOOL requiresDisplay;
-    AutoPtr<Titanium::UserWindowMac>* userWindow;
+    AutoPtr<ti::UserWindowMac>* userWindow;
     BOOL fullscreen;
     BOOL focused;
     NSRect savedFrame;
 }
-- (void)setUserWindow:(AutoPtr<Titanium::UserWindowMac>*)inUserWindow;
-- (void)setupDecorations:(AutoPtr<Titanium::WindowConfig>)config;
+- (void)setUserWindow:(AutoPtr<ti::UserWindowMac>*)inUserWindow;
+- (void)setupDecorations:(AutoPtr<ti::WindowConfig>)config;
 - (void)setTransparency:(double)transparency;
 - (void)setFullscreen:(BOOL)yn;
 - (void)close;
@@ -51,7 +51,7 @@ class UserWindowMac;
 - (void)open;
 - (void)frameLoaded;
 - (WebView*)webView;
-- (Titanium::UserWindowMac*)userWindow;
+- (ti::UserWindowMac*)userWindow;
 - (void)showInspector:(BOOL)console;
 @end
 

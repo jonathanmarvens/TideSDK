@@ -20,7 +20,7 @@
 
 @implementation MenuItemDelegate
 
--(id)initWithMenuItem:(Titanium::MenuItemMac*)inMenuItem
+-(id)initWithMenuItem:(ti::MenuItemMac*)inMenuItem
 {
     if ([super init]) {
         menuItem = inMenuItem;
@@ -39,7 +39,7 @@
     menuItem->HandleClickEvent(NULL);
 }
 
--(Titanium::MenuItemMac*)getMenuItem
+-(ti::MenuItemMac*)getMenuItem
 {
     return menuItem;
 }
