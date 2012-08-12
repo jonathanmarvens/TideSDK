@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <kroll/javascript/javascript_module.h>
 #include <JavaScriptCore/JSContextRef.h>
 #include "WebKitFrameLoadDelegate.h"

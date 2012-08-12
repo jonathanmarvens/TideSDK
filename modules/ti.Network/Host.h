@@ -17,7 +17,7 @@
 #ifndef Host_h
 #define Host_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Net/HostEntry.h>
 #include <Poco/Net/IPAddress.h>
 

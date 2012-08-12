@@ -23,7 +23,7 @@
 
 #include <string>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/FileStream.h>
 
 namespace ti {

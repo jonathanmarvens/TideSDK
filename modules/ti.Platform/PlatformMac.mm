@@ -20,7 +20,7 @@
 #include <CoreFoundation/CoreFoundation.h>
 #include <Foundation/Foundation.h>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Environment.h>
 
 @interface NSProcessInfo (LegacyWarningSurpression)

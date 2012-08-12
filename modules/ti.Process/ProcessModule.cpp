@@ -16,7 +16,7 @@
 
 #include "ProcessModule.h"
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "ProcessBinding.h"
 

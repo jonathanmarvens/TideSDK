@@ -17,7 +17,7 @@
 #ifndef PlatformModule_h
 #define PlatformModule_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

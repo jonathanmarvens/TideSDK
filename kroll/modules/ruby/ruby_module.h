@@ -43,7 +43,7 @@
 #undef close
 #undef shutdown
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include "k_ruby_object.h"
 #include "k_ruby_hash.h"
 #include "k_ruby_method.h"

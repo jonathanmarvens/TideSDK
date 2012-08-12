@@ -20,7 +20,7 @@
 #include <queue>
 
 #include <JavaScriptCore/JSBase.h>
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Event.h>
 #include <Poco/Mutex.h>
 #include <Poco/RunnableAdapter.h>

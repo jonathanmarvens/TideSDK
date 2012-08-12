@@ -21,7 +21,7 @@
 #include <vector>
 
 #include <JavaScriptCore/JSContextRef.h>
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #ifdef OS_WIN32
 #undef CreateWindow

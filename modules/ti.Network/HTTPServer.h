@@ -17,7 +17,7 @@
 #ifndef HTTPServer_h
 #define HTTPServer_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Thread.h>
 #include <Poco/Net/HTTPServer.h>
 

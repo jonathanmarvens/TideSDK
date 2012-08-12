@@ -17,7 +17,7 @@
 #ifndef MenuItem_h
 #define MenuItem_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

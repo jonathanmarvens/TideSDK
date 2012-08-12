@@ -17,7 +17,7 @@
 #ifndef PipeWin_h
 #define PipeWin_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "../NativePipe.h"
 

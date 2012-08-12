@@ -19,7 +19,7 @@
 
 #include <vector>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

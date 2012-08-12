@@ -17,7 +17,7 @@
 #ifndef Sound_h
 #define Sound_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

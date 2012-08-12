@@ -17,7 +17,7 @@
 #ifndef HTTPServerRequest_h
 #define HTTPServerRequest_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Net/HTTPServerRequest.h>
 
 namespace ti {
