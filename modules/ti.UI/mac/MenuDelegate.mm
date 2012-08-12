@@ -20,7 +20,7 @@
 
 @implementation MenuDelegate
 
-- (id)initWithMenu:(Titanium::MenuMac*)inMenu willRegister:(BOOL)willRegister
+- (id)initWithMenu:(ti::MenuMac*)inMenu willRegister:(BOOL)willRegister
 {
     if ([super init]) {
         dirty = YES;
@@ -43,7 +43,7 @@
     }
 
     dirty = NO;
-    Titanium::MenuMac::ClearNativeMenu(nativeMenu);
+    ti::MenuMac::ClearNativeMenu(nativeMenu);
     menu->AddChildrenToNativeMenu(nativeMenu, registerNative ? true : false);
 }
 
