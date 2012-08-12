@@ -6,7 +6,7 @@
 #ifndef _JAVASCRIPT_MODULE_INSTANCE_H_
 #define _JAVASCRIPT_MODULE_INSTANCE_H_
 
-namespace kroll
+namespace tide
 {
 	class KROLL_API JavaScriptModuleInstance : public Module
 	{

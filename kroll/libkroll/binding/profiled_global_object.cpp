@@ -6,7 +6,7 @@
 
 #include "../kroll.h"
 
-namespace kroll
+namespace tide
 {
 	ProfiledGlobalObject::ProfiledGlobalObject(KObjectRef global) :
 		profiledObject(new ProfiledBoundObject(global))

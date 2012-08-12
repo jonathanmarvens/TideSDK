@@ -10,7 +10,7 @@
 #include <list>
 #include <Poco/Mutex.h>
 
-namespace kroll
+namespace tide
 {
 	class EventListener;
 	typedef std::list<EventListener*> EventListenerList;

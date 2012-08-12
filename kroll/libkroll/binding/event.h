@@ -7,7 +7,7 @@
 #ifndef _KR_EVENT_H_
 #define _KR_EVENT_H_
 
-namespace kroll
+namespace tide
 {
 	class KROLL_API Event : public KAccessorObject
 	{

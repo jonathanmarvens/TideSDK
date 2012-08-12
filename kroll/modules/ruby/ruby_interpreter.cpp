@@ -10,7 +10,7 @@
 #include <iostream>
 #include <sstream>
 
-namespace kroll
+namespace tide
 {
 	RubyInterpreter::RubyInterpreter()
 	{

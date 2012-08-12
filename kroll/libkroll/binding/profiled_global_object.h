@@ -7,7 +7,7 @@
 #ifndef _KR_PROFILED_GLOBAL_OBJECT_H_
 #define _KR_PROFILED_GLOBAL_OBJECT_H_
 
-namespace kroll
+namespace tide
 {
 	class KROLL_API ProfiledGlobalObject : public GlobalObject
 	{

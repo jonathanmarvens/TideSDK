@@ -17,7 +17,7 @@ using std::vector;
 using Poco::URI;
 using Poco::StringTokenizer;
 
-namespace kroll
+namespace tide
 {
 namespace ProxyConfig
 {
@@ -389,5 +389,5 @@ SharedProxy GetProxyForURLImpl(URI& uri)
 }
 
 } // namespace ProxyConfig
-} // namespace kroll
+} // namespace tide
 

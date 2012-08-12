@@ -6,7 +6,7 @@
 
 #include "python_module.h"
 
-namespace kroll
+namespace tide
 {
     static PyObject* ContextToPyGlobals(KObjectRef context)
     {

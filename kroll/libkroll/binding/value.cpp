@@ -8,7 +8,7 @@
 #include <sstream>
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
 
 	void Value::reset()

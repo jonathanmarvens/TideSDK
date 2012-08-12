@@ -51,7 +51,7 @@
 #include <kroll/kroll.h>
 #endif
 
-namespace kroll 
+namespace tide 
 {
 	class PHPModuleInstance;
 	class PHPModule;
@@ -67,7 +67,7 @@ namespace kroll
 #include "php_interpreter.h"
 #include "php_module_instance.h"
 
-namespace kroll
+namespace tide
 {
 	class KROLL_PHP_API PHPModule : public Module, public ModuleProvider
 	{

@@ -56,12 +56,12 @@ void URLToFileURLCallback(const char* url, char* buffer, int bufferLength)
     catch (ValueException& e)
     {
         SharedString ss = e.DisplayString();
-        kroll::Logger* log = kroll::Logger::Get("UI.URL");
+        tide::Logger* log = tide::Logger::Get("UI.URL");
         log->Error("Could not convert %s to a path: %s", url, ss->c_str());
     }
     catch (...)
     {
-        kroll::Logger* log = kroll::Logger::Get("UI.URL");
+        tide::Logger* log = tide::Logger::Get("UI.URL");
         log->Error("Could not convert %s to a path", url);
     }
 }

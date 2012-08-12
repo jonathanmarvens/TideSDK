@@ -33,7 +33,7 @@ using namespace ti;
 -(void)setupPreferences
 {
     NSString* appId = [NSString stringWithUTF8String:
-        kroll::Host::GetInstance()->GetApplication()->id.c_str()];
+        tide::Host::GetInstance()->GetApplication()->id.c_str()];
     [[window webView] setPreferencesIdentifier:appId];
     WebPreferences* webPrefs = [[WebPreferences alloc] initWithIdentifier:appId];
 
@@ -82,7 +82,7 @@ using namespace ti;
     [webView setApplicationNameForUserAgent:appName];
 
     // place our user agent string in the global so we can later use it
-    KObjectRef global = kroll::Host::GetInstance()->GetGlobalObject();
+    KObjectRef global = tide::Host::GetInstance()->GetGlobalObject();
     NSString* fullUserAgent = [webView userAgentForURL:
         [NSURL URLWithString:@"http://titaniumapp.com"]];
     global->SetString("userAgent", [fullUserAgent UTF8String]);

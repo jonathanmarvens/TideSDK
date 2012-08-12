@@ -5,7 +5,7 @@
  */
 
 #include "../kroll.h"
-namespace kroll
+namespace tide
 {
 	ReadEvent::ReadEvent(AutoPtr<KEventObject> target, BytesRef data) :
 		Event(target, Event::READ),

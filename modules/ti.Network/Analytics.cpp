@@ -50,7 +50,7 @@ Analytics::Analytics()
     , curlHandle(0)
     , startCallback(0)
 {
-    SharedApplication app(kroll::Host::GetInstance()->GetApplication());
+    SharedApplication app(tide::Host::GetInstance()->GetApplication());
     this->url = app->GetStreamURL("https") + "/app-track";
 
     AddQueryParameter(baseData, "mid", PlatformUtils::GetMachineId(), true);

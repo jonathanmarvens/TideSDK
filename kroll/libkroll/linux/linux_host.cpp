@@ -15,7 +15,7 @@
 
 GCRY_THREAD_OPTION_PTHREAD_IMPL;
 
-namespace kroll
+namespace tide
 {
 	static pthread_t mainThread = 0;
 

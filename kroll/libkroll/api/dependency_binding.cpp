@@ -6,7 +6,7 @@
 #include <kroll/kroll.h>
 #include "dependency_binding.h"
 
-namespace kroll
+namespace tide
 {
 	DependencyBinding::DependencyBinding(SharedDependency dependency) :
 		KAccessorObject("API.Dependency"),

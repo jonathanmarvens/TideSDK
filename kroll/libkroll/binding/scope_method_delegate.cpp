@@ -6,7 +6,7 @@
 
 #include "../kroll.h"
 
-using namespace kroll;
+using namespace tide;
 
 ScopeMethodDelegate::ScopeMethodDelegate(MethodDelegateType type,
                                          KObjectRef global,

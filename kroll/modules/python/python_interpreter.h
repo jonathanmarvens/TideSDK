@@ -8,7 +8,7 @@
 
 #include <kroll/Interpreter.h>
 
-namespace kroll {
+namespace tide {
 
 class PythonInterpreter : public Interpreter {
 public:
@@ -17,6 +17,6 @@ public:
     virtual KValueRef EvaluateFile(const char* filepath, KObjectRef context);
 };
 
-} // namespace kroll
+} // namespace tide
 
 #endif

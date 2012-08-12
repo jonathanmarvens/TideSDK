@@ -11,7 +11,7 @@
 #include <string>
 #include <map>
 
-namespace kroll
+namespace tide
 {
 
 #ifndef OS_WIN32

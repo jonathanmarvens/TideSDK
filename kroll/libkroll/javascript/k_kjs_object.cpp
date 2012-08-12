@@ -5,7 +5,7 @@
  */
 #include "javascript_module.h"
 
-namespace kroll
+namespace tide
 {
 	KKJSObject::KKJSObject(JSContextRef context, JSObjectRef jsobject) :
 		KObject("JavaScript.KKJSObject"),

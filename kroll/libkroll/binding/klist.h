@@ -10,7 +10,7 @@
 #include <string>
 #include <cctype>
 
-namespace kroll
+namespace tide
 {
 	/**
 	 * A binding that represents a list§

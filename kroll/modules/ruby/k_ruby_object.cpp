@@ -5,7 +5,7 @@
  */
 #include "ruby_module.h"
 
-namespace kroll
+namespace tide
 {
 	KRubyObject::KRubyObject(VALUE object) :
 		KObject("Ruby.KRubyObject"),

@@ -8,7 +8,7 @@
 #define _KR_EVENT_METHOD_H_
 
 
-namespace kroll
+namespace tide
 {
 	class KROLL_API KEventMethod : public KEventObject, public KMethod
 	{

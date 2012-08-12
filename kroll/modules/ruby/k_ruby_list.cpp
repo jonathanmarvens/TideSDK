@@ -6,7 +6,7 @@
 #include "ruby_module.h"
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
 	KRubyList::KRubyList(VALUE list) :
 		KList("Ruby.KRubyList"),

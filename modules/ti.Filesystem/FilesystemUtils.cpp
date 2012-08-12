@@ -49,7 +49,7 @@ std::string FilenameFromArguments(const ValueList& args)
         KListRef list(args.GetList(0));
         for (size_t c = 0; c < list->Size(); c++)
         {
-            filename = kroll::FileUtils::Join(
+            filename = tide::FileUtils::Join(
                 filename.c_str(), list->At(c)->ToString(), NULL);
         }
     }
@@ -58,7 +58,7 @@ std::string FilenameFromArguments(const ValueList& args)
         // you can pass in vararg of strings which acts like  a join
         for (size_t c = 0; c < args.size(); c++)
         {
-            filename = kroll::FileUtils::Join(filename.c_str(),
+            filename = tide::FileUtils::Join(filename.c_str(),
                 FilenameFromValue(args.at(c)).c_str(), 0);
         }
     }

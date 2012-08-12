@@ -450,7 +450,7 @@ void File::GetDirectoryListing(const ValueList& args, KValueRef result)
             {
                 std::string entry = files.at(i);
                 // store it as the fullpath
-                std::string filename = kroll::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
+                std::string filename = tide::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
                 File* file = new File(filename);
                 KValueRef value = Value::NewObject((KObjectRef) file);
                 fileList->Append(value);
@@ -771,7 +771,7 @@ void File::Unzip(const ValueList& args, KValueRef result)
         {
             throw ValueException::FromString("destination must be a directory");
         }
-        kroll::FileUtils::Unzip(from_s,to_s);
+        tide::FileUtils::Unzip(from_s,to_s);
         result->SetBool(true);
     }
     catch (Poco::FileNotFoundException&)

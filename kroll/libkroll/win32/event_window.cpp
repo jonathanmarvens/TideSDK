@@ -6,7 +6,7 @@
 
 #include "../kroll.h"
 
-namespace kroll
+namespace tide
 {
 
 static const wchar_t* windowClassName = L"Kroll Event Window";

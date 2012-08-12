@@ -21,11 +21,11 @@
 
 namespace ti {
 
-class EXPORT WorkerModule : public kroll::Module {
+class EXPORT WorkerModule : public tide::Module {
     KROLL_MODULE_CLASS(WorkerModule)
     
 private:
-    kroll::KObjectRef binding;
+    tide::KObjectRef binding;
 };
 
 } // namespace ti

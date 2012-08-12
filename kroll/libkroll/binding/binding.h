@@ -9,7 +9,7 @@
 
 #include "../kroll.h"
 
-namespace kroll
+namespace tide
 {
 	class Event;
 	class EventListener;

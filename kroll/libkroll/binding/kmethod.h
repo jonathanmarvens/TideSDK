@@ -8,7 +8,7 @@
 #define _K_METHOD_H_
 #include <cstdarg>
 
-namespace kroll
+namespace tide
 {
 	typedef Callback2<const ValueList&, KValueRef>::Type MethodCallback;
 

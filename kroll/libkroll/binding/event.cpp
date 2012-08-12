@@ -5,7 +5,7 @@
  */
 
 #include "../kroll.h"
-namespace kroll
+namespace tide
 {
 	std::string Event::ALL = "all";
 	std::string Event::FOCUSED = "focused";

@@ -8,7 +8,7 @@
 
 #include "python_module.h"
 
-namespace kroll
+namespace tide
 {
 	class PythonModuleInstance : public Module
 	{
