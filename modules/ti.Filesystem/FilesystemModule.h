@@ -17,7 +17,7 @@
 #ifndef FilesystemModule_h
 #define FilesystemModule_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

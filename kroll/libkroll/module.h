@@ -18,7 +18,7 @@ namespace tide
 	 * The easiest way to create a module is to use the convenience macros defined in module.h.
 	 * Example MyModule.h:
 	 * \code
-	 * #include <kroll/kroll.h>
+	 * #include <kroll/tide.h>
 	 * class MyModule : public tide::Module
 	 * {
 	 *   KROLL_MODULE_CLASS(MyModule)

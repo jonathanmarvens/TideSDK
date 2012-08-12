@@ -19,7 +19,7 @@
 #include <string>
 #include <vector>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "MenuItem.h"
 #include "UI.h"

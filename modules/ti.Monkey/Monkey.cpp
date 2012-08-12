@@ -19,7 +19,6 @@
 #include <sstream>
 #include <functional>
 
-#include <kroll/kroll.h>
 #include <Poco/Path.h>
 #include <Poco/FileStream.h>
 

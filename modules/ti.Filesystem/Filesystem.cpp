@@ -27,7 +27,7 @@
 #include <pwd.h>
 #endif
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <kroll/thread_manager.h>
 #include <Poco/TemporaryFile.h>
 #include <Poco/File.h>

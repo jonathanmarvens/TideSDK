@@ -19,7 +19,7 @@
 
 #include <queue>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Condition.h>
 #include <Poco/Mutex.h>
 #include <Poco/Runnable.h>

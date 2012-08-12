@@ -17,7 +17,7 @@
 #ifndef MediaModule_h
 #define MediaModule_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

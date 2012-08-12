@@ -17,7 +17,7 @@
 #ifndef HTTPServerResponse_h
 #define HTTPServerResponse_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Net/HTTPServerResponse.h>
 
 namespace ti {

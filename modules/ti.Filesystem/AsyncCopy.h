@@ -17,7 +17,7 @@
 #ifndef AsyncCopy_h
 #define AsyncCopy_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #ifdef OS_WIN32
 #include <windows.h>

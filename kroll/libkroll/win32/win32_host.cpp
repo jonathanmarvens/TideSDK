@@ -4,7 +4,7 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#include "../kroll.h"
+#include "../tide.h"
 
 #include <windows.h>
 #include <commctrl.h>

@@ -17,7 +17,7 @@
 #ifndef Application_h
 #define Application_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

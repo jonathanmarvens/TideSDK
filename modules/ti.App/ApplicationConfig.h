@@ -20,7 +20,7 @@
 #include <string>
 #include <vector>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "WindowConfig.h"
 #include "Properties.h"

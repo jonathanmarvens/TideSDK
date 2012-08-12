@@ -24,7 +24,7 @@
 #include <Poco/Thread.h>
 #include <Poco/Mutex.h>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

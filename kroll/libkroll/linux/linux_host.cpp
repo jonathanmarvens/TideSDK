@@ -4,7 +4,7 @@
  * Copyright (c) 2008, 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#include "../kroll.h"
+#include "../tide.h"
 
 #include <dlfcn.h>
 #include <gcrypt.h>

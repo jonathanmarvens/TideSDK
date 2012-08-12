@@ -18,7 +18,7 @@
 
 #include <sstream>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Base64Encoder.h>
 #include <Poco/Base64Decoder.h>
 #include <Poco/DigestEngine.h>

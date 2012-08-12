@@ -17,7 +17,7 @@
 #ifndef ProcessModule_h
 #define ProcessModule_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

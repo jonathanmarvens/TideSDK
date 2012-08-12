@@ -18,7 +18,7 @@
 #import <WebKit/WebKit.h>
 #import <WebKit/WebScriptObject.h>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "NativeWindow.h"
 

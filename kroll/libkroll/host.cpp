@@ -20,7 +20,7 @@
 #include <Poco/StringTokenizer.h>
 #include <Poco/Timespan.h>
 
-#include "kroll.h"
+#include "tide.h"
 #include "thread_manager.h"
 #include "ScriptController.h"
 

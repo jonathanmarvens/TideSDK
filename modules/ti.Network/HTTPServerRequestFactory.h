@@ -17,7 +17,7 @@
 #ifndef HTTPServerRequestFactory_h
 #define HTTPServerRequestFactory_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Net/HTTPRequestHandlerFactory.h>
 
 namespace ti {
