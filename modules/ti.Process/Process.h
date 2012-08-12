@@ -19,7 +19,7 @@
 
 #include <sstream>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

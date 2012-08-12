@@ -4,7 +4,7 @@
  * Copyright (c) 2008-2010 Appcelerator, Inc. All Rights Reserved.
  */
 
-#include "../kroll.h"
+#include "../tide.h"
 
 namespace tide
 {

@@ -17,7 +17,7 @@
 #ifndef NetworkUtils_h
 #define NetworkUtils_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 typedef void CURL;
 

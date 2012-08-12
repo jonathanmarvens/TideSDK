@@ -7,7 +7,7 @@
 #define _PYTHON_MODULE_H
 
 #include <Python.h>
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <string>
 #include <vector>
 #include <iostream>

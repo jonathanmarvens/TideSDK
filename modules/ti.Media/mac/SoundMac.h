@@ -19,7 +19,7 @@
 
 #include <AppKit/NSSound.h>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "../Sound.h"
 

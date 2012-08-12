@@ -17,7 +17,7 @@
 #ifndef ResultSet_h
 #define ResultSet_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Data/RecordSet.h>
 
 namespace ti {

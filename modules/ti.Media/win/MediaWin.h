@@ -17,7 +17,7 @@
 #ifndef MediaWin_h
 #define MediaWin_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "../Media.h"
 

@@ -21,7 +21,7 @@
 #include <unistd.h>
 #endif
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Thread.h>
 
 #include "IRC.h"

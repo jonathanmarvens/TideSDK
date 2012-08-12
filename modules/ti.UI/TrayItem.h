@@ -17,7 +17,7 @@
 #ifndef TrayItem_h
 #define TrayItem_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

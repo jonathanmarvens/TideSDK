@@ -17,7 +17,7 @@
 #ifndef PipePosix_h
 #define PipePosix_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "../NativePipe.h"
 

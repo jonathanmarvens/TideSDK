@@ -21,7 +21,7 @@
 #include <vector>
 #include <string>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

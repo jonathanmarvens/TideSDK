@@ -17,7 +17,7 @@
 #ifndef CodecModule_h
 #define CodecModule_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

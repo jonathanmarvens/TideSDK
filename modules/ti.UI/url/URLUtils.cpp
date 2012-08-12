@@ -16,7 +16,7 @@
 
 #include "URLUtils.h"
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/URI.h>
 
 using namespace Poco;

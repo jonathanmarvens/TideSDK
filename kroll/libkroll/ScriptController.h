@@ -19,7 +19,7 @@
 
 #include <map>
 
-#include "kroll.h"
+#include "tide.h"
 
 namespace tide {
 

@@ -19,7 +19,7 @@
 #import <CoreFoundation/CFString.h>
 #import <WebKit/WebKit.h>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 static NSString* GetRegisteredMimeTypeFromExtension(NSString* ext)
 {

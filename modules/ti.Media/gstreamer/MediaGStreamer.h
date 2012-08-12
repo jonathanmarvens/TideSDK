@@ -19,7 +19,7 @@
 
 #include <gst/gst.h>
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 #include "SoundGStreamer.h"
 #include "../Sound.h"

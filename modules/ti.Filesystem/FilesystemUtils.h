@@ -17,7 +17,7 @@
 #ifndef FilesystemUtils_h
 #define FilesystemUtils_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

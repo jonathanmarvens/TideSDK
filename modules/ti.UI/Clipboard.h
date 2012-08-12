@@ -17,7 +17,7 @@
 #ifndef Clipboard_h
 #define Clipboard_h
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 
 namespace ti {
 

@@ -16,7 +16,7 @@
 
 #include "Platform.h"
 
-#include <kroll/kroll.h>
+#include <kroll/tide.h>
 #include <Poco/Environment.h>
 
 namespace ti {
