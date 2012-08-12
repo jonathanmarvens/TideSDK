@@ -28,9 +28,9 @@
 #include <iostream>
 #include <sstream>
 
-#include <kroll/tide.h>
 
 #if defined(OS_WIN32)
+#include <kroll/tide.h>
 #define _INC_MATH
 #include <zend_config.w32.h>
 #include <sapi/embed/php_embed.h>
@@ -48,6 +48,9 @@
 #include <Zend/zend_closures.h>
 #include <Zend/zend_hash.h>
 
+#ifndef OS_WIN32
+#include <kroll/tide.h>
+#endif
 
 namespace tide 
 {
