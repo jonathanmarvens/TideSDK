@@ -27,7 +27,7 @@ using namespace std;
 #define MAINMENU_FRONT_OFFSET 2
 #define MAINMENU_REAR_OFFSET 2
 
-namespace Titanium {
+namespace ti {
 
 MenuMac::MenuMac()
     : Menu()
@@ -397,4 +397,4 @@ void MenuMac::ReplaceAppNameStandinInMenu(NSMenu* menu, NSString* appName)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

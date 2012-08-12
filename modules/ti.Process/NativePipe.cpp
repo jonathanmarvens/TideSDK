@@ -19,7 +19,7 @@
 #define MILLISECONDS_BETWEEN_READ_FLUSHES 2500
 #define MAX_BUFFER_SIZE 512
 
-namespace Titanium {
+namespace ti {
 
 NativePipe::NativePipe(bool isReader)
     : Pipe("Process.NativePipe")
@@ -181,4 +181,4 @@ void NativePipe::CloseNative()
     this->CloseNativeWrite();
 }
 
-} // namespace Titanium
+} // namespace ti

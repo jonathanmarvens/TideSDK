@@ -22,7 +22,7 @@
 
 #include "TitaniumPropertyFileConfiguration.h"
 
-namespace Titanium {
+namespace ti {
 
 class Properties : public kroll::StaticBoundObject
 {
@@ -61,6 +61,6 @@ protected:
     Poco::AutoPtr<Poco::Util::TitaniumPropertyFileConfiguration> config;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

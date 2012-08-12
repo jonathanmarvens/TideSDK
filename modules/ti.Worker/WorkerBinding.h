@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class WorkerBinding : public StaticBoundObject {
 public:
@@ -30,6 +30,6 @@ private:
     void _CreateWorker(const ValueList& args, KValueRef result);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

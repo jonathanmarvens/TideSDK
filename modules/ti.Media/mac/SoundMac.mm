@@ -26,7 +26,7 @@
 - (void)setLoops:(BOOL)loops;
 @end
 
-namespace Titanium {
+namespace ti {
 
 SoundMac::SoundMac(std::string& url) :
     Sound(url),
@@ -121,4 +121,4 @@ double SoundMac::GetVolumeImpl()
         return 0;
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -21,7 +21,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class ProcessBinding : public KAccessorObject {
 public:
@@ -37,6 +37,6 @@ private:
     void ExtendArgs(KListRef dest, KListRef args);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

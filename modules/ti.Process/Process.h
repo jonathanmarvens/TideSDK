@@ -21,7 +21,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class NativePipe;
 class Pipe;
@@ -111,6 +111,6 @@ protected:
     bool running;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

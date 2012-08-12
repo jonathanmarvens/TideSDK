@@ -16,7 +16,7 @@
 
 #include "SoundGStreamer.h"
 
-namespace Titanium {
+namespace ti {
 
 static gboolean GSTBusCallback(GstBus* bus, GstMessage* message, gpointer data);
 
@@ -122,4 +122,4 @@ static gboolean GSTBusCallback(GstBus* bus, GstMessage* message, gpointer data)
     return TRUE;
 }
 
-} // namespace Titanium
+} // namespace ti

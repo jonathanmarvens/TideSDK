@@ -18,7 +18,7 @@
 
 #include <cstring>
 
-namespace Titanium
+namespace ti
 {
   Media::Media(KObjectRef global)
     : StaticBoundObject("Media"),

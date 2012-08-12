@@ -25,7 +25,7 @@
 #include <Poco/Environment.h>
 #include <Poco/Process.h>
 
-namespace Titanium {
+namespace ti {
 
 std::string Platform::GetVersionImpl()
 {
@@ -58,4 +58,4 @@ void Platform::TakeScreenshotImpl(const std::string& targetFile)
     gdk_pixbuf_save(pixbuf, targetFile.c_str(), "png", 0, "compression", "9", NULL);
 }
 
-} // namespace Titanium
+} // namespace ti

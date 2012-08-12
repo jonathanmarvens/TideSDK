@@ -16,7 +16,7 @@
 
 #include "../Application.h"
 
-namespace Titanium {
+namespace ti {
 
 void Application::Restart(const ValueList& args, KValueRef result)
 {
@@ -42,4 +42,4 @@ void Application::Setup()
 {
 }
 
-} // namespace Titanium
+} // namespace ti

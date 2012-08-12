@@ -20,7 +20,7 @@
 #include "MenuMac.h"
 #include "UIMac.h"
 
-namespace Titanium {
+namespace ti {
 
 MenuItemMac::MenuItemMac(MenuItemType type)
     : MenuItem(type)
@@ -214,4 +214,4 @@ void MenuItemMac::HandleClickEvent(KObjectRef source)
     MenuItem::HandleClickEvent(source);
 }
 
-} // namespace Titanium
+} // namespace ti

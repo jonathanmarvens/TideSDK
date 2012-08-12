@@ -21,7 +21,7 @@
 #include <Poco/Net/HostEntry.h>
 #include <Poco/Net/IPAddress.h>
 
-namespace Titanium {
+namespace ti {
 
 class Host : public StaticBoundObject {
 public:
@@ -47,6 +47,6 @@ private:
     void GetAddresses(const ValueList& args, KValueRef result);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

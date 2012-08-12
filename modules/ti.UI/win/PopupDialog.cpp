@@ -21,7 +21,7 @@
 
 #define ID_INPUT_FIELD 101
 
-namespace Titanium {
+namespace ti {
 
 std::map<DWORD, PopupDialog*> PopupDialog::popups;
 
@@ -350,4 +350,4 @@ BOOL PopupDialog::ShowMessageBox(HWND hwnd)
     return fSuccess;
 }
 
-} // namespace Titanium
+} // namespace ti

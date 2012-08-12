@@ -26,7 +26,7 @@
 #include "mac/MediaMac.h"
 #endif
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(MediaModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -47,4 +47,4 @@ void MediaModule::Stop()
 {
 }
 
-} // namespace Titanium
+} // namespace ti

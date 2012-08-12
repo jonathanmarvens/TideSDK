@@ -40,7 +40,7 @@
 #include "AsyncCopy.h"
 #include "FilesystemUtils.h"
 
-namespace Titanium {
+namespace ti {
 
 Filesystem::Filesystem(Host *host, KObjectRef global) :
     StaticBoundObject("Filesystem"),
@@ -394,4 +394,4 @@ void Filesystem::OnAsyncOperationTimer(Poco::Timer &timer)
     END_KROLL_THREAD;
 }
 
-} // namespace Titanium
+} // namespace ti

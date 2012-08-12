@@ -18,7 +18,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Titanium {
+namespace ti {
 
 static void GetClipboardData(GtkClipboard* clipboard, GtkSelectionData* selectionData,
     guint info, gpointer data);
@@ -254,5 +254,5 @@ void Clipboard::ClearURIListImpl()
     priv.SetupClipboardContentTypes();
 }
 
-} // namespace Titanium
+} // namespace ti
 

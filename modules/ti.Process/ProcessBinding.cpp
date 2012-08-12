@@ -24,7 +24,7 @@
 #include "Pipe.h"
 #include "Process.h"
 
-namespace Titanium {
+namespace ti {
 
 std::map<std::string,int> ProcessBinding::signals;
 
@@ -322,4 +322,4 @@ void ProcessBinding::CreatePipe(const ValueList& args, KValueRef result)
     result->SetObject(new Pipe());
 }
 
-} // namespace Titanium
+} // namespace ti

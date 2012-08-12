@@ -21,7 +21,7 @@
 
 #include "Database.h"
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(DatabaseModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -90,4 +90,4 @@ void DatabaseModule::OpenFile(const ValueList& args, KValueRef result)
     result->SetObject(new Database(name, false));
 }
 
-} // namespace Titanium
+} // namespace ti

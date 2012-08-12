@@ -27,7 +27,7 @@
 
 #include "HTTPCookie.h"
 
-namespace Titanium {
+namespace ti {
 
 class HTTPClient : public KEventObject, public Poco::Runnable {
 public:
@@ -110,6 +110,6 @@ private:
     KValueRef sendData;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

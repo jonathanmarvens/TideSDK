@@ -24,7 +24,7 @@
 
 #include <kroll/thread_manager.h>
 
-namespace Titanium {
+namespace ti {
 
 IRCClient::IRCClient()
     : StaticBoundObject("Network.IRCClient")
@@ -265,4 +265,4 @@ void IRCClient::IsVoice(const ValueList& args, KValueRef result)
     //TODO:
 }
 
-} // namespace Titanium
+} // namespace ti

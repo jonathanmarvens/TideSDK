@@ -21,7 +21,7 @@
 
 #include <dshow.h>
 
-namespace Titanium {
+namespace ti {
 
 class SoundWin : public Sound {
 public:
@@ -49,6 +49,6 @@ private:
     IBasicAudio* basicAudio;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

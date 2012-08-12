@@ -41,7 +41,7 @@
 #define CODEC_CRC32     1
 #define CODEC_ADLER32   2
 
-namespace Titanium {
+namespace ti {
 
 Codec::Codec(KObjectRef global) :
     StaticBoundObject("Codec"),
@@ -541,4 +541,4 @@ KValueRef Codec::ExtractZipAsync(const ValueList& args)
     return Value::Undefined;
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -20,7 +20,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Net/IPAddress.h>
 
-namespace Titanium {
+namespace ti {
 
 class IPAddress : public KAccessorObject {
 public:
@@ -55,6 +55,6 @@ private:
     SharedPtr<Poco::Net::IPAddress> address;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

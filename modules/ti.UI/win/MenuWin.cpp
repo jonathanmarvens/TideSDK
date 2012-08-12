@@ -21,7 +21,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 MenuWin::MenuWin()
     : Menu()
@@ -219,4 +219,4 @@ void MenuWin::ApplyNotifyByPositionStyleToNativeMenu(HMENU nativeMenu)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

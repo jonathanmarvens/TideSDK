@@ -23,7 +23,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Media : public StaticBoundObject {
 public:
@@ -40,6 +40,6 @@ private:
     KObjectRef global;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

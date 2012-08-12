@@ -27,7 +27,7 @@
 #undef CreateWindow
 #endif
 
-namespace Titanium {
+namespace ti {
 
 class WindowConfig;
 class Menu;
@@ -260,6 +260,6 @@ private:
     DISALLOW_EVIL_CONSTRUCTORS(UserWindow);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

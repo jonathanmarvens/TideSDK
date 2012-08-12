@@ -18,7 +18,7 @@
 
 #include <gdk/gdk.h>
 
-namespace Titanium {
+namespace ti {
 
 MediaGStreamer::MediaGStreamer(KObjectRef global)
     : Media(global)
@@ -49,4 +49,4 @@ KObjectRef MediaGStreamer::CreateSound(std::string& url)
     return new SoundGStreamer(myurl);
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -23,7 +23,7 @@
 #include <WebKit/WebKit.h>
 #include <WebKit/WebKitCOMAPI.h>
 
-namespace Titanium {
+namespace ti {
 
 class MenuWin;
 class WebKitFrameLoadDelegate;
@@ -169,6 +169,6 @@ private:
     Logger* logger;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

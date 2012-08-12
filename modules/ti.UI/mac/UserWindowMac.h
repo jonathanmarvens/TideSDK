@@ -22,7 +22,7 @@
 #include "NativeWindow.h"
 #include "../UserWindow.h"
 
-namespace Titanium {
+namespace ti {
 
 class MenuItemMac;
 class MenuMac;
@@ -136,6 +136,6 @@ private:
     DISALLOW_EVIL_CONSTRUCTORS(UserWindowMac);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

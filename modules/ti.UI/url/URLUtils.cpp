@@ -22,7 +22,7 @@
 using namespace Poco;
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 void NormalizeURLCallback(const char* url, char* buffer, int bufferLength)
 {
@@ -78,4 +78,4 @@ void ProxyForURLCallback(const char* url, char* buffer, int bufferLength)
         strncpy(buffer, proxy->ToString().c_str(), bufferLength);
 }
 
-} // namespace Titanium
+} // namespace ti

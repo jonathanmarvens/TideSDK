@@ -20,7 +20,7 @@
 
 #include "ProcessBinding.h"
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(ProcessModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -44,4 +44,4 @@ void ProcessModule::Stop()
 {
 }
     
-} // namespace Titanium
+} // namespace ti

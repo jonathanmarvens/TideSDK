@@ -26,7 +26,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Environment.h>
 
-namespace Titanium {
+namespace ti {
 
 static std::string GetFailureReason(long code)
 {
@@ -117,4 +117,4 @@ void Platform::TakeScreenshotImpl(const std::string& targetFile)
         throw ValueException::FromString("Could not save screenshot.");
 }
 
-} // namespace Titanium
+} // namespace ti

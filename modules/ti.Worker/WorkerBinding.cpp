@@ -22,7 +22,7 @@
 
 #include "Worker.h"
 
-namespace Titanium {
+namespace ti {
 
 WorkerBinding::WorkerBinding() :
     StaticBoundObject("Worker")
@@ -81,4 +81,4 @@ void WorkerBinding::_CreateWorker(const ValueList& args, KValueRef result)
     result->SetObject(new Worker(code));
 }
 
-} // namespace Titanium
+} // namespace ti

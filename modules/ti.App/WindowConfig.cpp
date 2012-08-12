@@ -27,7 +27,7 @@
 
 static size_t windowCount = 0;
 
-namespace Titanium {
+namespace ti {
 
 static bool CoerceBool(KObjectRef props, const char* name, bool defaultValue)
 {
@@ -369,4 +369,4 @@ AutoPtr<WindowConfig> WindowConfig::FromXMLNode(xmlNodePtr element)
     return config;
 }
 
-} // namespace Titanium
+} // namespace ti

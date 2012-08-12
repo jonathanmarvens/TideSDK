@@ -16,7 +16,7 @@
 
 #include "Notification.h"
 
-namespace Titanium {
+namespace ti {
 
 Notification::Notification()
     : KAccessorObject("Notification")
@@ -81,4 +81,4 @@ void Notification::Configure(KObjectRef properties)
     this->timeout = properties->GetInt("timeout", -1);
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -22,7 +22,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 MenuGtk::MenuGtk()
     : Menu()
@@ -164,5 +164,5 @@ void MenuGtk::AddChildrenToNativeMenu(GtkMenuShell* nativeMenu, bool registerNat
     }
 }
 
-} // namespace Titanium
+} // namespace ti
 

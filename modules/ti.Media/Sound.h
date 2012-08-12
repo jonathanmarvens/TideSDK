@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Sound : public StaticBoundObject {
 public:
@@ -70,6 +70,6 @@ protected:
     bool looping;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

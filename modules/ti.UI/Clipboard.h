@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Clipboard : public KAccessorObject {
 public:
@@ -65,6 +65,6 @@ public:
     void ClearURIListImpl();
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

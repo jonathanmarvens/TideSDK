@@ -20,7 +20,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Net/HTTPRequestHandlerFactory.h>
 
-namespace Titanium {
+namespace ti {
 
 class HTTPServerRequestFactory : public Poco::Net::HTTPRequestHandlerFactory {
 public:
@@ -31,6 +31,6 @@ private:
     KMethodRef m_callback;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

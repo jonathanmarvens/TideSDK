@@ -21,7 +21,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-namespace Titanium {
+namespace ti {
 
 UINT SoundWin::graphNotifyMessage = 
     ::RegisterWindowMessage(L"GraphNotifyMediaModule");
@@ -180,4 +180,4 @@ bool SoundWin::StaticGraphCallback(HWND hwnd, UINT message,
     return sound->GraphCallback(hwnd, message, wParam, lParam);
 }
 
-} // namespace Titanium
+} // namespace ti

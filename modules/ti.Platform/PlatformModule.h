@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class EXPORT PlatformModule : public kroll::Module {
 public:
@@ -30,6 +30,6 @@ private:
     KObjectRef binding;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

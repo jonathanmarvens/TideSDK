@@ -25,7 +25,7 @@
 #include "../Sound.h"
 #include "../Media.h"
 
-namespace Titanium {
+namespace ti {
 
 class MediaGStreamer : public Media {
 public:
@@ -37,6 +37,6 @@ protected:
     KObjectRef CreateSound(std::string&);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

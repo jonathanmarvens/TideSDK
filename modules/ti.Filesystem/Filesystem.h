@@ -23,7 +23,7 @@
 #include <Poco/Mutex.h>
 #include <Poco/Timer.h>
 
-namespace Titanium {
+namespace ti {
 
 class Filesystem : public StaticBoundObject {
 public:
@@ -58,6 +58,6 @@ private:
     Poco::Timer *timer;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

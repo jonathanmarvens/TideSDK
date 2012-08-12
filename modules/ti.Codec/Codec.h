@@ -24,7 +24,7 @@
 #include <Poco/Zip/Decompress.h>
 #include <Poco/Path.h>
 
-namespace Titanium {
+namespace ti {
 
 class Codec : public StaticBoundObject
 {
@@ -49,6 +49,6 @@ private:
     KObjectRef global;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

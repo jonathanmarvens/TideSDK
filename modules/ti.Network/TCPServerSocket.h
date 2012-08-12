@@ -26,7 +26,7 @@
 #include <Poco/RunnableAdapter.h>
 #include <Poco/Thread.h>
 
-namespace Titanium {
+namespace ti {
 
 class TCPServerSocketConnector {
 public:
@@ -64,6 +64,6 @@ private:
     bool listening;
 };
     
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -20,7 +20,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Net/HTTPCookie.h>
 
-namespace Titanium {
+namespace ti {
 
 class HTTPCookie : public KAccessorObject {
 public:
@@ -55,6 +55,6 @@ private:
     Poco::Net::HTTPCookie cookie;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -24,7 +24,7 @@
 #define WEB_INSPECTOR_MENU_ITEM_ID 7500
 #define NEXT_ITEM_ID_BEGIN 7501
 
-namespace Titanium {
+namespace ti {
 
 class MenuWin;
 
@@ -67,6 +67,6 @@ private:
     static std::vector<HBITMAP> loadedBMPs;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

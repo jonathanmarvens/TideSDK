@@ -23,7 +23,7 @@
 
 #include "../Sound.h"
 
-namespace Titanium {
+namespace ti {
 
 class SoundMac : public Sound {
 public:
@@ -44,6 +44,6 @@ private:
     NSURL* fileURL;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -20,7 +20,7 @@
 
 #include "WorkerContext.h"
 
-namespace Titanium {
+namespace ti {
 
 static Logger* GetLogger()
 {
@@ -167,4 +167,4 @@ void Worker::Set(const char* name, KValueRef value)
         this->HandleInbox();
 }
 
-} // namespace Titanium
+} // namespace ti

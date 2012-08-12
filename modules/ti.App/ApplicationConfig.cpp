@@ -29,7 +29,7 @@
 
 using Poco::Util::TitaniumPropertyFileConfiguration;
 
-namespace Titanium {
+namespace ti {
 
 static void ParsePropertyNode(xmlNodePtr node,
     AutoPtr<TitaniumPropertyFileConfiguration> config)
@@ -245,4 +245,4 @@ AutoPtr<WindowConfig> ApplicationConfig::GetMainWindow()
     return WindowConfig::FromWindowConfig(windows[0]);
 }
 
-} // namespace Titanium
+} // namespace ti

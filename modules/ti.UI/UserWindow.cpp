@@ -27,7 +27,7 @@
 #include "../ti.App/ApplicationConfig.h"
 #include "../ti.App/WindowConfig.h"
 
-namespace Titanium {
+namespace ti {
 
 UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoPtr<UserWindow> parent)
     : KEventObject("UI.UserWindow")
@@ -1689,4 +1689,4 @@ void UserWindow::_IncludeScript(const ValueList& args, KValueRef result)
     result->SetValue(scriptResult);
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -26,7 +26,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 Menu::Menu()
     : KAccessorObject("UI.Menu")
@@ -201,4 +201,4 @@ bool Menu::ContainsSubmenu(Menu* submenu)
     return false;
 }
 
-} // namespace Titanium
+} // namespace ti

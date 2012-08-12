@@ -41,7 +41,7 @@ using namespace std;
 #define MEANING_OF_LIFE 42
 #define MAX_FILE_DIALOG_STRING 1024
 
-namespace Titanium {
+namespace ti {
 
 static void ParseMultipleSelectedFiles(OPENFILENAME* ofn,
     vector<wstring>& files);
@@ -1495,4 +1495,4 @@ void UserWindowWin::SetPluginsEnabled(bool enabled)
     prefs->Release();
 }
 
-} // namespace Titanium
+} // namespace ti

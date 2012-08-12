@@ -21,7 +21,7 @@
 
 #include <Poco/LineEndingConverter.h>
 
-namespace Titanium {
+namespace ti {
 
 FileStream::FileStream(std::string filename) :
     Stream("Filesystem.FileStream"),
@@ -486,4 +486,4 @@ void FileStream::_Ready(const ValueList& args, KValueRef result)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

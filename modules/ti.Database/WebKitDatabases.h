@@ -20,7 +20,7 @@
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 
-namespace Titanium {
+namespace ti {
 
 /**
  * Databases is a convenience class for handling WebKit compatible databases
@@ -56,6 +56,6 @@ private:
     Poco::Data::Session* session;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

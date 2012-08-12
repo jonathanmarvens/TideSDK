@@ -27,7 +27,7 @@
 
 #include <kroll/thread_manager.h>
 
-namespace Titanium {
+namespace ti {
 
 AsyncCopy::AsyncCopy(Filesystem* parent, Host *host,
     std::vector<std::string> files, std::string destination, KMethodRef callback) :
@@ -206,4 +206,4 @@ void AsyncCopy::Cancel(const ValueList& args, KValueRef result)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

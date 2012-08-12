@@ -22,7 +22,7 @@
 #define READ_BUFFER_SIZE 40*1024
 #define READ_BUFFER_MIN_SIZE 128
 
-namespace Titanium {
+namespace ti {
 
 TCPSocket::TCPSocket(const std::string& host, int port)
     : KEventObject("Network.TCPSocket")
@@ -299,4 +299,4 @@ void TCPSocket::_OnTimeout(const ValueList& args, KValueRef result)
     AddEventListener("timeout", args.GetMethod(0));
 }
 
-} // namespace Titanium
+} // namespace ti

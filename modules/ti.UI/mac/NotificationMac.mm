@@ -24,7 +24,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 static CFDataRef GetAppIcon(SharedApplication app)
 {
@@ -87,4 +87,4 @@ bool Notification::HideImpl()
     return false;
 }
 
-} // namespace Titanium
+} // namespace ti

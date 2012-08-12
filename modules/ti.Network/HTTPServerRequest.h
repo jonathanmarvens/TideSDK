@@ -20,7 +20,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Net/HTTPServerRequest.h>
 
-namespace Titanium {
+namespace ti {
 
 class HTTPServerRequest : public StaticBoundObject {
 public:
@@ -40,6 +40,6 @@ private:
     Poco::Net::HTTPServerRequest& request;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

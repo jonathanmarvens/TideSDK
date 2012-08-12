@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Menu;
 
@@ -49,6 +49,6 @@ protected:
     bool removed;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

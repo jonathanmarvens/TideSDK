@@ -21,7 +21,7 @@
 #include <Poco/Thread.h>
 #include <Poco/ThreadTarget.h>
 
-namespace Titanium {
+namespace ti {
 
 class Pipe : public KEventObject {
 public:
@@ -57,6 +57,6 @@ protected:
     Logger *logger;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

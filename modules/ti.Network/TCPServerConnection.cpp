@@ -16,7 +16,7 @@
 
 #include "TCPServerConnection.h"
 
-namespace Titanium {
+namespace ti {
 
 static kroll::Logger* GetLogger()
 {
@@ -313,4 +313,4 @@ void TCPServerConnection::IsClosed(const ValueList& args, KValueRef result)
     return result->SetBool(this->closed);
 }
 
-} // namespace Titanium
+} // namespace ti

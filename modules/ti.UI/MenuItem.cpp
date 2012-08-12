@@ -26,7 +26,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 MenuItem::MenuItem(MenuItemType type)
     : KEventObject("UI.MenuItem")
@@ -306,4 +306,4 @@ bool MenuItem::ContainsSubmenu(Menu* submenu)
         this->submenu->ContainsSubmenu(submenu));
 }
 
-} // namespace Titanium
+} // namespace ti

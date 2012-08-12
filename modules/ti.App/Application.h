@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Application : public KAccessorObject {
 public:
@@ -59,6 +59,6 @@ protected:
     void Setup();
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

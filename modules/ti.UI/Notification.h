@@ -29,7 +29,7 @@ typedef long PlatformNotification;
 typedef char PlatformNotification;
 #endif
 
-namespace Titanium {
+namespace ti {
 
 class Notification : public KAccessorObject {
 public:
@@ -62,6 +62,6 @@ private:
 
 typedef AutoPtr<Notification> AutoNotification;
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

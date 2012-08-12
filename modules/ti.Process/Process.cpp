@@ -27,7 +27,7 @@
 #include "posix/ProcessPosix.h"
 #endif
 
-namespace Titanium {
+namespace ti {
 
 /*static*/
 AutoPtr<Process> Process::CreateProcess()
@@ -518,4 +518,4 @@ void Process::SetStderr(AutoPtr<Pipe> newStderr)
     this->stderrPipe = newStderr;
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -20,7 +20,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Net/HTTPServerResponse.h>
 
-namespace Titanium {
+namespace ti {
 
 class HTTPServerResponse : public StaticBoundObject {
 public:
@@ -39,6 +39,6 @@ private:
     Poco::Net::HTTPServerResponse& response;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif
