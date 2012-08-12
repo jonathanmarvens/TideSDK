@@ -39,7 +39,7 @@ namespace tide
 		}
 
 		TSRMLS_FETCH();
-		KValueRef v = PHPUtils::ToKrollValue((zval *) copyval TSRMLS_CC);
+		KValueRef v = PHPUtils::ToTideValue((zval *) copyval TSRMLS_CC);
 		return v;
 	}
 
@@ -113,7 +113,7 @@ namespace tide
 		}
 
 		TSRMLS_FETCH();
-		KValueRef v = PHPUtils::ToKrollValue((zval *) copyval TSRMLS_CC);
+		KValueRef v = PHPUtils::ToTideValue((zval *) copyval TSRMLS_CC);
 		return v;
 	}
 

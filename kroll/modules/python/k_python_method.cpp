@@ -47,7 +47,7 @@ namespace tide
 		}
 		else if (response != NULL)
 		{
-			value = PythonUtils::ToKrollValue(response);
+			value = PythonUtils::ToTideValue(response);
 			Py_DECREF(response);
 		}
 

@@ -99,11 +99,11 @@ namespace tide
 
 		if (jsValue == NULL && exception != NULL) //exception thrown
 		{
-			KValueRef exceptionValue = KJSUtil::ToKrollValue(exception, this->context, NULL);
+			KValueRef exceptionValue = KJSUtil::ToTideValue(exception, this->context, NULL);
 			throw ValueException(exceptionValue);
 		}
 
-		return KJSUtil::ToKrollValue(jsValue, this->context, NULL);
+		return KJSUtil::ToTideValue(jsValue, this->context, NULL);
 	}
 
 	KValueRef KKJSMethod::Call(const ValueList& args)

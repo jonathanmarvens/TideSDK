@@ -171,7 +171,7 @@ namespace tide
 			while (zend_hash_get_current_data_ex(Z_ARRVAL_P(zargs),
 				(void **) &parameter, &position) == SUCCESS)
 			{
-				kargs.push_back(PHPUtils::ToKrollValue(*parameter TSRMLS_CC));
+				kargs.push_back(PHPUtils::ToTideValue(*parameter TSRMLS_CC));
 				zend_hash_move_forward_ex(Z_ARRVAL_P(zargs), &position);
 			}
 		}
@@ -266,7 +266,7 @@ namespace tide
 
 		try
 		{
-			KValueRef krollValue = PHPUtils::ToKrollValue(value TSRMLS_CC);
+			KValueRef krollValue = PHPUtils::ToTideValue(value TSRMLS_CC);
 			if (!property) // A NULL property name means this is an append ([]=) operation.
 			{
 				// TODO: It's unclear what this should do if not called on a list.
@@ -448,7 +448,7 @@ namespace tide
 		for (int i = 0; i < ZEND_NUM_ARGS(); i++)
 		{
 			zval** zargValue = arguments[i];
-			KValueRef argValue = PHPUtils::ToKrollValue(*zargValue TSRMLS_CC);
+			KValueRef argValue = PHPUtils::ToTideValue(*zargValue TSRMLS_CC);
 			kargs.push_back(argValue);
 		}
 		efree(arguments);
@@ -514,7 +514,7 @@ namespace tide
 
 		KListRef klist(GET_MY_KLIST());
 		string indexString(PHPUtils::ZvalToPropertyName(zindexString));
-		KValueRef value(PHPUtils::ToKrollValue(zvalue TSRMLS_CC));
+		KValueRef value(PHPUtils::ToTideValue(zvalue TSRMLS_CC));
 
 		if (KList::IsInt(indexString))
 		{
@@ -556,7 +556,7 @@ namespace tide
 		}
 
 		KListRef klist(GET_MY_KLIST());
-		KValueRef value(PHPUtils::ToKrollValue(zvalue TSRMLS_CC));
+		KValueRef value(PHPUtils::ToTideValue(zvalue TSRMLS_CC));
 		klist->Append(value);
 	} 
 
