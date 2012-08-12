@@ -24,7 +24,7 @@
 #include <libxml/tree.h>
 #include <libxml/xpath.h>
 
-namespace Titanium {
+namespace ti {
 
 class ConfigUtils {
 public:
@@ -61,6 +61,6 @@ public:
     }
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -24,7 +24,7 @@
 #include "UserWindow.h"
 #include "../ti.App/ApplicationConfig.h"
 
-namespace Titanium {
+namespace ti {
 
 UI* UI::instance = NULL;
 
@@ -425,4 +425,4 @@ void UI::Log(Logger::Level level, std::string& message)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

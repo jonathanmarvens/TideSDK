@@ -25,7 +25,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 Monkey::Monkey(Host *host, KObjectRef global) :
     StaticBoundObject("Monkey"),
@@ -232,4 +232,4 @@ bool Script::Matches(string& url)
     return !Matches(this->excludes, url) && Matches(this->includes, url);
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -18,7 +18,7 @@
 
 #include "SnarlInterface.h"
 
-namespace Titanium {
+namespace ti {
 
 /*static*/
 bool Notification::InitializeImpl()
@@ -76,4 +76,4 @@ bool Notification::HideImpl()
     return snarlInterface.HideMessage(this->notification);
 }
 
-} // namespace Titanium
+} // namespace ti

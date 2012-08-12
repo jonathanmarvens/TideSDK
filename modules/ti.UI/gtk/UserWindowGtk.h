@@ -22,7 +22,7 @@
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
 
-namespace Titanium {
+namespace ti {
 
 class MenuGtk;
 
@@ -154,7 +154,7 @@ protected:
     GtkWidget *inspectorWindow; // This window's web inspector window
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif
 

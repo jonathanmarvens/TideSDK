@@ -20,7 +20,7 @@
 
 #include "SoundMac.h"
 
-namespace Titanium {
+namespace ti {
 
 MediaMac::MediaMac(KObjectRef global) : Media(global)
 {
@@ -37,4 +37,4 @@ KObjectRef MediaMac::CreateSound(std::string& url)
     return new SoundMac(url);
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -21,7 +21,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Script {
 public:
@@ -51,6 +51,6 @@ protected:
     std::vector<Script*> scripts;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

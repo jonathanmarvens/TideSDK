@@ -18,7 +18,7 @@
 
 #include "MenuGtk.h"
 
-namespace Titanium {
+namespace ti {
 
 void TrayClickedCallback(GtkStatusIcon*, gpointer);
 void TrayMenuCallback(GtkStatusIcon*, guint, guint, gpointer);
@@ -134,5 +134,5 @@ void TrayMenuCallback(
     }
 }
 
-} // namespace Titanium
+} // namespace ti
 

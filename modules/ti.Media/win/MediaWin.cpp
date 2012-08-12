@@ -20,7 +20,7 @@
 
 #include "SoundWin.h"
 
-namespace Titanium {
+namespace ti {
 
 MediaWin::MediaWin(KObjectRef global)
     : Media(global)
@@ -41,4 +41,4 @@ KObjectRef MediaWin::CreateSound(std::string& url)
     return new SoundWin(url);
 }
 
-} // namespace Titanium
+} // namespace ti

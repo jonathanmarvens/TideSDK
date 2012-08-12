@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Platform : public KAccessorObject {
 public:
@@ -45,6 +45,6 @@ private:
     void _TakeScreenshot(const ValueList& args, KValueRef result);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

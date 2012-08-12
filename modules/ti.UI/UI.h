@@ -22,7 +22,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class Menu;
 class MenuItem;
@@ -103,6 +103,6 @@ protected:
     std::string iconURL;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -18,7 +18,7 @@
 
 #include "Filesystem.h"
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(FilesystemModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -37,4 +37,4 @@ void FilesystemModule::Stop()
 
 }
 
-} // namespace Titanium
+} // namespace ti

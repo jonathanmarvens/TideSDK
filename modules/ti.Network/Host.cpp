@@ -23,7 +23,7 @@
 
 using namespace Poco::Net;
 
-namespace Titanium {
+namespace ti {
 
 Host::Host(const Poco::Net::IPAddress& address)
     : StaticBoundObject("Network.Host")
@@ -148,4 +148,4 @@ void Host::GetAddresses(const ValueList& args, KValueRef result)
     result->SetList(list);
 }
 
-} // namespace Titanium
+} // namespace ti

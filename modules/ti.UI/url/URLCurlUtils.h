@@ -22,11 +22,11 @@
 extern struct Curl_local_handler CurlTiURLHandler;
 extern struct Curl_local_handler CurlAppURLHandler;
 
-namespace Titanium {
+namespace ti {
 
     const char* TiURLToPathCurl(const char *url);
     const char* AppURLToPathCurl(const char *url);
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

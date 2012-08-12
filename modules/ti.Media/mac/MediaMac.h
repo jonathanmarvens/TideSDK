@@ -23,7 +23,7 @@
 
 using namespace kroll;
 
-namespace Titanium {
+namespace ti {
 
 class MediaMac : public Media {
 public:
@@ -35,6 +35,6 @@ protected:
     KObjectRef CreateSound(std::string&);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

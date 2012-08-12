@@ -21,7 +21,7 @@
 
 #include <vector>
 
-namespace Titanium {
+namespace ti {
 
 class MenuItemWin;
 
@@ -53,6 +53,6 @@ private:
     std::vector<HMENU> nativeMenus;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

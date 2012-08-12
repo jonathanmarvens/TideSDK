@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class EXPORT CodecModule : public kroll::Module
 {
@@ -29,6 +29,6 @@ private:
     kroll::KObjectRef binding;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

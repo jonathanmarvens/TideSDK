@@ -20,7 +20,7 @@
 
 #include <shellapi.h>
 
-namespace Titanium {
+namespace ti {
 
 WebKitPolicyDelegate::WebKitPolicyDelegate(UserWindowWin *window_)
     : window(window_)
@@ -130,4 +130,4 @@ HRESULT STDMETHODCALLTYPE WebKitPolicyDelegate::unableToImplementPolicyWithError
     return E_NOTIMPL;
 }
 
-} // namespace Titanium
+} // namespace ti

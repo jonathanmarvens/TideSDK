@@ -24,7 +24,7 @@
 
 using namespace Poco;
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(NetworkModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -102,4 +102,4 @@ CURLSH* NetworkModule::GetCurlShareHandle()
     return curlShareHandle;
 }
 
-} // namespace Titanium
+} // namespace ti

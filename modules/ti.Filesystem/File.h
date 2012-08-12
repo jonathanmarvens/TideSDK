@@ -21,7 +21,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class File : public StaticBoundObject {
 public:
@@ -73,6 +73,6 @@ private:
     std::string filename;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif 

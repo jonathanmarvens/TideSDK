@@ -21,7 +21,7 @@
 #include "ApplicationConfig.h"
 #include "Properties.h"
 
-namespace Titanium {
+namespace ti {
 
 Application::Application(Host* host, KObjectRef global) :
     KAccessorObject("App"),
@@ -405,4 +405,4 @@ void Application::GetArguments(const ValueList& args, KValueRef result)
     result->SetList(argList);
 }
 
-} // namespace Titanium
+} // namespace ti

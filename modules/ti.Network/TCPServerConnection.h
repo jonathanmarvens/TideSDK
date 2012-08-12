@@ -28,7 +28,7 @@
 #include <Poco/RunnableAdapter.h>
 #include <Poco/Thread.h>
 
-namespace Titanium {
+namespace ti {
 
 class TCPServerConnection : public StaticBoundObject {
 public:
@@ -67,6 +67,6 @@ private:
     bool writeReadyHandlerInstalled;
 };
     
-} // namespace Titanium
+} // namespace ti
 
 #endif

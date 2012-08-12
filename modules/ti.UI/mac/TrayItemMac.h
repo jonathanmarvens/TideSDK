@@ -22,7 +22,7 @@
 
 #include "../TrayItem.h"
 
-namespace Titanium {
+namespace ti {
 
 class MenuMac;
 
@@ -44,6 +44,6 @@ private:
     NSStatusItem* nativeItem;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -22,7 +22,7 @@
 #include <string>
 #include <vector>
 
-namespace Titanium {
+namespace ti {
 
 class MenuWin;
 
@@ -63,6 +63,6 @@ private:
 
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

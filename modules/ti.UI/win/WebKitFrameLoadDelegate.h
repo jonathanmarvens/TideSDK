@@ -19,7 +19,7 @@
 
 #include <WebKit/WebKit.h>
 
-namespace Titanium {
+namespace ti {
 
 class UserWindowWin;
 
@@ -104,6 +104,6 @@ protected:
     UserWindowWin *window;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

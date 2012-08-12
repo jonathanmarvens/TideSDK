@@ -26,7 +26,7 @@
 
 #define SPEC_VERSION "2"
 
-namespace Titanium {
+namespace ti {
 
 static Logger* GetLogger()
 {
@@ -187,4 +187,4 @@ void Analytics::SendEventToAPIServer(std::string& eventData)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

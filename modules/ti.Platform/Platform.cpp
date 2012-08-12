@@ -19,7 +19,7 @@
 #include <kroll/kroll.h>
 #include <Poco/Environment.h>
 
-namespace Titanium {
+namespace ti {
 
 Platform::Platform() :
     KAccessorObject("Platform")
@@ -163,4 +163,4 @@ void Platform::_TakeScreenshot(const ValueList& args, KValueRef result)
     this->TakeScreenshotImpl(args.at(0)->ToString());
 }
 
-} // namespace Titanium
+} // namespace ti

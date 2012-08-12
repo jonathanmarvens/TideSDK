@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class MenuItem;
 
@@ -56,6 +56,6 @@ protected:
     std::vector<AutoPtr<MenuItem> > children;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

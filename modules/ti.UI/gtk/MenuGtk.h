@@ -21,7 +21,7 @@
 
 #include <gtk/gtk.h>
 
-namespace Titanium {
+namespace ti {
 
 class MenuGtk : public Menu {
 public:
@@ -47,7 +47,7 @@ private:
     std::vector<GtkMenuShell*> nativeMenus;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif
 

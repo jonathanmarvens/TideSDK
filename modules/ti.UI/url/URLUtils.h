@@ -25,12 +25,12 @@ typedef struct {
 #define KEYVALUESTRUCT 1
 #endif
 
-namespace Titanium {
+namespace ti {
 
 void NormalizeURLCallback(const char* url, char* buffer, int bufferLength);
 void URLToFileURLCallback(const char* url, char* buffer, int bufferLength);
 void ProxyForURLCallback(const char* url, char* buffer, int bufferLength);
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

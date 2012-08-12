@@ -19,13 +19,13 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class AppModule : public kroll::Module
 {
     KROLL_MODULE_CLASS(AppModule)
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

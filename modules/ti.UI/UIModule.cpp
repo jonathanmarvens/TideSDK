@@ -28,7 +28,7 @@
 #include "win/UIWin.h"
 #endif
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(UIModule, STRING(MODULE_NAME), STRING(MODULE_VERSION))
 UIModule* UIModule::instance_ = 0;
@@ -92,4 +92,4 @@ bool UIModule::IsResourceLocalFile(std::string string)
     return (scheme == "app" || scheme == "ti" || scheme == "file");
 }
 
-} // namespace Titanium
+} // namespace ti

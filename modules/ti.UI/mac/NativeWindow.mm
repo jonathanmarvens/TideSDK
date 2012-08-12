@@ -20,7 +20,7 @@
 
 #include "UserWindowMac.h"
 
-using namespace Titanium;
+using namespace ti;
 
 @implementation NativeWindow
 - (BOOL)canBecomeKeyWindow

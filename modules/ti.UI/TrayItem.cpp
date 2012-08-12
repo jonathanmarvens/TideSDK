@@ -19,7 +19,7 @@
 #include "Menu.h"
 #include "UI.h"
 
-namespace Titanium {
+namespace ti {
 
 TrayItem::TrayItem(std::string& iconURL)
     : KEventObject("UI.TrayItem")
@@ -106,4 +106,4 @@ void TrayItem::_Remove(const ValueList& args, KValueRef result)
     removed = true;
 }
 
-} // namespace Titanium
+} // namespace ti

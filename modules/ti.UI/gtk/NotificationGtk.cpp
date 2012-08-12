@@ -18,7 +18,7 @@
 
 #include <libnotify/notify.h>
 
-namespace Titanium {
+namespace ti {
 
 /*static*/
 bool Notification::InitializeImpl()
@@ -77,5 +77,5 @@ bool Notification::HideImpl()
         return notify_notification_close(this->notification, NULL);
 }
 
-} // namespace Titanium
+} // namespace ti
 

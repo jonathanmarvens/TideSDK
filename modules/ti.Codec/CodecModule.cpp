@@ -18,7 +18,7 @@
 
 #include "Codec.h"
 
-namespace Titanium {
+namespace ti {
 
 KROLL_MODULE(CodecModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
@@ -36,4 +36,4 @@ void CodecModule::Stop()
 {
 }
 
-} // namespace Titanium
+} // namespace ti

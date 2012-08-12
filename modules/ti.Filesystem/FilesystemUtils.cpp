@@ -21,7 +21,7 @@
 #include <Poco/FileStream.h>
 #include <Poco/Exception.h>
 
-namespace Titanium {
+namespace ti {
 
 std::string FilenameFromValue(KValueRef v)
 {
@@ -69,4 +69,4 @@ std::string FilenameFromArguments(const ValueList& args)
     return filename;
 }
 
-} // namespace Titanium
+} // namespace ti

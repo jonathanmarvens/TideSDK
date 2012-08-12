@@ -16,7 +16,7 @@
 
 #include "Sound.h"
 
-namespace Titanium {
+namespace ti {
 
 Sound::Sound(std::string& url) :
     StaticBoundObject("Media.Sound"),
@@ -279,4 +279,4 @@ void Sound::SoundCompletedIteration()
     }
 }
 
-} // namespace Titanium
+} // namespace ti

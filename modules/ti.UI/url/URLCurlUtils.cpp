@@ -21,7 +21,7 @@
 struct Curl_local_handler CurlTiURLHandler = { "ti", ti::TiURLToPathCurl };
 struct Curl_local_handler CurlAppURLHandler = { "app", ti::AppURLToPathCurl };
 
-namespace Titanium {
+namespace ti {
 
 /* TODO: Every URL will leak in the curl handlers 
  * unless curl frees the result of these calls */
@@ -49,4 +49,4 @@ const char* AppURLToPathCurl(const char *url)
     return strdup(path.c_str());
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -23,11 +23,11 @@
 
 #include "../../ti.App/WindowConfig.h"
 
-namespace Titanium {
+namespace ti {
 
 class UserWindowMac;
 
-} // namespace Titanium
+} // namespace ti
 
 @class WebViewDelegate;
 

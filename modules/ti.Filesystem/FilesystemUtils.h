@@ -19,11 +19,11 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 std::string FilenameFromValue(KValueRef);
 std::string FilenameFromArguments(const ValueList& args);
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

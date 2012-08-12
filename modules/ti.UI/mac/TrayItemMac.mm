@@ -23,7 +23,7 @@
 #include "MenuMac.h"
 #include "UIMac.h"
 
-namespace Titanium {
+namespace ti {
 
 TrayItemMac::TrayItemMac(std::string& iconURL, KMethodRef cb) :
     TrayItem(iconURL),
@@ -111,4 +111,4 @@ void TrayItemMac::InvokeCallback()
     }
 }
 
-} // namespace Titanium
+} // namespace ti

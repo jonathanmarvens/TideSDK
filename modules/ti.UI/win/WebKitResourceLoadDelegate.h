@@ -19,7 +19,7 @@
 
 #include "UserWindowWin.h"
 
-namespace Titanium {
+namespace ti {
 
 class WebKitResourceLoadDelegate : public IWebResourceLoadDelegate {
 public:
@@ -88,6 +88,6 @@ private:
     int refCount;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

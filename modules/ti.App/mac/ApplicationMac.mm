@@ -31,7 +31,7 @@
 
 @end
 
-namespace Titanium {
+namespace ti {
 
 void Application::Restart(const ValueList& args, KValueRef result)
 {
@@ -63,4 +63,4 @@ void Application::Setup()
     [listener release];
 }
 
-} // namespace Titanium
+} // namespace ti

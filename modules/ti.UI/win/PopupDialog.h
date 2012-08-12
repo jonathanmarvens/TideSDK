@@ -25,7 +25,7 @@
 
 #define MAX_INPUT_LENGTH 1024
 
-namespace Titanium {
+namespace ti {
 
 class PopupDialog {
 public:
@@ -66,6 +66,6 @@ private:
     static INT_PTR CALLBACK CALLBACK Callback(HWND hDlg, UINT iMsg, WPARAM wParam, LPARAM lParam);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

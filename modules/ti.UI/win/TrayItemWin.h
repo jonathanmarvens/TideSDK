@@ -22,7 +22,7 @@
 #include <windows.h>
 #include <shellapi.h>
 
-namespace Titanium {
+namespace ti {
 
 class TrayItemWin : public TrayItem {       
 public:
@@ -50,6 +50,6 @@ public:
     bool is_double_clicked;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

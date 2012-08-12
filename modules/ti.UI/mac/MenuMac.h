@@ -21,7 +21,7 @@
 
 #import <AppKit/NSMenu.h>
 
-namespace Titanium {
+namespace ti {
 
 class MenuMac : public Menu {
 public:
@@ -61,6 +61,6 @@ private:
     std::vector<NSMenu*> nativeMenus;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -33,7 +33,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 UINT UIWin::nextItemId = NEXT_ITEM_ID_BEGIN;
 vector<HICON> UIWin::loadedICOs;
@@ -412,4 +412,4 @@ void UIWin::ErrorDialog(std::string msg)
     UI::ErrorDialog(msg);
 }
 
-} // namespace Titanium
+} // namespace ti

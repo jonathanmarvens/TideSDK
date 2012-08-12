@@ -45,7 +45,7 @@
 #define MIN_PATH_LENGTH 1
 #endif
 
-namespace Titanium {
+namespace ti {
 
 File::File(std::string filename) :
     StaticBoundObject("Filesystem.File")
@@ -788,4 +788,4 @@ void File::Unzip(const ValueList& args, KValueRef result)
     }
 }
 
-} // namespace Titanium
+} // namespace ti

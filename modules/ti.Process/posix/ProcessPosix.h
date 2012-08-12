@@ -23,7 +23,7 @@
 #include "../Process.h"
 #include "PipePosix.h"
 
-namespace Titanium {
+namespace ti {
 
 class PosixProcess : public Process {
 public:
@@ -60,6 +60,6 @@ protected:
     void StartProcess();
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

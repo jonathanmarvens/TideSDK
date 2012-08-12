@@ -19,7 +19,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class EXPORT ProcessModule : public kroll::Module {
     KROLL_MODULE_CLASS(ProcessModule)
@@ -28,6 +28,6 @@ private:
     kroll::KObjectRef binding;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

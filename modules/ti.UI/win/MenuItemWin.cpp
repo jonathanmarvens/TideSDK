@@ -23,7 +23,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 MenuItemWin::MenuItemWin(MenuItemType type)
     : MenuItem(type)
@@ -254,4 +254,4 @@ bool MenuItemWin::HandleClickEvent(HMENU nativeMenu, UINT position)
     return false;
 }
 
-} // namespace Titanium
+} // namespace ti

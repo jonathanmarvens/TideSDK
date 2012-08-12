@@ -23,7 +23,7 @@
 #include "../Process.h"
 #include "../NativePipe.h"
 
-namespace Titanium {
+namespace ti {
 
 class ProcessWin : public Process {
 public:
@@ -63,6 +63,6 @@ protected:
     Logger* logger;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

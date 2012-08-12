@@ -22,7 +22,7 @@
 
 using namespace std;
 
-namespace Titanium {
+namespace ti {
 
 vector<AutoPtr<TrayItemWin> > TrayItemWin::trayItems;
 UINT TrayItemWin::trayClickedMessage =
@@ -229,4 +229,4 @@ LRESULT CALLBACK TrayItemWin::DoubleClickTimerProc(HWND hWnd, UINT message, WPAR
     return 0;
 }
 
-} // namespace Titanium
+} // namespace ti

@@ -21,7 +21,7 @@
 
 #include "../Media.h"
 
-namespace Titanium {
+namespace ti {
 
 class MediaWin : public Media {
 public:
@@ -33,6 +33,6 @@ protected:
     KObjectRef CreateSound(std::string&);
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

@@ -26,7 +26,7 @@
 
 #include <kroll/kroll.h>
 
-namespace Titanium {
+namespace ti {
 
 class TCPSocket : public KEventObject {
 public:
@@ -73,6 +73,6 @@ private:
     Poco::FastMutex mutex;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif

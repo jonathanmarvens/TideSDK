@@ -21,7 +21,7 @@
 
 #include "Worker.h"
 
-namespace Titanium {
+namespace ti {
 
 static Logger* GetLogger()
 {
@@ -195,4 +195,4 @@ void WorkerContext::Set(const char* name, KValueRef value)
     global->Set(name, value);
 }
 
-} // namespace Titanium
+} // namespace ti

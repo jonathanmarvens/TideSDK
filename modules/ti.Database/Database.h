@@ -21,7 +21,7 @@
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 
-namespace Titanium {
+namespace ti {
 
 class Database : public KAccessorObject {
 public:
@@ -42,6 +42,6 @@ protected:
     bool isWebKitDatabase;
 };
 
-} // namespace Titanium
+} // namespace ti
 
 #endif
