@@ -5,7 +5,7 @@
  */
 #include "k_php_list.h"
 
-namespace kroll
+namespace tide
 {
 	KPHPList::KPHPList(zval* list) :
 		KList("PHP.KPHPList"),

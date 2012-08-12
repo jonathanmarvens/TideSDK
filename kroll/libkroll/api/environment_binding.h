@@ -8,7 +8,7 @@
 
 #include <kroll/kroll.h>
 
-namespace kroll
+namespace tide
 {
 	class EnvironmentBinding : public KObject
 	{

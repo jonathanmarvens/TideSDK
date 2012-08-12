@@ -13,7 +13,7 @@ extern "C" EXPORT RubyModule* CreateModule(Host *host, const char* path)
 
 static const char* supportedScriptTypes[3] = {"rb", "ruby", NULL};
 
-namespace kroll
+namespace tide
 {
 	RubyModule* RubyModule::instance_ = NULL;
 

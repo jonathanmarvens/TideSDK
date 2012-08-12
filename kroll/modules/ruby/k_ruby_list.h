@@ -9,7 +9,7 @@
 
 #include "ruby_module.h"
 
-namespace kroll
+namespace tide
 {
 	class KRubyList : public KList
 	{

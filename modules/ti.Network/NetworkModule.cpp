@@ -90,7 +90,7 @@ std::string& NetworkModule::GetRootCertPath()
     static std::string path;
     if (path.empty())
     {
-        SharedApplication app(kroll::Host::GetInstance()->GetApplication());
+        SharedApplication app(tide::Host::GetInstance()->GetApplication());
         path = FileUtils::Join(app->runtime->path.c_str(), "rootcert.pem", 0);
     }
     return path;

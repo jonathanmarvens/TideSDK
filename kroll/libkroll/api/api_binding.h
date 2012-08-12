@@ -14,7 +14,7 @@
 #include <Poco/Thread.h>
 #include <Poco/RunnableAdapter.h>
 
-namespace kroll
+namespace tide
 {
 	class APIBinding : public KAccessorObject
 	{

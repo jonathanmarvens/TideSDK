@@ -6,7 +6,7 @@
 
 #include "ruby_module.h"
 
-namespace kroll
+namespace tide
 {
 	KRubyMethod::KRubyMethod(VALUE method) :
 		KMethod("Ruby.KRubyMethod"),

@@ -7,7 +7,7 @@
 #ifndef _K_RUBY_OBJECT_H_
 #define _K_RUBY_OBJECT_H_
 
-namespace kroll {
+namespace tide {
 
 class KRubyObject : public KObject {
 public:

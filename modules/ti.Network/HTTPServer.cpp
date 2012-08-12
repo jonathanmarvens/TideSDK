@@ -27,7 +27,7 @@ namespace ti {
 
 HTTPServer::HTTPServer()
     : StaticBoundObject("Network.HTTPServer")
-    , global(kroll::Host::GetInstance()->GetGlobalObject())
+    , global(tide::Host::GetInstance()->GetGlobalObject())
     , callback(0)
     , socket(0)
     , connection(0)

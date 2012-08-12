@@ -35,7 +35,7 @@ Py_XDECREF(_pvalue); \
 Py_XDECREF(_trace); \
 throw _ex;
 
-namespace kroll
+namespace tide
 {
 	class KROLL_PYTHON_API PythonModule : public Module, public ModuleProvider
 	{

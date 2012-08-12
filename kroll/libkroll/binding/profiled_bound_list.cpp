@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
 	ProfiledBoundList::ProfiledBoundList(KListRef delegate) :
 		ProfiledBoundObject(delegate),

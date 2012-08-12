@@ -7,7 +7,7 @@
 #ifndef _KR_ACCESSOR_BOUND_OBJECT_H_
 #define _KR_ACCESSOR_BOUND_OBJECT_H_
 
-namespace kroll
+namespace tide
 {
 	class KROLL_API KAccessorObject : public StaticBoundObject, public KAccessor
 	{

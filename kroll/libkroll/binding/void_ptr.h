@@ -9,7 +9,7 @@
 
 #include "../kroll.h"
 
-namespace kroll
+namespace tide
 {
 	/**
 	 * An object that represents an arbitrary amount of binary data§

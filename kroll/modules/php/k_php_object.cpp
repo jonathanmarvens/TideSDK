@@ -5,7 +5,7 @@
  */
 #include "php_module.h"
 
-namespace kroll {
+namespace tide {
 
 	KPHPObject::KPHPObject(zval* object) :
 		KObject("PHP.KPHPObject"),

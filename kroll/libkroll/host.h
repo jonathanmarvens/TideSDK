@@ -10,7 +10,7 @@
 #include <Poco/Timestamp.h>
 #include <Poco/Mutex.h>
 
-namespace kroll
+namespace tide
 {
 	class Module;
     class ScriptController;

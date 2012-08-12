@@ -8,7 +8,7 @@
 #include <cstdio>
 #include <cstring>
 
-namespace kroll
+namespace tide
 {
 	KAccessorMethod::KAccessorMethod(MethodCallback* callback, const char *type)
 		: StaticBoundMethod(callback, type)

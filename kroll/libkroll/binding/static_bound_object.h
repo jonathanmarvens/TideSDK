@@ -13,7 +13,7 @@
 
 #include <Poco/Mutex.h>
 
-namespace kroll
+namespace tide
 {
 	/**
 	 * Extending this class is the easiest way to get started with your own

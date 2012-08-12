@@ -23,7 +23,7 @@ namespace ti {
 
 class UI;
 
-class UIModule : public kroll::Module {
+class UIModule : public tide::Module {
     KROLL_MODULE_CLASS(UIModule)
 
 public:

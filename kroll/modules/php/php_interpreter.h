@@ -9,7 +9,7 @@
 
 #include <kroll/Interpreter.h>
 
-namespace kroll {
+namespace tide {
 
 class PHPInterpreter : public Interpreter {
 public:
@@ -22,6 +22,6 @@ private:
 	void FillGet(Poco::URI& uri TSRMLS_DC);
 };
 
-} // namespace kroll
+} // namespace tide
 
 #endif

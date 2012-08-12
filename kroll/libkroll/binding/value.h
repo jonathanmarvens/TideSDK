@@ -8,9 +8,9 @@
 #define _KR_VALUE_H_
 
 /**
- * The toplevel kroll namespace.
+ * The toplevel tide namespace.
  */
-namespace kroll
+namespace tide
 {
 	/**
 	 * A container for various types. Value instances contain a primitive or

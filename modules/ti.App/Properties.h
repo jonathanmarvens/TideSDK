@@ -24,7 +24,7 @@
 
 namespace ti {
 
-class Properties : public kroll::StaticBoundObject
+class Properties : public tide::StaticBoundObject
 {
 public:
     typedef enum { Bool, Double, Int, String, List } Type;

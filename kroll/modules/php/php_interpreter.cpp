@@ -12,7 +12,7 @@
  
 using namespace std;
 
-namespace kroll {
+namespace tide {
 
 PHPInterpreter::PHPInterpreter()
 {
@@ -83,4 +83,4 @@ KValueRef PHPInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
     return Value::Null;
 }
 
-} // namespace kroll
+} // namespace tide

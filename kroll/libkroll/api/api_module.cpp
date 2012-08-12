@@ -8,7 +8,7 @@
 #include <vector>
 #include "api_module.h"
 
-namespace kroll
+namespace tide
 {
 	void APIModule::Initialize()
 	{

@@ -58,7 +58,7 @@ static void GetInterfaceList()
 
 Network::Network()
     : KAccessorObject("Network")
-    , global(kroll::Host::GetInstance()->GetGlobalObject())
+    , global(tide::Host::GetInstance()->GetGlobalObject())
 {
     GetInterfaceList();
 

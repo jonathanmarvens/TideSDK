@@ -6,7 +6,7 @@
 #ifndef _KR_REFERENCE_COUNTED_H_
 #define _KR_REFERENCE_COUNTED_H_
 
-namespace kroll
+namespace tide
 {
 	class KROLL_API ReferenceCounted
 	{

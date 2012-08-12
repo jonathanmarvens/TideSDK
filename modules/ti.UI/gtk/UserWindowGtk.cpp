@@ -1391,7 +1391,7 @@ void UserWindowGtk::OpenFileChooserDialog(KMethodRef callback,
     job->typesDescription = typesDescription;
     job->mode = SELECT_FILE;
 
-    KMethodRef work(new kroll::KFunctionPtrMethod(&FileChooserWork));
+    KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
     ValueList args(Value::NewObject(new VoidPtr(job)));
     RunOnMainThread(work, args, false);
 }
@@ -1414,7 +1414,7 @@ void UserWindowGtk::OpenFolderChooserDialog(KMethodRef callback,
     job->typesDescription = typesDescription;
     job->mode = SELECT_FOLDER;
 
-    KMethodRef work(new kroll::KFunctionPtrMethod(&FileChooserWork));
+    KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
     ValueList args(Value::NewObject(new VoidPtr(job)));
     RunOnMainThread(work, args, false);
 }
@@ -1434,7 +1434,7 @@ void UserWindowGtk::OpenSaveAsDialog(KMethodRef callback,
     job->typesDescription = typesDescription;
     job->mode = SAVE_FILE;
 
-    KMethodRef work(new kroll::KFunctionPtrMethod(&FileChooserWork));
+    KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
     ValueList args(Value::NewObject(new VoidPtr(job)));
     RunOnMainThread(work, args, false);
 }

@@ -18,7 +18,7 @@
 
 	#include "../kroll.h"
 	using Poco::SharedPtr;
-	#define UTILS_NS kroll
+	#define UTILS_NS tide
 #else
 	#define UTILS_NS KrollUtils
 	#include "poco/KSharedPtr.h"

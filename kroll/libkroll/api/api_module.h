@@ -9,7 +9,7 @@
 #include <kroll/kroll.h>
 #include "api_binding.h"
 
-namespace kroll
+namespace tide
 {
 	class KROLL_API APIModule : public Module
 	{

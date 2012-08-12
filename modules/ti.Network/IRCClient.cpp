@@ -28,7 +28,7 @@ namespace ti {
 
 IRCClient::IRCClient()
     : StaticBoundObject("Network.IRCClient")
-    , global(kroll::Host::GetInstance()->GetGlobalObject())
+    , global(tide::Host::GetInstance()->GetGlobalObject())
     , thread(0)
 {
     /**

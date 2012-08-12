@@ -5,7 +5,7 @@
  */
 #include "php_module.h"
 
-namespace kroll {
+namespace tide {
 
 	KPHPFunction::KPHPFunction(const char* functionName) :
 		KMethod("PHP.KPHPFunction"),
