@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from os import path
-from kroll import Module
+from tide import Module
 Import('build')
 
 def build_module_from_directory(dir):
