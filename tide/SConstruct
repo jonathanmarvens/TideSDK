@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os, re, sys, inspect, os.path as path
-from kroll import BuildConfig
+from tide import BuildConfig
 
 debug = False
 Import('*')
