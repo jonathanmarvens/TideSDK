@@ -266,20 +266,20 @@ namespace tide
 
 		try
 		{
-			KValueRef krollValue = PHPUtils::ToTideValue(value TSRMLS_CC);
+			KValueRef tideValue = PHPUtils::ToTideValue(value TSRMLS_CC);
 			if (!property) // A NULL property name means this is an append ([]=) operation.
 			{
 				// TODO: It's unclear what this should do if not called on a list.
 				if (kthis->kvalue->IsList())
 				{
-					kthis->kvalue->ToList()->Append(krollValue);
+					kthis->kvalue->ToList()->Append(tideValue);
 				}
 			}
 			else
 			{
 				KObjectRef kobject = kthis->kvalue->ToObject();
 				string propertyName = PHPUtils::ZvalToPropertyName(property);
-					kobject->Set(propertyName.c_str(), krollValue);
+					kobject->Set(propertyName.c_str(), tideValue);
 			}
 		}
 		catch (ValueException& e)

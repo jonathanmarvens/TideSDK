@@ -22,7 +22,7 @@ build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
 
 # This should only be used for accessing various
-# scripts in the kroll build directory. All resources
+# scripts in the tide build directory. All resources
 # should instead be built to build.dir
 build.libtide_build_dir = path.join(build.libtide_source_dir, 'build')
 
@@ -64,13 +64,13 @@ if clean:
 if ARGUMENTS.get('test_crash', 0):
 	build.env.Append(CPPDEFINES = ('TEST_CRASH_DETECTION', 1))
 
-## Kroll *must not be required* for installation
+## libtide *must not be required* for installation
 SConscript('tide/SConscript.thirdparty')
 SConscript('installer/SConscript')
 
-# After Kroll builds, the environment will  link 
-# against libkroll, so anything that should not be
-# linked against libkroll should be above this point.
+# After libtide builds, the environment will  link 
+# against libtide, so anything that should not be
+# linked against libtide should be above this point.
 SConscript('tide/SConscript', exports='debug')
 SConscript('modules/SConscript')
 SConscript('SConscript.dist')
