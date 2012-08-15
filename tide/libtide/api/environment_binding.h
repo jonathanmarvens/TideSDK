@@ -6,7 +6,7 @@
 #ifndef _ENVIRONMENT_BINDING_H_
 #define _ENVIRONMENT_BINDING_H_
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace tide
 {

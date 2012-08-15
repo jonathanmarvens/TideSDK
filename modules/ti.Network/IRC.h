@@ -23,7 +23,7 @@
     IRC:    #magpie @ irc.quakenet.org
 */
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <stdio.h>
 #include <stdarg.h>
 

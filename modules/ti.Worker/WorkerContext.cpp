@@ -17,7 +17,7 @@
 #include "WorkerContext.h"
 
 #include <JavaScriptCore/JSContextRef.h>
-#include <kroll/javascript/javascript_module.h>
+#include <tide/javascript/javascript_module.h>
 
 #include "Worker.h"
 

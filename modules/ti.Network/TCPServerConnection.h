@@ -19,7 +19,7 @@
 
 #include <queue>
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Net/StreamSocket.h>
 #include <Poco/Net/SocketReactor.h>
 #include <Poco/Net/SocketAcceptor.h>

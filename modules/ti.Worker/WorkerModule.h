@@ -17,7 +17,7 @@
 #ifndef WorkerModule_h
 #define WorkerModule_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

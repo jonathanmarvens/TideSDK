@@ -17,7 +17,7 @@
 #ifndef WindowConfig_h
 #define WindowConfig_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 #define DEFAULT_POSITION -404404404
 

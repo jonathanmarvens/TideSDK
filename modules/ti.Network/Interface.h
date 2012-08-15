@@ -17,7 +17,7 @@
 #ifndef Interface_h
 #define Interface_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Net/NetworkInterface.h>
 
 #undef interface

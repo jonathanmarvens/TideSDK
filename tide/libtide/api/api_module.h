@@ -6,7 +6,7 @@
 #ifndef _API_PLUGIN_H
 #define _API_PLUGIN_H
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include "api_binding.h"
 
 namespace tide

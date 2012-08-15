@@ -17,7 +17,7 @@
 #ifndef Database_h
 #define Database_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Data/Session.h>
 #include <Poco/Data/Statement.h>
 

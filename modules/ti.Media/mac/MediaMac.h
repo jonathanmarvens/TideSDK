@@ -17,7 +17,7 @@
 #ifndef MediaMac_h
 #define MediaMac_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 #include "../Media.h"
 

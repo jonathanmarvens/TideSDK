@@ -17,7 +17,7 @@
 #ifndef IPAddress_h
 #define IPAddress_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Net/IPAddress.h>
 
 namespace ti {
