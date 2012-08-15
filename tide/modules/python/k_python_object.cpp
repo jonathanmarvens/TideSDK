@@ -84,9 +84,9 @@ namespace tide
 			THROW_PYTHON_EXCEPTION
 		}
 
-		KValueRef kroll_value = PythonUtils::ToTideValue(value);
+		KValueRef tide_value = PythonUtils::ToTideValue(value);
 		Py_DECREF(value);
-		return kroll_value;
+		return tide_value;
 	}
 
 	bool KPythonObject::Equals(KObjectRef other)
