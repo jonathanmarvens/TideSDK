@@ -1,24 +1,26 @@
-## About Kroll
+## About Tide
 
-Kroll is the pyrometallurgical industrial process used to produce titanium. 
+Tide is the pyrometallurgical industrial process used to produce titanium. 
 It's a microkernel.
 ```
- _              _ _ 
-| | ___ __ ___ | | |
-| |/ / '__/ _ \| | |
-|   <| | | (_) | | |
-|_|\_\_|  \___/|_|_|
+
+ _______ _______ ____  ______ 
+|__   __|__   __|  _ \|  ____|
+   | |     | |  | | \ | |__
+   | |     | |  | | | |  __|
+   | |   __| |__| |_/ | |____
+   |_|  |_______|____/|______|
 
 ```
 
-Kroll is a compact microkernel written in C++ for running pluggable
-modules. Kroll supports a cross-language, cross-platform "binding"
+Tide is a compact microkernel written in C++ for running pluggable
+modules. Tide supports a cross-language, cross-platform "binding"
 and invocation framework which supports mixing and matching 
-code within the Kroll kernel. Yes, that means you can pass a 
+code within the Tide kernel. Yes, that means you can pass a 
 Javascript object to a Python function and stuff like that.  It's 
 just that bad ass ... admit it.
 
-Currently, Kroll supports the following languages:
+Currently, Tide supports the following languages:
 
 - C/C++
 - Python
@@ -46,23 +48,23 @@ can really do anything it wants once it's loaded.
 
 The Module communicates to other modules through "binding". Binding
 is the process of either adding values (primitive, objects, functions etc)
-to the Kroll runtime or retrieving them.  There are also a small number of 
+to the Tide runtime or retrieving them.  There are also a small number of 
 other utility functions like logging etc that are exposed by the "API module".
 
 The binding implementation for each language knows how to box and unbox
-values back and forth from the Kroll runtime and the native language
-runtime. This is the key part of the magic of Kroll.
+values back and forth from the Tide runtime and the native language
+runtime. This is the key part of the magic of Tide.
 
 Once bound, you can invoke a function from Ruby which might take a Python 
 function as a reference and return a Javascript object.
 
-## Kroll
+## Tide 
 
-Kroll itself is the microkernel and set of base modules. As a standalone,
-it's really not that useful (yet).  The power of Kroll is when it's used
+Tide itself is the microkernel and set of base modules. As a standalone,
+it's really not that useful (yet).  The power of Tide is when it's used
 by another application to expose higher level functionality.
 
-Currently, Kroll is the core of the Titanium product.  In this case,
+Currently, Tide is the core of the Titanium product.  In this case,
 Titanium provides a set of additional modules on top of the base modules
 such as the windowing environment.  <http://www.appcelerator.com>
 
