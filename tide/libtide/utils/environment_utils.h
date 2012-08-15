@@ -33,7 +33,7 @@ namespace UTILS_NS
 		 */
 		TIDE_API void Unset(std::string name);
 
-#if defined(TIDE_API_EXPORT) || defined(_KROLL_H_)
+#if defined(TIDE_API_EXPORT) || defined(_TIDE_H_)
 		/*
 		 * Get the environment
 		 */

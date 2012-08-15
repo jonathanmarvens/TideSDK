@@ -23,7 +23,7 @@ namespace ti {
 
 class EXPORT MediaModule : public tide::Module
 {
-    KROLL_MODULE_CLASS(MediaModule)
+    TIDE_MODULE_CLASS(MediaModule)
 
 private:
     KObjectRef binding;

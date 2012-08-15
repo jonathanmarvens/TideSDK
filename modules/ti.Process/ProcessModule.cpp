@@ -22,7 +22,7 @@
 
 namespace ti {
 
-KROLL_MODULE(ProcessModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+TIDE_MODULE(ProcessModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
 void ProcessModule::Initialize()
 {

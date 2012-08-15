@@ -22,7 +22,7 @@
 namespace ti {
 
 class EXPORT ProcessModule : public tide::Module {
-    KROLL_MODULE_CLASS(ProcessModule)
+    TIDE_MODULE_CLASS(ProcessModule)
 
 private:
     tide::KObjectRef binding;

@@ -22,7 +22,7 @@
 namespace ti {
 
 class EXPORT MonkeyModule : public tide::Module {
-    KROLL_MODULE_CLASS(MonkeyModule)
+    TIDE_MODULE_CLASS(MonkeyModule)
 
 private:
     tide::KObjectRef binding;

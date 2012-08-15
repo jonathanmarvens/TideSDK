@@ -23,7 +23,7 @@ namespace ti {
 
 class AppModule : public tide::Module
 {
-    KROLL_MODULE_CLASS(AppModule)
+    TIDE_MODULE_CLASS(AppModule)
 };
 
 } // namespace ti

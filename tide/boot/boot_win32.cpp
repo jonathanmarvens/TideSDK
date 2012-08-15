@@ -14,7 +14,7 @@ using std::wstring;
 #define MAX_PATH 512
 #endif
 
-namespace KrollBoot
+namespace TideBoot
 {
 	extern string applicationHome;
 	extern string updateFile;
@@ -79,7 +79,7 @@ namespace KrollBoot
 
 		// This may have been an install, so ensure that KR_HOME is correct
 		EnvironmentUtils::Set("KR_HOME", app->path);
-		exit(KrollBoot::StartHost());
+		exit(TideBoot::StartHost());
 	}
 
 	static HMODULE SafeLoadRuntimeDLL(string& path)
@@ -152,8 +152,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR command_line, int)
 int main(int __argc, const char* __argv[])
 #endif
 {
-	KrollBoot::argc = __argc;
-	KrollBoot::argv = (const char**) __argv;
+	TideBoot::argc = __argc;
+	TideBoot::argv = (const char**) __argv;
 
-	return KrollBoot::Bootstrap();
+	return TideBoot::Bootstrap();
 }

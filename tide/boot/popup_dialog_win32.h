@@ -12,7 +12,7 @@
 
 #define MAX_INPUT_LENGTH 1024
 
-namespace KrollBoot {
+namespace TideBoot {
 
 	class Win32PopupDialog {
 	public:

@@ -24,7 +24,7 @@ namespace ti {
 class UI;
 
 class UIModule : public tide::Module {
-    KROLL_MODULE_CLASS(UIModule)
+    TIDE_MODULE_CLASS(UIModule)
 
 public:
     static UIModule* GetInstance() { return instance_; }
