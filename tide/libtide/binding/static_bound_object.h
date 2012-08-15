@@ -39,7 +39,7 @@ namespace tide
 	 * alert(myObject.add(10, 15)); // 25
 	 * \endcode
 	 */
-	class KROLL_API StaticBoundObject : public KObject
+	class TIDE_API StaticBoundObject : public KObject
 	{
 	public:
 		StaticBoundObject(const char* type = "StaticBoundObject");

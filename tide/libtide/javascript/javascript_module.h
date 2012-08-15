@@ -32,7 +32,7 @@ namespace tide
 
 namespace tide
 {
-	class KROLL_API JavaScriptModule : public Module, public ModuleProvider
+	class TIDE_API JavaScriptModule : public Module, public ModuleProvider
 	{
 	public:
 		JavaScriptModule(Host* host, const char* path) :

@@ -25,7 +25,7 @@ namespace tide {
 
 class Interpreter;
 
-class KROLL_API ScriptController {
+class TIDE_API ScriptController {
 public:
     ScriptController();
 

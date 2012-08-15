@@ -9,7 +9,7 @@
 
 namespace tide
 {
-	class KROLL_API KAccessorObject : public StaticBoundObject, public KAccessor
+	class TIDE_API KAccessorObject : public StaticBoundObject, public KAccessor
 	{
 	public:
 		KAccessorObject(const char* name = "KAccessorObject");

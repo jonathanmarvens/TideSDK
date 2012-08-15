@@ -8,7 +8,7 @@
 
 namespace tide
 {
-	class KROLL_API ReferenceCounted
+	class TIDE_API ReferenceCounted
 	{
 		private:
 		Poco::AtomicCounter count;

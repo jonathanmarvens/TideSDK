@@ -9,7 +9,7 @@
 
 namespace tide
 {
-	class KROLL_API ReadEvent : public Event
+	class TIDE_API ReadEvent : public Event
 	{
 	public:
 		ReadEvent(AutoPtr<KEventObject> target, BytesRef);
