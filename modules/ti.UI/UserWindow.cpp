@@ -17,9 +17,9 @@
 #include "UserWindow.h"
 
 #include <JavaScriptCore/JSStringRef.h>
-#include <kroll/javascript/javascript_module.h>
-#include <kroll/javascript/javascript_module_instance.h>
-#include <kroll/ScriptController.h>
+#include <tide/javascript/javascript_module.h>
+#include <tide/javascript/javascript_module_instance.h>
+#include <tide/ScriptController.h>
 
 #include "Menu.h"
 #include "UI.h"

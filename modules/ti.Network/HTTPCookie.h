@@ -17,7 +17,7 @@
 #ifndef HTTPCookie_h
 #define HTTPCookie_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Net/HTTPCookie.h>
 
 namespace ti {

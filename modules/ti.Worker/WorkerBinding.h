@@ -17,7 +17,7 @@
 #ifndef WorkerBinding_h
 #define WorkerBinding_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

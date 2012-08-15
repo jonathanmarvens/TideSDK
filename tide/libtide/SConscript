@@ -69,5 +69,5 @@ build.mark_build_target(
 build.utils.LightWeightCopy(path.join(build.cwd(), 'support'), path.join(build.dir, 'runtime'))
 
 # copy the includes for building the SDK
-libtide_include = path.join(build.libtide_include_dir, 'kroll')
+libtide_include = path.join(build.libtide_include_dir, 'tide')
 effess.copy_tree(build.cwd(), libtide_include, include=['.h'])

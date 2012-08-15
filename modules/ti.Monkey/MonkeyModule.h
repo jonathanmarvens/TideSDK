@@ -17,7 +17,7 @@
 #ifndef MonkeyModule_h
 #define MonkeyModule_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

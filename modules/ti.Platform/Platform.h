@@ -17,7 +17,7 @@
 #ifndef Platform_h
 #define Platform_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

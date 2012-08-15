@@ -17,7 +17,7 @@
 #ifndef Pipe_h
 #define Pipe_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Thread.h>
 #include <Poco/ThreadTarget.h>
 

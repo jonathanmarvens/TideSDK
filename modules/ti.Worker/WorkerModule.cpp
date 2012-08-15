@@ -16,7 +16,7 @@
 
 #include "WorkerModule.h"
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 #include "WorkerBinding.h"
 

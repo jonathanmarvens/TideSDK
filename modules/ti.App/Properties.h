@@ -17,7 +17,7 @@
 #ifndef Properties_h
 #define Properties_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/AutoPtr.h>
 
 #include "TitaniumPropertyFileConfiguration.h"

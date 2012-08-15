@@ -6,7 +6,7 @@
 #ifndef PYTHON_EVALUATOR_H_
 #define PYTHON_EVALUATOR_H_
 
-#include <kroll/Interpreter.h>
+#include <tide/Interpreter.h>
 
 namespace tide {
 

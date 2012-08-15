@@ -16,7 +16,7 @@
 
 #include "PlatformModule.h"
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 #include "Platform.h"
 

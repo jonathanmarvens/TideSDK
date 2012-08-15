@@ -11,7 +11,7 @@
 #include <JavaScriptCore/JSContextRef.h>
 #include <cstring>
 #include <map>
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 /* KJS <-> Kroll bindings */
 namespace tide 

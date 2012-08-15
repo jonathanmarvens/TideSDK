@@ -16,7 +16,7 @@
 
 #include "Worker.h"
 
-#include <kroll/thread_manager.h>
+#include <tide/thread_manager.h>
 
 #include "WorkerContext.h"
 

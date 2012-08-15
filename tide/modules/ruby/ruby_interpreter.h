@@ -7,7 +7,7 @@
 #ifndef _RUBY_INTERPRETER_H_
 #define _RUBY_INTERPRETER_H_
 
-#include <kroll/Interpreter.h>
+#include <tide/Interpreter.h>
 
 namespace tide {
 

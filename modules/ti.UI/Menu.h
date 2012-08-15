@@ -17,7 +17,7 @@
 #ifndef Menu_h
 #define Menu_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

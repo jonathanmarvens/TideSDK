@@ -19,7 +19,7 @@
 
 #include <vector>
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Mutex.h>
 #include <Poco/Timer.h>
 
