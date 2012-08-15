@@ -4,15 +4,15 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 /**
- * This file is the easiest way to gain access to the full Kroll API
+ * This file is the easiest way to gain access to the full TIDE API
  * To use it, just do the following:
  * \code
  * #include <tide/tide.h>
  * \endcode
  */
 
-#ifndef _KROLL_H_
-#define _KROLL_H_
+#ifndef _TIDE_H_
+#define _TIDE_H_
 
 #include "base.h"
 #include <Poco/SharedPtr.h>

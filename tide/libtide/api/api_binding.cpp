@@ -94,42 +94,42 @@ namespace tide
 
 		/**
 		 * @tiapi(method=True,name=API.getInstalledComponents,since=0.4)
-		 * @tiapi Get a list of the currently installed Kroll components
+		 * @tiapi Get a list of the currently installed TIDE components
 		 * @tiresult[Array<API.Component>] a list of API.Component of installed components of all types
 		 */
 		this->SetMethod("getInstalledComponents", &APIBinding::_GetInstalledComponents);
 
 		/**
 		 * @tiapi(method=True,name=API.getInstalledSDKs,since=0.4)
-		 * @tiapi Get a list of the currently installed Kroll SDK components
+		 * @tiapi Get a list of the currently installed TIDE SDK components
 		 * @tiresult[Array<API.Component>] a list of API.Component of installed SDK components
 		 */
 		this->SetMethod("getInstalledSDKs", &APIBinding::_GetInstalledSDKs);
 
 		/**
 		 * @tiapi(method=True,name=API.getInstalledMobileSDKs,since=0.4)
-		 * @tiapi Get a list of the currently installed Kroll Mobile SDK components
+		 * @tiapi Get a list of the currently installed TIDE Mobile SDK components
 		 * @tiresult[Array<API.Component>] a list of API.Component of installed Mobile SDK components
 		 */
 		this->SetMethod("getInstalledMobileSDKs", &APIBinding::_GetInstalledMobileSDKs);
 
 		/**
 		 * @tiapi(method=True,name=API.getInstalledModules,since=0.4)
-		 * @tiapi Get a list of the currently installed Kroll module components
+		 * @tiapi Get a list of the currently installed TIDE module components
 		 * @tiresult[Array<API.Component>] a list of API.Component of installed module components
 		 */
 		this->SetMethod("getInstalledModules", &APIBinding::_GetInstalledModules);
 
 		/**
 		 * @tiapi(method=True,name=API.getInstalledRuntimes,since=0.4)
-		 * @tiapi Get a list of the currently installed Kroll runtime components
+		 * @tiapi Get a list of the currently installed TIDE runtime components
 		 * @tiresult[Array<API.Component>] a list of API.Component of installed runtime components
 		 */
 		this->SetMethod("getInstalledRuntimes", &APIBinding::_GetInstalledRuntimes);
 
 		/**
 		 * @tiapi(method=True,name=API.getComponentSearchPaths,since=0.4)
-		 * @tiapi Get a list of the paths on which Kroll searches for installed
+		 * @tiapi Get a list of the paths on which TIDE searches for installed
 		 * @tiapi components. This does not include paths of bundled components.
 		 * @tiresult[Array<API.Component>] a list of string of component search paths
 		 */
@@ -175,28 +175,28 @@ namespace tide
 		this->SetMethod("getEnvironment", &APIBinding::_GetEnvironment);
 
 		/**
-		 * @tiapi(method=True,name=API.createKObject,since=0.5) Create a Kroll object.
+		 * @tiapi(method=True,name=API.createKObject,since=0.5) Create a TIDE object.
 		 * @tiarg[Object, toWrap, optional=true] An object to wrap in a new KObject.
 		 * @tiresult[Object] A new KObject.
 		 */
 		this->SetMethod("createKObject", &APIBinding::_CreateKObject);
 
 		/**
-		 * @tiapi(method=True,name=API.createKMethod,since=0.5) create a Kroll method.
+		 * @tiapi(method=True,name=API.createKMethod,since=0.5) create a TIDE method.
 		 * @tiarg[Function, toWrap, optional=true] A function to wrap in a new KMethod
 		 * @tiresult[Function] A new KMethod.
 		 */
 		this->SetMethod("createKMethod", &APIBinding::_CreateKMethod);
 		
 		/**
-		 * @tiapi(method=True,name=API.createKList,since=0.5) create a Kroll list.
+		 * @tiapi(method=True,name=API.createKList,since=0.5) create a TIDE list.
 		 * @tiarg[Array, toWrap, optional=true] A function to wrap in a new KMethod
 		 * @tiresult[Array] A new KList.
 		 */
 		this->SetMethod("createKList", &APIBinding::_CreateKList);
 
 		/**
-		 * @tiapi(method=True,name=API.createBytes,since=0.9) Create a Kroll Bytes object.
+		 * @tiapi(method=True,name=API.createBytes,since=0.9) Create a TIDE Bytes object.
 		 * @tiarg[String, contents, optional=true] The contents of the new Bytes.
 		 * @tiarg The blob will be empty if none are given.
 		 * @tiresult[Bytes] A new Bytes.
@@ -828,7 +828,7 @@ namespace tide
 	
 	void APIBinding::RunInstaller()
 	{
-		START_KROLL_THREAD;
+		START_TIDE_THREAD;
 
 		SharedApplication app = host->GetApplication();
 		BootUtils::RunInstaller(
@@ -840,7 +840,7 @@ namespace tide
 		}
 		this->installerMutex.unlock();
 
-		END_KROLL_THREAD;
+		END_TIDE_THREAD;
 	}
 
 	KListRef APIBinding::ComponentVectorToKList(

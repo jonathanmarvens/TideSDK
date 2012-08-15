@@ -129,7 +129,7 @@ void Analytics::_SendEvent(const ValueList &args, KValueRef result)
 
 void Analytics::run()
 {
-    START_KROLL_THREAD;
+    START_TIDE_THREAD;
 
     this->curlHandle = curl_easy_init();
 
@@ -160,7 +160,7 @@ void Analytics::run()
     curl_easy_cleanup(this->curlHandle);
     this->curlHandle = 0;
 
-    END_KROLL_THREAD;
+    END_TIDE_THREAD;
 }
 
 void Analytics::SendEventToAPIServer(std::string& eventData)

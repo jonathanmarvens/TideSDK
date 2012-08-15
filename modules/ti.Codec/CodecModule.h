@@ -23,7 +23,7 @@ namespace ti {
 
 class EXPORT CodecModule : public tide::Module
 {
-    KROLL_MODULE_CLASS(CodecModule)
+    TIDE_MODULE_CLASS(CodecModule)
     
 private:
     tide::KObjectRef binding;

@@ -22,7 +22,7 @@
 namespace ti {
 
 class EXPORT FilesystemModule : public tide::Module {
-    KROLL_MODULE_CLASS(FilesystemModule)
+    TIDE_MODULE_CLASS(FilesystemModule)
     
 private:
     KObjectRef binding;

@@ -27,7 +27,7 @@ class Network;
 class Analytics;
 
 class EXPORT NetworkModule : public tide::Module {
-    KROLL_MODULE_CLASS(NetworkModule)
+    TIDE_MODULE_CLASS(NetworkModule)
 
 public:
     static std::string& GetRootCertPath();

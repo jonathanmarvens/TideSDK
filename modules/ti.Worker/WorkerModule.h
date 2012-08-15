@@ -22,7 +22,7 @@
 namespace ti {
 
 class EXPORT WorkerModule : public tide::Module {
-    KROLL_MODULE_CLASS(WorkerModule)
+    TIDE_MODULE_CLASS(WorkerModule)
     
 private:
     tide::KObjectRef binding;

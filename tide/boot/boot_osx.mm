@@ -26,7 +26,7 @@
 }
 @end
 
-namespace KrollBoot
+namespace TideBoot
 {
 	extern string applicationHome;
 	extern string updateFile;
@@ -173,20 +173,20 @@ namespace KrollBoot
 int main(int argc, char* argv[])
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	KrollBoot::argc = argc;
-	KrollBoot::argv = (const char**) argv;
+	TideBoot::argc = argc;
+	TideBoot::argv = (const char**) argv;
 	int rc = 0;
 
 	if (!EnvironmentUtils::Has(BOOTSTRAP_ENV))
 	{
-		rc = KrollBoot::Bootstrap();
+		rc = TideBoot::Bootstrap();
 	}
 	else
 	{
 		[[NSApplication sharedApplication] setDelegate:
 			[[KrollApplicationDelegate alloc] init]];
 			NSApplicationLoad(); EnvironmentUtils::Unset(BOOTSTRAP_ENV);
-		rc = KrollBoot::StartHost();
+		rc = TideBoot::StartHost();
 	}
 
 	[pool release];

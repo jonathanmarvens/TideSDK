@@ -22,7 +22,7 @@
 
 namespace ti {
 
-KROLL_MODULE(WorkerModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
+TIDE_MODULE(WorkerModule, STRING(MODULE_NAME), STRING(MODULE_VERSION));
 
 void WorkerModule::Initialize()
 {

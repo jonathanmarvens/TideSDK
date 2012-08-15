@@ -10,7 +10,7 @@
 #include <gtk/gtk.h>
 #include "boot.h"
 
-namespace KrollBoot
+namespace TideBoot
 {
 	extern string applicationHome;
 	extern string updateFile;
@@ -143,17 +143,17 @@ namespace KrollBoot
 
 int main(int argc, const char* argv[])
 {
-	KrollBoot::argc = argc;
-	KrollBoot::argv = argv;
+	TideBoot::argc = argc;
+	TideBoot::argv = argv;
 
 	if (!EnvironmentUtils::Has(BOOTSTRAP_ENV))
 	{
-		return KrollBoot::Bootstrap();
+		return TideBoot::Bootstrap();
 	}
 	else
 	{
 		EnvironmentUtils::Unset(BOOTSTRAP_ENV);
-		return KrollBoot::StartHost();
+		return TideBoot::StartHost();
 	}
 }
 
