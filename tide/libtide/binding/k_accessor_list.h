@@ -13,7 +13,7 @@ namespace tide
 	 * The KAccessorList allows you to expose getters and setters as property access.
 	 * @see KAccessorObject
 	 */
-	class KROLL_API KAccessorList : public StaticBoundList, public KAccessor
+	class TIDE_API KAccessorList : public StaticBoundList, public KAccessor
 	{
 	public:
 		KAccessorList(const char* type = "KAccessorList");

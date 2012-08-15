@@ -39,7 +39,7 @@ namespace tide
 	 * }
 	 * \endcode
 	 */
-	class KROLL_API Module
+	class TIDE_API Module
 	{
 	public:
 		Module(Host *host, const char* inpath, const char* inname, const char* inversion) :

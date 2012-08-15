@@ -12,24 +12,24 @@ namespace tide
 namespace KJSUtil
 {
 
-KROLL_API KValueRef ToTideValue(JSValueRef, JSContextRef, JSObjectRef);
-KROLL_API JSValueRef ToJSValue(KValueRef, JSContextRef);
-KROLL_API JSValueRef KObjectToJSValue(KValueRef, JSContextRef);
-KROLL_API JSValueRef KMethodToJSValue(KValueRef, JSContextRef);
-KROLL_API JSValueRef KListToJSValue(KValueRef, JSContextRef);
-KROLL_API std::string ToChars(JSStringRef);
-KROLL_API bool IsArrayLike(JSObjectRef, JSContextRef);
-KROLL_API JSGlobalContextRef CreateGlobalContext();
-KROLL_API void RegisterGlobalContext(JSObjectRef, JSGlobalContextRef);
-KROLL_API void UnregisterGlobalContext(JSGlobalContextRef);
-KROLL_API JSGlobalContextRef GetGlobalContext(JSObjectRef);
-KROLL_API void ProtectGlobalContext(JSGlobalContextRef);
-KROLL_API void UnprotectGlobalContext(JSGlobalContextRef);
-KROLL_API KValueRef Evaluate(JSContextRef context, const char* script,
+TIDE_API KValueRef ToTideValue(JSValueRef, JSContextRef, JSObjectRef);
+TIDE_API JSValueRef ToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef KObjectToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef KMethodToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef KListToJSValue(KValueRef, JSContextRef);
+TIDE_API std::string ToChars(JSStringRef);
+TIDE_API bool IsArrayLike(JSObjectRef, JSContextRef);
+TIDE_API JSGlobalContextRef CreateGlobalContext();
+TIDE_API void RegisterGlobalContext(JSObjectRef, JSGlobalContextRef);
+TIDE_API void UnregisterGlobalContext(JSGlobalContextRef);
+TIDE_API JSGlobalContextRef GetGlobalContext(JSObjectRef);
+TIDE_API void ProtectGlobalContext(JSGlobalContextRef);
+TIDE_API void UnprotectGlobalContext(JSGlobalContextRef);
+TIDE_API KValueRef Evaluate(JSContextRef context, const char* script,
 	 const char* url = "string");
-KROLL_API KValueRef EvaluateFile(JSContextRef context,
+TIDE_API KValueRef EvaluateFile(JSContextRef context,
 	const std::string& fullPath);
-KROLL_API KValueRef GetProperty(JSObjectRef, std::string name);
+TIDE_API KValueRef GetProperty(JSObjectRef, std::string name);
 
 };
 }

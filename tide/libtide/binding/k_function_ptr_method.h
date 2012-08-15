@@ -11,7 +11,7 @@ namespace tide
 {
 
 	typedef KValueRef (*KFunctionPtrCallback) (const ValueList& args);
-	class KROLL_API KFunctionPtrMethod : public KMethod
+	class TIDE_API KFunctionPtrMethod : public KMethod
 	{
 		public:
 		KFunctionPtrMethod(KFunctionPtrCallback);

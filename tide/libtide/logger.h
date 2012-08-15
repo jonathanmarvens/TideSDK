@@ -14,7 +14,7 @@
 namespace tide
 {
 	class RootLogger;
-	class KROLL_API Logger
+	class TIDE_API Logger
 	{
 		public:
 		typedef enum
@@ -98,7 +98,7 @@ namespace tide
 		static std::map<std::string, Logger*> loggers;
 	};
 
-	class KROLL_API RootLogger : public Logger
+	class TIDE_API RootLogger : public Logger
 	{
 		public:
 		RootLogger(bool, std::string, Level);

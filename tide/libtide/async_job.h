@@ -10,7 +10,7 @@
 
 namespace tide
 {
-	class KROLL_API AsyncJob : public StaticBoundObject
+	class TIDE_API AsyncJob : public StaticBoundObject
 	{
 		public:
 		/*

@@ -13,7 +13,7 @@ namespace tide
 	 * The KAccessorMethod allows you to expose getters and setters as property access.
 	 * @see KAccessorObject
 	 */
-	class KROLL_API KAccessorMethod : public StaticBoundMethod, public KAccessor
+	class TIDE_API KAccessorMethod : public StaticBoundMethod, public KAccessor
 	{
 	public:
 		KAccessorMethod(MethodCallback* callback, const char* type = "KAccessorMethod");
