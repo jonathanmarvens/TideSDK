@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KROLL_OSX_NSLOG_CHANNEL_
-#define _KROLL_OSX_NSLOG_CHANNEL_
+#ifndef _TIDE_OSX_NSLOG_CHANNEL_
+#define _TIDE_OSX_NSLOG_CHANNEL_
 
 #include <Poco/Channel.h>
 #include <Poco/PatternFormatter.h>

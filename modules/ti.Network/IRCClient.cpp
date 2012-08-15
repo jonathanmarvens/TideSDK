@@ -136,12 +136,12 @@ int IRCClient::Callback(char *irc_command, char* param, irc_reply_data* data, vo
 }
 void IRCClient::Run (void* p)
 {
-    START_KROLL_THREAD;
+    START_TIDE_THREAD;
 
     IRC *irc = (IRC*)p;
     irc->message_loop();
 
-    END_KROLL_THREAD;
+    END_TIDE_THREAD;
 }
 void IRCClient::GetUsers(const ValueList& args, KValueRef result)
 {

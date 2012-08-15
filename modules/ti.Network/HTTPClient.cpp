@@ -324,14 +324,14 @@ bool HTTPClient::FireEvent(std::string& eventName)
 
 void HTTPClient::run()
 {
-    START_KROLL_THREAD;
+    START_TIDE_THREAD;
 
     // We need this binding to stay alive at least until we have
     // finished this thread. So save 'this' in an AutoPtr.
     KObjectRef save(this, true);
     this->ExecuteRequest();
 
-    END_KROLL_THREAD;
+    END_TIDE_THREAD;
 }
 
 static std::string ObjectToFilename(KObjectRef dataObject)

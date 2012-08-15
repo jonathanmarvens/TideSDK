@@ -4,12 +4,12 @@
  * Copyright (c) 2008-2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#define _KROLL_BOOT_ 1
+#define _TIDE_BOOT_ 1
 #ifndef _BOOT_H_
 
-// ensure that Kroll API is never included to create
+// ensure that TIDE API is never included to create
 // an artificial dependency on libtide shared library
-#ifdef _KROLL_H_
+#ifdef _TIDE_H_
 #error You should not have included the libtide api!
 #endif
 
@@ -39,7 +39,7 @@ using std::map;
 #define MODULE_SEPARATOR ":"
 #endif
 
-namespace KrollBoot
+namespace TideBoot
 {
 	/**
 	 * Implemented platform independently

@@ -115,7 +115,7 @@ void AsyncCopy::Copy(Poco::Path &src, Poco::Path &dest)
 
 void AsyncCopy::Run(void* data)
 {
-    START_KROLL_THREAD;
+    START_TIDE_THREAD;
 
     Logger* logger = Logger::Get("Filesystem.AsyncCopy");
 
@@ -183,7 +183,7 @@ void AsyncCopy::Run(void* data)
 
     logger->Debug(std::string("Job finished"));
 
-    END_KROLL_THREAD;
+    END_TIDE_THREAD;
 }
 
 void AsyncCopy::ToString(const ValueList& args, KValueRef result)
