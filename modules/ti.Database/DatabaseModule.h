@@ -17,7 +17,7 @@
 #ifndef DatabaseModule_h
 #define DatabaseModule_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

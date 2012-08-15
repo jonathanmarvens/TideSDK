@@ -23,7 +23,7 @@
 
 #include <cairo/cairo.h>
 #include <cairo/cairo-win32.h>
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Environment.h>
 
 namespace ti {

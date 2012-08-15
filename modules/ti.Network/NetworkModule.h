@@ -17,7 +17,7 @@
 #ifndef NetworkModule_h
 #define NetworkModule_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 typedef void CURLSH;
 

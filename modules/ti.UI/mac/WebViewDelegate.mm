@@ -16,7 +16,7 @@
 
 #import "WebViewDelegate.h"
 
-#include <kroll/javascript/javascript_module.h>
+#include <tide/javascript/javascript_module.h>
 
 #include "MenuMac.h"
 #include "UserWindowMac.h"

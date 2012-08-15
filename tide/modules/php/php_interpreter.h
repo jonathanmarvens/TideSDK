@@ -7,7 +7,7 @@
 #ifndef _PHP_INTERPRETER_H_
 #define _PHP_INTERPRETER_H_
 
-#include <kroll/Interpreter.h>
+#include <tide/Interpreter.h>
 
 namespace tide {
 

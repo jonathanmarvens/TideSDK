@@ -16,7 +16,7 @@
 
 #include "Database.h"
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Data/AbstractBinding.h>
 #include <Poco/Data/RecordSet.h>
 #include <Poco/Data/MetaColumn.h>

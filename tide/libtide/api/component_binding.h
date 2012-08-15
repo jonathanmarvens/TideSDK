@@ -7,7 +7,7 @@
 #ifndef _COMPONENT_BINDING_H_
 #define _COMPONENT_BINDING_H_
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <map>
 #include <vector>
 #include <string>

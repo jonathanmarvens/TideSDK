@@ -20,7 +20,7 @@
 #include "../Sound.h"
 
 #include <gst/gst.h>
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

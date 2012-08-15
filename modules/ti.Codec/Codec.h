@@ -17,7 +17,7 @@
 #ifndef Codec_h
 #define Codec_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 #include <Poco/Zip/Zip.h>
 #include <Poco/Zip/Compress.h>

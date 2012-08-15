@@ -17,7 +17,7 @@
 #ifndef UIModule_h
 #define UIModule_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 
 namespace ti {
 

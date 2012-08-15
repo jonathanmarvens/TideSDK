@@ -48,8 +48,8 @@ using Poco::Environment;
 #define MODULE_SUFFIX "so"
 #endif
 
-#include <kroll/javascript/javascript_module.h>
-#include <kroll/api/api_module.h>
+#include <tide/javascript/javascript_module.h>
+#include <tide/api/api_module.h>
 
 extern "C"
 {

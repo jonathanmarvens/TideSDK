@@ -20,7 +20,7 @@
 #include <map>
 #include <string>
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <windowsx.h>
 
 #define MAX_INPUT_LENGTH 1024

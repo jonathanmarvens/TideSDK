@@ -18,7 +18,7 @@
 
 #include <iostream>
 
-#include <kroll/javascript/javascript_module.h>
+#include <tide/javascript/javascript_module.h>
 #include <Poco/Process.h>
 #include <Poco/URI.h>
 

@@ -16,7 +16,7 @@
 
 #include "WebKitDatabases.h"
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/File.h>
 #include <Poco/Data/AbstractBinding.h>
 #include <Poco/Data/RecordSet.h>

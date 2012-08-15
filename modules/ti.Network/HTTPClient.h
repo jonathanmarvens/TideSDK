@@ -17,7 +17,7 @@
 #ifndef HTTPClient_h
 #define HTTPClient_h
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/Net/NameValueCollection.h>
 #include <Poco/Runnable.h>
 #include <Poco/Thread.h>

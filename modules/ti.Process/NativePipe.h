@@ -19,7 +19,7 @@
 
 #include <queue>
 
-#include <kroll/tide.h>
+#include <tide/tide.h>
 #include <Poco/RunnableAdapter.h>
 #include <Poco/Thread.h>
 

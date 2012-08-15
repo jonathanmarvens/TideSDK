@@ -18,7 +18,7 @@
 
 #include <sstream>
 
-#include <kroll/thread_manager.h>
+#include <tide/thread_manager.h>
 
 #include "NetworkUtils.h"
 
