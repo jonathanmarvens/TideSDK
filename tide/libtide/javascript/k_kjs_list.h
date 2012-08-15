@@ -11,7 +11,7 @@
 
 namespace tide
 {
-	class KROLL_API KKJSList : public KList
+	class TIDE_API KKJSList : public KList
 	{
 
 		public:

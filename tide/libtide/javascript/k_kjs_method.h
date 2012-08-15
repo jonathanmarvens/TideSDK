@@ -15,7 +15,7 @@
 
 namespace tide
 {
-	class KROLL_API KKJSMethod : public KMethod
+	class TIDE_API KKJSMethod : public KMethod
 	{
 		public:
 		KKJSMethod(JSContextRef, JSObjectRef, JSObjectRef);

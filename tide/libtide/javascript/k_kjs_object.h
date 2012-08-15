@@ -15,7 +15,7 @@
 
 namespace tide
 {
-	class KROLL_API KKJSObject : public KObject
+	class TIDE_API KKJSObject : public KObject
 	{
 		public:
 		KKJSObject(JSContextRef context, JSObjectRef js_object);
