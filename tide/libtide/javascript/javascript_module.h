@@ -13,7 +13,7 @@
 #include <map>
 #include <tide/tide.h>
 
-/* KJS <-> Kroll bindings */
+/* KJS <-> Tide bindings */
 namespace tide 
 {
 	class KKJSObject;

@@ -18,7 +18,7 @@ namespace tide
 
 	/**
 	 * Class that is implemented by the OS to handle OS-specific
-	 * loading and unloading of Kroll.
+	 * loading and unloading of Tide.
 	 */
 	class TIDE_API Host : public ModuleProvider
 	{

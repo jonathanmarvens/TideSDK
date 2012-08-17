@@ -70,7 +70,7 @@
 #define STRING(str) VAL(str)
 
 #ifndef _PRODUCT_NAME
-   #define _PRODUCT_NAME Kroll
+   #define _PRODUCT_NAME Tide
 #endif
 
 #define PRODUCT_NAME STRING(_PRODUCT_NAME)
