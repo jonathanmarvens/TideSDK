@@ -86,7 +86,7 @@ namespace KJSUtil
 				KValueRef* value = static_cast<KValueRef*>(JSObjectGetPrivate(o));
 				if (value != NULL)
 				{
-					// This is a KJS-wrapped Kroll value: unwrap it
+					// This is a KJS-wrapped Tide value: unwrap it
 					return *value;
 				}
 				else if (JSObjectIsFunction(jsContext, o))
@@ -127,8 +127,8 @@ namespace KJSUtil
 		}
 		else
 		{
-			GetLogger()->Error("Failed Kroll->JS conversion with no exception!");
-			throw ValueException::FromString("Conversion from Kroll value to JS value failed");
+			GetLogger()->Error("Failed Tide->JS conversion with no exception!");
+			throw ValueException::FromString("Conversion from Tide value to JS value failed");
 		}
 	}
 
@@ -478,7 +478,7 @@ namespace KJSUtil
 		}
 		catch (...)
 		{
-			KValueRef v = Value::NewString("Unknown exception during Kroll method call");
+			KValueRef v = Value::NewString("Unknown exception during Tide method call");
 			*jsException = ToJSValue(v, jsContext);
 		}
 
@@ -537,7 +537,7 @@ namespace KJSUtil
 		// Only overload these methods if the value in our object is not a
 		// method We want the user to be able to supply their own versions,
 		// but we don't want JavaScript code to freak out in situations where
-		// Kroll objects use attributes with the same name that aren't methods.
+		// Tide objects use attributes with the same name that aren't methods.
 		if (!objValue->IsMethod())
 		{
 			if (!strcmp(name, "toString"))
@@ -604,7 +604,7 @@ namespace KJSUtil
 			return JSValueMakeBoolean(jsContext, false);
 		}
 
-		// Ensure argument is a Kroll JavaScript
+		// Ensure argument is a Tide JavaScript
 		JSObjectRef otherObject = JSValueToObject(jsContext, args[0], NULL);
 		KValueRef* otherValue = static_cast<KValueRef*>(JSObjectGetPrivate(otherObject));
 		if (otherValue == NULL)

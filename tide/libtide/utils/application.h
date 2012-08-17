@@ -13,7 +13,7 @@ namespace UTILS_NS
 	using std::pair;
 
 	/**
-	 * Represents a concrete Kroll application -- found on disk
+	 * Represents a concrete Tide application -- found on disk
 	 */
 	class TIDE_API Application
 	{
