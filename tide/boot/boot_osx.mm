@@ -105,18 +105,18 @@ namespace TideBoot
 		if (!runtimePath)
 			return __LINE__;
 
-		std::string khost = FileUtils::Join(runtimePath, "libkhost.dylib", 0);
-		if (!FileUtils::IsFile(khost))
+		const std::string tide = FileUtils::Join(runtimePath, "libtide.dylib", 0);
+		if (!FileUtils::IsFile(tide))
 		{
-			string msg = string("Couldn't find required file:") + khost;
+			string msg = string("Couldn't find required file:") + tide;
 			ShowError(msg);
 			return __LINE__;
 		}
 	
-		void* lib = dlopen(khost.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+		void* lib = dlopen(tide.c_str(), RTLD_LAZY | RTLD_GLOBAL);
 		if (!lib)
 		{
-			string msg = string("Couldn't load file:") + khost + ", error: " + dlerror();
+			string msg = string("Couldn't load file:") + tide + ", error: " + dlerror();
 			ShowError(msg);
 			return __LINE__;
 		}
@@ -124,7 +124,7 @@ namespace TideBoot
 		Executor *executor = (Executor*)dlsym(lib, "Execute");
 		if (!executor)
 		{
-			string msg = string("Invalid entry point for") + khost;
+			string msg = string("Invalid entry point for") + tide;
 			ShowError(msg);
 			return __LINE__;
 		}
