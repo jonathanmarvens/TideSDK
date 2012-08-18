@@ -9,9 +9,9 @@ Import('build')
 libtide_sources = []
 libtide_env = build.env.Clone()
 
-# libtide is called khost for now, until we can gaurantee
-# that application updates also update the kboot.exe DLL.
-libtide_name = 'khost'
+# we shoud gaurantee that application updates also update the kboot.exe DLL.
+
+libtide_name = 'tide'
 
 sources = libtide_sources + \
 	Glob('*.cpp') + \

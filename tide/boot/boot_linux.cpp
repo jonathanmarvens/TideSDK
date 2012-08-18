@@ -92,18 +92,18 @@ namespace TideBoot
 			return __LINE__;
 
 		// now we need to load the host and get 'er booted
-		string khost = FileUtils::Join(runtimePath, "libkhost.so", 0);
-		if (!FileUtils::IsFile(khost))
+		const string tide = FileUtils::Join(runtimePath, "libtide.so", 0);
+		if (!FileUtils::IsFile(tide))
 		{
-			string msg = string("Couldn't find required file:") + khost;
+			string msg = string("Couldn't find required file:") + tide;
 			ShowError(msg);
 			return __LINE__;
 		}
 
-		void* lib = dlopen(khost.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+		void* lib = dlopen(tide.c_str(), RTLD_LAZY | RTLD_GLOBAL);
 		if (!lib)
 		{
-			string msg = string("Couldn't load file:") + khost + ", error: " + dlerror();
+			string msg = string("Couldn't load file:") + tide + ", error: " + dlerror();
 			ShowError(msg);
 			return __LINE__;
 		}
@@ -111,7 +111,7 @@ namespace TideBoot
 		Executor* executor = (Executor*) dlsym(lib, "Execute");
 		if (!executor)
 		{
-			string msg = string("Invalid entry point for") + khost;
+			string msg = string("Invalid entry point for") + tide;
 			ShowError(msg);
 			return __LINE__;
 		}

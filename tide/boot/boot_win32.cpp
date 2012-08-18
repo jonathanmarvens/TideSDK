@@ -109,15 +109,15 @@ namespace TideBoot
 	int StartHost()
 	{
 		string runtimePath(EnvironmentUtils::Get("KR_RUNTIME"));
-		string dll(FileUtils::Join(runtimePath.c_str(), "khost.dll", 0));
-		HMODULE khost = SafeLoadRuntimeDLL(dll);
-		if (!khost)
+		string dll(FileUtils::Join(runtimePath.c_str(), "tide.dll", 0));
+		HMODULE tide = SafeLoadRuntimeDLL(dll);
+		if (!tide)
 			return __LINE__;
 
-		Executor *executor = (Executor*) GetProcAddress(khost, "Execute");
+		Executor *executor = (Executor*) GetProcAddress(tide, "Execute");
 		if (!executor)
 		{
-			ShowError(string("Invalid entry point 'Execute' in khost.dll"));
+			ShowError(string("Invalid entry point 'Execute' in tide.dll"));
 			return __LINE__;
 		}
 
