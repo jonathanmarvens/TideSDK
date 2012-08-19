@@ -9,7 +9,7 @@ Import('build')
 libtide_sources = []
 libtide_env = build.env.Clone()
 
-# we shoud gaurantee that application updates also update the kboot.exe DLL.
+# we shoud gaurantee that application updates also update the tideboot.exe DLL.
 
 libtide_name = 'tide'
 
