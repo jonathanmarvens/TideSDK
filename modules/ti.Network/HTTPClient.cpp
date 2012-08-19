@@ -172,7 +172,7 @@ void HTTPClient::Receive(const ValueList& args, ValueRef result)
     }
     else if (args.at(0)->IsObject())
     {
-        KObjectRef handlerObject(args.at(0)->ToObject());
+        ObjectRef handlerObject(args.at(0)->ToObject());
         MethodRef writeMethod(handlerObject->GetMethod("write", 0));
         if (writeMethod.isNull())
         {
@@ -328,13 +328,13 @@ void HTTPClient::run()
 
     // We need this binding to stay alive at least until we have
     // finished this thread. So save 'this' in an AutoPtr.
-    KObjectRef save(this, true);
+    ObjectRef save(this, true);
     this->ExecuteRequest();
 
     END_TIDE_THREAD;
 }
 
-static std::string ObjectToFilename(KObjectRef dataObject)
+static std::string ObjectToFilename(ObjectRef dataObject)
 {
     // Now try to treat this object like as a file-like object with
     // a .read() method which returns a Bytes. If this fails we'll
@@ -391,7 +391,7 @@ void HTTPClient::AddScalarValueToCurlForm(SharedString propertyName,
     }
 }
 
-void HTTPClient::BeginWithPostDataObject(KObjectRef object)
+void HTTPClient::BeginWithPostDataObject(ObjectRef object)
 {
     struct curl_httppost* last = 0;
 

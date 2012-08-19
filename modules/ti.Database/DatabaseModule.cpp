@@ -47,7 +47,7 @@ void DatabaseModule::Initialize()
      */
     this->SetMethod("openFile", &DatabaseModule::OpenFile);
 
-    KObjectRef autoThis(this, true);
+    ObjectRef autoThis(this, true);
     host->GetGlobalObject()->SetObject("Database", autoThis);
 }
 
@@ -76,7 +76,7 @@ void DatabaseModule::OpenFile(const ValueList& args, ValueRef result)
         const char* error = "openFile requires an object with a "
             "toString method returning a String";
 
-        KObjectRef o(args.GetObject(0));
+        ObjectRef o(args.GetObject(0));
         if (!o->Get("toString")->IsMethod())
             throw ValueException::FromString(error);
 

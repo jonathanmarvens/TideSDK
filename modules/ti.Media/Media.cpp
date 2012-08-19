@@ -20,7 +20,7 @@
 
 namespace ti
 {
-  Media::Media(KObjectRef global)
+  Media::Media(ObjectRef global)
     : StaticBoundObject("Media"),
     global(global)
   {

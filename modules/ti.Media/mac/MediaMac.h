@@ -27,12 +27,12 @@ namespace ti {
 
 class MediaMac : public Media {
 public:
-    MediaMac(KObjectRef);
+    MediaMac(ObjectRef);
     ~MediaMac();
 
 protected:
     void Beep();
-    KObjectRef CreateSound(std::string&);
+    ObjectRef CreateSound(std::string&);
 };
 
 } // namespace ti

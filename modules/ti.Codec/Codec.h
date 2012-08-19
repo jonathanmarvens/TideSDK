@@ -29,7 +29,7 @@ namespace ti {
 class Codec : public StaticBoundObject
 {
 public:
-    Codec(KObjectRef);
+    Codec(ObjectRef);
     virtual ~Codec();
 
 private:
@@ -46,7 +46,7 @@ private:
     static ValueRef CreateZipAsync(const ValueList& args);
     static ValueRef ExtractZipAsync(const ValueList& args);
 
-    KObjectRef global;
+    ObjectRef global;
 };
 
 } // namespace ti

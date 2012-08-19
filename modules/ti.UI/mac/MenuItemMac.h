@@ -40,7 +40,7 @@ public:
     NSMenuItem* CreateNative(bool registerNative=true);
     void DestroyNative(NSMenuItem* realization);
     void UpdateNativeMenuItems();
-    virtual void HandleClickEvent(KObjectRef source);
+    virtual void HandleClickEvent(ObjectRef source);
 
 private:
     static void SetNSMenuItemTitle(NSMenuItem* item, std::string& title);

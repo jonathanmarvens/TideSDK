@@ -20,7 +20,7 @@ namespace tide
 		virtual ValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();
 		virtual SharedString DisplayString(int);
-		virtual bool Equals(KObjectRef);
+		virtual bool Equals(ObjectRef);
 		bool PropertyExists(const char* property);
 		zval* ToPHP();
 
@@ -28,7 +28,7 @@ namespace tide
 		zval* object;
 		char* methodName;
 		zval* zMethodName;
-		KObjectRef globalObject;
+		ObjectRef globalObject;
 	};
 }
 #endif

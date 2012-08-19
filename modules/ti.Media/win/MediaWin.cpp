@@ -22,7 +22,7 @@
 
 namespace ti {
 
-MediaWin::MediaWin(KObjectRef global)
+MediaWin::MediaWin(ObjectRef global)
     : Media(global)
 {
 }
@@ -36,7 +36,7 @@ void MediaWin::Beep()
     MessageBeep(MB_OK);
 }
 
-KObjectRef MediaWin::CreateSound(std::string& url)
+ObjectRef MediaWin::CreateSound(std::string& url)
 {
     return new SoundWin(url);
 }

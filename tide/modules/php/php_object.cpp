@@ -79,7 +79,7 @@ namespace tide {
 		}
 	}
 
-	bool KPHPObject::Equals(KObjectRef other)
+	bool KPHPObject::Equals(ObjectRef other)
 	{
 		AutoPtr<KPHPObject> phpOther = other.cast<KPHPObject>();
 		if (phpOther.isNull())

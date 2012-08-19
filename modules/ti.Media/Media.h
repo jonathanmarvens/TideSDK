@@ -27,17 +27,17 @@ namespace ti {
 
 class Media : public StaticBoundObject {
 public:
-    Media(KObjectRef);
+    Media(ObjectRef);
     virtual ~Media();
 
 private:
     void _CreateSound(const ValueList& args, ValueRef result);
     void _Beep(const ValueList& args, ValueRef result);
 
-    virtual KObjectRef CreateSound(std::string& url) = 0;
+    virtual ObjectRef CreateSound(std::string& url) = 0;
     virtual void Beep() = 0;
 
-    KObjectRef global;
+    ObjectRef global;
 };
 
 } // namespace ti

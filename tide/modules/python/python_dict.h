@@ -19,7 +19,7 @@ namespace tide
 
 		virtual void Set(const char *name, ValueRef value);
 		virtual ValueRef Get(const char *name);
-		virtual bool Equals(KObjectRef);
+		virtual bool Equals(ObjectRef);
 		virtual SharedStringList GetPropertyNames();
 
 		PyObject* ToPython();

@@ -18,7 +18,7 @@ namespace tide
 	class TIDE_API ProfiledBoundObject : public Object
 	{
 		public:
-		ProfiledBoundObject(KObjectRef delegate);
+		ProfiledBoundObject(ObjectRef delegate);
 		virtual ~ProfiledBoundObject();
 		static void SetStream(Poco::FileOutputStream*);
 
@@ -32,14 +32,14 @@ namespace tide
 		// @see Object::DisplayString
 		virtual SharedString DisplayString(int levels=3);
 		// @see Object::Equals
-		virtual bool Equals(KObjectRef other);
+		virtual bool Equals(ObjectRef other);
 
 		bool HasProperty(const char* name);
 
 		/**
 		 * @return the delegate of this profiled bound object
 		 */
-		KObjectRef GetDelegate() { return delegate; }
+		ObjectRef GetDelegate() { return delegate; }
 		virtual void duplicate()
 		{
 			++count;
@@ -59,7 +59,7 @@ namespace tide
 		}
 
 	protected:
-		KObjectRef delegate;
+		ObjectRef delegate;
 		ValueRef Wrap(ValueRef value, std::string type);
 		std::string GetSubType(std::string name);
 		void Log(const char* eventType, std::string& name, Poco::Timestamp::TimeDiff);

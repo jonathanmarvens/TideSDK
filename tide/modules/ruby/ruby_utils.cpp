@@ -12,7 +12,7 @@
 
 namespace tide
 {
-	VALUE RubyUtils::KObjectClass = Qnil;
+	VALUE RubyUtils::ObjectClass = Qnil;
 	VALUE RubyUtils::MethodClass = Qnil;
 	VALUE RubyUtils::ListClass = Qnil;
 
@@ -52,17 +52,17 @@ namespace tide
 		}
 		else if (T_OBJECT == t)
 		{
-			KObjectRef kobj = new KRubyObject(value);
+			ObjectRef kobj = new KRubyObject(value);
 			kvalue = Value::NewObject(kobj);
 		}
 		else if (T_STRUCT == t)
 		{
-			KObjectRef kobj = new KRubyObject(value);
+			ObjectRef kobj = new KRubyObject(value);
 			kvalue = Value::NewObject(kobj);
 		}
 		else if (T_HASH == t)
 		{
-			KObjectRef kobj = new KRubyHash(value);
+			ObjectRef kobj = new KRubyHash(value);
 			kvalue = Value::NewObject(kobj);
 		}
 		else if (T_ARRAY == t)
@@ -70,7 +70,7 @@ namespace tide
 			ListRef List = new KRubyList(value);
 			kvalue = Value::NewList(List);
 		}
-		else if (T_DATA == t && KObjectClass != Qnil && KindOf(value, KObjectClass))
+		else if (T_DATA == t && ObjectClass != Qnil && KindOf(value, ObjectClass))
 		{
 			ValueRef* kval = NULL;
 			Data_Get_Struct(value, ValueRef, kval);
@@ -100,7 +100,7 @@ namespace tide
 		}
 		else if (T_DATA == t)
 		{
-			KObjectRef object = new KRubyObject(value);
+			ObjectRef object = new KRubyObject(value);
 			return Value::NewObject(object);
 		}
 
@@ -135,7 +135,7 @@ namespace tide
 			if (!rh.isNull())
 				return rh->ToRuby();
 
-			return RubyUtils::KObjectToRubyValue(value);
+			return RubyUtils::ObjectToRubyValue(value);
 		}
 		else if (value->IsMethod())
 		{
@@ -156,11 +156,11 @@ namespace tide
 		return Qnil;
 	}
 
-	static VALUE RubyKObjectMethods(VALUE self)
+	static VALUE RubyObjectMethods(VALUE self)
 	{
 		ValueRef* value = NULL;
 		Data_Get_Struct(self, ValueRef, value);
-		KObjectRef object = (*value)->ToObject();
+		ObjectRef object = (*value)->ToObject();
 
 		VALUE* args = NULL;
 		VALUE methods = rb_call_super(0, args);
@@ -200,12 +200,12 @@ namespace tide
 		}
 	}
 
-	// A :method method for pulling methods off of KObjects in Ruby
-	static VALUE RubyKObjectMethod(int argc, VALUE *argv, VALUE self)
+	// A :method method for pulling methods off of Objects in Ruby
+	static VALUE RubyObjectMethod(int argc, VALUE *argv, VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KObjectRef object = (*dval)->ToObject();
+		ObjectRef object = (*dval)->ToObject();
 
 		// TODO: We should raise an exception instead
 		if (object.isNull())
@@ -227,11 +227,11 @@ namespace tide
 	}
 
 	// A :method_missing method for finding Object properties in Ruby
-	static VALUE RubyKObjectMethodMissing(int argc, VALUE *argv, VALUE self)
+	static VALUE RubyObjectMethodMissing(int argc, VALUE *argv, VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KObjectRef object = (*dval)->ToObject();
+		ObjectRef object = (*dval)->ToObject();
 
 		// TODO: We should raise an exception instead
 		if (object.isNull())
@@ -277,11 +277,11 @@ namespace tide
 	}
 
 	// A :responds_to? method for finding Object properties in Ruby
-	static VALUE RubyKObjectRespondTo(int argc, VALUE *argv, VALUE self)
+	static VALUE RubyObjectRespondTo(int argc, VALUE *argv, VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KObjectRef object = (*dval)->ToObject();
+		ObjectRef object = (*dval)->ToObject();
 		VALUE mid, priv; // We ignore the priv argument
 
 		rb_scan_args(argc, argv, "11", &mid, &priv);
@@ -290,7 +290,7 @@ namespace tide
 		return value->IsUndefined() ? Qfalse : Qtrue;
 	}
 
-	static void RubyKObjectFree(void *p)
+	static void RubyObjectFree(void *p)
 	{
 		ValueRef* kval = static_cast<ValueRef*>(p);
 		delete kval;
@@ -309,23 +309,23 @@ namespace tide
 		return RubyUtils::GenericMethodCall(method, args);
 	}
 
-	VALUE RubyUtils::KObjectToRubyValue(ValueRef obj)
+	VALUE RubyUtils::ObjectToRubyValue(ValueRef obj)
 	{
 		// Lazily initialize the Object wrapper class
-		if (KObjectClass == Qnil)
+		if (ObjectClass == Qnil)
 		{
-			KObjectClass = rb_define_class("RubyKObject", rb_cObject);
-			rb_define_method(KObjectClass, "method_missing",
-				RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
-			rb_define_method(KObjectClass, "method",
-				RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
-			rb_define_method(KObjectClass, "methods",
-				RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
-			rb_define_method(KObjectClass, "respond_to?",
-				RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
+			ObjectClass = rb_define_class("RubyObject", rb_cObject);
+			rb_define_method(ObjectClass, "method_missing",
+				RUBY_METHOD_FUNC(RubyObjectMethodMissing), -1);
+			rb_define_method(ObjectClass, "method",
+				RUBY_METHOD_FUNC(RubyObjectMethod), -1);
+			rb_define_method(ObjectClass, "methods",
+				RUBY_METHOD_FUNC(RubyObjectMethods), 0);
+			rb_define_method(ObjectClass, "respond_to?",
+				RUBY_METHOD_FUNC(RubyObjectRespondTo), -1);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(KObjectClass, 0, RubyKObjectFree, new ValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(ObjectClass, 0, RubyObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}
@@ -337,18 +337,18 @@ namespace tide
 		{
 			MethodClass = rb_define_class("RubyMethod", rb_cObject);
 			rb_define_method(MethodClass, "method_missing",
-				RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
+				RUBY_METHOD_FUNC(RubyObjectMethodMissing), -1);
 			rb_define_method(MethodClass, "method",
-				RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
+				RUBY_METHOD_FUNC(RubyObjectMethod), -1);
 			rb_define_method(MethodClass, "methods",
-				RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
+				RUBY_METHOD_FUNC(RubyObjectMethods), 0);
 			rb_define_method(MethodClass, "respond_to?",
-				RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
+				RUBY_METHOD_FUNC(RubyObjectRespondTo), -1);
 			rb_define_method(MethodClass, "call",
 				RUBY_METHOD_FUNC(RubyMethodCall), -2);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(MethodClass, 0, RubyKObjectFree, new ValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(MethodClass, 0, RubyObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}
@@ -460,13 +460,13 @@ namespace tide
 		{
 			ListClass = rb_define_class("RubyList", rb_cObject);
 			rb_define_method(ListClass, "method_missing",
-				RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
+				RUBY_METHOD_FUNC(RubyObjectMethodMissing), -1);
 			rb_define_method(ListClass, "method",
-				RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
+				RUBY_METHOD_FUNC(RubyObjectMethod), -1);
 			rb_define_method(ListClass, "methods",
-				RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
+				RUBY_METHOD_FUNC(RubyObjectMethods), 0);
 			rb_define_method(ListClass, "respond_to?",
-				RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
+				RUBY_METHOD_FUNC(RubyObjectRespondTo), -1);
 			rb_define_method(ListClass, "[]",
 				RUBY_METHOD_FUNC(RubyListGetElt), -1);
 			rb_define_method(ListClass, "[]=",
@@ -481,7 +481,7 @@ namespace tide
 				RUBY_METHOD_FUNC(RubyListCollect), 0);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(ListClass, 0, RubyKObjectFree, new ValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(ListClass, 0, RubyObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}

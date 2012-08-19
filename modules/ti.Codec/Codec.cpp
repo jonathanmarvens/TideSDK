@@ -43,7 +43,7 @@
 
 namespace ti {
 
-Codec::Codec(KObjectRef global) :
+Codec::Codec(ObjectRef global) :
     StaticBoundObject("Codec"),
     global(global)
 {

@@ -25,10 +25,10 @@ namespace tide
 		virtual ValueRef Get(const char *name);
 		ValueRef Call(JSObjectRef thisObject, const ValueList& args);
 		virtual ValueRef Call(const ValueList& args);
-		virtual ValueRef Call(KObjectRef thisObject, const ValueList& args);
+		virtual ValueRef Call(ObjectRef thisObject, const ValueList& args);
 		virtual SharedStringList GetPropertyNames();
 		virtual bool HasProperty(const char* name);
-		virtual bool Equals(KObjectRef);
+		virtual bool Equals(ObjectRef);
 
 		virtual bool SameContextGroup(JSContextRef c);
 		JSObjectRef GetJSObject();
@@ -37,7 +37,7 @@ namespace tide
 		JSGlobalContextRef context;
 		JSObjectRef jsobject;
 		JSObjectRef thisObject;
-		AutoPtr<KKJSObject> kobject;
+		AutoPtr<KKJSObject> object;
 
 		private:
 		DISALLOW_EVIL_CONSTRUCTORS(KKJSMethod);

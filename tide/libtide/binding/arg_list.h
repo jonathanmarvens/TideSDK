@@ -46,7 +46,7 @@ namespace tide
 		double GetNumber(size_t index, double defaultValue=0.0) const;
 		bool GetBool(size_t index, bool defaultValue=false) const;
 		std::string GetString(size_t index, std::string defaultValue="") const;
-		KObjectRef GetObject(size_t index, KObjectRef defaultValue=NULL) const;
+		ObjectRef GetObject(size_t index, ObjectRef defaultValue=NULL) const;
 		MethodRef GetMethod(size_t index, MethodRef defaultValue=NULL) const;
 		ListRef GetList(size_t index, ListRef defaultValue=NULL) const;
 

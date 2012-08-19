@@ -14,7 +14,7 @@ class PythonInterpreter : public Interpreter {
 public:
 	PythonInterpreter();
 
-    virtual ValueRef EvaluateFile(const char* filepath, KObjectRef context);
+    virtual ValueRef EvaluateFile(const char* filepath, ObjectRef context);
 };
 
 } // namespace tide

@@ -102,7 +102,7 @@ namespace tide
 		return this->object->ToRuby();
 	}
 
-	bool KRubyHash::Equals(KObjectRef other)
+	bool KRubyHash::Equals(ObjectRef other)
 	{
 		AutoPtr<KRubyHash> hashOther = other.cast<KRubyHash>();
 		if (hashOther.isNull())

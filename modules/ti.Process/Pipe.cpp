@@ -88,19 +88,19 @@ Pipe::~Pipe()
 {
 }
 
-void Pipe::Attach(KObjectRef object)
+void Pipe::Attach(ObjectRef object)
 {
     Poco::Mutex::ScopedLock lock(attachedMutex);
     attachedObjects.push_back(object);
 }
 
-void Pipe::Detach(KObjectRef object)
+void Pipe::Detach(ObjectRef object)
 {
     Poco::Mutex::ScopedLock lock(attachedMutex);
-    std::vector<KObjectRef>::iterator i = attachedObjects.begin();
+    std::vector<ObjectRef>::iterator i = attachedObjects.begin();
     while (i != attachedObjects.end())
     {
-        KObjectRef obj = *i;
+        ObjectRef obj = *i;
         if (obj->Equals(object))
         {
             i = attachedObjects.erase(i);
@@ -223,7 +223,7 @@ int Pipe::Write(BytesRef bytes)
     return bytes->Length();
 }
 
-void Pipe::CallWrite(KObjectRef target, BytesRef bytes)
+void Pipe::CallWrite(ObjectRef target, BytesRef bytes)
 {
     MethodRef writeMethod = target->GetMethod("write");
 
@@ -266,7 +266,7 @@ void Pipe::Close()
     }
 }
 
-void Pipe::CallClose(KObjectRef target)
+void Pipe::CallClose(ObjectRef target)
 {
     ValueRef closeMethod = target->Get("close");
 

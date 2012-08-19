@@ -52,7 +52,7 @@ protected:
 
     bool closed;
     bool isReader;
-    std::vector<KObjectRef> attachedObjects;
+    std::vector<ObjectRef> attachedObjects;
     Poco::RunnableAdapter<NativePipe>* writeThreadAdapter;
     Poco::RunnableAdapter<NativePipe>* readThreadAdapter;
     Poco::Thread writeThread;

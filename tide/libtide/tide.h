@@ -51,7 +51,7 @@ namespace tide
 	class ArgList;
 
 	typedef AutoPtr<Value> ValueRef;
-	typedef AutoPtr<Object> KObjectRef;
+	typedef AutoPtr<Object> ObjectRef;
 	typedef AutoPtr<Method> MethodRef;
 	typedef AutoPtr<List> ListRef;
 	typedef AutoPtr<Bytes> BytesRef;

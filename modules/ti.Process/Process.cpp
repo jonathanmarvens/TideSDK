@@ -209,10 +209,10 @@ void Process::SetOnExit(MethodRef newOnExit)
     this->onExit = newOnExit;
 }
 
-KObjectRef Process::CloneEnvironment()
+ObjectRef Process::CloneEnvironment()
 {
     SharedStringList properties = environment->GetPropertyNames();
-    KObjectRef clonedEnvironment = new StaticBoundObject();
+    ObjectRef clonedEnvironment = new StaticBoundObject();
     for (size_t i = 0; i < properties->size(); i++)
     {
         std::string property = *properties->at(i);
@@ -474,9 +474,9 @@ void Process::_ToString(const ValueList& args, ValueRef result)
 }
 
 /*static*/
-KObjectRef Process::GetCurrentEnvironment()
+ObjectRef Process::GetCurrentEnvironment()
 {
-    KObjectRef kenv = new StaticBoundObject();
+    ObjectRef kenv = new StaticBoundObject();
     std::map<std::string, std::string> env = EnvironmentUtils::GetEnvironment();
 
     std::map<std::string, std::string>::iterator i = env.begin();

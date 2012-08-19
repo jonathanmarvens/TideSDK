@@ -40,7 +40,7 @@ namespace tide
 
 		protected:
 		KFunctionPtrCallback callback;
-		KObjectRef object;
+		ObjectRef object;
 
 		private:
 		DISALLOW_EVIL_CONSTRUCTORS(KFunctionPtrMethod);

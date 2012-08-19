@@ -29,12 +29,12 @@ public:
     virtual ~Pipe();
 
     virtual int Write(BytesRef data);
-    virtual void CallWrite(KObjectRef target, BytesRef data);
+    virtual void CallWrite(ObjectRef target, BytesRef data);
     virtual void Close();
-    virtual void CallClose(KObjectRef target);
+    virtual void CallClose(ObjectRef target);
     virtual void Flush();
-    void Attach(KObjectRef object);
-    void Detach(KObjectRef object);
+    void Attach(ObjectRef object);
+    void Detach(ObjectRef object);
     bool IsAttached();
     AutoPtr<Pipe> Clone();
 
@@ -53,7 +53,7 @@ protected:
     void _Flush(const ValueList& args, ValueRef result);
 
     Poco::Mutex attachedMutex;
-    std::vector<KObjectRef> attachedObjects;
+    std::vector<ObjectRef> attachedObjects;
     Logger *logger;
 };
 

@@ -56,7 +56,7 @@ namespace tide
 		}
 	}
 
-	bool KPHPArrayObject::Equals(KObjectRef other)
+	bool KPHPArrayObject::Equals(ObjectRef other)
 	{
 		AutoPtr<KPHPArrayObject> phpOther = other.cast<KPHPArrayObject>();
 

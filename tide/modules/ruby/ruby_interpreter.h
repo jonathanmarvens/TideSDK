@@ -15,12 +15,12 @@ class RubyInterpreter : public Interpreter {
 public:
 	RubyInterpreter();
 
-    ValueRef EvaluateFile(const char* filepath, KObjectRef context);
+    ValueRef EvaluateFile(const char* filepath, ObjectRef context);
 
 private:
-	std::string GetContextId(KObjectRef global);
-	VALUE GetContext(KObjectRef global);
-	void ContextToGlobal(VALUE ctx, KObjectRef o);
+	std::string GetContextId(ObjectRef global);
+	VALUE GetContext(ObjectRef global);
+	void ContextToGlobal(VALUE ctx, ObjectRef o);
 };
 
 } // namespace tide

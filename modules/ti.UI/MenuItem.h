@@ -63,7 +63,7 @@ public:
     bool IsSeparator();
     bool IsCheck();
     bool IsEnabled();
-    virtual void HandleClickEvent(KObjectRef source);
+    virtual void HandleClickEvent(ObjectRef source);
     void EnsureHasSubmenu();
     bool ContainsItem(MenuItem* item);
     bool ContainsSubmenu(Menu* submenu);

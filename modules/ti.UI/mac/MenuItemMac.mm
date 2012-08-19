@@ -209,7 +209,7 @@ void MenuItemMac::UpdateNativeMenuItems()
     }
 }
 
-void MenuItemMac::HandleClickEvent(KObjectRef source)
+void MenuItemMac::HandleClickEvent(ObjectRef source)
 {
     MenuItem::HandleClickEvent(source);
 }

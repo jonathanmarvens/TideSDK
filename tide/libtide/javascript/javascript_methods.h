@@ -12,7 +12,7 @@ namespace tide
 namespace JavaScriptMethods
 {
 
-void Bind(KObjectRef global);
+void Bind(ObjectRef global);
 ValueRef SetTimeout(const ValueList& args);
 ValueRef SetInterval(const ValueList& args);
 ValueRef ClearTimeout(const ValueList& args);

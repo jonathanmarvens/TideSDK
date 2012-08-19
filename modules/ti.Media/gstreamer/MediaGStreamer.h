@@ -29,12 +29,12 @@ namespace ti {
 
 class MediaGStreamer : public Media {
 public:
-    MediaGStreamer(KObjectRef);
+    MediaGStreamer(ObjectRef);
     ~MediaGStreamer();
 
 protected:
     void Beep();
-    KObjectRef CreateSound(std::string&);
+    ObjectRef CreateSound(std::string&);
 };
 
 } // namespace ti

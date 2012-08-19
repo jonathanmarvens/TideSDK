@@ -22,7 +22,7 @@
 
 namespace ti {
 
-MediaMac::MediaMac(KObjectRef global) : Media(global)
+MediaMac::MediaMac(ObjectRef global) : Media(global)
 {
 }
 MediaMac::~MediaMac()
@@ -32,7 +32,7 @@ void MediaMac::Beep()
 {
     NSBeep();
 }
-KObjectRef MediaMac::CreateSound(std::string& url)
+ObjectRef MediaMac::CreateSound(std::string& url)
 {
     return new SoundMac(url);
 }

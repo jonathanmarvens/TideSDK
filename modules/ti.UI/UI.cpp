@@ -409,11 +409,11 @@ void UI::Log(Logger::Level level, std::string& message)
     std::vector<AutoPtr<UserWindow> >& openWindows = UI::GetInstance()->GetOpenWindows();
     for (size_t i = 0; i < openWindows.size(); i++)
     {
-        KObjectRef domWindow = openWindows[i]->GetDOMWindow();
+        ObjectRef domWindow = openWindows[i]->GetDOMWindow();
         if (domWindow.isNull())
             continue;
 
-        KObjectRef console = domWindow->GetObject("console", 0);
+        ObjectRef console = domWindow->GetObject("console", 0);
         if (console.isNull())
             continue;
 

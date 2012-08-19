@@ -16,7 +16,7 @@ namespace tide
 	{
 	}
 
-	static KObjectRef global_object;
+	static ObjectRef global_object;
 	static VALUE m_missing(int argc, VALUE* argv, VALUE self)
 	{
 		bool assignment = false;
@@ -65,7 +65,7 @@ namespace tide
 		return rval;
 	}
 
-	std::string RubyInterpreter::GetContextId(KObjectRef global)
+	std::string RubyInterpreter::GetContextId(ObjectRef global)
 	{
 		static int nextId = 0;
 		int cid = 0;
@@ -82,7 +82,7 @@ namespace tide
 		return std::string("$windowProc") + List::IntToChars(cid);
 	}
 
-	VALUE RubyInterpreter::GetContext(KObjectRef global)
+	VALUE RubyInterpreter::GetContext(ObjectRef global)
 	{
 		std::string theid = this->GetContextId(global);
 		VALUE ctx = rb_gv_get(theid.c_str());
@@ -106,7 +106,7 @@ namespace tide
 		return rb_funcall(ctx, rb_intern("instance_eval"), 1, code);
 	}
 
-	ValueRef RubyInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
+	ValueRef RubyInterpreter::EvaluateFile(const char* filepath, ObjectRef context)
 	{
         global_object = context;
 		VALUE ctx = this->GetContext(context);
@@ -149,7 +149,7 @@ namespace tide
         return RubyUtils::ToTideValue(returnValue);
 	}
 
-	void RubyInterpreter::ContextToGlobal(VALUE ctx, KObjectRef o)
+	void RubyInterpreter::ContextToGlobal(VALUE ctx, ObjectRef o)
 	{
 		// Next copy all methods over -- they override variables
 		VALUE methods = rb_funcall(ctx, rb_intern("singleton_methods"), 0);

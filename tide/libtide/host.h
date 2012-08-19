@@ -30,7 +30,7 @@ namespace tide
 		inline bool DebugModeEnabled() { return this->debug; }
 		inline bool ProfilingEnabled() { return this->profile; }
 		inline Poco::Timestamp::TimeDiff GetElapsedTime() { return timeStarted.elapsed(); }
-		inline KObjectRef GetGlobalObject() { return GlobalObject::GetInstance(); }
+		inline ObjectRef GetGlobalObject() { return GlobalObject::GetInstance(); }
 		/**
 		 * Get the host singleton.
 		 */
@@ -63,7 +63,7 @@ namespace tide
 		 * @param waitForCompletion block until method is finished (default: true)
 		 * @return the method's return value§
 		 */
-		ValueRef RunOnMainThread(MethodRef method, KObjectRef thisObject,
+		ValueRef RunOnMainThread(MethodRef method, ObjectRef thisObject,
 			const ValueList& args, bool waitForCompletion=true);
 
 		/**
@@ -181,7 +181,7 @@ namespace tide
 
 	TIDE_API ValueRef RunOnMainThread(MethodRef method, const ValueList& args,
 		bool waitForCompletion=true);
-	TIDE_API ValueRef RunOnMainThread(MethodRef method, KObjectRef thisObject,
+	TIDE_API ValueRef RunOnMainThread(MethodRef method, ObjectRef thisObject,
 		const ValueList& args, bool waitForCompletion=true);
 	TIDE_API bool IsMainThread();
 }

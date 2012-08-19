@@ -113,7 +113,7 @@ void NativePipe::StartMonitor()
 
 void NativePipe::PollForReads()
 {
-    KObjectRef save(this, true);
+    ObjectRef save(this, true);
 
     char buffer[MAX_BUFFER_SIZE];
     int length = MAX_BUFFER_SIZE;
@@ -132,7 +132,7 @@ void NativePipe::PollForReads()
 
 void NativePipe::PollForWrites()
 {
-    KObjectRef save(this, true);
+    ObjectRef save(this, true);
 
     BytesRef bytes = 0;
     while (!closed || buffers.size() > 0)

@@ -31,7 +31,7 @@ class EXPORT WindowConfig : public ReferenceCounted
 public:
     static AutoPtr<WindowConfig> FromXMLNode(xmlNodePtr);
     static AutoPtr<WindowConfig> FromWindowConfig(AutoPtr<WindowConfig>);
-    static AutoPtr<WindowConfig> FromProperties(KObjectRef);
+    static AutoPtr<WindowConfig> FromProperties(ObjectRef);
     static AutoPtr<WindowConfig> Default()
     {
         return new WindowConfig();

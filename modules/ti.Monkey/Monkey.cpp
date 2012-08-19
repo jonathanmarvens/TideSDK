@@ -26,7 +26,7 @@ using namespace std;
 
 namespace ti {
 
-Monkey::Monkey(Host *host, KObjectRef global) :
+Monkey::Monkey(Host *host, ObjectRef global) :
     StaticBoundObject("Monkey"),
     global(global),
     logger(Logger::Get("Monkey"))
@@ -127,7 +127,7 @@ void Monkey::ParseFile(string filePath)
 
 void Monkey::Callback(const ValueList &args, ValueRef result)
 {
-    KObjectRef event = args.at(0)->ToObject();
+    ObjectRef event = args.at(0)->ToObject();
     if (!event->Get("url")->IsString() ||
         !event->Get("scope")->IsObject() ||
         !event->GetObject("scope")->Get("window"))
@@ -137,7 +137,7 @@ void Monkey::Callback(const ValueList &args, ValueRef result)
     }
 
     std::string url = event->GetString("url");
-    KObjectRef windowObject = event->GetObject("scope")->GetObject("window");
+    ObjectRef windowObject = event->GetObject("scope")->GetObject("window");
     vector<Script*>::iterator iter = scripts.begin();
     while (iter != scripts.end())
     {
@@ -150,8 +150,8 @@ void Monkey::Callback(const ValueList &args, ValueRef result)
 }
 
 void Monkey::EvaluateUserScript(
-    KObjectRef event, std::string& url,
-    KObjectRef windowObject, std::string& scriptSource)
+    ObjectRef event, std::string& url,
+    ObjectRef windowObject, std::string& scriptSource)
 {
     static Logger *logger = Logger::Get("Monkey");
     // I got a castle in brooklyn, that's where i dwell
@@ -164,7 +164,7 @@ void Monkey::EvaluateUserScript(
         return;
     }
 
-    KObjectRef target = event->GetObject("target");
+    ObjectRef target = event->GetObject("target");
     if (!windowObject->Get(GLOBAL_NS_VARNAME)->IsObject() &&
         !target.isNull() && target->Get("insertAPI")->IsMethod())
     {

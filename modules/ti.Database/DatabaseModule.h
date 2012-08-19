@@ -35,7 +35,7 @@ class EXPORT DatabaseModule : public tide::Module, public StaticBoundObject {
     TIDE_MODULE_CLASS(DatabaseModule)
 
 private:
-    tide::KObjectRef binding;
+    tide::ObjectRef binding;
     void Open(const ValueList& args, ValueRef result);
     void OpenFile(const ValueList& args, ValueRef result);
 };

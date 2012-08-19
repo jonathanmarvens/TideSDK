@@ -25,7 +25,7 @@ class EXPORT MonkeyModule : public tide::Module {
     TIDE_MODULE_CLASS(MonkeyModule)
 
 private:
-    tide::KObjectRef binding;
+    tide::ObjectRef binding;
 };
 
 } // namespace ti

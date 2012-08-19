@@ -8,7 +8,7 @@
 
 namespace tide
 {
-	ProfiledGlobalObject::ProfiledGlobalObject(KObjectRef global) :
+	ProfiledGlobalObject::ProfiledGlobalObject(ObjectRef global) :
 		profiledObject(new ProfiledBoundObject(global))
 	{
 	}
@@ -42,7 +42,7 @@ namespace tide
 		return profiledObject->HasProperty(name);
 	}
 
-	bool ProfiledGlobalObject::Equals(KObjectRef other)
+	bool ProfiledGlobalObject::Equals(ObjectRef other)
 	{
 		return profiledObject->Equals(other);
 	}

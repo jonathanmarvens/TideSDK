@@ -260,12 +260,12 @@ void Database::Execute(const ValueList& args, ValueRef result)
         if (count > 0)
         {
             RecordSet rs(select);
-            KObjectRef r = new ResultSet(rs);
+            ObjectRef r = new ResultSet(rs);
             result->SetObject(r);
         }
         else
         {
-            KObjectRef r = new ResultSet();
+            ObjectRef r = new ResultSet();
             result->SetObject(r);
         }
     }
