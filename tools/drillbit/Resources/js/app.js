@@ -15,9 +15,9 @@ Titanium.AppCreator = {
 		var lproj = TFS.getFile(resources,'English.lproj');
 		lproj.createDirectory(true);
 
-		var fromMacos = TFS.getFile(assetsDir,'kboot');
+		var fromMacos = TFS.getFile(assetsDir,'tideboot');
 		fromMacos.copy(macos);
-		var boot = TFS.getFile(macos,'kboot');
+		var boot = TFS.getFile(macos,'tideboot');
 		boot.rename(name);
 		boot.setExecutable(true);
 
@@ -84,9 +84,9 @@ Titanium.AppCreator = {
 		var resources = TFS.getFile(appDir,'Resources');
 		resources.createDirectory(true);
 
-		var kboot = TFS.getFile(assetsDir,'kboot');
+		var tideboot = TFS.getFile(assetsDir,'tideboot');
 		var appExecutable = TFS.getFile(appDir, name);
-		kboot.copy(appExecutable);
+		tideboot.copy(appExecutable);
 
 		// set our marker file
 		var marker = TFS.getFile(appDir,'.installed');
@@ -113,9 +113,9 @@ Titanium.AppCreator = {
 		var resources = TFS.getFile(appDir,'Resources');
 		resources.createDirectory(true);
 
-		var kboot = TFS.getFile(assetsDir,'kboot.exe');
+		var tideboot = TFS.getFile(assetsDir,'tideboot.exe');
 		var appExecutable = TFS.getFile(appDir, name + '.exe');
-		kboot.copy(appExecutable);
+		tideboot.copy(appExecutable);
 		
 		// set our marker file
 		var marker = TFS.getFile(appDir,'.installed');
