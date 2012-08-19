@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_PROFILED_BOUND_LIST_H_
-#define _KR_PROFILED_BOUND_LIST_H_
+#ifndef _PROFILED_BOUND_LIST_H_
+#define _PROFILED_BOUND_LIST_H_
 
 namespace tide
 {

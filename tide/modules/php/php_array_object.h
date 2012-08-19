@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_PHP_ARRAY_OBJECT_H_
-#define _K_PHP_ARRAY_OBJECT_H_
+#ifndef _PHP_ARRAY_OBJECT_H_
+#define _PHP_ARRAY_OBJECT_H_
 
 #include "php_module.h"
 

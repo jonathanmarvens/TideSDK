@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_FILE_UTILS_H_
-#define _KR_FILE_UTILS_H_
+#ifndef _FILE_UTILS_H_
+#define _FILE_UTILS_H_
 
 #ifdef OS_WIN32
 #include <windows.h>

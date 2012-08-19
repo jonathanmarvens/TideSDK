@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_BOOT_UTILS_H_
-#define _KR_BOOT_UTILS_H_
+#ifndef _BOOT_UTILS_H_
+#define _BOOT_UTILS_H_
 
 // These UUIDs should never change and uniquely identify a package type
 #define DISTRIBUTION_UUID "7F7FA377-E695-4280-9F1F-96126F3D2C2A"

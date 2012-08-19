@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_GLOBAL_OBJECT_H_
-#define _KR_GLOBAL_OBJECT_H_
+#ifndef _GLOBAL_OBJECT_H_
+#define _GLOBAL_OBJECT_H_
 
 namespace tide
 {

@@ -4,8 +4,8 @@
  * Copyright (c) 2008, 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_HOST_H_
-#define _KR_HOST_H_
+#ifndef _HOST_H_
+#define _HOST_H_
 
 #include <Poco/Timestamp.h>
 #include <Poco/Mutex.h>

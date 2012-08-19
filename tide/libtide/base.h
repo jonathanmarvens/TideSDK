@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_BASE_H_
-#define _KR_BASE_H_
+#ifndef _BASE_H_
+#define _BASE_H_
 
 #ifdef __cplusplus
 #include <string>

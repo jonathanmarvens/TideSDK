@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_PROXY_CONFIG_H_
-#define _KR_PROXY_CONFIG_H_
+#ifndef _PROXY_CONFIG_H_
+#define _PROXY_CONFIG_H_
 namespace tide
 {
 	class TIDE_API BypassEntry

@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_ARG_LISTT_H_
-#define _K_ARG_LISTT_H_
+#ifndef _ARG_LISTT_H_
+#define _ARG_LISTT_H_
 
 #include <vector>
 #include <string>
