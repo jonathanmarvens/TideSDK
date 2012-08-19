@@ -3,7 +3,7 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
-#include "k_python_list.h"
+#include "python_list.h"
 
 namespace tide
 {
