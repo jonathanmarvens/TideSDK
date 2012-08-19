@@ -20,7 +20,7 @@
 
 namespace ti {
 
-MediaGStreamer::MediaGStreamer(KObjectRef global)
+MediaGStreamer::MediaGStreamer(ObjectRef global)
     : Media(global)
 {
     char **argv;
@@ -37,7 +37,7 @@ void MediaGStreamer::Beep()
     gdk_beep();
 }
 
-KObjectRef MediaGStreamer::CreateSound(std::string& url)
+ObjectRef MediaGStreamer::CreateSound(std::string& url)
 {
     //This is a path so, turn it into a file:// URL
     std::string myurl = url;

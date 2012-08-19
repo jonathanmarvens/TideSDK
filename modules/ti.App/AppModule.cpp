@@ -39,8 +39,8 @@ void AppModule::Initialize()
     if (config)
         GetLogger()->Debug("Loaded config file successfully");
 
-    KObjectRef global(host->GetGlobalObject());
-    KObjectRef binding = new Application(host, host->GetGlobalObject());
+    ObjectRef global(host->GetGlobalObject());
+    ObjectRef binding = new Application(host, host->GetGlobalObject());
     host->GetGlobalObject()->SetObject("App", binding);
 
     // Create the data directory for the app, if it doesn't exist.

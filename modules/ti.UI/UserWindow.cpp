@@ -829,7 +829,7 @@ void UserWindow::_SetMaxHeight(const tide::ValueList& args, tide::ValueRef resul
 void UserWindow::_GetBounds(const tide::ValueList& args, tide::ValueRef result)
 {
     Bounds bounds = this->GetBounds();
-    KObjectRef b(new StaticBoundObject());
+    ObjectRef b(new StaticBoundObject());
     b->SetDouble("x", bounds.x);
     b->SetDouble("y", bounds.y);
     b->SetDouble("width", bounds.width);
@@ -858,7 +858,7 @@ void UserWindow::_SetBounds(const tide::ValueList& args, tide::ValueRef result)
         return;
     }
 
-    KObjectRef o = args.at(0)->ToObject();
+    ObjectRef o = args.at(0)->ToObject();
     if (!o->Get("x")->IsNumber()
         || !o->Get("y")->IsNumber()
         || !o->Get("width")->IsNumber()
@@ -1203,7 +1203,7 @@ void UserWindow::_GetChildren(const tide::ValueList& args, tide::ValueRef result
     std::vector<AutoPtr<UserWindow> >::iterator i = this->children.begin();
     while (i != this->children.end())
     {
-        KObjectRef child = *i++;
+        ObjectRef child = *i++;
         childList->Append(Value::NewObject(child));
     }
 
@@ -1257,7 +1257,7 @@ void UserWindow::UpdateWindowForURL(std::string url)
 }
 
 void UserWindow::ReadChooserDialogObject(
-    KObjectRef o,
+    ObjectRef o,
     bool& multiple,
     std::string& title,
     std::string& path,
@@ -1306,10 +1306,10 @@ void UserWindow::_OpenFileChooserDialog(const ValueList& args, ValueRef result)
     std::vector<std::string> types;
     std::string typesDescription;
 
-    KObjectRef props;
+    ObjectRef props;
     if (args.size() > 1)
     {
-        KObjectRef props = args.at(1)->ToObject();
+        ObjectRef props = args.at(1)->ToObject();
         ReadChooserDialogObject(props,
             multiple,
             title,
@@ -1340,10 +1340,10 @@ void UserWindow::_OpenFolderChooserDialog(const ValueList& args, ValueRef result
     std::vector<std::string> types;
     std::string typesDescription;
 
-    KObjectRef props;
+    ObjectRef props;
     if (args.size() > 1)
     {
-        KObjectRef props = args.at(1)->ToObject();
+        ObjectRef props = args.at(1)->ToObject();
         ReadChooserDialogObject(props,
             multiple,
             title,
@@ -1374,10 +1374,10 @@ void UserWindow::_OpenSaveAsDialog(const ValueList& args, ValueRef result)
     std::vector<std::string> types;
     std::string typesDescription;
 
-    KObjectRef props;
+    ObjectRef props;
     if (args.size() > 1)
     {
-        KObjectRef props = args.at(1)->ToObject();
+        ObjectRef props = args.at(1)->ToObject();
         ReadChooserDialogObject(props,
             multiple,
             title,
@@ -1532,12 +1532,12 @@ static bool IsMainFrame(JSGlobalContextRef ctx, JSObjectRef global)
     return parentObject == global;
 }
 
-void UserWindow::InsertAPI(KObjectRef frameGlobal)
+void UserWindow::InsertAPI(ObjectRef frameGlobal)
 {
     // Produce a delegating object to represent the top-level Titanium object.
     // When a property isn't found in this object it will look for it globally.
-    KObjectRef windowTiObject(new KAccessorObject());
-    KObjectRef windowUIObject(new KAccessorObject());
+    ObjectRef windowTiObject(new KAccessorObject());
+    ObjectRef windowUIObject(new KAccessorObject());
 
     // Place currentWindow in the delegate base.
     windowUIObject->Set("getCurrentWindow", this->Get("getCurrentWindow"));
@@ -1561,7 +1561,7 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     windowTiObject->Set("include", this->Get("include"));
 
     // Place the Titanium object into the window's global object
-    KObjectRef delegateGlobalObject = new KDelegatingObject(
+    ObjectRef delegateGlobalObject = new KDelegatingObject(
         Host::GetInstance()->GetGlobalObject(), windowTiObject);
     frameGlobal->SetObject(GLOBAL_NS_VARNAME, delegateGlobalObject);
 }
@@ -1578,7 +1578,7 @@ void UserWindow::RegisterJSContext(JSGlobalContextRef context)
     JSUtil::RegisterGlobalContext(globalObject, context);
 
     // Get the global object as a KKJSObject
-    KObjectRef frameGlobal = new KKJSObject(context, globalObject);
+    ObjectRef frameGlobal = new KKJSObject(context, globalObject);
 
     // We only want to set this UserWindow's DOM window property if the
     // particular frame that just loaded was the main frame. Each frame
@@ -1631,7 +1631,7 @@ void UserWindow::LoadUIJavaScript(JSGlobalContextRef context)
 }
 
 void UserWindow::PageLoaded(
-    KObjectRef globalObject, std::string &url, JSGlobalContextRef context)
+    ObjectRef globalObject, std::string &url, JSGlobalContextRef context)
 {
     AutoPtr<Event> event = this->CreateEvent(Event::PAGE_LOADED);
     event->SetObject("scope", globalObject);

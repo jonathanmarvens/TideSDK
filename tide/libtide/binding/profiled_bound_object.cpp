@@ -21,7 +21,7 @@ namespace tide
 		ProfiledBoundObject::stream = stream;
 	}
 
-	ProfiledBoundObject::ProfiledBoundObject(KObjectRef delegate) :
+	ProfiledBoundObject::ProfiledBoundObject(ObjectRef delegate) :
 		Object(delegate->GetType()),
 		delegate(delegate),
 		count(1)
@@ -45,7 +45,7 @@ namespace tide
 			return !po.isNull();
 
 		} else if (value->IsObject()) {
-			KObjectRef source = value->ToObject();
+			ObjectRef source = value->ToObject();
 			AutoPtr<ProfiledBoundObject> po = source.cast<ProfiledBoundObject>();
 			return !po.isNull();
 
@@ -73,7 +73,7 @@ namespace tide
 		}
 		else if (value->IsObject())
 		{
-			KObjectRef wrapped = new ProfiledBoundObject(value->ToObject());
+			ObjectRef wrapped = new ProfiledBoundObject(value->ToObject());
 			return Value::NewObject(wrapped);
 		}
 		else
@@ -135,7 +135,7 @@ namespace tide
 		return delegate->HasProperty(name);
 	}
 
-	bool ProfiledBoundObject::Equals(KObjectRef other)
+	bool ProfiledBoundObject::Equals(ObjectRef other)
 	{
 		AutoPtr<ProfiledBoundObject> pother = other.cast<ProfiledBoundObject>();
 		if (!pother.isNull())

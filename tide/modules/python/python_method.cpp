@@ -74,7 +74,7 @@ namespace tide
 		return this->object->ToPython();
 	}
 
-	bool KPythonMethod::Equals(KObjectRef other)
+	bool KPythonMethod::Equals(ObjectRef other)
 	{
 		AutoPtr<KPythonMethod> pyOther = other.cast<KPythonMethod>();
 

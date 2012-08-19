@@ -32,7 +32,7 @@ public:
     void AddInterpreter(Interpreter* interpreter, const char* supportedScriptTypes[]);
     void RemoveInterpreter(Interpreter* interpreter);
 
-    ValueRef EvaluateFile(const char* filepath, KObjectRef context);
+    ValueRef EvaluateFile(const char* filepath, ObjectRef context);
 
 private:
     Interpreter* findInterpreterForType(const char* scriptType);

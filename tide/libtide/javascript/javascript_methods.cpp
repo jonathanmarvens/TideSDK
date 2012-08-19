@@ -14,7 +14,7 @@ namespace tide
 	//  in the global scope so they are available without a window
 	namespace JavaScriptMethods
 	{
-		void Bind(KObjectRef global)
+		void Bind(ObjectRef global)
 		{
 			global->SetMethod("setTimeout", new KFunctionPtrMethod(&SetTimeout));
 			global->SetMethod("clearTimeout", new KFunctionPtrMethod(&ClearTimeout));

@@ -35,7 +35,7 @@ namespace tide
 		 * Errors will result in a thrown ValueException
 		 * @return the return value of this method
 		 */
-		virtual ValueRef Call(KObjectRef thisObject, const ValueList& args);
+		virtual ValueRef Call(ObjectRef thisObject, const ValueList& args);
 
 		/**
 		 * Set a property on this object to the given value

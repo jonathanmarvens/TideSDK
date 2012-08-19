@@ -109,7 +109,7 @@ namespace tide
 		return RubyUtils::ToTideValue(ruby_value);
 	}
 
-	bool KRubyObject::Equals(KObjectRef other)
+	bool KRubyObject::Equals(ObjectRef other)
 	{
 		AutoPtr<KRubyObject> rubyOther = other.cast<KRubyObject>();
 		if (rubyOther.isNull())

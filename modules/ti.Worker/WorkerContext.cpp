@@ -46,7 +46,7 @@ static JSGlobalContextRef CreateGlobalContext(WorkerContext* context)
     JSGlobalContextRef jsContext = JSUtil::CreateGlobalContext();
     JSGlobalContextRetain(jsContext);
 
-    KObjectRef global(new KKJSObject(jsContext,
+    ObjectRef global(new KKJSObject(jsContext,
         JSContextGetGlobalObject(jsContext)));
 
     global->SetMethod("postMessage", StaticBoundMethod::FromMethod<WorkerContext>(
@@ -180,7 +180,7 @@ ValueRef WorkerContext::Get(const char* name)
     if (!jsContext)
         return Value::Undefined;
 
-    KObjectRef global(new KKJSObject(jsContext,
+    ObjectRef global(new KKJSObject(jsContext,
         JSContextGetGlobalObject(jsContext)));
     return global->Get(name);
 }
@@ -190,7 +190,7 @@ void WorkerContext::Set(const char* name, ValueRef value)
     if (!jsContext)
         return;
 
-    KObjectRef global(new KKJSObject(jsContext,
+    ObjectRef global(new KKJSObject(jsContext,
         JSContextGetGlobalObject(jsContext)));
     global->Set(name, value);
 }

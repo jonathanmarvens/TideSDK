@@ -36,16 +36,16 @@ public:
 
 class Monkey : public tide::StaticBoundObject {
 public:
-    Monkey(Host*, KObjectRef);
+    Monkey(Host*, ObjectRef);
 
 protected:
     virtual ~Monkey();
     void ParseFile(string filePath);
     void Callback(const ValueList &args, ValueRef result);
     void EvaluateUserScript(
-        KObjectRef, std::string&,KObjectRef, std::string&);
+        ObjectRef, std::string&,ObjectRef, std::string&);
 
-    KObjectRef global;
+    ObjectRef global;
     Logger* logger;
     MethodRef callback;
     std::vector<Script*> scripts;

@@ -10,7 +10,7 @@
 namespace tide
 {
 
-	bool Object::Equals(KObjectRef other)
+	bool Object::Equals(ObjectRef other)
 	{
 		return other.get() == this;
 	}
@@ -124,7 +124,7 @@ namespace tide
 		}
 	}
 
-	KObjectRef Object::GetObject(const char* name, KObjectRef defaultValue)
+	ObjectRef Object::GetObject(const char* name, ObjectRef defaultValue)
 	{
 		ValueRef prop = this->Get(name);
 		if (prop->IsObject())
@@ -203,7 +203,7 @@ namespace tide
 		this->Set(name, val);
 	}
 
-	void Object::SetObject(const char *name, KObjectRef object)
+	void Object::SetObject(const char *name, ObjectRef object)
 	{
 		ValueRef obj_val = Value::NewObject(object);
 		this->Set(name, obj_val);
@@ -257,7 +257,7 @@ namespace tide
 			if (next_val->IsUndefined())
 			{
 				next = new StaticBoundObject();
-				KObjectRef so = next;
+				ObjectRef so = next;
 				next_val = Value::NewObject(so);
 				scope->Set(token, next_val);
 				scope = next;
@@ -363,7 +363,7 @@ namespace tide
 		return type;
 	}
 
-	KObjectRef Object::Unwrap(KObjectRef o)
+	ObjectRef Object::Unwrap(ObjectRef o)
 	{
 		AutoPtr<ProfiledBoundObject> pobj = o.cast<ProfiledBoundObject>();
 		if (pobj.isNull())

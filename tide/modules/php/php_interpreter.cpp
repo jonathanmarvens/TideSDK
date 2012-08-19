@@ -18,7 +18,7 @@ PHPInterpreter::PHPInterpreter()
 {
 }
 
-static string GetContextId(KObjectRef global)
+static string GetContextId(ObjectRef global)
 {
 	string contextId(global->GetString("__php_module_id__"));
 	if (contextId.empty())
@@ -32,7 +32,7 @@ static string GetContextId(KObjectRef global)
 	return contextId;
 }
 
-ValueRef PHPInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
+ValueRef PHPInterpreter::EvaluateFile(const char* filepath, ObjectRef context)
 {
 	static Poco::Mutex evaluatorMutex;
 	Poco::Mutex::ScopedLock evaluatorLock(evaluatorMutex);
@@ -64,7 +64,7 @@ ValueRef PHPInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
 	// at parse/compile time -- see: main/main.c line 969
 	PG(during_request_startup) = 0;
 
-	KObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
+	ObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
 	PHPUtils::SwapGlobalObject(context, &EG(symbol_table) TSRMLS_CC);
 
 	zend_first_try

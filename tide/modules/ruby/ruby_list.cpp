@@ -103,7 +103,7 @@ namespace tide
 		return this->object->DisplayString(levels);
 	}
 
-	bool KRubyList::Equals(KObjectRef other)
+	bool KRubyList::Equals(ObjectRef other)
 	{
 		AutoPtr<KRubyList> listOther = other.cast<KRubyList>();
 		if (listOther.isNull())

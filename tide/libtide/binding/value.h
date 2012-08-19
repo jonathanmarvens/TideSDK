@@ -30,7 +30,7 @@ namespace tide
 			BOOL = 3, /**< boolean */
 			STRING = 4, /**< const char* */
 			LIST = 5, /**< ListRef */
-			OBJECT = 6, /**< KObjectRef */
+			OBJECT = 6, /**< ObjectRef */
 			METHOD = 7, /**< MethodRef */
 			NULLV = 0, /**< NULL */
 			UNDEFINED = -1 /**< undefined */
@@ -95,7 +95,7 @@ namespace tide
 		 * Construct a new \link #Value::Type::OBJECT object\endlink value.
 		 * @param value The object value
 		 */
-		static ValueRef NewObject(KObjectRef value);
+		static ValueRef NewObject(ObjectRef value);
 
 		/**
 		 * Construct a new \link #Value::Type::METHOD method\endlink value.
@@ -192,9 +192,9 @@ namespace tide
 		ListRef ToList() const;
 
 		/**
-		 * @return the value as a \link #Value::Type::OBJECT KObjectRef\endlink
+		 * @return the value as a \link #Value::Type::OBJECT ObjectRef\endlink
 		 */
-		KObjectRef ToObject() const;
+		ObjectRef ToObject() const;
 
 		/**
 		 * @return the value as a \link #Value::Type::METHOD MethodRef\endlink
@@ -270,7 +270,7 @@ namespace tide
 		 * Change the internal value of this Value to an \link #Value::Type::OBJECT object\endlink
 		 * @param value the object value
 		 */
-		void SetObject(KObjectRef value);
+		void SetObject(ObjectRef value);
 
 		/**
 		 * Change the internal value of this Value to an \link #Value::Type::METHOD method\endlink
@@ -298,7 +298,7 @@ namespace tide
 		double numberValue;
 		bool boolValue;
 		char* stringValue;
-		KObjectRef objectValue;
+		ObjectRef objectValue;
 
 		void reset();
 

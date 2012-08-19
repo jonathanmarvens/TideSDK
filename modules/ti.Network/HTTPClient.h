@@ -44,7 +44,7 @@ public:
 private:
     void run(); // Poco Thread implementation.
     bool BeginRequest(ValueRef sendData);
-    void BeginWithPostDataObject(KObjectRef object);
+    void BeginWithPostDataObject(ObjectRef object);
     void SetRequestData();
     void ChangeState(int readyState);
     void GetResponseCookie(std::string cookieLine);
@@ -82,7 +82,7 @@ private:
     std::string username;
     std::string password;
     Poco::Net::NameValueCollection requestCookies;
-    std::map<std::string, KObjectRef> responseCookies;
+    std::map<std::string, ObjectRef> responseCookies;
     Poco::Net::NameValueCollection responseHeaders;
     Poco::Net::NameValueCollection nextResponseHeaders;
     std::vector<std::string> requestHeaders;

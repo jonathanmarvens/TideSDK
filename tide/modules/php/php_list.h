@@ -19,7 +19,7 @@ namespace tide
 
 		ValueRef Get(const char* name);
 		void Set(const char* name, ValueRef value);
-		virtual bool Equals(KObjectRef);
+		virtual bool Equals(ObjectRef);
 		SharedStringList GetPropertyNames();
 
 		unsigned int Size();

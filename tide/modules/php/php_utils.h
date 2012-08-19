@@ -14,11 +14,11 @@ namespace tide
 	{
 		zend_object std;
 		ValueRef kvalue;
-	} PHPKObject;
-	extern zend_class_entry *PHPKObjectClassEntry;
+	} PHPObject;
+	extern zend_class_entry *PHPObjectClassEntry;
 	extern zend_class_entry *PHPMethodClassEntry;
 	extern zend_class_entry *PHPListClassEntry;
-	extern zend_object_handlers PHPKObjectHandlers;
+	extern zend_object_handlers PHPObjectHandlers;
 
 	namespace PHPUtils
 	{
@@ -31,7 +31,7 @@ namespace tide
 		ListRef PHPHashTableToList(HashTable* hashtable TSRMLS_DC,
 			 bool ignoreGlobals=false);
 		SharedStringList GetHashKeys(HashTable* hash);
-		void KObjectToKPHPObject(ValueRef objectValue, zval** returnValue);
+		void ObjectToKPHPObject(ValueRef objectValue, zval** returnValue);
 		void MethodToKPHPMethod(ValueRef methodValue, zval** returnValue);
 		void ListToKPHPArray(ValueRef listValue, zval** returnValue);
 		void InitializePHPKrollClasses();
@@ -42,10 +42,10 @@ namespace tide
 		zend_function* GetGlobalFunction(const char *name TSRMLS_DC);
 		void GenerateCaseMap(string code TSRMLS_DC);
 
-		KObjectRef GetCurrentGlobalObject();
-		void PushPHPSymbolsIntoGlobalObject(HashTable* symbolTable, KObjectRef global TSRMLS_DC);
-		void PushGlobalObjectMembersIntoPHPSymbolTable(HashTable* symbolTable, KObjectRef global TSRMLS_DC);
-		void SwapGlobalObject(KObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC);
+		ObjectRef GetCurrentGlobalObject();
+		void PushPHPSymbolsIntoGlobalObject(HashTable* symbolTable, ObjectRef global TSRMLS_DC);
+		void PushGlobalObjectMembersIntoPHPSymbolTable(HashTable* symbolTable, ObjectRef global TSRMLS_DC);
+		void SwapGlobalObject(ObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC);
 	}
 }
 

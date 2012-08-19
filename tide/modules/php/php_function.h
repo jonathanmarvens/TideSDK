@@ -19,7 +19,7 @@ namespace tide
 		virtual ValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();
 		virtual SharedString DisplayString(int);
-		virtual bool Equals(KObjectRef);
+		virtual bool Equals(ObjectRef);
 		bool PropertyExists(const char* property);
 
 		inline std::string& GetMethodName() { return methodName; }
@@ -27,7 +27,7 @@ namespace tide
 		private:
 		std::string methodName;
 		zval* zMethodName;
-		KObjectRef globalObject;
+		ObjectRef globalObject;
 	};
 }
 #endif

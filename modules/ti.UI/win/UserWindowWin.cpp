@@ -301,7 +301,7 @@ void UserWindowWin::InitWebKit()
     webView->setApplicationNameForUserAgent(ua.copy());
 
     // place our user agent string in the global so we can later use it
-    KObjectRef global = Host::GetInstance()->GetGlobalObject();
+    ObjectRef global = Host::GetInstance()->GetGlobalObject();
     if (global->Get("userAgent")->IsUndefined())
     {
         _bstr_t uaURL("http://titaniumapp.com");

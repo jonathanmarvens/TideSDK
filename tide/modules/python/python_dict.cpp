@@ -60,7 +60,7 @@ namespace tide
 		}
 	}
 
-	bool KPythonDict::Equals(KObjectRef other)
+	bool KPythonDict::Equals(ObjectRef other)
 	{
 		AutoPtr<KPythonDict> pyOther = other.cast<KPythonDict>();
 

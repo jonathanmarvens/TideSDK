@@ -58,7 +58,7 @@ namespace tide
 		PHPUtils::InitializePHPKrollClasses();
 		host->AddModuleProvider(this);
 
-        KObjectRef global = host->GetGlobalObject();
+        ObjectRef global = host->GetGlobalObject();
 		zval *titaniumValue = PHPUtils::ToPHPValue(Value::NewObject(global));
 		ZEND_SET_SYMBOL(&EG(symbol_table), PRODUCT_NAME, titaniumValue);
 

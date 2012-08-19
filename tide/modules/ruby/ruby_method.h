@@ -29,7 +29,7 @@ class KRubyMethod : public Method
 	 *  @param other the object to test
 	 *  @returns true if objects have reference equality, false otherwise
 	 */
-	virtual bool Equals(KObjectRef);
+	virtual bool Equals(ObjectRef);
 
 	private:
 	VALUE method;

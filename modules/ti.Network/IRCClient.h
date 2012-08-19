@@ -48,7 +48,7 @@ private:
     void IsVoice(const ValueList& args, ValueRef result);
     void GetUsers(const ValueList& args, ValueRef result);
 
-    KObjectRef global;
+    ObjectRef global;
     IRC irc;
     MethodRef callback;
     Poco::Thread *thread;

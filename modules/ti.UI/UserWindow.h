@@ -49,9 +49,9 @@ public:
     virtual ~UserWindow();
     void UpdateWindowForURL(std::string url);
     void RegisterJSContext(JSGlobalContextRef);
-    void InsertAPI(KObjectRef frameGlobal);
-    void PageLoaded(KObjectRef scope, std::string &url, JSGlobalContextRef context);
-    KObjectRef GetDOMWindow() { return domWindow; }
+    void InsertAPI(ObjectRef frameGlobal);
+    void PageLoaded(ObjectRef scope, std::string &url, JSGlobalContextRef context);
+    ObjectRef GetDOMWindow() { return domWindow; }
     bool IsToolWindow();
     void SetToolWindow(bool toolWindow);
     bool HasTransparentBackground();
@@ -239,7 +239,7 @@ public:
 protected:
     Logger* logger;
     AutoPtr<UI> binding;
-    KObjectRef domWindow;
+    ObjectRef domWindow;
     AutoPtr<WindowConfig> config;
     AutoPtr<UserWindow> parent;
     std::vector<AutoPtr<UserWindow> > children;
@@ -251,7 +251,7 @@ protected:
     virtual AutoPtr<UserWindow> GetParent();
     virtual void AddChild(AutoPtr<UserWindow>);
     virtual void RemoveChild(AutoPtr<UserWindow>);
-    void ReadChooserDialogObject(KObjectRef o, bool& multiple,
+    void ReadChooserDialogObject(ObjectRef o, bool& multiple,
         std::string& title, std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription);
     static void LoadUIJavaScript(JSGlobalContextRef context);

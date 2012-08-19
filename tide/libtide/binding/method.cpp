@@ -18,7 +18,7 @@ namespace tide
 		return new std::string(oss.str());
 	}
 
-	ValueRef Method::Call(KObjectRef thisObject, const ValueList& args)
+	ValueRef Method::Call(ObjectRef thisObject, const ValueList& args)
 	{
 		return this->Call(args);
 	}

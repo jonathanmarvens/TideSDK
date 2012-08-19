@@ -35,7 +35,7 @@ namespace tide
 		if (thisObject != NULL)
 			JSValueProtect(this->context, thisObject);
 
-		this->kobject = new KKJSObject(this->context, jsobject);
+		this->object = new KKJSObject(this->context, jsobject);
 	}
 
 	KKJSMethod::~KKJSMethod()
@@ -49,32 +49,32 @@ namespace tide
 
 	ValueRef KKJSMethod::Get(const char *name)
 	{
-		return kobject->Get(name);
+		return object->Get(name);
 	}
 
 	void KKJSMethod::Set(const char *name, ValueRef value)
 	{
-		return kobject->Set(name, value);
+		return object->Set(name, value);
 	}
 
-	bool KKJSMethod::Equals(KObjectRef other)
+	bool KKJSMethod::Equals(ObjectRef other)
 	{
-		return this->kobject->Equals(other);
+		return this->object->Equals(other);
 	}
 
 	SharedStringList KKJSMethod::GetPropertyNames()
 	{
-		return kobject->GetPropertyNames();
+		return object->GetPropertyNames();
 	}
 
 	bool KKJSMethod::HasProperty(const char* name)
 	{
-		return kobject->HasProperty(name);
+		return object->HasProperty(name);
 	}
 
 	bool KKJSMethod::SameContextGroup(JSContextRef c)
 	{
-		return kobject->SameContextGroup(c);
+		return object->SameContextGroup(c);
 	}
 
 	JSObjectRef KKJSMethod::GetJSObject()
@@ -111,7 +111,7 @@ namespace tide
 		return this->Call(this->jsobject, args);
 	}
 
-	ValueRef KKJSMethod::Call(KObjectRef thisObject, const ValueList& args)
+	ValueRef KKJSMethod::Call(ObjectRef thisObject, const ValueList& args)
 	{
 		JSValueRef thisObjectValue = JSUtil::ToJSValue(Value::NewObject(thisObject), this->context);
 		if (!JSValueIsObject(this->context, thisObjectValue))

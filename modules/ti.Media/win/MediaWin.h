@@ -25,12 +25,12 @@ namespace ti {
 
 class MediaWin : public Media {
 public:
-    MediaWin(KObjectRef);
+    MediaWin(ObjectRef);
     ~MediaWin();
 
 protected:
     void Beep();
-    KObjectRef CreateSound(std::string&);
+    ObjectRef CreateSound(std::string&);
 };
 
 } // namespace ti

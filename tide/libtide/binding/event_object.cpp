@@ -87,7 +87,7 @@ namespace tide
 			listenersCopy = listeners;
 		}
 
-		KObjectRef thisObject(this, true);
+		ObjectRef thisObject(this, true);
 		EventListenerList::iterator li = listenersCopy.begin();
 		while (li != listenersCopy.end())
 		{
@@ -128,7 +128,7 @@ namespace tide
 			listenersCopy = listeners;
 		}
 
-		KObjectRef thisObject(this, true);
+		ObjectRef thisObject(this, true);
 		EventListenerList::iterator li = listenersCopy.begin();
 		while (li != listenersCopy.end())
 		{
@@ -224,7 +224,7 @@ namespace tide
 		return this->callback;
 	}
 
-	bool EventListener::Dispatch(KObjectRef thisObject, const ValueList& args, bool synchronous)
+	bool EventListener::Dispatch(ObjectRef thisObject, const ValueList& args, bool synchronous)
 	{
 		ValueRef result = RunOnMainThread(this->callback, thisObject, args, synchronous);
 		if (result->IsBool())

@@ -16,7 +16,7 @@ namespace tide
 	public:
 		static ValueRef ToTideValue(VALUE value);
 		static VALUE ToRubyValue(ValueRef value);
-		static VALUE KObjectToRubyValue(ValueRef value);
+		static VALUE ObjectToRubyValue(ValueRef value);
 		static VALUE MethodToRubyValue(ValueRef value);
 		static VALUE ListToRubyValue(ValueRef value);
 		static bool KindOf(VALUE value, VALUE klass);
@@ -25,7 +25,7 @@ namespace tide
 		static VALUE GenericMethodCall(MethodRef method, VALUE args);
 
 	private:
-		static VALUE KObjectClass;
+		static VALUE ObjectClass;
 		static VALUE MethodClass;
 		static VALUE ListClass;
 		RubyUtils(){}

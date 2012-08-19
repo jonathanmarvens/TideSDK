@@ -131,7 +131,7 @@ void MenuItem::_SetSubmenu(const ValueList& args, ValueRef result)
 
     if (args.at(0)->IsObject())
     {
-        KObjectRef o = args.at(0)->ToObject();
+        ObjectRef o = args.at(0)->ToObject();
         o = Object::Unwrap(o);
         newSubmenu = o.cast<Menu>();
     }
@@ -225,7 +225,7 @@ void MenuItem::_AddCheckItem(const ValueList& args, ValueRef result)
     result->SetObject(newItem);
 }
 
-void MenuItem::HandleClickEvent(KObjectRef source)
+void MenuItem::HandleClickEvent(ObjectRef source)
 {
     if (this->FireEvent(Event::CLICKED)
         && this->IsCheck() && this->autoCheck)

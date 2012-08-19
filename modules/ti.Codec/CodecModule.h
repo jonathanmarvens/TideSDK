@@ -26,7 +26,7 @@ class EXPORT CodecModule : public tide::Module
     TIDE_MODULE_CLASS(CodecModule)
     
 private:
-    tide::KObjectRef binding;
+    tide::ObjectRef binding;
 };
 
 } // namespace ti

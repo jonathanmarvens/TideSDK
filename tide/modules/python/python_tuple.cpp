@@ -92,7 +92,7 @@ namespace tide
 		return this->object->ToPython();
 	}
 
-	bool KPythonTuple::Equals(KObjectRef other)
+	bool KPythonTuple::Equals(ObjectRef other)
 	{
 		AutoPtr<KPythonTuple> pyOther = other.cast<KPythonTuple>();
 		if (pyOther.isNull())

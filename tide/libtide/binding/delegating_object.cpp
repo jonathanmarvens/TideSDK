@@ -9,14 +9,14 @@
 
 namespace tide
 {
-	KDelegatingObject::KDelegatingObject(KObjectRef global) :
+	KDelegatingObject::KDelegatingObject(ObjectRef global) :
 		global(global),
 		local(new StaticBoundObject())
 	{
 	}
 
 	KDelegatingObject::KDelegatingObject(
-		KObjectRef global, KObjectRef local) :
+		ObjectRef global, ObjectRef local) :
 		global(global),
 		local(local)
 	{

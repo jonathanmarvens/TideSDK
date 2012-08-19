@@ -47,7 +47,7 @@ void ScriptController::RemoveInterpreter(Interpreter* interpreter)
     }
 }
 
-ValueRef ScriptController::EvaluateFile(const char* filepath, KObjectRef context)
+ValueRef ScriptController::EvaluateFile(const char* filepath, ObjectRef context)
 {
     const char* scriptType = strrchr(filepath, '.');
     if (!scriptType)

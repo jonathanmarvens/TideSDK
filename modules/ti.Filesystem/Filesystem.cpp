@@ -42,7 +42,7 @@
 
 namespace ti {
 
-Filesystem::Filesystem(Host *host, KObjectRef global) :
+Filesystem::Filesystem(Host *host, ObjectRef global) :
     StaticBoundObject("Filesystem"),
     host(host),
     global(global),
@@ -296,7 +296,7 @@ void Filesystem::GetRootDirectories(const ValueList& args, ValueRef result)
         for(size_t i = 0; i < roots.size(); i++)
         {
             File* file = new File(roots.at(i));
-            ValueRef value = Value::NewObject((KObjectRef) file);
+            ValueRef value = Value::NewObject((ObjectRef) file);
             rootList->Append(value);
         }
 
@@ -335,7 +335,7 @@ void Filesystem::ExecuteAsyncCopy(const ValueList& args, ValueRef result)
     ValueRef v = args.at(1);
     std::string destination(FilenameFromValue(v));
     MethodRef method = args.at(2)->ToMethod();
-    KObjectRef copier = new AsyncCopy(this,host,files,destination,method);
+    ObjectRef copier = new AsyncCopy(this,host,files,destination,method);
     result->SetObject(copier);
     asyncOperations.push_back(copier);
     // we need to create a timer thread that can cleanup operations
@@ -360,11 +360,11 @@ void Filesystem::DeletePendingOperations(const ValueList& args, ValueRef result)
         result->SetBool(true);
         return;
     }
-    std::vector<KObjectRef>::iterator iter = asyncOperations.begin();
+    std::vector<ObjectRef>::iterator iter = asyncOperations.begin();
 
     while (iter!=asyncOperations.end())
     {
-        KObjectRef c = (*iter);
+        ObjectRef c = (*iter);
         ValueRef v = c->Get("running");
         bool running = v->ToBool();
         if (!running)

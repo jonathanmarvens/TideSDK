@@ -64,7 +64,7 @@ namespace tide {
 		callInfo.symbol_table = NULL;
 		callInfo.function_table = &classEntry->function_table;
 
-		KObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
+		ObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
 		PHPUtils::SwapGlobalObject(this->globalObject, &EG(symbol_table) TSRMLS_CC);
 
 		int result = zend_call_function(&callInfo, NULL TSRMLS_CC);
@@ -109,7 +109,7 @@ namespace tide {
 		return Value::Undefined;
 	}
 
-	bool KPHPMethod::Equals(KObjectRef other)
+	bool KPHPMethod::Equals(ObjectRef other)
 	{
 		AutoPtr<KPHPMethod> phpOther = other.cast<KPHPMethod>();
 		if (phpOther.isNull())

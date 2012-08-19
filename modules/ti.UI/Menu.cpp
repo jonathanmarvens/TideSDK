@@ -77,7 +77,7 @@ void Menu::_AddCheckItem(const ValueList& args, ValueRef result)
 void Menu::_AppendItem(const ValueList& args, ValueRef result)
 {
     args.VerifyException("appendItem", "o");
-    KObjectRef o = args.at(0)->ToObject();
+    ObjectRef o = args.at(0)->ToObject();
 
     AutoPtr<MenuItem> item = o.cast<MenuItem>();
     if (!item.isNull())
@@ -98,7 +98,7 @@ void Menu::_GetItemAt(const ValueList& args, ValueRef result)
 void Menu::_InsertItemAt(const ValueList& args, ValueRef result)
 {
     args.VerifyException("insertItemAt", "o,i");
-    KObjectRef o = args.at(0)->ToObject();
+    ObjectRef o = args.at(0)->ToObject();
     AutoPtr<MenuItem> item = o.cast<MenuItem>();
 
     if (!item.isNull())

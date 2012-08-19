@@ -265,7 +265,7 @@ void TCPServerConnection::Write(const ValueList& args, ValueRef result)
     }
     else if (args.at(0)->IsObject())
     {
-        KObjectRef dataObject(args.GetObject(0));
+        ObjectRef dataObject(args.GetObject(0));
         data = dataObject.cast<Bytes>();
     }
 

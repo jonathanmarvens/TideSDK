@@ -80,7 +80,7 @@ void HTTPServerRequest::GetHeader(const ValueList& args, ValueRef result)
 void HTTPServerRequest::GetHeaders(const ValueList& args, ValueRef result)
 {
     Poco::Net::HTTPServerRequest::ConstIterator iter = request.begin();
-    KObjectRef headers = new StaticBoundObject();
+    ObjectRef headers = new StaticBoundObject();
     
     for(; iter != request.end(); iter++)
     {

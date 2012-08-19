@@ -89,7 +89,7 @@ namespace tide
 		return tide_value;
 	}
 
-	bool KPythonObject::Equals(KObjectRef other)
+	bool KPythonObject::Equals(ObjectRef other)
 	{
 		AutoPtr<KPythonObject> pyOther = other.cast<KPythonObject>();
 

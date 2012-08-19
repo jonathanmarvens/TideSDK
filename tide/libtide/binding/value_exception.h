@@ -28,7 +28,7 @@ namespace tide
 		static ValueException FromString(const char* s);
 		static ValueException FromString(std::string s);
 		static ValueException FromFormat(const char* format, ...);
-		static ValueException FromObject(KObjectRef o);
+		static ValueException FromObject(ObjectRef o);
 		ValueRef GetValue();
 		SharedString DisplayString();
 		std::string& ToString();

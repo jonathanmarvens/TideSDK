@@ -8,7 +8,7 @@
 
 namespace tide
 {
-    static PyObject* ContextToPyGlobals(KObjectRef context)
+    static PyObject* ContextToPyGlobals(ObjectRef context)
     {
 		PyObject* mainModule = PyImport_AddModule("__main__");
 		PyObject* globals = PyDict_Copy(PyModule_GetDict(mainModule));
@@ -34,7 +34,7 @@ namespace tide
         return globals;
     }
 
-    static void MergePyGlobalsWithContext(PyObject* globals, KObjectRef context)
+    static void MergePyGlobalsWithContext(PyObject* globals, ObjectRef context)
     {
 		// Avoid compiler warnings
 		PyObject *items = PyObject_CallMethod(globals, (char*) "items", NULL);
@@ -68,7 +68,7 @@ namespace tide
 	{
 	}
 
-    ValueRef PythonInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
+    ValueRef PythonInterpreter::EvaluateFile(const char* filepath, ObjectRef context)
     {
         PyLockGIL lock;
 

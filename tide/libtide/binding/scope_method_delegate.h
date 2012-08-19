@@ -25,8 +25,8 @@ namespace tide {
 	{
 	public:
 
-		ScopeMethodDelegate(MethodDelegateType type, KObjectRef global,
-		                    KObjectRef scope, MethodRef delegate);
+		ScopeMethodDelegate(MethodDelegateType type, ObjectRef global,
+		                    ObjectRef scope, MethodRef delegate);
 		virtual ~ScopeMethodDelegate();
 
 
@@ -43,13 +43,13 @@ namespace tide {
 		 * StaticBoundObject and delegate set/get to the new
 		 * static bound object
 		 */
-		static AutoPtr<StaticBoundObject> CreateDelegate(KObjectRef global, KObjectRef bo);
+		static AutoPtr<StaticBoundObject> CreateDelegate(ObjectRef global, ObjectRef bo);
 
 
 	private:
 		MethodDelegateType type;
-		KObjectRef global;
-		KObjectRef scope;
+		ObjectRef global;
+		ObjectRef scope;
 		MethodRef delegate;
 
 

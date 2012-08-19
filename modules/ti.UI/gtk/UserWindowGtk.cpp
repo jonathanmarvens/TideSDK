@@ -634,7 +634,7 @@ static void LoadFinishedCallback(WebKitWebView* view, WebKitWebFrame* frame,
 {
     JSGlobalContextRef context = webkit_web_frame_get_global_context(frame);
     JSObjectRef global_object = JSContextGetGlobalObject(context);
-    KObjectRef frame_global = new KKJSObject(context, global_object);
+    ObjectRef frame_global = new KKJSObject(context, global_object);
 
     // If uri is NULL, then likely this is the result of a cancel,
     // so don't report it as a PageLoad

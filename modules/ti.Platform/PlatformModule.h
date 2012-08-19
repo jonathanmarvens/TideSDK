@@ -27,7 +27,7 @@ public:
     virtual void Start();
 
 private:
-    KObjectRef binding;
+    ObjectRef binding;
 };
 
 } // namespace ti

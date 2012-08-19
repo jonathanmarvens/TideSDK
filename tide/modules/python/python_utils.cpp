@@ -221,7 +221,7 @@ namespace tide
 		}
 		else if (value->IsObject())
 		{
-			KObjectRef obj = value->ToObject();
+			ObjectRef obj = value->ToObject();
 			AutoPtr<KPythonObject> pyobj = obj.cast<KPythonObject>();
 			AutoPtr<KPythonDict> pydict = obj.cast<KPythonDict>();
 
@@ -438,7 +438,7 @@ namespace tide
 		PyLockGIL lock;
 		Py_INCREF(self);
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
-		KObjectRef kobj = pyko->value->get()->ToObject();
+		ObjectRef kobj = pyko->value->get()->ToObject();
 		Py_DECREF(self);
 
 		SharedString ss = 0;

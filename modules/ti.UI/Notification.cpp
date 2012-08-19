@@ -73,7 +73,7 @@ void Notification::_Hide(const ValueList& args, ValueRef result)
     result->SetBool(this->HideImpl());
 }
 
-void Notification::Configure(KObjectRef properties)
+void Notification::Configure(ObjectRef properties)
 {
     this->title = properties->GetString("title");
     this->message = properties->GetString("message");

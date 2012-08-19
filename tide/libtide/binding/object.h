@@ -54,7 +54,7 @@ namespace tide
 		 * @param other The object to compare to
 		 * @return true if these two objects are equal, false otherwise.
 		 */
-		virtual bool Equals(KObjectRef other);
+		virtual bool Equals(ObjectRef other);
 
 		/**
 		 * Determine if this objects has the property with the given name.
@@ -159,7 +159,7 @@ namespace tide
 		 * @return Value of given property name, or the default value if
 		 * if it does not exist or is not an object.
 		 */
-		KObjectRef GetObject(const char *name, KObjectRef defaultValue=NULL);
+		ObjectRef GetObject(const char *name, ObjectRef defaultValue=NULL);
 
 		/**
 		 * Get a method property from this object.
@@ -229,7 +229,7 @@ namespace tide
 		 * Set an object property on this object
 		 * When an error occurs will throw an exception of type ValueException.
 		 */
-		void SetObject(const char *name, KObjectRef);
+		void SetObject(const char *name, ObjectRef);
 
 		/**
 		 * Set a method property on this object
@@ -322,7 +322,7 @@ namespace tide
 		/**
 		 * Return the unwrapped version of this object
 		 */
-		static KObjectRef Unwrap(KObjectRef);
+		static ObjectRef Unwrap(ObjectRef);
 
 		/**
 		 * If this object is already exposed as an AutoPtr, this method

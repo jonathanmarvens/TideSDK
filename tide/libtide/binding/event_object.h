@@ -52,7 +52,7 @@ namespace tide
 		EventListener(const char* targetedEvent, MethodRef callback);
 
 		bool Handles(const char* event);
-		bool Dispatch(KObjectRef thisObject, const ValueList& args, bool synchronous);
+		bool Dispatch(ObjectRef thisObject, const ValueList& args, bool synchronous);
 		MethodRef Callback();
 
 	private:

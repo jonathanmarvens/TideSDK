@@ -37,7 +37,7 @@ private:
     
     void Close();
 
-    KObjectRef global;
+    ObjectRef global;
     MethodRef callback;
     std::string ipaddress;
     int port;

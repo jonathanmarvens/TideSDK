@@ -452,7 +452,7 @@ void File::GetDirectoryListing(const ValueList& args, ValueRef result)
                 // store it as the fullpath
                 std::string filename = tide::FileUtils::Join(this->filename.c_str(),entry.c_str(),NULL);
                 File* file = new File(filename);
-                ValueRef value = Value::NewObject((KObjectRef) file);
+                ValueRef value = Value::NewObject((ObjectRef) file);
                 fileList->Append(value);
             }
 

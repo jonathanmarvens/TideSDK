@@ -116,7 +116,7 @@ namespace tide
 		return this->object->ToRuby();
 	}
 
-	bool KRubyMethod::Equals(KObjectRef other)
+	bool KRubyMethod::Equals(ObjectRef other)
 	{
 		AutoPtr<KRubyMethod> methodOther = other.cast<KRubyMethod>();
 		if (methodOther.isNull())
