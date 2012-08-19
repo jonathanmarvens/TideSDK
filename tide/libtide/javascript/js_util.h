@@ -9,7 +9,7 @@
 
 namespace tide
 {
-namespace KJSUtil
+namespace JSUtil
 {
 
 TIDE_API KValueRef ToTideValue(JSValueRef, JSContextRef, JSObjectRef);
