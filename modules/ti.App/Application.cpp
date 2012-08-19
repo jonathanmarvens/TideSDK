@@ -392,7 +392,7 @@ void Application::GetHome(const ValueList& args, ValueRef result)
 
 void Application::GetArguments(const ValueList& args, ValueRef result)
 {
-    static KListRef argList(0);
+    static ListRef argList(0);
     if (argList.isNull())
     {
         // Skip the first argument which is the filename of the executable.

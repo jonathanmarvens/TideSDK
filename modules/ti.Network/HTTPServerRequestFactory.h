@@ -24,11 +24,11 @@ namespace ti {
 
 class HTTPServerRequestFactory : public Poco::Net::HTTPRequestHandlerFactory {
 public:
-    HTTPServerRequestFactory(KMethodRef callback);
+    HTTPServerRequestFactory(MethodRef callback);
     
     Poco::Net::HTTPRequestHandler* createRequestHandler(const Poco::Net::HTTPServerRequest &request);
 private:
-    KMethodRef m_callback;
+    MethodRef m_callback;
 };
 
 } // namespace ti

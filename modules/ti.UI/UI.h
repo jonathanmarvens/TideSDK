@@ -77,7 +77,7 @@ public:
     virtual void SetMenu(AutoPtr<Menu>) = 0;
     virtual void SetContextMenu(AutoPtr<Menu>) = 0;
     virtual void SetIcon(std::string& iconPath) = 0;
-    virtual AutoPtr<TrayItem> AddTray(std::string& iconPath, KMethodRef cbSingleClick) = 0;
+    virtual AutoPtr<TrayItem> AddTray(std::string& iconPath, MethodRef cbSingleClick) = 0;
     virtual AutoPtr<Menu> GetMenu() = 0;
     virtual AutoPtr<Menu> GetContextMenu() = 0;
     virtual long GetIdleTime() = 0;

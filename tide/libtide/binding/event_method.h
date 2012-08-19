@@ -10,41 +10,41 @@
 
 namespace tide
 {
-	class TIDE_API KEventMethod : public KEventObject, public KMethod
+	class TIDE_API KEventMethod : public KEventObject, public Method
 	{
 		public:
 		KEventMethod(const char* name = "") :
 			KEventObject(name),
 			count(1) {}
 
-		// @see KMethod::Call
+		// @see Method::Call
 		virtual ValueRef Call(const ValueList& args) = 0;
 
-		// @see KMethod::Set
+		// @see Method::Set
 		virtual void Set(const char *name, ValueRef value)
 		{
 			KEventObject::Set(name, value);
 		}
 
-		// @see KMethod::Get
+		// @see Method::Get
 		virtual ValueRef Get(const char *name)
 		{
 			return KEventObject::Get(name);
 		}
 
-		// @see KMethod::GetPropertyNames
+		// @see Method::GetPropertyNames
 		virtual SharedStringList GetPropertyNames()
 		{
 			return KEventObject::GetPropertyNames();
 		}
 
-		// @see KMethod::HasProperty
+		// @see Method::HasProperty
 		virtual bool HasProperty(const char *name)
 		{
 			return KEventObject::HasProperty(name);
 		}
 		
-		// @see KMethod::DisplayString
+		// @see Method::DisplayString
 		SharedString DisplayString(int levels)
 		{
 			return KEventObject::DisplayString(levels);
@@ -59,7 +59,7 @@ namespace tide
 		{
 			MethodCallback* callback = NewCallback<T, const ValueList&, ValueRef>(static_cast<T*>(this), method);
 
-			KMethodRef bound_method = new StaticBoundMethod(callback);
+			MethodRef bound_method = new StaticBoundMethod(callback);
 			ValueRef method_value = Value::NewMethod(bound_method);
 			KEventObject::Set(name, method_value);
 		}

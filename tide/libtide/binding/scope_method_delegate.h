@@ -21,12 +21,12 @@ namespace tide {
 	 * namespace dots (such as ti.foo.bar) and if so, delegate to a
 	 * differently supplied scope object for delegation.
 	 */
-	class TIDE_API ScopeMethodDelegate : public KMethod
+	class TIDE_API ScopeMethodDelegate : public Method
 	{
 	public:
 
 		ScopeMethodDelegate(MethodDelegateType type, KObjectRef global,
-		                    KObjectRef scope, KMethodRef delegate);
+		                    KObjectRef scope, MethodRef delegate);
 		virtual ~ScopeMethodDelegate();
 
 
@@ -50,7 +50,7 @@ namespace tide {
 		MethodDelegateType type;
 		KObjectRef global;
 		KObjectRef scope;
-		KMethodRef delegate;
+		MethodRef delegate;
 
 
 	private:

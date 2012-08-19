@@ -46,7 +46,7 @@ std::string FilenameFromArguments(const ValueList& args)
     if (args.at(0)->IsList())
     {
         // you can pass in an array of parts to join
-        KListRef list(args.GetList(0));
+        ListRef list(args.GetList(0));
         for (size_t c = 0; c < list->Size(); c++)
         {
             filename = tide::FileUtils::Join(

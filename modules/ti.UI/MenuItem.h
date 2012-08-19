@@ -81,9 +81,9 @@ protected:
     std::string label;
     std::string iconURL;
     std::string iconPath;
-    KMethodRef callback;
+    MethodRef callback;
     AutoPtr<Menu> submenu;
-    std::vector<KMethodRef> eventListeners;
+    std::vector<MethodRef> eventListeners;
     bool state;
     bool autoCheck;
 };

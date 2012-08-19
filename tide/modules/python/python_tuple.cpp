@@ -8,7 +8,7 @@
 namespace tide
 {
 	KPythonTuple::KPythonTuple(PyObject *tuple) :
-		KList("Python.KPythonTuple"),
+		List("Python.KPythonTuple"),
 		tuple(tuple),
 		object(new KPythonObject(tuple, true))
 	{
@@ -66,9 +66,9 @@ namespace tide
 
 	ValueRef KPythonTuple::Get(const char *name)
 	{
-		if (KList::IsInt(name))
+		if (List::IsInt(name))
 		{
-			return this->At(KList::ToIndex(name));
+			return this->At(List::ToIndex(name));
 		}
 		else
 		{
@@ -81,7 +81,7 @@ namespace tide
 		SharedStringList property_names = object->GetPropertyNames();
 		for (size_t i = 0; i < this->Size(); i++)
 		{
-			std::string name = KList::IntToChars(i);
+			std::string name = List::IntToChars(i);
 			property_names->push_back(new std::string(name));
 		}
 		return property_names;

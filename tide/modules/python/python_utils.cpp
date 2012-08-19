@@ -11,15 +11,15 @@ namespace tide
 	static PyObject* PyKObject_getattr(PyObject*, char*);
 	static int PyKObject_setattr(PyObject*, char*, PyObject *);
 	static PyObject* PyKObject_str(PyObject*);
-	static Py_ssize_t PyKListLength(PyObject*);
-	static PyObject* PyKListConcat(PyObject*, PyObject*);
-	static PyObject* PyKListRepeat(PyObject*, Py_ssize_t);
-	static PyObject* PyKListGetItem(PyObject*, Py_ssize_t);
-	static int PyKListSetItem(PyObject*, Py_ssize_t, PyObject*);
-	static int PyKListContains(PyObject*, PyObject*);
-	static PyObject* PyKListInPlaceConcat(PyObject*, PyObject*);
-	static PyObject* PyKListInPlaceRepeat(PyObject*, Py_ssize_t);
-	static PyObject* PyKMethod_call(PyObject*, PyObject *, PyObject*);
+	static Py_ssize_t PyListLength(PyObject*);
+	static PyObject* PyListConcat(PyObject*, PyObject*);
+	static PyObject* PyListRepeat(PyObject*, Py_ssize_t);
+	static PyObject* PyListGetItem(PyObject*, Py_ssize_t);
+	static int PyListSetItem(PyObject*, Py_ssize_t, PyObject*);
+	static int PyListContains(PyObject*, PyObject*);
+	static PyObject* PyListInPlaceConcat(PyObject*, PyObject*);
+	static PyObject* PyListInPlaceRepeat(PyObject*, Py_ssize_t);
+	static PyObject* PyMethod_call(PyObject*, PyObject *, PyObject*);
 
 	typedef struct {
 		PyObject_HEAD
@@ -53,7 +53,7 @@ namespace tide
 		0,                          /* tp_traverse */
 		0,                          /* tp_clear */
 		0,                          /* tp_richcompare */
-		0,                          /* tp_weaklistoffset */
+		0,                          /* tp_weaListoffset */
 		0,                          /* tp_iter */
 		0,                          /* tp_iternext */
 		0,                          /* tp_methods */
@@ -62,11 +62,11 @@ namespace tide
 		0                           /* tp_base */
 	};
 
-	static PyTypeObject PyKMethodType =
+	static PyTypeObject PyMethodType =
 	{
 		PyObject_HEAD_INIT(NULL)
 		0,
-		"KMethod",
+		"Method",
 		sizeof(PyKObject),
 		0,
 		PyKObject_dealloc,          /*tp_dealloc*/
@@ -79,7 +79,7 @@ namespace tide
 		0,                          /*tp_as_sequence*/
 		0,                          /*tp_as_mapping*/
 		0,                          /*tp_hash */
-		PyKMethod_call,             /*tp_call */
+		PyMethod_call,             /*tp_call */
 		PyKObject_str,              /*tp_str */
 		0,                          /*tp_getattro*/
 		0,                          /*tp_setattro*/
@@ -89,7 +89,7 @@ namespace tide
 		0,                          /* tp_traverse */
 		0,                          /* tp_clear */
 		0,                          /* tp_richcompare */
-		0,                          /* tp_weaklistoffset */
+		0,                          /* tp_weaListoffset */
 		0,                          /* tp_iter */
 		0,                          /* tp_iternext */
 		0,                          /* tp_methods */
@@ -98,11 +98,11 @@ namespace tide
 		0                           /* tp_base */
 	};
 
-	static PyTypeObject PyKListType =
+	static PyTypeObject PyListType =
 	{
 		PyObject_HEAD_INIT(NULL)
 		0,
-		"KList",
+		"List",
 		sizeof(PyKObject),
 		0,
 		PyKObject_dealloc,          /*tp_dealloc*/
@@ -124,7 +124,7 @@ namespace tide
 		0,                          /*tp_doc*/
 		0,                          /* tp_traverse */
 		0,                          /* tp_clear */
-		0,                          /* tp_richcompare */ 0,                          /* tp_weaklistoffset */
+		0,                          /* tp_richcompare */ 0,                          /* tp_weaListoffset */
 		0,                          /* tp_iter */
 		0,                          /* tp_iternext */
 		0,                          /* tp_methods */
@@ -139,26 +139,26 @@ namespace tide
 	{
 		PyLockGIL lock;
 
-		KPySequenceMethods.sq_length = &PyKListLength;
-		KPySequenceMethods.sq_concat = &PyKListConcat;
-		KPySequenceMethods.sq_repeat = &PyKListRepeat;
-		KPySequenceMethods.sq_item = &PyKListGetItem;
-		KPySequenceMethods.sq_ass_item = &PyKListSetItem;
-		KPySequenceMethods.sq_contains = &PyKListContains;
-		KPySequenceMethods.sq_inplace_concat = &PyKListInPlaceConcat;
-		KPySequenceMethods.sq_inplace_repeat = &PyKListInPlaceRepeat;
+		KPySequenceMethods.sq_length = &PyListLength;
+		KPySequenceMethods.sq_concat = &PyListConcat;
+		KPySequenceMethods.sq_repeat = &PyListRepeat;
+		KPySequenceMethods.sq_item = &PyListGetItem;
+		KPySequenceMethods.sq_ass_item = &PyListSetItem;
+		KPySequenceMethods.sq_contains = &PyListContains;
+		KPySequenceMethods.sq_inplace_concat = &PyListInPlaceConcat;
+		KPySequenceMethods.sq_inplace_repeat = &PyListInPlaceRepeat;
 
-		PyKListType.tp_as_sequence = &KPySequenceMethods;
-		PyKListType.tp_flags = Py_TPFLAGS_HAVE_INPLACEOPS | Py_TPFLAGS_HAVE_SEQUENCE_IN;
+		PyListType.tp_as_sequence = &KPySequenceMethods;
+		PyListType.tp_flags = Py_TPFLAGS_HAVE_INPLACEOPS | Py_TPFLAGS_HAVE_SEQUENCE_IN;
 
 		if (PyType_Ready(&PyKObjectType) < 0)
 			throw ValueException::FromString("Could not initialize PyKObjectType!");
 
-		if (PyType_Ready(&PyKListType) < 0)
-			throw ValueException::FromString("Could not initialize PyKListType!");
+		if (PyType_Ready(&PyListType) < 0)
+			throw ValueException::FromString("Could not initialize PyListType!");
 
-		if (PyType_Ready(&PyKMethodType) < 0)
-			throw ValueException::FromString("Could not initialize PyKMethodType!");
+		if (PyType_Ready(&PyMethodType) < 0)
+			throw ValueException::FromString("Could not initialize PyMethodType!");
 
 	}
 
@@ -197,7 +197,7 @@ namespace tide
 			}
 			else
 			{
-				pythonValue = PythonUtils::KMethodToPyObject(value);
+				pythonValue = PythonUtils::MethodToPyObject(value);
 				needsReferenceIncrement = false;
 			}
 		}
@@ -215,7 +215,7 @@ namespace tide
 			}
 			else
 			{
-				pythonValue = PythonUtils::KListToPyObject(value);
+				pythonValue = PythonUtils::ListToPyObject(value);
 				needsReferenceIncrement = false;
 			}
 		}
@@ -334,12 +334,12 @@ namespace tide
 			PyKObject *o = reinterpret_cast<PyKObject*>(value);
 			kvalue = *(o->value);
 		}
-		else if (PyObject_TypeCheck(value, &PyKMethodType))
+		else if (PyObject_TypeCheck(value, &PyMethodType))
 		{
 			PyKObject *o = reinterpret_cast<PyKObject*>(value);
 			kvalue = *(o->value);
 		}
-		else if (PyObject_TypeCheck(value, &PyKListType))
+		else if (PyObject_TypeCheck(value, &PyListType))
 		{
 			PyKObject *o = reinterpret_cast<PyKObject*>(value);
 			kvalue = *(o->value);
@@ -458,22 +458,22 @@ namespace tide
 		return (PyObject*) obj;
 	}
 
-	static Py_ssize_t PyKListLength(PyObject* o)
+	static Py_ssize_t PyListLength(PyObject* o)
 	{
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-		KListRef klist = pyko->value->get()->ToList();
+		ListRef List = pyko->value->get()->ToList();
 
 		unsigned int size = 0;
 		{
 			PyAllowThreads allow;
-			size = klist->Size();
+			size = List->Size();
 		}
 
 		return (Py_ssize_t) size;
 	}
 
-	static PyObject* PyKListConcat(PyObject* a, PyObject* b)
+	static PyObject* PyListConcat(PyObject* a, PyObject* b)
 	{
 		PyLockGIL lock;
 		PyObject* new_list = PyList_New(0);
@@ -482,7 +482,7 @@ namespace tide
 		return new_list;
 	}
 
-	static PyObject* PyKListRepeat(PyObject *o, Py_ssize_t count)
+	static PyObject* PyListRepeat(PyObject *o, Py_ssize_t count)
 	{
 		PyLockGIL lock;
 		PyObject* new_list = PyList_New(0);
@@ -494,18 +494,18 @@ namespace tide
 		return new_list;
 	}
 
-	static PyObject* PyKListGetItem(PyObject *o, Py_ssize_t i)
+	static PyObject* PyListGetItem(PyObject *o, Py_ssize_t i)
 	{
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-		KListRef klist = pyko->value->get()->ToList();
+		ListRef List = pyko->value->get()->ToList();
 
 		ValueRef listVal = 0;
 		{
 			PyAllowThreads allow;
-			if (i < (int) klist->Size())
+			if (i < (int) List->Size())
 			{
-				listVal = klist->At(i);
+				listVal = List->At(i);
 			}
 		}
 
@@ -515,33 +515,33 @@ namespace tide
 			return NULL;
 	}
 
-	static int PyKListSetItem(PyObject *o, Py_ssize_t i, PyObject *v)
+	static int PyListSetItem(PyObject *o, Py_ssize_t i, PyObject *v)
 	{
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-		KListRef klist = pyko->value->get()->ToList();
+		ListRef List = pyko->value->get()->ToList();
 		ValueRef kv = PythonUtils::ToTideValue(v);
 
 		{
 			PyAllowThreads allow;
-			klist->SetAt((unsigned int) i, kv);
+			List->SetAt((unsigned int) i, kv);
 		}
 
 		return 1;
 	}
 
-	static int PyKListContains(PyObject *o, PyObject *value)
+	static int PyListContains(PyObject *o, PyObject *value)
 	{
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-		KListRef klist = pyko->value->get()->ToList();
+		ListRef List = pyko->value->get()->ToList();
 		ValueRef kv = PythonUtils::ToTideValue(value);
 
 		{
 			PyAllowThreads allow;
-			for (unsigned int i = 0; i < klist->Size(); i++)
+			for (unsigned int i = 0; i < List->Size(); i++)
 			{
-				if (kv == klist->At(i))
+				if (kv == List->At(i))
 					return 1;
 			}
 		}
@@ -549,11 +549,11 @@ namespace tide
 		return 0;
 	}
 
-	static PyObject* PyKListInPlaceConcat(PyObject *o1, PyObject *o2)
+	static PyObject* PyListInPlaceConcat(PyObject *o1, PyObject *o2)
 	{
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o1);
-		KListRef klist = pyko->value->get()->ToList();
+		ListRef List = pyko->value->get()->ToList();
 		int size = PySequence_Size(o2);
 		for (int i = 0; i < size; i++)
 		{
@@ -562,27 +562,27 @@ namespace tide
 
 			{
 				PyAllowThreads allow;
-				klist->Append(kv);
+				List->Append(kv);
 			}
 
 		}
 		return o1;
 	}
 
-	static PyObject* PyKListInPlaceRepeat(PyObject *o, Py_ssize_t count)
+	static PyObject* PyListInPlaceRepeat(PyObject *o, Py_ssize_t count)
 	{
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-		KListRef klist = pyko->value->get()->ToList();
+		ListRef List = pyko->value->get()->ToList();
 
 		{
 			PyAllowThreads allow;
-			unsigned int size = klist->Size();
+			unsigned int size = List->Size();
 			while (count > 0)
 			{
 				for (unsigned int i = 0; i < size; i++)
 				{
-					klist->Append(klist->At(i));
+					List->Append(List->At(i));
 				}
 				count--;
 			}
@@ -591,20 +591,20 @@ namespace tide
 		return o;
 	}
 
-	PyObject* PythonUtils::KListToPyObject(ValueRef v)
+	PyObject* PythonUtils::ListToPyObject(ValueRef v)
 	{
 		PyLockGIL lock;
-		PyKObject* obj = PyObject_New(PyKObject, &PyKListType);
+		PyKObject* obj = PyObject_New(PyKObject, &PyListType);
 		obj->value = new ValueRef(v);
 		return (PyObject*) obj;
 	}
 
-	static PyObject* PyKMethod_call(PyObject *o, PyObject *args, PyObject *kw)
+	static PyObject* PyMethod_call(PyObject *o, PyObject *args, PyObject *kw)
 	{
 		PyLockGIL lock;
 		Py_INCREF(o);
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
-		KMethodRef kmeth = pyko->value->get()->ToMethod();
+		MethodRef kmeth = pyko->value->get()->ToMethod();
 
 		ValueList a;
 		ValueRef result = Value::Undefined;
@@ -639,10 +639,10 @@ namespace tide
 		return PythonUtils::ToPyObject(result);
 	}
 
-	PyObject* PythonUtils::KMethodToPyObject(ValueRef v)
+	PyObject* PythonUtils::MethodToPyObject(ValueRef v)
 	{
 		PyLockGIL lock;
-		PyKObject* obj = PyObject_New(PyKObject, &PyKMethodType);
+		PyKObject* obj = PyObject_New(PyKObject, &PyMethodType);
 		obj->value = new ValueRef(v);
 		return (PyObject*) obj;
 	}

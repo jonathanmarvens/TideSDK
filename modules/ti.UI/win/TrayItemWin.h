@@ -26,7 +26,7 @@ namespace ti {
 
 class TrayItemWin : public TrayItem {       
 public:
-    TrayItemWin(std::string& iconURL, KMethodRef cbSingleClick);
+    TrayItemWin(std::string& iconURL, MethodRef cbSingleClick);
     virtual ~TrayItemWin();
 
     void SetIcon(std::string& iconPath);

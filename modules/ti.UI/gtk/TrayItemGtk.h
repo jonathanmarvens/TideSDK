@@ -27,7 +27,7 @@ class MenuGtk;
 
 class TrayItemGtk : public TrayItem {
 public:
-    TrayItemGtk(std::string& iconURL, KMethodRef cb);
+    TrayItemGtk(std::string& iconURL, MethodRef cb);
     ~TrayItemGtk();
 
     void SetIcon(std::string& iconPath);
@@ -37,12 +37,12 @@ public:
 
     GtkStatusIcon* GetWidget();
     AutoPtr<MenuGtk> GetMenu();
-    KMethodRef GetCallback();
+    MethodRef GetCallback();
 
 protected:
     GtkStatusIcon* item;
     AutoPtr<MenuGtk> menu;
-    KMethodRef callback;
+    MethodRef callback;
     bool active;
 };
 

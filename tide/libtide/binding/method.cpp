@@ -11,24 +11,24 @@
 namespace tide
 {
 
-	SharedString KMethod::DisplayString(int levels)
+	SharedString Method::DisplayString(int levels)
 	{
 		std::ostringstream oss;
 		oss << "<" << this->GetType() << " at " << this << ">";
 		return new std::string(oss.str());
 	}
 
-	ValueRef KMethod::Call(KObjectRef thisObject, const ValueList& args)
+	ValueRef Method::Call(KObjectRef thisObject, const ValueList& args)
 	{
 		return this->Call(args);
 	}
 
-	ValueRef KMethod::Call()
+	ValueRef Method::Call()
 	{
 		return this->Call(ValueList());
 	}
 
-	ValueRef KMethod::Call(const char* one, ValueRef two, ValueRef three,
+	ValueRef Method::Call(const char* one, ValueRef two, ValueRef three,
 		ValueRef four)
 	{
 		ValueList args;
@@ -39,14 +39,14 @@ namespace tide
 		return this->Call(args);
 	}
 
-	ValueRef KMethod::Call(ValueRef one)
+	ValueRef Method::Call(ValueRef one)
 	{
 		ValueList args;
 		args.push_back(one);
 		return this->Call(args);
 	}
 
-	ValueRef KMethod::Call(ValueRef one, ValueRef two)
+	ValueRef Method::Call(ValueRef one, ValueRef two)
 	{
 		ValueList args;
 		args.push_back(one);
@@ -54,7 +54,7 @@ namespace tide
 		return this->Call(args);
 	}
 
-	ValueRef KMethod::Call(ValueRef one, ValueRef two, ValueRef three)
+	ValueRef Method::Call(ValueRef one, ValueRef two, ValueRef three)
 	{
 		ValueList args;
 		args.push_back(one);
@@ -63,14 +63,14 @@ namespace tide
 		return this->Call(args);
 	}
 
-	ValueRef KMethod::Call(const char* one)
+	ValueRef Method::Call(const char* one)
 	{
 		ValueList args;
 		args.push_back(Value::NewString(one));
 		return this->Call(args);
 	}
 
-	ValueRef KMethod::Call(const char* one, ValueRef two)
+	ValueRef Method::Call(const char* one, ValueRef two)
 	{
 		ValueList args;
 		args.push_back(Value::NewString(one));
@@ -78,7 +78,7 @@ namespace tide
 		return this->Call(args);
 	}
 
-	ValueRef KMethod::Call(const char* one, ValueRef two, ValueRef three)
+	ValueRef Method::Call(const char* one, ValueRef two, ValueRef three)
 	{
 		ValueList args;
 		args.push_back(Value::NewString(one));
@@ -87,7 +87,7 @@ namespace tide
 		return this->Call(args);
 	}
 
-	KMethodRef KMethod::Unwrap(KMethodRef o)
+	MethodRef Method::Unwrap(MethodRef o)
 	{
 		AutoPtr<ProfiledBoundMethod> pmeth = o.cast<ProfiledBoundMethod>();
 		if (pmeth.isNull())

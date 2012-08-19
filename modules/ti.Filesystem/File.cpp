@@ -445,7 +445,7 @@ void File::GetDirectoryListing(const ValueList& args, ValueRef result)
             std::vector<std::string> files;
             dir.list(files);
 
-            KListRef fileList = new StaticBoundList();
+            ListRef fileList = new StaticBoundList();
             for(size_t i = 0; i < files.size(); i++)
             {
                 std::string entry = files.at(i);
@@ -456,7 +456,7 @@ void File::GetDirectoryListing(const ValueList& args, ValueRef result)
                 fileList->Append(value);
             }
 
-            KListRef list = fileList;
+            ListRef list = fileList;
             result->SetList(list);
         }
         else

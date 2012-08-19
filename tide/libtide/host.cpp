@@ -682,13 +682,13 @@ namespace tide
 		this->ExitImpl(exitCode);
 	}
 
-	ValueRef Host::RunOnMainThread(KMethodRef method, const ValueList& args,
+	ValueRef Host::RunOnMainThread(MethodRef method, const ValueList& args,
 		bool waitForCompletion)
 	{
 		return this->RunOnMainThread(method, 0, args, waitForCompletion);
 	}
 
-	ValueRef Host::RunOnMainThread(KMethodRef method, KObjectRef thisObject,
+	ValueRef Host::RunOnMainThread(MethodRef method, KObjectRef thisObject,
 		const ValueList& args, bool waitForCompletion)
 	{
 		MainThreadJob* job = new MainThreadJob(method, thisObject,
@@ -755,13 +755,13 @@ namespace tide
 		}
 	}
 
-	ValueRef RunOnMainThread(KMethodRef method, const ValueList& args,
+	ValueRef RunOnMainThread(MethodRef method, const ValueList& args,
 		bool waitForCompletion)
 	{
 		return hostInstance->RunOnMainThread(method, args, waitForCompletion);
 	}
 
-	ValueRef RunOnMainThread(KMethodRef method, KObjectRef thisObject,
+	ValueRef RunOnMainThread(MethodRef method, KObjectRef thisObject,
 		const ValueList& args, bool waitForCompletion)
 	{
 		return hostInstance->RunOnMainThread(method, args, waitForCompletion);

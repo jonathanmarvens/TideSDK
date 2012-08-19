@@ -30,20 +30,20 @@ namespace ti {
 
 class TCPServerSocketConnector {
 public:
-    TCPServerSocketConnector(KMethodRef callback,Poco::Net::ServerSocket& socket,Poco::Net::SocketReactor& reactor);
+    TCPServerSocketConnector(MethodRef callback,Poco::Net::ServerSocket& socket,Poco::Net::SocketReactor& reactor);
     virtual ~TCPServerSocketConnector();
 
     void onAccept(Poco::Net::ReadableNotification* pNotification);
 
 private:
-    KMethodRef callback;
+    MethodRef callback;
     Poco::Net::ServerSocket& socket;
     Poco::Net::SocketReactor& reactor;
 };
 
 class TCPServerSocket : public StaticBoundObject {
 public:
-    TCPServerSocket(KMethodRef callback);
+    TCPServerSocket(MethodRef callback);
     virtual ~TCPServerSocket();
 
 private:
@@ -55,7 +55,7 @@ private:
     void Listen(const ValueList& args, ValueRef result);
     void Close(const ValueList& args, ValueRef result);
 
-    KMethodRef onCreate;
+    MethodRef onCreate;
     Poco::Net::ServerSocket* socket;
     Poco::Net::SocketReactor reactor;
     TCPServerSocketConnector* acceptor;

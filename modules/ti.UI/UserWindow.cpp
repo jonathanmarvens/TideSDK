@@ -1198,7 +1198,7 @@ void UserWindow::_GetParent(const tide::ValueList& args, tide::ValueRef result)
 
 void UserWindow::_GetChildren(const tide::ValueList& args, tide::ValueRef result)
 {
-    KListRef childList = new StaticBoundList();
+    ListRef childList = new StaticBoundList();
 
     std::vector<AutoPtr<UserWindow> >::iterator i = this->children.begin();
     while (i != this->children.end())
@@ -1280,7 +1280,7 @@ void UserWindow::ReadChooserDialogObject(
     path = o->GetString("path", path);
     defaultName = o->GetString("defaultName", defaultName);
 
-    KListRef listTypes = new StaticBoundList();
+    ListRef listTypes = new StaticBoundList();
     listTypes = o->GetList("types", listTypes);
     for (size_t i = 0; i < listTypes->Size(); i++)
     {
@@ -1298,7 +1298,7 @@ void UserWindow::_OpenFileChooserDialog(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openFileChooserDialog", "m ?o");
 
-    KMethodRef callback = args.at(0)->ToMethod();
+    MethodRef callback = args.at(0)->ToMethod();
     bool multiple = false;
     std::string path;
     std::string defaultName;
@@ -1332,7 +1332,7 @@ void UserWindow::_OpenFileChooserDialog(const ValueList& args, ValueRef result)
 void UserWindow::_OpenFolderChooserDialog(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openFolderChooserDialog", "m ?o");
-    KMethodRef callback = args.at(0)->ToMethod();
+    MethodRef callback = args.at(0)->ToMethod();
     bool multiple = false;
     std::string path;
     std::string defaultName;
@@ -1366,7 +1366,7 @@ void UserWindow::_OpenFolderChooserDialog(const ValueList& args, ValueRef result
 void UserWindow::_OpenSaveAsDialog(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openFolderChooserDialog", "m ?o");
-    KMethodRef callback = args.at(0)->ToMethod();
+    MethodRef callback = args.at(0)->ToMethod();
     bool multiple = false;
     std::string path;
     std::string defaultName;

@@ -10,7 +10,7 @@
 
 namespace tide
 {
-	ProfiledBoundList::ProfiledBoundList(KListRef delegate) :
+	ProfiledBoundList::ProfiledBoundList(ListRef delegate) :
 		ProfiledBoundObject(delegate),
 		list(delegate),
 		count(1)

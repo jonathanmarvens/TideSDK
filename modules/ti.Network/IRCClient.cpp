@@ -146,7 +146,7 @@ void IRCClient::Run (void* p)
 void IRCClient::GetUsers(const ValueList& args, ValueRef result)
 {
     const char *channel = args.at(0)->ToString();
-    KListRef list = new StaticBoundList();
+    ListRef list = new StaticBoundList();
     channel_user* cu = irc.get_users();
     while(cu)
     {

@@ -44,14 +44,14 @@ public:
     virtual void AppMenuChanged();
     virtual void AppIconChanged();
     void RemoveOldMenu();
-    void OpenFileChooserDialog(KMethodRef callback,
+    void OpenFileChooserDialog(MethodRef callback,
         bool multiple, std::string& title, std::string& path,
         std::string& defaultName, std::vector<std::string>& types,
         std::string& typesDescription);
-    void OpenFolderChooserDialog(KMethodRef callback,
+    void OpenFolderChooserDialog(MethodRef callback,
         bool multiple, std::string& title, std::string& path,
         std::string& defaultName);
-    void OpenSaveAsDialog(KMethodRef callback,
+    void OpenSaveAsDialog(MethodRef callback,
         std::string& title, std::string& path,
         std::string& defaultName, std::vector<std::string>& types,
         std::string& typesDescription);

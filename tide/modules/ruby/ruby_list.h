@@ -11,7 +11,7 @@
 
 namespace tide
 {
-	class KRubyList : public KList
+	class KRubyList : public List
 	{
 	public:
 		KRubyList(VALUE);

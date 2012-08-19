@@ -10,29 +10,29 @@
 namespace tide
 {
 	/**
-	 * The ProfiledBoundList is a wrapped KList that does profiling
+	 * The ProfiledBoundList is a wrapped List that does profiling
 	 */
-	class ProfiledBoundList : public ProfiledBoundObject, public KList
+	class ProfiledBoundList : public ProfiledBoundObject, public List
 	{
 	public:
-		ProfiledBoundList(KListRef delegate);
+		ProfiledBoundList(ListRef delegate);
 		virtual ~ProfiledBoundList();
 
-		// @see KList::Append
+		// @see List::Append
 		virtual void Append(ValueRef value);
-		// @see KList::Size
+		// @see List::Size
 		virtual unsigned int Size();
-		// @see KList::At
+		// @see List::At
 		virtual ValueRef At(unsigned int index);
-		// @see KList::SetAt
+		// @see List::SetAt
 		virtual void SetAt(unsigned int index, ValueRef value);
-		// @see KList::Remove
+		// @see List::Remove
 		virtual bool Remove(unsigned int index);
-		// @See KList::Set
+		// @See List::Set
 		virtual void Set(const char *name, ValueRef value);
-		// @see KList::Get
+		// @see List::Get
 		virtual ValueRef Get(const char *name);
-		// @see KList::GetPropertyNames
+		// @see List::GetPropertyNames
 		virtual SharedStringList GetPropertyNames();
 
 		bool HasProperty(const char* name);
@@ -40,7 +40,7 @@ namespace tide
 		/**
 		 * @return the delegate of this profiled bound object
 		 */
-		KListRef GetDelegate() { return list; }
+		ListRef GetDelegate() { return list; }
 		virtual void duplicate()
 		{
 			++count;
@@ -60,7 +60,7 @@ namespace tide
 		}
 
 	private:
-		KListRef list;
+		ListRef list;
 		Poco::AtomicCounter count;
 
 	};

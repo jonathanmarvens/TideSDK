@@ -233,7 +233,7 @@ bool Sound::IsPaused()
     return state == PAUSED;
 }
 
-void Sound::SetOnComplete(KMethodRef newCallback)
+void Sound::SetOnComplete(MethodRef newCallback)
 {
     this->callback = newCallback;
 }

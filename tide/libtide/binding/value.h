@@ -29,9 +29,9 @@ namespace tide
 			DOUBLE = 2, /**< double */
 			BOOL = 3, /**< boolean */
 			STRING = 4, /**< const char* */
-			LIST = 5, /**< KListRef */
+			LIST = 5, /**< ListRef */
 			OBJECT = 6, /**< KObjectRef */
-			METHOD = 7, /**< KMethodRef */
+			METHOD = 7, /**< MethodRef */
 			NULLV = 0, /**< NULL */
 			UNDEFINED = -1 /**< undefined */
 		};
@@ -89,7 +89,7 @@ namespace tide
 		 * Construct a new \link #Value::Type::LIST list\endlink value.
 		 * @param value The list value
 		 */
-		static ValueRef NewList(KListRef value);
+		static ValueRef NewList(ListRef value);
 
 		/**
 		 * Construct a new \link #Value::Type::OBJECT object\endlink value.
@@ -101,7 +101,7 @@ namespace tide
 		 * Construct a new \link #Value::Type::METHOD method\endlink value.
 		 * @param value The method value
 		 */
-		static ValueRef NewMethod(KMethodRef value);
+		static ValueRef NewMethod(MethodRef value);
 
 		virtual ~Value();
 
@@ -187,9 +187,9 @@ namespace tide
 		const char* ToString() const;
 
 		/**
-		 * @return the value as a \link #Value::Type::LIST KListRef\endlink
+		 * @return the value as a \link #Value::Type::LIST ListRef\endlink
 		 */
-		KListRef ToList() const;
+		ListRef ToList() const;
 
 		/**
 		 * @return the value as a \link #Value::Type::OBJECT KObjectRef\endlink
@@ -197,9 +197,9 @@ namespace tide
 		KObjectRef ToObject() const;
 
 		/**
-		 * @return the value as a \link #Value::Type::METHOD KMethodRef\endlink
+		 * @return the value as a \link #Value::Type::METHOD MethodRef\endlink
 		 */
-		KMethodRef ToMethod() const;
+		MethodRef ToMethod() const;
 
 		/**
 		 * @return a string representation of this Value's type
@@ -264,7 +264,7 @@ namespace tide
 		 * Change the internal value of this Value to an \link #Value::Type::LIST list\endlink
 		 * @param value the list value
 		 */
-		void SetList(KListRef value);
+		void SetList(ListRef value);
 
 		/**
 		 * Change the internal value of this Value to an \link #Value::Type::OBJECT object\endlink
@@ -276,7 +276,7 @@ namespace tide
 		 * Change the internal value of this Value to an \link #Value::Type::METHOD method\endlink
 		 * @param value the method value
 		 */
-		void SetMethod(KMethodRef value);
+		void SetMethod(MethodRef value);
 
 		/**
 		 * Change the internal value of this Value to \link #Value::Type::NULL NULL\endlink

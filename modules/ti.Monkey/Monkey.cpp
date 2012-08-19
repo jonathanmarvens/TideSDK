@@ -172,7 +172,7 @@ void Monkey::EvaluateUserScript(
         target->CallNS("insertAPI", Value::NewObject(windowObject));
     }
 
-    KMethodRef evalFunction = windowObject->GetMethod("eval");
+    MethodRef evalFunction = windowObject->GetMethod("eval");
     logger->Info("Loading userscript for %s\n", url.c_str());
     try
     {

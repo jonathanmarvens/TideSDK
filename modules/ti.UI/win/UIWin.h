@@ -38,7 +38,7 @@ public:
     AutoPtr<MenuItem> CreateSeparatorMenuItem();
     AutoPtr<MenuItem> CreateCheckMenuItem();
     void SetMenu(AutoPtr<Menu>);
-    AutoPtr<TrayItem> AddTray(std::string& icon_path, KMethodRef cbSingleClick);
+    AutoPtr<TrayItem> AddTray(std::string& icon_path, MethodRef cbSingleClick);
     void SetContextMenu(AutoPtr<Menu>);
     void SetIcon(std::string& iconPath);
     long GetIdleTime();

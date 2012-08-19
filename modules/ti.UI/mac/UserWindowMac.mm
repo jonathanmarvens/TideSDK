@@ -742,11 +742,11 @@ void UserWindowMac::SetTopMost(bool topmost)
     }
 }
 
-void UserWindowMac::OpenChooserDialog(bool files, KMethodRef callback,
+void UserWindowMac::OpenChooserDialog(bool files, MethodRef callback,
     bool multiple, string& title, string& path, string& defaultName,
     vector<string>& types, string& typesDescription)
 {
-    KListRef results = new StaticBoundList();
+    ListRef results = new StaticBoundList();
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     [openDlg setTitle:[NSString stringWithUTF8String:title.c_str()]];
     [openDlg setCanChooseFiles:files];
@@ -793,7 +793,7 @@ void UserWindowMac::OpenChooserDialog(bool files, KMethodRef callback,
 }
 
 void UserWindowMac::OpenFileChooserDialog(
-    KMethodRef callback,
+    MethodRef callback,
     bool multiple,
     string& title,
     string& path,
@@ -806,7 +806,7 @@ void UserWindowMac::OpenFileChooserDialog(
         title, path, defaultName, types, typesDescription);
 }
 
-void UserWindowMac::OpenFolderChooserDialog(KMethodRef callback, bool multiple,
+void UserWindowMac::OpenFolderChooserDialog(MethodRef callback, bool multiple,
     string& title, string& path, string& defaultName)
 {
     vector<string> types;
@@ -816,7 +816,7 @@ void UserWindowMac::OpenFolderChooserDialog(KMethodRef callback, bool multiple,
         title, path, defaultName, types, typesDescription);
 }
 
-void UserWindowMac::OpenSaveAsDialog(KMethodRef callback, string& title,
+void UserWindowMac::OpenSaveAsDialog(MethodRef callback, string& title,
     string& path, string& defaultName, vector<string>& types,
     string& typesDescription)
 {
@@ -844,7 +844,7 @@ void UserWindowMac::OpenSaveAsDialog(KMethodRef callback, string& title,
 
     ValueList args;
 
-    KListRef results = new StaticBoundList();
+    ListRef results = new StaticBoundList();
     if (runResult == NSFileHandlingPanelOKButton) 
     {
         NSString *selected = [sp filename];

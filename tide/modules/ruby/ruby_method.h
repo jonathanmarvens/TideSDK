@@ -9,7 +9,7 @@
 
 namespace tide {
 
-class KRubyMethod : public KMethod
+class KRubyMethod : public Method
 {
 	public:
 	KRubyMethod(VALUE method);

@@ -33,7 +33,7 @@ public:
     ~NativePipe();
 
     void StartMonitor();
-    void StartMonitor(KMethodRef readCallback);
+    void StartMonitor(MethodRef readCallback);
     virtual void StopMonitors();
     virtual int Write(BytesRef bytes);
     void PollForWriteIteration();
@@ -41,7 +41,7 @@ public:
     virtual void CloseNative();
     virtual void CloseNativeRead() = 0;
     virtual void CloseNativeWrite() = 0;
-    inline void SetReadCallback(KMethodRef cb) { this->readCallback = cb; }
+    inline void SetReadCallback(MethodRef cb) { this->readCallback = cb; }
 
 protected:
     void PollForReads();
@@ -57,7 +57,7 @@ protected:
     Poco::RunnableAdapter<NativePipe>* readThreadAdapter;
     Poco::Thread writeThread;
     Poco::Thread readThread;
-    KMethodRef readCallback;
+    MethodRef readCallback;
     Logger* logger;
     Poco::Mutex buffersMutex;
     std::queue<BytesRef> buffers;

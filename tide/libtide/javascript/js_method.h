@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KJS_KMETHOD_H_
-#define _KJS_KMETHOD_H_
+#ifndef _JS_METHOD_H_
+#define _JS_METHOD_H_
 
 #include "javascript_module.h"
 
@@ -15,7 +15,7 @@
 
 namespace tide
 {
-	class TIDE_API KKJSMethod : public KMethod
+	class TIDE_API KKJSMethod : public Method
 	{
 		public:
 		KKJSMethod(JSContextRef, JSObjectRef, JSObjectRef);

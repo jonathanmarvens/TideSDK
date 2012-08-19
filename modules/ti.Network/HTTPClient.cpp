@@ -173,7 +173,7 @@ void HTTPClient::Receive(const ValueList& args, ValueRef result)
     else if (args.at(0)->IsObject())
     {
         KObjectRef handlerObject(args.at(0)->ToObject());
-        KMethodRef writeMethod(handlerObject->GetMethod("write", 0));
+        MethodRef writeMethod(handlerObject->GetMethod("write", 0));
         if (writeMethod.isNull())
         {
             GetLogger()->Error("Unsupported object type as output handler:"
@@ -230,12 +230,12 @@ void HTTPClient::GetResponseHeader(const ValueList& args, ValueRef result)
 
 void HTTPClient::GetResponseHeaders(const ValueList& args, ValueRef result)
 {
-    KListRef headers(new StaticBoundList());
+    ListRef headers(new StaticBoundList());
 
     NameValueCollection::ConstIterator i = this->responseHeaders.begin();
     while (i != this->responseHeaders.end())
     {
-        KListRef headerEntry(new StaticBoundList());
+        ListRef headerEntry(new StaticBoundList());
         headerEntry->Append(Value::NewString(i->first));
         headerEntry->Append(Value::NewString(i->second));
         headers->Append(Value::NewList(headerEntry));
@@ -339,7 +339,7 @@ static std::string ObjectToFilename(KObjectRef dataObject)
     // Now try to treat this object like as a file-like object with
     // a .read() method which returns a Bytes. If this fails we'll
     // return NULL.
-    KMethodRef nativePathMethod(dataObject->GetMethod("nativePath", 0));
+    MethodRef nativePathMethod(dataObject->GetMethod("nativePath", 0));
     if (nativePathMethod.isNull())
         return "data";
 
@@ -402,7 +402,7 @@ void HTTPClient::BeginWithPostDataObject(KObjectRef object)
         ValueRef value(object->Get(propertyName->c_str()));
         if (value->IsList())
         {
-            KListRef list(value->ToList());
+            ListRef list(value->ToList());
             for (unsigned int i = 0; i < list->Size(); i++)
                 this->AddScalarValueToCurlForm(propertyName, list->At(i), &last);
         }

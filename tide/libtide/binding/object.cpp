@@ -137,7 +137,7 @@ namespace tide
 		}
 	}
 
-	KMethodRef Object::GetMethod(const char* name, KMethodRef defaultValue)
+	MethodRef Object::GetMethod(const char* name, MethodRef defaultValue)
 	{
 		ValueRef prop = this->Get(name);
 		if (prop->IsMethod())
@@ -150,7 +150,7 @@ namespace tide
 		}
 	}
 
-	KListRef Object::GetList(const char* name, KListRef defaultValue)
+	ListRef Object::GetList(const char* name, ListRef defaultValue)
 	{
 		ValueRef prop = this->Get(name);
 		if (prop->IsList())
@@ -209,13 +209,13 @@ namespace tide
 		this->Set(name, obj_val);
 	}
 
-	void Object::SetMethod(const char *name, KMethodRef object)
+	void Object::SetMethod(const char *name, MethodRef object)
 	{
 		ValueRef obj_val = Value::NewMethod(object);
 		this->Set(name, obj_val);
 	}
 
-	void Object::SetList(const char *name, KListRef object)
+	void Object::SetList(const char *name, ListRef object)
 	{
 		ValueRef obj_val = Value::NewList(object);
 		this->Set(name, obj_val);
@@ -226,7 +226,7 @@ namespace tide
 		ValueRef prop = this->Get(name);
 		if(!prop->IsUndefined() && prop->IsList())
 		{
-			KListRef values = prop->ToList();
+			ListRef values = prop->ToList();
 			if (values->Size() > 0)
 			{
 				for (unsigned int c = 0; c < values->Size(); c++)

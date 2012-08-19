@@ -35,7 +35,7 @@ public:
     void SetMenu(AutoPtr<Menu> newMenu);
     void SetContextMenu(AutoPtr<Menu>);
     void SetIcon(std::string&);
-    AutoPtr<TrayItem> AddTray(std::string&, KMethodRef cb);
+    AutoPtr<TrayItem> AddTray(std::string&, MethodRef cb);
     long GetIdleTime();
     AutoPtr<Menu> GetMenu();
     AutoPtr<Menu> GetContextMenu();

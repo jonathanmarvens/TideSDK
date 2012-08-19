@@ -1265,7 +1265,7 @@ void UserWindowGtk::AppIconChanged()
 struct FileChooserJob
 {
     GtkWindow* window;
-    KMethodRef callback;
+    MethodRef callback;
     FileChooserMode mode;
     bool multiple;
     std::string title;
@@ -1280,7 +1280,7 @@ static ValueRef FileChooserWork(const ValueList& args)
     AutoPtr<VoidPtr> dataObject(args.at(0)->ToObject().cast<VoidPtr>());
     void* data = dataObject->GetPtr();
     FileChooserJob* job = static_cast<FileChooserJob*>(data);
-    KListRef results = new StaticBoundList();
+    ListRef results = new StaticBoundList();
     static std::string openFilesDirectory("");
 
     GtkFileChooserAction action;
@@ -1375,7 +1375,7 @@ static ValueRef FileChooserWork(const ValueList& args)
 }
 
 
-void UserWindowGtk::OpenFileChooserDialog(KMethodRef callback,
+void UserWindowGtk::OpenFileChooserDialog(MethodRef callback,
     bool multiple, std::string& title, std::string& path,
     std::string& defaultName, std::vector<std::string>& types,
     std::string& typesDescription)
@@ -1391,12 +1391,12 @@ void UserWindowGtk::OpenFileChooserDialog(KMethodRef callback,
     job->typesDescription = typesDescription;
     job->mode = SELECT_FILE;
 
-    KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
+    MethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
     ValueList args(Value::NewObject(new VoidPtr(job)));
     RunOnMainThread(work, args, false);
 }
 
-void UserWindowGtk::OpenFolderChooserDialog(KMethodRef callback,
+void UserWindowGtk::OpenFolderChooserDialog(MethodRef callback,
     bool multiple, std::string& title, std::string& path,
     std::string& defaultName)
 {
@@ -1414,12 +1414,12 @@ void UserWindowGtk::OpenFolderChooserDialog(KMethodRef callback,
     job->typesDescription = typesDescription;
     job->mode = SELECT_FOLDER;
 
-    KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
+    MethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
     ValueList args(Value::NewObject(new VoidPtr(job)));
     RunOnMainThread(work, args, false);
 }
 
-void UserWindowGtk::OpenSaveAsDialog(KMethodRef callback,
+void UserWindowGtk::OpenSaveAsDialog(MethodRef callback,
     std::string& title, std::string& path, std::string& defaultName,
     std::vector<std::string>& types, std::string& typesDescription)
 {
@@ -1434,7 +1434,7 @@ void UserWindowGtk::OpenSaveAsDialog(KMethodRef callback,
     job->typesDescription = typesDescription;
     job->mode = SAVE_FILE;
 
-    KMethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
+    MethodRef work(new tide::KFunctionPtrMethod(&FileChooserWork));
     ValueList args(Value::NewObject(new VoidPtr(job)));
     RunOnMainThread(work, args, false);
 }

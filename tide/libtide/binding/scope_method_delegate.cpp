@@ -11,7 +11,7 @@ using namespace tide;
 ScopeMethodDelegate::ScopeMethodDelegate(MethodDelegateType type,
                                          KObjectRef global,
                                          KObjectRef scope,
-                                         KMethodRef delegate) :
+                                         MethodRef delegate) :
 	type(type), global(global), scope(scope), delegate(delegate)
 {
 }
@@ -73,13 +73,13 @@ AutoPtr<StaticBoundObject> ScopeMethodDelegate::CreateDelegate(KObjectRef global
 
 		if (key == "set")
 		{
-			KMethodRef d = new ScopeMethodDelegate(SET, global, scope, value->ToMethod());
+			MethodRef d = new ScopeMethodDelegate(SET, global, scope, value->ToMethod());
 			ValueRef v = Value::NewMethod(d);
 			scope->Set(key.c_str(), v);
 		}
 		else if (key == "get")
 		{
-			KMethodRef d = new ScopeMethodDelegate(GET, global, scope, value->ToMethod());
+			MethodRef d = new ScopeMethodDelegate(GET, global, scope, value->ToMethod());
 			ValueRef v = Value::NewMethod(d);
 			scope->Set(key.c_str(), v);
 		}

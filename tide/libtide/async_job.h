@@ -16,7 +16,7 @@ namespace tide
 		/*
 		 * Create an AsyncJob and initialize its binding-layer properties.
 		 */
-		AsyncJob(KMethodRef job=0);
+		AsyncJob(MethodRef job=0);
 
 		/*
 		 * Destroy an AsyncJob and release its callbacks.
@@ -67,7 +67,7 @@ namespace tide
 
 		/**
 		 * A built-in progress changed callback. This will be called
-		 * in the same situations as KMethod-style progress callbacks
+		 * in the same situations as Method-style progress callbacks
 		 */
 		virtual void OnProgressChanged() {}
 
@@ -75,11 +75,11 @@ namespace tide
 		 * Add a callback to be executed when the progress of
 		 * this job changes
 		 */
-		void AddProgressCallback(KMethodRef);
+		void AddProgressCallback(MethodRef);
 
 		/**
 		 * A built-in completion callback. This will be called  in the
-		 *  same situations as KMethod-style completed callbacks
+		 *  same situations as Method-style completed callbacks
 		 */
 		virtual void OnCompleted() {};
 
@@ -87,11 +87,11 @@ namespace tide
 		 * Add a callback to be executed when the progress of
 		 * this job changes
 		 */
-		void AddCompletedCallback(KMethodRef);
+		void AddCompletedCallback(MethodRef);
 
 		/**
 		 * A built-in error callback. This will be called  in the
-		 *  same situations as KMethod-style error callbacks
+		 *  same situations as Method-style error callbacks
 		 */
 		virtual void OnError(ValueException& e) {};
 
@@ -100,7 +100,7 @@ namespace tide
 		 * course of this job, whether in the job itself or a callback
 		 * related to that job.
 		 */
-		void AddErrorCallback(KMethodRef);
+		void AddErrorCallback(MethodRef);
 		
 		/**
 		 * Set arguments for this job.
@@ -114,7 +114,7 @@ namespace tide
 		ValueList& GetArguments() { return arguments; }
 		
 		protected:
-		KMethodRef job;
+		MethodRef job;
 		ValueList arguments;
 		double progress;
 		bool completed;
@@ -128,7 +128,7 @@ namespace tide
 		 * called directly, as it does not call any callbacks or necessarily
 		 * modify the progress -- Run or RunAsynchronously are better
 		 * choices. It can be overridden to create custom job types which
-		 * do something other than just execute a KMethod.
+		 * do something other than just execute a Method.
 		 */
 		virtual ValueRef Execute();
 
@@ -137,13 +137,13 @@ namespace tide
 		void _IsComplete(const ValueList& args, ValueRef result);
 
 		private:
-		std::vector<KMethodRef> progressCallbacks;
-		std::vector<KMethodRef> completedCallbacks;
-		std::vector<KMethodRef> errorCallbacks;
+		std::vector<MethodRef> progressCallbacks;
+		std::vector<MethodRef> completedCallbacks;
+		std::vector<MethodRef> errorCallbacks;
 
 		Poco::Thread* thread;
 		Poco::RunnableAdapter<AsyncJob>* adapter;
-		void DoCallback(KMethodRef, bool reportErrors=false);
+		void DoCallback(MethodRef, bool reportErrors=false);
 	};
 }
 #endif

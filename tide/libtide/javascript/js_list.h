@@ -4,14 +4,14 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KJS_KLIST_H_
-#define _KJS_KLIST_H_
+#ifndef _KJS_List_H_
+#define _KJS_List_H_
 
 #include "javascript_module.h"
 
 namespace tide
 {
-	class TIDE_API KKJSList : public KList
+	class TIDE_API KKJSList : public List
 	{
 
 		public:
