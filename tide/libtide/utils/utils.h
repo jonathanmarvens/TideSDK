@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008-2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_UTILS_H_
-#define _KR_UTILS_H_
+#ifndef _UTILS_H_
+#define _UTILS_H_
 #include "../base.h"
 
 // If this is a version of the utils which doesn't

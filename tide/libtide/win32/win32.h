@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_WIN32_H_
-#define _KR_WIN32_H_
+#ifndef _WIN32_H_
+#define _WIN32_H_
 #include "event_window.h"
 #include "basictypes.h"
 #include "port.h"

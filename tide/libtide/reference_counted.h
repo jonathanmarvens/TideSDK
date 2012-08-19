@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_REFERENCE_COUNTED_H_
-#define _KR_REFERENCE_COUNTED_H_
+#ifndef _REFERENCE_COUNTED_H_
+#define _REFERENCE_COUNTED_H_
 
 namespace tide
 {

@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_OSX_UTILS_H_
-#define _KR_OSX_UTILS_H_
+#ifndef _OSX_UTILS_H_
+#define _OSX_UTILS_H_
 
 #include <string>
 #include <CoreFoundation/CoreFoundation.h>

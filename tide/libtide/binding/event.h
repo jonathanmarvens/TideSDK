@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_EVENT_H_
-#define _KR_EVENT_H_
+#ifndef _EVENT_H_
+#define _EVENT_H_
 
 namespace tide
 {

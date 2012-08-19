@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_PYTHON_LIST_H_
-#define _K_PYTHON_LIST_H_
+#ifndef _PYTHON_LIST_H_
+#define _PYTHON_LIST_H_
 
 #include "python_module.h"
 

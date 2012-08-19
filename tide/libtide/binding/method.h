@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_METHOD_H_
-#define _K_METHOD_H_
+#ifndef _METHOD_H_
+#define _METHOD_H_
 #include <cstdarg>
 
 namespace tide

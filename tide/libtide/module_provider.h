@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_MODULE_PROVIDER_H_
-#define _KR_MODULE_PROVIDER_H_
+#ifndef _MODULE_PROVIDER_H_
+#define _MODULE_PROVIDER_H_
 #include <string>
 
 namespace tide

@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008, 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_K_DELEGATING_OBJECT_H_
-#define _KR_K_DELEGATING_OBJECT_H_
+#ifndef _DELEGATING_OBJECT_H_
+#define _DELEGATING_OBJECT_H_
 
 #include <vector>
 #include <string>
