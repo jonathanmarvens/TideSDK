@@ -60,11 +60,11 @@ namespace tide
 
 #include "php_api.h"
 #include "php_utils.h"
-#include "k_php_object.h"
-#include "k_php_method.h"
-#include "k_php_function.h"
-#include "k_php_list.h"
-#include "k_php_array_object.h"
+#include "php_object.h"
+#include "php_method.h"
+#include "php_function.h"
+#include "php_list.h"
+#include "php_array_object.h"
 #include "php_interpreter.h"
 #include "php_module_instance.h"
 
