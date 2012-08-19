@@ -46,13 +46,13 @@ namespace tide
 			else if (IS_OBJECT == type)
 			{
 				if (HAS_CLASS_ENTRY(*value) &&
-					Z_OBJCE_P(value) == PHPKObjectClassEntry ||
+					Z_OBJCE_P(value) == PHPObjectClassEntry ||
 					Z_OBJCE_P(value) == PHPMethodClassEntry ||
 					Z_OBJCE_P(value) == PHPListClassEntry)
 				{
-					PHPKObject* phpKObject = reinterpret_cast<PHPKObject*>(
+					PHPObject* phpObject = reinterpret_cast<PHPObject*>(
 						zend_object_store_get_object(value TSRMLS_CC));
-					returnValue = phpKObject->kvalue;
+					returnValue = phpObject->kvalue;
 				}
 				else if (HAS_CLASS_ENTRY(*value) && Z_OBJCE_P(value) == zend_ce_closure)
 				{
@@ -110,7 +110,7 @@ namespace tide
 			}
 			else if (value->IsObject())
 			{
-				KObjectToKPHPObject(value, returnValue);
+				ObjectToKPHPObject(value, returnValue);
 			}
 			else if (value->IsMethod())
 			{
@@ -337,14 +337,14 @@ namespace tide
 			return 0;
 		}
 
-		static KObjectRef currentPHPGlobal(0);
-		KObjectRef GetCurrentGlobalObject()
+		static ObjectRef currentPHPGlobal(0);
+		ObjectRef GetCurrentGlobalObject()
 		{
 			return currentPHPGlobal;
 		}
 
 		void PushPHPSymbolsIntoGlobalObject(HashTable* symbolTable,
-			KObjectRef global TSRMLS_DC)
+			ObjectRef global TSRMLS_DC)
 		{
 			// Push the variables from the given symbol table to the global object.
 			if (!global.isNull())
@@ -364,7 +364,7 @@ namespace tide
 		}
 
 		void PushGlobalObjectMembersIntoPHPSymbolTable(HashTable* symbolTable,
-			KObjectRef global TSRMLS_DC)
+			ObjectRef global TSRMLS_DC)
 		{
 			// Move all variables from the new global object into the PHP symbol table.
 			if (!global.isNull())
@@ -381,7 +381,7 @@ namespace tide
 			}
 		}
 
-		void SwapGlobalObject(KObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC)
+		void SwapGlobalObject(ObjectRef newGlobal, HashTable* symbolTable TSRMLS_DC)
 		{
 			PushPHPSymbolsIntoGlobalObject(symbolTable, currentPHPGlobal TSRMLS_CC);
 			zend_hash_clean(symbolTable);

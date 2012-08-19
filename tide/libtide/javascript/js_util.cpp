@@ -104,7 +104,7 @@ namespace JSUtil
 				else
 				{
 					// this is a pure JS object: proxy it
-					KObjectRef tibo = new KKJSObject(jsContext, o);
+					ObjectRef tibo = new KKJSObject(jsContext, o);
 					tideValue = Value::NewObject(tibo);
 				}
 			}
@@ -155,7 +155,7 @@ namespace JSUtil
 		}
 		else if (value->IsObject())
 		{
-			KObjectRef obj = value->ToObject();
+			ObjectRef obj = value->ToObject();
 			AutoPtr<KKJSObject> kobj = obj.cast<KKJSObject>();
 			if (!kobj.isNull() && kobj->SameContextGroup(jsContext))
 			{
@@ -337,7 +337,7 @@ namespace JSUtil
 			return false;
 
 		// Convert the name to a std::string.
-		KObjectRef object = (*value)->ToObject();
+		ObjectRef object = (*value)->ToObject();
 		std::string name(ToChars(jsProperty));
 
 		// Special properties always take precedence. This is important
@@ -373,7 +373,7 @@ namespace JSUtil
 		if (value == NULL)
 			return JSValueMakeUndefined(jsContext);
 
-		KObjectRef object = (*value)->ToObject();
+		ObjectRef object = (*value)->ToObject();
 		std::string name(ToChars(jsProperty));
 		JSValueRef jsValue = NULL;
 		try
@@ -408,7 +408,7 @@ namespace JSUtil
 		if (value == NULL)
 			return false;
 
-		KObjectRef object = (*value)->ToObject();
+		ObjectRef object = (*value)->ToObject();
 		bool success = false;
 		std::string propertyName(ToChars(jsProperty));
 		try
@@ -623,7 +623,7 @@ namespace JSUtil
 		if (value == NULL)
 			return;
 
-		KObjectRef object = (*value)->ToObject();
+		ObjectRef object = (*value)->ToObject();
 		SharedStringList props = object->GetPropertyNames();
 		AddSpecialPropertyNames(*value, props, false);
 		for (size_t i = 0; i < props->size(); i++)

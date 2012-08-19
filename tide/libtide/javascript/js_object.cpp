@@ -77,7 +77,7 @@ namespace tide
 		}
 	}
 
-	bool KKJSObject::Equals(KObjectRef other)
+	bool KKJSObject::Equals(ObjectRef other)
 	{
 		AutoPtr<KKJSObject> kjsOther = other.cast<KKJSObject>();
 		if (kjsOther.isNull())

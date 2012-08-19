@@ -23,7 +23,7 @@ namespace tide
 		virtual ValueRef Get(const char* name);
 		virtual SharedStringList GetPropertyNames();
 		virtual bool HasProperty(const char* name);
-		virtual bool Equals(KObjectRef);
+		virtual bool Equals(ObjectRef);
 		virtual void Append(ValueRef value);
 		virtual unsigned int Size();
 		virtual ValueRef At(unsigned int index);
@@ -35,7 +35,7 @@ namespace tide
 		protected:
 		JSGlobalContextRef context;
 		JSObjectRef jsobject;
-		AutoPtr<KKJSObject> kobject;
+		AutoPtr<KKJSObject> object;
 
 		private:
 		DISALLOW_EVIL_CONSTRUCTORS(KKJSList);

@@ -9,8 +9,8 @@
 using namespace tide;
 
 ScopeMethodDelegate::ScopeMethodDelegate(MethodDelegateType type,
-                                         KObjectRef global,
-                                         KObjectRef scope,
+                                         ObjectRef global,
+                                         ObjectRef scope,
                                          MethodRef delegate) :
 	type(type), global(global), scope(scope), delegate(delegate)
 {
@@ -45,7 +45,7 @@ bool ScopeMethodDelegate::IsGlobalKey(std::string& key)
 ValueRef ScopeMethodDelegate::Call(const ValueList& args)
 {
 	std::string key = args.at(0)->ToString();
-	KObjectRef obj = IsGlobalKey(key) ? global : scope;
+	ObjectRef obj = IsGlobalKey(key) ? global : scope;
 	if (type == GET)
 	{
 		// not found, look inside scope
@@ -59,7 +59,7 @@ ValueRef ScopeMethodDelegate::Call(const ValueList& args)
 	}
 }
 
-AutoPtr<StaticBoundObject> ScopeMethodDelegate::CreateDelegate(KObjectRef global, KObjectRef bo)
+AutoPtr<StaticBoundObject> ScopeMethodDelegate::CreateDelegate(ObjectRef global, ObjectRef bo)
 {
 	AutoPtr<StaticBoundObject> scope = new StaticBoundObject();
 	SharedStringList keys = bo->GetPropertyNames();

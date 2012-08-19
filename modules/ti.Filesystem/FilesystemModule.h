@@ -25,7 +25,7 @@ class EXPORT FilesystemModule : public tide::Module {
     TIDE_MODULE_CLASS(FilesystemModule)
     
 private:
-    KObjectRef binding;
+    ObjectRef binding;
 };
 
 } // namespace ti

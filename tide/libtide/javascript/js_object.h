@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KJS_KOBJECT_H_
-#define _KJS_KOBJECT_H_
+#ifndef _JS_OBJECT_H_
+#define _JS_OBJECT_H_
 
 #include "javascript_module.h"
 
@@ -25,7 +25,7 @@ namespace tide
 		virtual ValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();
 		virtual bool HasProperty(const char* name);
-		virtual bool Equals(KObjectRef);
+		virtual bool Equals(ObjectRef);
 
 		bool SameContextGroup(JSContextRef c);
 		JSObjectRef GetJSObject();

@@ -65,7 +65,7 @@ namespace tide
 	void AsyncJob::Run()
 	{
 		// Make sure this job sticks around at least until it finishes.
-		KObjectRef save(this, true);
+		ObjectRef save(this, true);
 
 		this->result = this->Execute();
 		if (!this->hadError)

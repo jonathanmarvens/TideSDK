@@ -23,7 +23,7 @@ namespace ti {
 
 class Application : public KAccessorObject {
 public:
-    Application(Host *host,KObjectRef);
+    Application(Host *host,ObjectRef);
     virtual ~Application();
 
 private:
@@ -53,7 +53,7 @@ private:
     void GetSystemProperties(const ValueList& args, ValueRef result);
 
     Host* host;
-    KObjectRef global;
+    ObjectRef global;
 
 protected:
     void Setup();

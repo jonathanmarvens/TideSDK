@@ -38,7 +38,7 @@ void PlatformModule::Start()
     // Start() is called.
     if (!GlobalObject::GetInstance()->GetObject("Network").isNull())
     {
-        KObjectRef network = GlobalObject::GetInstance()->GetObject("Network");
+        ObjectRef network = GlobalObject::GetInstance()->GetObject("Network");
         this->binding->Set("getAddress", network->Get("getAddress"));
         this->binding->Set("getMACAddress", network->Get("getMACAddress"));
         this->binding->Set("getInterfaces", network->Get("getInterfaces"));

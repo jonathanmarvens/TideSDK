@@ -30,7 +30,7 @@ namespace tide
 		JSUtil::ProtectGlobalContext(this->context);
 		JSValueProtect(this->context, this->jsobject);
 
-		this->kobject = new KKJSObject(this->context, this->jsobject);
+		this->object = new KKJSObject(this->context, this->jsobject);
 	}
 
 	KKJSList::~KKJSList()
@@ -41,7 +41,7 @@ namespace tide
 
 	unsigned int KKJSList::Size()
 	{
-		ValueRef length_val = this->kobject->Get("length");
+		ValueRef length_val = this->object->Get("length");
 		if (length_val->IsInt())
 			return (unsigned int) length_val->ToInt();
 		else
@@ -51,19 +51,19 @@ namespace tide
 	ValueRef KKJSList::At(unsigned int index)
 	{
 		std::string name = List::IntToChars(index);
-		ValueRef value = this->kobject->Get(name.c_str());
+		ValueRef value = this->object->Get(name.c_str());
 		return value;
 	}
 
 	void KKJSList::SetAt(unsigned int index, ValueRef value)
 	{
 		std::string name = List::IntToChars(index);
-		this->kobject->Set(name.c_str(), value);
+		this->object->Set(name.c_str(), value);
 	}
 
 	void KKJSList::Append(ValueRef value)
 	{
-		ValueRef push_method = this->kobject->Get("push");
+		ValueRef push_method = this->object->Get("push");
 
 		if (push_method->IsMethod())
 		{
@@ -81,7 +81,7 @@ namespace tide
 	{
 		if (index >= 0 && index < this->Size())
 		{
-			ValueRef spliceMethod = this->kobject->Get("splice");
+			ValueRef spliceMethod = this->object->Get("splice");
 			spliceMethod->ToMethod()->Call(
 				Value::NewInt(index),
 				Value::NewInt(1));
@@ -93,32 +93,32 @@ namespace tide
 
 	ValueRef KKJSList::Get(const char* name)
 	{
-		return kobject->Get(name);
+		return object->Get(name);
 	}
 
 	void KKJSList::Set(const char* name, ValueRef value)
 	{
-		return kobject->Set(name, value);
+		return object->Set(name, value);
 	}
 
-	bool KKJSList::Equals(KObjectRef other)
+	bool KKJSList::Equals(ObjectRef other)
 	{
-		return this->kobject->Equals(other);
+		return this->object->Equals(other);
 	}
 
 	SharedStringList KKJSList::GetPropertyNames()
 	{
-		 return kobject->GetPropertyNames();
+		 return object->GetPropertyNames();
 	}
 
 	bool KKJSList::HasProperty(const char* name)
 	{
-		return kobject->HasProperty(name);
+		return object->HasProperty(name);
 	}
 
 	bool KKJSList::SameContextGroup(JSContextRef c)
 	{
-		return kobject->SameContextGroup(c);
+		return object->SameContextGroup(c);
 	}
 
 	JSObjectRef KKJSList::GetJSObject()

@@ -250,7 +250,7 @@ void FileStream::_Write(const ValueList& args, ValueRef result)
     int size = 0;
     if (args.at(0)->IsObject())
     {
-        KObjectRef b = args.at(0)->ToObject();
+        ObjectRef b = args.at(0)->ToObject();
         AutoPtr<Bytes> bytes = b.cast<Bytes>();
         if (!bytes.isNull())
         {
@@ -422,7 +422,7 @@ void FileStream::_WriteLine(const ValueList& args, ValueRef result)
     int size = 0;
     if (args.at(0)->IsObject())
     {
-        KObjectRef b = args.at(0)->ToObject();
+        ObjectRef b = args.at(0)->ToObject();
         AutoPtr<Bytes> bytes = b.cast<Bytes>();
         if (!bytes.isNull())
         {

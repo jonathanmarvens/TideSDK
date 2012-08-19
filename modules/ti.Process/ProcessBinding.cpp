@@ -197,16 +197,16 @@ ProcessBinding::~ProcessBinding()
 void ProcessBinding::CreateProcess(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createProcess", "o|l");
-    KObjectRef temp = 0;
+    ObjectRef temp = 0;
     ListRef argList = 0;
-    KObjectRef environment = 0;
+    ObjectRef environment = 0;
     AutoPtr<Pipe> stdinPipe = 0;
     AutoPtr<Pipe> stdoutPipe = 0;
     AutoPtr<Pipe> stderrPipe = 0;
 
     if (args.at(0)->IsObject())
     {
-        KObjectRef options = args.GetObject(0);
+        ObjectRef options = args.GetObject(0);
         argList = options->GetList("args", 0);
         if (argList.isNull())
             throw ValueException::FromString(

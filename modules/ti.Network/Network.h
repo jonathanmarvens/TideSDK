@@ -58,7 +58,7 @@ private:
     void _GetHTTPProxy(const ValueList& args, ValueRef result);
     void _GetHTTPSProxy(const ValueList& args, ValueRef result);
 
-    KObjectRef global;
+    ObjectRef global;
 };
 
 } // namespace ti

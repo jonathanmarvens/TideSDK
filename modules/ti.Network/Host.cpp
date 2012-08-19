@@ -141,7 +141,7 @@ void Host::GetAddresses(const ValueList& args, ValueRef result)
     while (iter!=addresses.end())
     {
         Poco::Net::IPAddress address = (*iter++);
-        KObjectRef obj = new IPAddress(address);
+        ObjectRef obj = new IPAddress(address);
         ValueRef addr = Value::NewObject(obj);
         list->Append(addr);
     }

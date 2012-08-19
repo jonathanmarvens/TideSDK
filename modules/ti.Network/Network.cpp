@@ -216,7 +216,7 @@ void Network::_GetHostByAddress(const ValueList& args, ValueRef result)
 {
     if (args.at(0)->IsObject())
     {
-        KObjectRef obj = args.at(0)->ToObject();
+        ObjectRef obj = args.at(0)->ToObject();
         AutoPtr<IPAddress> b = obj.cast<IPAddress>();
         if (!b.isNull())
         {

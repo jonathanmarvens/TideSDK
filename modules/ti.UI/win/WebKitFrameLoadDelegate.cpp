@@ -36,7 +36,7 @@ HRESULT STDMETHODCALLTYPE WebKitFrameLoadDelegate::didFinishLoadForFrame(
 {
     JSGlobalContextRef context = frame->globalContext();
     JSObjectRef global_object = JSContextGetGlobalObject(context);
-    KObjectRef frame_global = new KKJSObject(context, global_object);
+    ObjectRef frame_global = new KKJSObject(context, global_object);
 
     IWebDataSource *webDataSource;
     frame->dataSource(&webDataSource);

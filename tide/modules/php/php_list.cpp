@@ -56,7 +56,7 @@ namespace tide
 		}
 	}
 
-	bool KPHPList::Equals(KObjectRef other)
+	bool KPHPList::Equals(ObjectRef other)
 	{
 		AutoPtr<KPHPList> phpOther = other.cast<KPHPList>();
 

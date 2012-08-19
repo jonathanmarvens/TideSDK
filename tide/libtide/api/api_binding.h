@@ -34,7 +34,7 @@ namespace tide
 
 		private:
 		Host* host;
-		KObjectRef global;
+		ObjectRef global;
 		Logger* logger;
 
 		// Use a FastMutex to protect the installer, because we are
@@ -85,7 +85,7 @@ namespace tide
 		void _CreateDependency(const ValueList& args, ValueRef value);
 		void _InstallDependencies(const ValueList& args, ValueRef value);
 
-		void _CreateKObject(const ValueList& args, ValueRef result);
+		void _CreateObject(const ValueList& args, ValueRef result);
 		void _CreateMethod(const ValueList& args, ValueRef result);
 		void _CreateList(const ValueList& args, ValueRef result);
 		void _CreateBytes(const ValueList& args, ValueRef result);
@@ -94,19 +94,19 @@ namespace tide
 	/**
 	 * An wrapper for a Object which encapsulates another one for testing
 	 */
-	class KObjectWrapper : public Object
+	class ObjectWrapper : public Object
 	{
 	public:
-		KObjectWrapper(KObjectRef object);
+		ObjectWrapper(ObjectRef object);
 		void Set(const char *name, ValueRef value);
 		ValueRef Get(const char *name);
 		bool HasProperty(const char *name);
 		SharedStringList GetPropertyNames();
 		SharedString DisplayString(int levels);
-		bool Equals(KObjectRef other);
+		bool Equals(ObjectRef other);
 
 	private:
-		KObjectRef object;
+		ObjectRef object;
 	};
 
 	/**
@@ -122,7 +122,7 @@ namespace tide
 		bool HasProperty(const char *name);
 		SharedStringList GetPropertyNames();
 		SharedString DisplayString(int levels);
-		bool Equals(KObjectRef other);
+		bool Equals(ObjectRef other);
 
 	private:
 		MethodRef method;
@@ -145,7 +145,7 @@ namespace tide
 		bool HasProperty(const char *name);
 		SharedStringList GetPropertyNames();
 		SharedString DisplayString(int levels=3);
-		bool Equals(KObjectRef other);
+		bool Equals(ObjectRef other);
 	private:
 		ListRef list;
 	};

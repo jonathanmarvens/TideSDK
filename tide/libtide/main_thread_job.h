@@ -13,7 +13,7 @@ namespace tide
 	class TIDE_API MainThreadJob
 	{
 	public:
-		MainThreadJob(MethodRef method, KObjectRef thisObject,
+		MainThreadJob(MethodRef method, ObjectRef thisObject,
 			const ValueList& args, bool waitForCompletion);
 		void Lock();
 		void Wait();
@@ -25,7 +25,7 @@ namespace tide
 
 	private:
 		MethodRef method;
-		KObjectRef thisObject;
+		ObjectRef thisObject;
 		const ValueList args;
 		bool waitForCompletion;
 		ValueRef returnValue;

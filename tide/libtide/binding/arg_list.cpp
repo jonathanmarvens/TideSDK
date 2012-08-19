@@ -300,7 +300,7 @@ namespace tide
 		}
 	}
 
-	KObjectRef ArgList::GetObject(size_t index, KObjectRef defaultValue) const
+	ObjectRef ArgList::GetObject(size_t index, ObjectRef defaultValue) const
 	{
 		if (this->size() > index && this->at(index)->IsObject())
 		{

@@ -688,7 +688,7 @@ namespace tide
 		return this->RunOnMainThread(method, 0, args, waitForCompletion);
 	}
 
-	ValueRef Host::RunOnMainThread(MethodRef method, KObjectRef thisObject,
+	ValueRef Host::RunOnMainThread(MethodRef method, ObjectRef thisObject,
 		const ValueList& args, bool waitForCompletion)
 	{
 		MainThreadJob* job = new MainThreadJob(method, thisObject,
@@ -761,7 +761,7 @@ namespace tide
 		return hostInstance->RunOnMainThread(method, args, waitForCompletion);
 	}
 
-	ValueRef RunOnMainThread(MethodRef method, KObjectRef thisObject,
+	ValueRef RunOnMainThread(MethodRef method, ObjectRef thisObject,
 		const ValueList& args, bool waitForCompletion)
 	{
 		return hostInstance->RunOnMainThread(method, args, waitForCompletion);

@@ -32,7 +32,7 @@ public:
     virtual ~Process();
 
     static AutoPtr<Process> CreateProcess();
-    virtual KObjectRef CloneEnvironment();
+    virtual ObjectRef CloneEnvironment();
     virtual void LaunchAsync();
     virtual BytesRef LaunchSync();
     virtual void ExitMonitorAsync();
@@ -43,7 +43,7 @@ public:
     void Exited(bool async);
     void ExitCallback(const ValueList& args, ValueRef result);
     virtual ValueRef Call(const ValueList& args);
-    static KObjectRef GetCurrentEnvironment();
+    static ObjectRef GetCurrentEnvironment();
 
     void SetStdin(AutoPtr<Pipe> stdinPipe);
     void SetStdout(AutoPtr<Pipe> stdoutPipe);
@@ -51,13 +51,13 @@ public:
     inline bool IsRunning() { return running; }
     inline void SetPID(int pid) { this->pid = pid; }
     virtual inline void SetArguments(ListRef args) { this->args = args; }
-    inline void SetEnvironment(KObjectRef env) { this->environment = env; }
+    inline void SetEnvironment(ObjectRef env) { this->environment = env; }
     inline int GetPID() { return this->pid; }
     inline AutoPtr<Pipe> GetStdin() { return this->stdinPipe; }
     inline AutoPtr<Pipe> GetStdout() { return this->stdoutPipe; }
     inline AutoPtr<Pipe> GetStderr() { return this->stderrPipe; }
     inline ListRef GetArgs() { return this->args; };
-    inline KObjectRef GetEnvironment() { return this->environment; }
+    inline ObjectRef GetEnvironment() { return this->environment; }
     void SetEnvironment(const char *name, const char *value)
     {
         environment->SetString(name, value);
@@ -99,7 +99,7 @@ protected:
     AutoPtr<Pipe> stdoutPipe;
     AutoPtr<Pipe> stderrPipe;
     AutoPtr<Pipe> stdinPipe;
-    KObjectRef environment;
+    ObjectRef environment;
     ListRef args;
     int pid;
     ValueRef exitCode;

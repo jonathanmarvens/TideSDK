@@ -27,7 +27,7 @@ namespace ti {
 
 class Filesystem : public StaticBoundObject {
 public:
-    Filesystem(Host*, KObjectRef);
+    Filesystem(Host*, ObjectRef);
     virtual ~Filesystem();
 
 private:
@@ -53,8 +53,8 @@ private:
     void DeletePendingOperations(const ValueList& args, ValueRef result);
 
     Host *host;
-    KObjectRef global;
-    std::vector<KObjectRef> asyncOperations;
+    ObjectRef global;
+    std::vector<ObjectRef> asyncOperations;
     Poco::Timer *timer;
 };
 

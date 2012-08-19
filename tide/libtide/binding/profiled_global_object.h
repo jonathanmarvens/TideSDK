@@ -12,14 +12,14 @@ namespace tide
 	class TIDE_API ProfiledGlobalObject : public GlobalObject
 	{
 	public:
-		ProfiledGlobalObject(KObjectRef delegate);
+		ProfiledGlobalObject(ObjectRef delegate);
 		virtual ~ProfiledGlobalObject();
 
 		virtual void Set(const char *name, ValueRef value);
 		virtual ValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();
 		virtual SharedString DisplayString(int levels=3);
-		virtual bool Equals(KObjectRef other);
+		virtual bool Equals(ObjectRef other);
 		bool HasProperty(const char* name);
 
 	protected:

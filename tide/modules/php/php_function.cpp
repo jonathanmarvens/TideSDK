@@ -45,7 +45,7 @@ namespace tide {
 		zval* zReturnValue;
 		MAKE_STD_ZVAL(zReturnValue);
 
-		KObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
+		ObjectRef previousGlobal(PHPUtils::GetCurrentGlobalObject());
 		PHPUtils::SwapGlobalObject(this->globalObject, &EG(symbol_table) TSRMLS_CC);
 
 		zend_try 
@@ -105,7 +105,7 @@ namespace tide {
 		return Value::Undefined;
 	}
 
-	bool KPHPFunction::Equals(KObjectRef other)
+	bool KPHPFunction::Equals(ObjectRef other)
 	{
 		AutoPtr<KPHPFunction> phpOther = other.cast<KPHPFunction>();
 		if (phpOther.isNull())

@@ -123,7 +123,7 @@ namespace tide
 		return v;
 	}
 
-	ValueRef Value::NewObject(KObjectRef value)
+	ValueRef Value::NewObject(ObjectRef value)
 	{
 		ValueRef v(new Value());
 		v->SetObject(value);
@@ -149,7 +149,7 @@ namespace tide
 	double Value::ToNumber() const { return numberValue; }
 	bool Value::ToBool() const { return boolValue; }
 	const char* Value::ToString() const { return stringValue; }
-	KObjectRef Value::ToObject() const { return objectValue; }
+	ObjectRef Value::ToObject() const { return objectValue; }
 	MethodRef Value::ToMethod() const { return objectValue.cast<Method>(); }
 	ListRef Value::ToList() const { return objectValue.cast<List>(); }
 
@@ -240,7 +240,7 @@ namespace tide
 		}
 	}
 
-	void Value::SetObject(KObjectRef value)
+	void Value::SetObject(ObjectRef value)
 	{
 		reset();
 		this->objectValue = value;
@@ -331,7 +331,7 @@ namespace tide
 			case OBJECT:
 			case METHOD:
 			{
-				KObjectRef o(this->ToObject());
+				ObjectRef o(this->ToObject());
 				if (levels == 0)
 				{
 					oss << "<" << o->GetType() << " at " << o.get() << ">";
@@ -400,7 +400,7 @@ namespace tide
 		}
 		else if (value->IsObject())
 		{
-			KObjectRef obj = Object::Unwrap(value->ToObject());
+			ObjectRef obj = Object::Unwrap(value->ToObject());
 			value->SetObject(obj);
 		}
 	}

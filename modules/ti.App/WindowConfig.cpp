@@ -29,7 +29,7 @@ static size_t windowCount = 0;
 
 namespace ti {
 
-static bool CoerceBool(KObjectRef props, const char* name, bool defaultValue)
+static bool CoerceBool(ObjectRef props, const char* name, bool defaultValue)
 {
     ValueRef v(props->Get(name));
     if (v->IsString())
@@ -142,7 +142,7 @@ WindowConfig::WindowConfig()
 }
 
 /*static*/
-AutoPtr<WindowConfig> WindowConfig::FromProperties(KObjectRef properties)
+AutoPtr<WindowConfig> WindowConfig::FromProperties(ObjectRef properties)
 {
     WindowConfig* c = new WindowConfig();
     c->SetID(properties->GetString("id", c->GetID()));

@@ -92,7 +92,7 @@ void SetStandardCurlHandleOptions(CURL* handle)
     SET_CURL_OPTION(handle, CURLOPT_COOKIEJAR, cookieJarFilename.c_str());
 }
 
-BytesRef ObjectToBytes(KObjectRef dataObject)
+BytesRef ObjectToBytes(ObjectRef dataObject)
 {
     // If this object is a Bytes object, just do the cast and return.
     BytesRef bytes(dataObject.cast<Bytes>());

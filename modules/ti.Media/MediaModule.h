@@ -26,7 +26,7 @@ class EXPORT MediaModule : public tide::Module
     TIDE_MODULE_CLASS(MediaModule)
 
 private:
-    KObjectRef binding;
+    ObjectRef binding;
 };
 
 } // namespace ti

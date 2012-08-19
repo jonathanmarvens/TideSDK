@@ -23,7 +23,7 @@
 
 namespace ti {
 
-Application::Application(Host* host, KObjectRef global) :
+Application::Application(Host* host, ObjectRef global) :
     KAccessorObject("App"),
     host(host),
     global(global)
@@ -259,7 +259,7 @@ void Application::CreateProperties(const ValueList& args, ValueRef result)
     
     if (args.size() > 0 && args.at(0)->IsObject())
     {
-        KObjectRef p = args.at(0)->ToObject();
+        ObjectRef p = args.at(0)->ToObject();
         SharedStringList names = p->GetPropertyNames();
         for (size_t i = 0; i < names->size(); i++)
         {
@@ -284,7 +284,7 @@ void Application::LoadProperties(const ValueList& args, ValueRef result)
 {
     if (args.size() >= 1 && args.at(0)->IsString()) {
         std::string file_path = args.at(0)->ToString();
-        KObjectRef properties = new Properties(file_path);
+        ObjectRef properties = new Properties(file_path);
         result->SetObject(properties);
     }
 }

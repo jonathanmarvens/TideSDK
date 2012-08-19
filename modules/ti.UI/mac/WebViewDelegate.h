@@ -27,16 +27,16 @@
 {
     ti::NativeWindow* window;
     BOOL initialDisplay;
-    std::map<WebFrame*, KObjectRef>* frameToGlobalObject;
+    std::map<WebFrame*, ObjectRef>* frameToGlobalObject;
     Logger* logger;
 }
 
 -(id)initWithWindow:(ti::NativeWindow*)window;
 -(void)setupPreferences;
--(void)registerGlobalObject:(KObjectRef) globalObject forFrame:(WebFrame *)frame;
--(KObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
+-(void)registerGlobalObject:(ObjectRef) globalObject forFrame:(WebFrame *)frame;
+-(ObjectRef)registerJSContext:(JSGlobalContextRef)context forFrame:(WebFrame*)frame;
 -(BOOL)isGlobalObjectRegisteredForFrame:(WebFrame*) frame;
--(KObjectRef)globalObjectForFrame:(WebFrame*) frame;
+-(ObjectRef)globalObjectForFrame:(WebFrame*) frame;
 -(void)deregisterGlobalObjectForFrame:(WebFrame *)frame;
 
 @end

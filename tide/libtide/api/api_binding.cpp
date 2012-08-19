@@ -175,11 +175,11 @@ namespace tide
 		this->SetMethod("getEnvironment", &APIBinding::_GetEnvironment);
 
 		/**
-		 * @tiapi(method=True,name=API.createKObject,since=0.5) Create a TIDE object.
+		 * @tiapi(method=True,name=API.createObject,since=0.5) Create a TIDE object.
 		 * @tiarg[Object, toWrap, optional=true] An object to wrap in a new Object.
 		 * @tiresult[Object] A new Object.
 		 */
-		this->SetMethod("createKObject", &APIBinding::_CreateKObject);
+		this->SetMethod("createObject", &APIBinding::_CreateObject);
 
 		/**
 		 * @tiapi(method=True,name=API.createMethod,since=0.5) create a TIDE method.
@@ -650,7 +650,7 @@ namespace tide
 
 	void APIBinding::_GetApplication(const ValueList& args, ValueRef result)
 	{
-		KObjectRef app = new ApplicationBinding(host->GetApplication(), true);
+		ObjectRef app = new ApplicationBinding(host->GetApplication(), true);
 		result->SetObject(app);
 	}
 
@@ -745,7 +745,7 @@ namespace tide
 		{
 			SharedDependency d = Dependency::NewDependencyFromValues(
 				static_cast<KComponentType>(type), name, version);
-			KObjectRef dBinding = new DependencyBinding(d);
+			ObjectRef dBinding = new DependencyBinding(d);
 			result->SetObject(dBinding);
 		}
 	}
@@ -889,17 +889,17 @@ namespace tide
 		return list;
 	}
 
-	void APIBinding::_CreateKObject(const ValueList& args, ValueRef result)
+	void APIBinding::_CreateObject(const ValueList& args, ValueRef result)
 	{
-		args.VerifyException("createKObject", "?o");
+		args.VerifyException("createObject", "?o");
 		if (args.size() <= 0)
 		{
 			result->SetObject(new StaticBoundObject());
 		}
 		else
 		{
-			KObjectRef wrapped = args.GetObject(0);
-			result->SetObject(new KObjectWrapper(wrapped));
+			ObjectRef wrapped = args.GetObject(0);
+			result->SetObject(new ObjectWrapper(wrapped));
 		}
 	}
 
@@ -971,37 +971,37 @@ namespace tide
 		result->SetObject(bytes);
 	}
 
-	KObjectWrapper::KObjectWrapper(KObjectRef object) :
+	ObjectWrapper::ObjectWrapper(ObjectRef object) :
 		object(object)
 	{
 	}
 
-	void KObjectWrapper::Set(const char *name, ValueRef value)
+	void ObjectWrapper::Set(const char *name, ValueRef value)
 	{
 		object->Set(name, value);
 	}
 
-	ValueRef KObjectWrapper::Get(const char *name)
+	ValueRef ObjectWrapper::Get(const char *name)
 	{
 		return object->Get(name);
 	}
 
-	bool KObjectWrapper::HasProperty(const char *name)
+	bool ObjectWrapper::HasProperty(const char *name)
 	{
 		return object->HasProperty(name);	
 	}
 	
-	SharedStringList KObjectWrapper::GetPropertyNames()
+	SharedStringList ObjectWrapper::GetPropertyNames()
 	{
 		return object->GetPropertyNames();
 	}
 
-	SharedString KObjectWrapper::DisplayString(int levels)
+	SharedString ObjectWrapper::DisplayString(int levels)
 	{
 		return object->DisplayString(levels);
 	}
 
-	bool KObjectWrapper::Equals(KObjectRef other)
+	bool ObjectWrapper::Equals(ObjectRef other)
 	{
 		return object->Equals(other);	
 	}
@@ -1041,7 +1041,7 @@ namespace tide
 		return method->DisplayString(levels);
 	}
 	
-	bool MethodWrapper::Equals(KObjectRef other)
+	bool MethodWrapper::Equals(ObjectRef other)
 	{
 		return method->Equals(other);	
 	}
@@ -1101,7 +1101,7 @@ namespace tide
 		return list->DisplayString(levels);
 	}
 	
-	bool ListWrapper::Equals(KObjectRef other)
+	bool ListWrapper::Equals(ObjectRef other)
 	{
 		return list->Equals(other);	
 	}

@@ -25,7 +25,7 @@ class EXPORT ProcessModule : public tide::Module {
     TIDE_MODULE_CLASS(ProcessModule)
 
 private:
-    tide::KObjectRef binding;
+    tide::ObjectRef binding;
 };
 
 } // namespace ti

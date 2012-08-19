@@ -152,7 +152,7 @@ void IRCClient::GetUsers(const ValueList& args, ValueRef result)
     {
         if (!strcmp(cu->channel,(char*)channel) && cu->nick && strlen(cu->nick)>0)
         {
-            KObjectRef entry = new StaticBoundObject();
+            ObjectRef entry = new StaticBoundObject();
             entry->Set("name",Value::NewString(cu->nick));
             entry->Set("operator",Value::NewBool(cu->flags & IRC_USER_OP));
             entry->Set("voice",Value::NewBool(cu->flags & IRC_USER_VOICE));

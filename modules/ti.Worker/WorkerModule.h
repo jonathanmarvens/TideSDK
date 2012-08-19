@@ -25,7 +25,7 @@ class EXPORT WorkerModule : public tide::Module {
     TIDE_MODULE_CLASS(WorkerModule)
     
 private:
-    tide::KObjectRef binding;
+    tide::ObjectRef binding;
 };
 
 } // namespace ti

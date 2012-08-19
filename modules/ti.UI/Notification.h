@@ -36,7 +36,7 @@ public:
     Notification();
     ~Notification();
 
-    void Configure(KObjectRef properties);
+    void Configure(ObjectRef properties);
 
     static bool InitializeImpl();
     static void ShutdownImpl();

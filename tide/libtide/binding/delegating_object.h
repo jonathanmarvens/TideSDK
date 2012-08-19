@@ -26,16 +26,16 @@ namespace tide
 	class TIDE_API KDelegatingObject : public Object
 	{
 		public:
-		KDelegatingObject(KObjectRef global);
-		KDelegatingObject(KObjectRef global, KObjectRef local);
+		KDelegatingObject(ObjectRef global);
+		KDelegatingObject(ObjectRef global, ObjectRef local);
 		virtual ~KDelegatingObject();
 		virtual ValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();
 		virtual void Set(const char *name, ValueRef value);
 		virtual bool HasProperty(const char* name);
 
-		virtual inline KObjectRef GetGlobal() { return this->global; }
-		virtual inline KObjectRef GetLocal() { return this->local; }
+		virtual inline ObjectRef GetGlobal() { return this->global; }
+		virtual inline ObjectRef GetLocal() { return this->local; }
 
 		private:
 		/**
@@ -43,13 +43,13 @@ namespace tide
 		 * is used to find properties if they are not found in
 		 * the local object.
 		 */
-		KObjectRef global;
+		ObjectRef global;
 
 		/**
 		 * The local part of this delegate object. This object
 		 * is the first in line for property retrieval. 
 		 */
-		KObjectRef local;
+		ObjectRef local;
 
 		DISALLOW_EVIL_CONSTRUCTORS(KDelegatingObject);
 
