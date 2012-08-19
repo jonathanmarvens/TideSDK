@@ -23,9 +23,9 @@ namespace tide
 	class JavaScriptModuleInstance;
 }
 
-#include "k_kjs_object.h"
-#include "k_kjs_method.h"
-#include "k_kjs_list.h"
+#include "js_object.h"
+#include "js_method.h"
+#include "js_list.h"
 #include "js_util.h"
 #include "javascript_module_instance.h"
 #include "javascript_methods.h"
