@@ -38,7 +38,7 @@ private:
     void Close();
 
     KObjectRef global;
-    KMethodRef callback;
+    MethodRef callback;
     std::string ipaddress;
     int port;
     Poco::Thread* thread;

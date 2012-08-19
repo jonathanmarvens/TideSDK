@@ -23,7 +23,7 @@
 
 namespace ti {
 
-TCPServerSocketConnector::TCPServerSocketConnector(KMethodRef callback_, Poco::Net::ServerSocket& socket_, Poco::Net::SocketReactor & reactor_)
+TCPServerSocketConnector::TCPServerSocketConnector(MethodRef callback_, Poco::Net::ServerSocket& socket_, Poco::Net::SocketReactor & reactor_)
     : callback(callback_)
     , socket(socket_)
     , reactor(reactor_)
@@ -57,7 +57,7 @@ void TCPServerSocketConnector::onAccept(Poco::Net::ReadableNotification *n)
     }
 }
 
-TCPServerSocket::TCPServerSocket(KMethodRef create)
+TCPServerSocket::TCPServerSocket(MethodRef create)
     : StaticBoundObject("Network.TCPServerSocket")
     , onCreate(create)
     , socket(0)

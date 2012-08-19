@@ -13,8 +13,8 @@
 namespace tide
 {
 	VALUE RubyUtils::KObjectClass = Qnil;
-	VALUE RubyUtils::KMethodClass = Qnil;
-	VALUE RubyUtils::KListClass = Qnil;
+	VALUE RubyUtils::MethodClass = Qnil;
+	VALUE RubyUtils::ListClass = Qnil;
 
 	bool RubyUtils::KindOf(VALUE value, VALUE klass)
 	{
@@ -67,8 +67,8 @@ namespace tide
 		}
 		else if (T_ARRAY == t)
 		{
-			KListRef klist = new KRubyList(value);
-			kvalue = Value::NewList(klist);
+			ListRef List = new KRubyList(value);
+			kvalue = Value::NewList(List);
 		}
 		else if (T_DATA == t && KObjectClass != Qnil && KindOf(value, KObjectClass))
 		{
@@ -76,13 +76,13 @@ namespace tide
 			Data_Get_Struct(value, ValueRef, kval);
 			kvalue = Value::NewObject((*kval)->ToObject());
 		}
-		else if (T_DATA == t && KMethodClass != Qnil && KindOf(value, KMethodClass))
+		else if (T_DATA == t && MethodClass != Qnil && KindOf(value, MethodClass))
 		{
 			ValueRef* kval = NULL;
 			Data_Get_Struct(value, ValueRef, kval);
 			kvalue = Value::NewMethod((*kval)->ToMethod());
 		}
-		else if (T_DATA == t && KListClass != Qnil && KindOf(value, KListClass))
+		else if (T_DATA == t && ListClass != Qnil && KindOf(value, ListClass))
 		{
 			ValueRef* kval = NULL;
 			Data_Get_Struct(value, ValueRef, kval);
@@ -90,12 +90,12 @@ namespace tide
 		}
 		else if (T_DATA == t && KindOf(value, rb_cMethod))
 		{
-			KMethodRef method = new KRubyMethod(value);
+			MethodRef method = new KRubyMethod(value);
 			return Value::NewMethod(method);
 		}
 		else if (T_DATA == t && KindOf(value, rb_cProc))
 		{
-			KMethodRef method = new KRubyMethod(value);
+			MethodRef method = new KRubyMethod(value);
 			return Value::NewMethod(method);
 		}
 		else if (T_DATA == t)
@@ -143,7 +143,7 @@ namespace tide
 			if (!rm.isNull())
 				return rm->ToRuby();
 			else
-				return RubyUtils::KMethodToRubyValue(value);
+				return RubyUtils::MethodToRubyValue(value);
 		}
 		else if (value->IsList())
 		{
@@ -151,7 +151,7 @@ namespace tide
 			if (!rl.isNull())
 				return rl->ToRuby();
 			else
-				return RubyUtils::KListToRubyValue(value);
+				return RubyUtils::ListToRubyValue(value);
 		}
 		return Qnil;
 	}
@@ -174,7 +174,7 @@ namespace tide
 		return methods;
 	}
 
-	VALUE RubyUtils::GenericKMethodCall(KMethodRef method, VALUE args)
+	VALUE RubyUtils::GenericMethodCall(MethodRef method, VALUE args)
 	{
 		ValueList kargs;
 		for (int i = 0; i < RARRAY_LEN(args); i++)
@@ -268,7 +268,7 @@ namespace tide
 		}
 		else if (value->IsMethod()) // actually call a method
 		{
-			return RubyUtils::GenericKMethodCall(value->ToMethod(), args);
+			return RubyUtils::GenericMethodCall(value->ToMethod(), args);
 		}
 		else // Plain old access
 		{
@@ -296,17 +296,17 @@ namespace tide
 		delete kval;
 	}
 
-	static VALUE RubyKMethodCall(VALUE self, VALUE args)
+	static VALUE RubyMethodCall(VALUE self, VALUE args)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KMethodRef method = (*dval)->ToMethod();
+		MethodRef method = (*dval)->ToMethod();
 
 		// TODO: We should raise an exception instead
 		if (method.isNull())
 			return Qnil;
 
-		return RubyUtils::GenericKMethodCall(method, args);
+		return RubyUtils::GenericMethodCall(method, args);
 	}
 
 	VALUE RubyUtils::KObjectToRubyValue(ValueRef obj)
@@ -330,34 +330,34 @@ namespace tide
 		return wrapper;
 	}
 
-	VALUE RubyUtils::KMethodToRubyValue(ValueRef obj)
+	VALUE RubyUtils::MethodToRubyValue(ValueRef obj)
 	{
-		// Lazily initialize the KMethod wrapper class
-		if (KMethodClass == Qnil)
+		// Lazily initialize the Method wrapper class
+		if (MethodClass == Qnil)
 		{
-			KMethodClass = rb_define_class("RubyKMethod", rb_cObject);
-			rb_define_method(KMethodClass, "method_missing",
+			MethodClass = rb_define_class("RubyMethod", rb_cObject);
+			rb_define_method(MethodClass, "method_missing",
 				RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
-			rb_define_method(KMethodClass, "method",
+			rb_define_method(MethodClass, "method",
 				RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
-			rb_define_method(KMethodClass, "methods",
+			rb_define_method(MethodClass, "methods",
 				RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
-			rb_define_method(KMethodClass, "respond_to?",
+			rb_define_method(MethodClass, "respond_to?",
 				RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
-			rb_define_method(KMethodClass, "call",
-				RUBY_METHOD_FUNC(RubyKMethodCall), -2);
+			rb_define_method(MethodClass, "call",
+				RUBY_METHOD_FUNC(RubyMethodCall), -2);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(KMethodClass, 0, RubyKObjectFree, new ValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(MethodClass, 0, RubyKObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}
 
-	static VALUE RubyKListGetElt(int argc, VALUE *argv, VALUE self)
+	static VALUE RubyListGetElt(int argc, VALUE *argv, VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KListRef list = (*dval)->ToList();
+		ListRef list = (*dval)->ToList();
 
 		// TODO: We should raise an exception instead
 		if (list.isNull() || argc < 1)
@@ -378,14 +378,14 @@ namespace tide
 		}
 	}
 
-	static VALUE RubyKListSetElt(int argc, VALUE *argv, VALUE self)
+	static VALUE RubyListSetElt(int argc, VALUE *argv, VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KListRef klist = (*dval)->ToList();
+		ListRef List = (*dval)->ToList();
 
 		// TODO: We should raise an exception instead
-		if (klist.isNull() || argc < 2)
+		if (List.isNull() || argc < 2)
 			return Qnil;
 		// TODO: Maybe we should raise an exception instead
 		if (TYPE(argv[0]) != T_FIXNUM)
@@ -396,19 +396,19 @@ namespace tide
 			return Qnil;
 
 		ValueRef value = RubyUtils::ToTideValue(argv[1]);
-		klist->SetAt(idx, value);
+		List->SetAt(idx, value);
 
 		return argv[1];
 	}
 
-	static VALUE RubyKListLength(int argc, VALUE *argv, VALUE self)
+	static VALUE RubyListLength(int argc, VALUE *argv, VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KListRef klist = (*dval)->ToList();
+		ListRef List = (*dval)->ToList();
 
 		// TODO: We should raise an exception instead
-		if (klist.isNull())
+		if (List.isNull())
 			return Qnil;
 
 		if (argc > 0)
@@ -418,15 +418,15 @@ namespace tide
 		}
 		else
 		{
-			return INT2NUM(klist->Size());
+			return INT2NUM(List->Size());
 		}
 	}
 
-	static VALUE RubyKListEach(VALUE self)
+	static VALUE RubyListEach(VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KListRef list = (*dval)->ToList();
+		ListRef list = (*dval)->ToList();
 
 		if (list.isNull() || !rb_block_given_p())
 			return Qnil;
@@ -437,11 +437,11 @@ namespace tide
 		return self;
 	}
 
-	static VALUE RubyKListCollect(VALUE self)
+	static VALUE RubyListCollect(VALUE self)
 	{
 		ValueRef* dval = NULL;
 		Data_Get_Struct(self, ValueRef, dval);
-		KListRef list = (*dval)->ToList();
+		ListRef list = (*dval)->ToList();
 
 		if (list.isNull() || !rb_block_given_p())
 			return Qnil;
@@ -453,35 +453,35 @@ namespace tide
 		return resultArray;
 	}
 
-	VALUE RubyUtils::KListToRubyValue(ValueRef obj)
+	VALUE RubyUtils::ListToRubyValue(ValueRef obj)
 	{
-		// Lazily initialize the KMethod wrapper class
-		if (KListClass == Qnil)
+		// Lazily initialize the Method wrapper class
+		if (ListClass == Qnil)
 		{
-			KListClass = rb_define_class("RubyKList", rb_cObject);
-			rb_define_method(KListClass, "method_missing",
+			ListClass = rb_define_class("RubyList", rb_cObject);
+			rb_define_method(ListClass, "method_missing",
 				RUBY_METHOD_FUNC(RubyKObjectMethodMissing), -1);
-			rb_define_method(KListClass, "method",
+			rb_define_method(ListClass, "method",
 				RUBY_METHOD_FUNC(RubyKObjectMethod), -1);
-			rb_define_method(KListClass, "methods",
+			rb_define_method(ListClass, "methods",
 				RUBY_METHOD_FUNC(RubyKObjectMethods), 0);
-			rb_define_method(KListClass, "respond_to?",
+			rb_define_method(ListClass, "respond_to?",
 				RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
-			rb_define_method(KListClass, "[]",
-				RUBY_METHOD_FUNC(RubyKListGetElt), -1);
-			rb_define_method(KListClass, "[]=",
-				RUBY_METHOD_FUNC(RubyKListSetElt), -1);
-			rb_define_method(KListClass, "length",
-				RUBY_METHOD_FUNC(RubyKListLength), -1);
-			rb_define_method(KListClass, "each",
-				RUBY_METHOD_FUNC(RubyKListEach), 0);
-			rb_define_method(KListClass, "collect",
-				RUBY_METHOD_FUNC(RubyKListCollect), 0);
-			rb_define_method(KListClass, "map",
-				RUBY_METHOD_FUNC(RubyKListCollect), 0);
+			rb_define_method(ListClass, "[]",
+				RUBY_METHOD_FUNC(RubyListGetElt), -1);
+			rb_define_method(ListClass, "[]=",
+				RUBY_METHOD_FUNC(RubyListSetElt), -1);
+			rb_define_method(ListClass, "length",
+				RUBY_METHOD_FUNC(RubyListLength), -1);
+			rb_define_method(ListClass, "each",
+				RUBY_METHOD_FUNC(RubyListEach), 0);
+			rb_define_method(ListClass, "collect",
+				RUBY_METHOD_FUNC(RubyListCollect), 0);
+			rb_define_method(ListClass, "map",
+				RUBY_METHOD_FUNC(RubyListCollect), 0);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(KListClass, 0, RubyKObjectFree, new ValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(ListClass, 0, RubyKObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}

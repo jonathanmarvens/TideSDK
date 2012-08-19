@@ -43,7 +43,7 @@ private:
     Poco::Thread thread;
     std::queue<std::string> events;
     Poco::Mutex eventsLock;
-    KMethodRef startCallback;
+    MethodRef startCallback;
 
     void run();
     void SendEventToAPIServer(std::string& eventData);

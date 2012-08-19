@@ -44,7 +44,7 @@ public:
     void SetContextMenu(AutoPtr<Menu>);
     void SetDockMenu(AutoPtr<Menu>);
 
-    AutoPtr<TrayItem> AddTray(std::string& icon_path, KMethodRef cb);
+    AutoPtr<TrayItem> AddTray(std::string& icon_path, MethodRef cb);
     void SetIcon(std::string& iconPath);
     virtual void SetDockIcon(std::string& iconPath);
     virtual void SetBadge(std::string& badgeLabel);

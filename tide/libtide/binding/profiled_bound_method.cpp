@@ -11,7 +11,7 @@
 
 namespace tide
 {
-	ProfiledBoundMethod::ProfiledBoundMethod(KMethodRef delegate, std::string& type) :
+	ProfiledBoundMethod::ProfiledBoundMethod(MethodRef delegate, std::string& type) :
 		ProfiledBoundObject(delegate),
 		method(delegate),
 		fullType(type),

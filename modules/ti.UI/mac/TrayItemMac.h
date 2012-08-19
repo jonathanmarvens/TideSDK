@@ -28,7 +28,7 @@ class MenuMac;
 
 class TrayItemMac: public TrayItem {
 public:
-    TrayItemMac(std::string& iconURL, KMethodRef cb);
+    TrayItemMac(std::string& iconURL, MethodRef cb);
     virtual ~TrayItemMac();
 
     void SetIcon(std::string& iconPath);
@@ -40,7 +40,7 @@ public:
 private:
     NSMenu* nativeMenu;
     AutoPtr<MenuMac> menu;
-    KMethodRef callback;
+    MethodRef callback;
     NSStatusItem* nativeItem;
 };
 

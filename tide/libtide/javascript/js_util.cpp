@@ -92,13 +92,13 @@ namespace JSUtil
 				else if (JSObjectIsFunction(jsContext, o))
 				{
 					// this is a pure JS method: proxy it
-					KMethodRef tibm = new KKJSMethod(jsContext, o, thisObject);
+					MethodRef tibm = new KKJSMethod(jsContext, o, thisObject);
 					tideValue = Value::NewMethod(tibm);
 				}
 				else if (IsArrayLike(o, jsContext))
 				{
 					// this is a pure JS array: proxy it
-					KListRef tibl = new KKJSList(jsContext, o);
+					ListRef tibl = new KKJSList(jsContext, o);
 					tideValue = Value::NewList(tibl);
 				}
 				else
@@ -170,7 +170,7 @@ namespace JSUtil
 		}
 		else if (value->IsMethod())
 		{
-			KMethodRef meth = value->ToMethod();
+			MethodRef meth = value->ToMethod();
 			AutoPtr<KKJSMethod> kmeth = meth.cast<KKJSMethod>();
 			if (!kmeth.isNull() && kmeth->SameContextGroup(jsContext))
 			{
@@ -179,22 +179,22 @@ namespace JSUtil
 			}
 			else
 			{
-				// this is a KMethod that needs to be proxied
+				// this is a Method that needs to be proxied
 				jsValue = MethodToJSValue(value, jsContext);
 			}
 		}
 		else if (value->IsList())
 		{
-			KListRef list = value->ToList();
-			AutoPtr<KKJSList> klist = list.cast<KKJSList>();
-			if (!klist.isNull() && klist->SameContextGroup(jsContext))
+			ListRef list = value->ToList();
+			AutoPtr<KKJSList> List = list.cast<KKJSList>();
+			if (!List.isNull() && List->SameContextGroup(jsContext))
 			{
 				// this object is actually a pure JS array
-				jsValue = klist->GetJSObject();
+				jsValue = List->GetJSObject();
 			}
 			else
 			{
-				// this is a KList that needs to be proxied
+				// this is a List that needs to be proxied
 				jsValue = ListToJSValue(value, jsContext);
 			}
 		}
@@ -451,7 +451,7 @@ namespace JSUtil
 		if (value == NULL)
 			return JSValueMakeUndefined(jsContext);
 
-		KMethodRef method = (*value)->ToMethod();
+		MethodRef method = (*value)->ToMethod();
 		ValueList args;
 		for (size_t i = 0; i < argCount; i++)
 		{
@@ -530,7 +530,7 @@ namespace JSUtil
 		// of a number -- bad news.
 		if (value->IsList() && !strcmp(name, "length"))
 		{
-			KListRef l = value->ToList();
+			ListRef l = value->ToList();
 			return JSValueMakeNumber(jsContext, l->Size());
 		}
 

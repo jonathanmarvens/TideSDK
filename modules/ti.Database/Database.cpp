@@ -228,7 +228,7 @@ void Database::Execute(const ValueList& args, ValueRef result)
                 ValueRef anarg = args.at(c);
                 if (anarg->IsList())
                 {
-                    KListRef list = anarg->ToList();
+                    ListRef list = anarg->ToList();
                     for (size_t a=0;a<list->Size();a++)
                     {
                         ValueRef arg = list->At(a);

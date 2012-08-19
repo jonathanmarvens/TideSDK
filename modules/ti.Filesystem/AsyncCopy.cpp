@@ -30,7 +30,7 @@
 namespace ti {
 
 AsyncCopy::AsyncCopy(Filesystem* parent, Host *host,
-    std::vector<std::string> files, std::string destination, KMethodRef callback) :
+    std::vector<std::string> files, std::string destination, MethodRef callback) :
         StaticBoundObject("Filesystem.AsyncCopy"),
         parent(parent),
         host(host),

@@ -8,7 +8,7 @@
 namespace tide
 {
 	KPythonMethod::KPythonMethod(PyObject *method) :
-		KMethod("Python.KMethod"),
+		Method("Python.Method"),
 		method(method),
 		object(new KPythonObject(method))
 	{

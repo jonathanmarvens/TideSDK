@@ -170,7 +170,7 @@ namespace tide
 		 * @return Value of given property name, or the default value if
 		 * if it does not exist or is not a method.
 		 */
-		KMethodRef GetMethod(const char *name, KMethodRef defaultValue=NULL);
+		MethodRef GetMethod(const char *name, MethodRef defaultValue=NULL);
 
 		/**
 		 * Get a list property from this object.
@@ -181,7 +181,7 @@ namespace tide
 		 * @return Value of given property name, or the default value if
 		 * if it does not exist or is not a list.
 		 */
-		KListRef GetList(const char *name, KListRef defaultValue=NULL);
+		ListRef GetList(const char *name, ListRef defaultValue=NULL);
 
 		/**
 		 * Set an undefined property on this object
@@ -235,13 +235,13 @@ namespace tide
 		 * Set a method property on this object
 		 * When an error occurs will throw an exception of type ValueException.
 		 */
-		void SetMethod(const char *name, KMethodRef);
+		void SetMethod(const char *name, MethodRef);
 
 		/**
 		 * Set a list property on this object
 		 * When an error occurs will throw an exception of type ValueException.
 		 */
-		void SetList(const char *name, KListRef);
+		void SetList(const char *name, ListRef);
 
 		/**
 		 * Get a list of strings for the given property of this object. The list

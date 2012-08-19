@@ -34,15 +34,15 @@ public:
     UserWindowMac(AutoPtr<WindowConfig> config, AutoPtr<UserWindow>& parent);
     ~UserWindowMac();
 
-    void OpenChooserDialog(bool files, KMethodRef callback, bool multiple,
+    void OpenChooserDialog(bool files, MethodRef callback, bool multiple,
         std::string& title, std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription);
-    void OpenFileChooserDialog(KMethodRef callback, bool multiple,
+    void OpenFileChooserDialog(MethodRef callback, bool multiple,
         std::string& title, std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription);
-    void OpenFolderChooserDialog(KMethodRef callback, bool multiple,
+    void OpenFolderChooserDialog(MethodRef callback, bool multiple,
         std::string& title, std::string& path, std::string& defaultName);
-    void OpenSaveAsDialog(KMethodRef callback, std::string& title,
+    void OpenSaveAsDialog(MethodRef callback, std::string& title,
         std::string& path, std::string& defaultName, std::vector<std::string>& types,
         std::string& typesDescription);
     void Hide();

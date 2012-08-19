@@ -15,13 +15,13 @@ namespace tide
 	/**
 	 * An abstract representation of a method
 	 */
-	class TIDE_API KMethod : public Object
+	class TIDE_API Method : public Object
 	{
 
 	public:
 
-		KMethod(const char *type = "KMethod") : Object(type) {}
-		virtual ~KMethod() {}
+		Method(const char *type = "Method") : Object(type) {}
+		virtual ~Method() {}
 
 		/**
 		 * Call this method with the given arguments.
@@ -63,7 +63,7 @@ namespace tide
 		/**
 		 * Return the unwrapped version of this object
 		 */
-		static KMethodRef Unwrap(KMethodRef);
+		static MethodRef Unwrap(MethodRef);
 
 		/* Convenience methods below */
 		ValueRef Call(ValueRef one);
@@ -77,7 +77,7 @@ namespace tide
 			ValueRef four);
 
 	private:
-		DISALLOW_EVIL_CONSTRUCTORS(KMethod);
+		DISALLOW_EVIL_CONSTRUCTORS(Method);
 	};
 }
 

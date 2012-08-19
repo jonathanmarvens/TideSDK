@@ -47,7 +47,7 @@ public:
     virtual void RecreateNativePipes();
     
 protected:
-    std::string ArgListToString(KListRef argList);
+    std::string ArgListToString(ListRef argList);
     
     Poco::Thread exitMonitorThread;
     Poco::RunnableAdapter<ProcessWin>* exitMonitorAdapter;

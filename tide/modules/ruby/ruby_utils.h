@@ -17,17 +17,17 @@ namespace tide
 		static ValueRef ToTideValue(VALUE value);
 		static VALUE ToRubyValue(ValueRef value);
 		static VALUE KObjectToRubyValue(ValueRef value);
-		static VALUE KMethodToRubyValue(ValueRef value);
-		static VALUE KListToRubyValue(ValueRef value);
+		static VALUE MethodToRubyValue(ValueRef value);
+		static VALUE ListToRubyValue(ValueRef value);
 		static bool KindOf(VALUE value, VALUE klass);
 
 		static ValueException GetException();
-		static VALUE GenericKMethodCall(KMethodRef method, VALUE args);
+		static VALUE GenericMethodCall(MethodRef method, VALUE args);
 
 	private:
 		static VALUE KObjectClass;
-		static VALUE KMethodClass;
-		static VALUE KListClass;
+		static VALUE MethodClass;
+		static VALUE ListClass;
 		RubyUtils(){}
 		~RubyUtils(){}
 	};

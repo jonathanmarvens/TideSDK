@@ -210,7 +210,7 @@ namespace tide
 		// Except support for regular expressions
 		args.VerifyException("Bytes.split", "?s,i");
 
-		KListRef list = new StaticBoundList();
+		ListRef list = new StaticBoundList();
 		result->SetList(list);
 
 		std::string target = "";

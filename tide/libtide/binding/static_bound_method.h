@@ -10,7 +10,7 @@
 namespace tide
 {
 
-	class TIDE_API StaticBoundMethod : public KMethod
+	class TIDE_API StaticBoundMethod : public Method
 	{
 	public:
 
@@ -18,7 +18,7 @@ namespace tide
 		virtual ~StaticBoundMethod();
 
 		/**
-		 * @see KMethod::Call
+		 * @see Method::Call
 		 */
 		virtual ValueRef Call(const ValueList& args);
 
@@ -46,7 +46,7 @@ namespace tide
 		{
 			MethodCallback* callback = NewCallback<T, const ValueList&, ValueRef>(static_cast<T*>(this), method);
 
-			KMethodRef bound_method = new StaticBoundMethod(callback);
+			MethodRef bound_method = new StaticBoundMethod(callback);
 			ValueRef method_value = Value::NewMethod(bound_method);
 			this->Set(name, method_value);
 		}

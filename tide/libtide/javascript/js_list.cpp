@@ -8,7 +8,7 @@
 namespace tide
 {
 	KKJSList::KKJSList(JSContextRef context, JSObjectRef jsobject) :
-		KList("JavaScript.KKJSList"),
+		List("JavaScript.KKJSList"),
 		context(NULL),
 		jsobject(jsobject)
 	{
@@ -50,14 +50,14 @@ namespace tide
 
 	ValueRef KKJSList::At(unsigned int index)
 	{
-		std::string name = KList::IntToChars(index);
+		std::string name = List::IntToChars(index);
 		ValueRef value = this->kobject->Get(name.c_str());
 		return value;
 	}
 
 	void KKJSList::SetAt(unsigned int index, ValueRef value)
 	{
-		std::string name = KList::IntToChars(index);
+		std::string name = List::IntToChars(index);
 		this->kobject->Set(name.c_str(), value);
 	}
 

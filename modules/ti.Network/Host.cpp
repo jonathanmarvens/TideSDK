@@ -122,7 +122,7 @@ void Host::GetName(const ValueList& args, ValueRef result)
 
 void Host::GetAliases(const ValueList& args, ValueRef result)
 {
-    KListRef list = new StaticBoundList();
+    ListRef list = new StaticBoundList();
     std::vector<std::string> aliases = this->host.aliases();
     std::vector<std::string>::iterator iter = aliases.begin();
     while (iter!=aliases.end())
@@ -135,7 +135,7 @@ void Host::GetAliases(const ValueList& args, ValueRef result)
 
 void Host::GetAddresses(const ValueList& args, ValueRef result)
 {
-    KListRef list = new StaticBoundList();
+    ListRef list = new StaticBoundList();
     std::vector<Poco::Net::IPAddress> addresses = this->host.addresses();
     std::vector<Poco::Net::IPAddress>::iterator iter = addresses.begin();
     while (iter!=addresses.end())

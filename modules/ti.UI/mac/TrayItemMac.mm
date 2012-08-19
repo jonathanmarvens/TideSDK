@@ -25,7 +25,7 @@
 
 namespace ti {
 
-TrayItemMac::TrayItemMac(std::string& iconURL, KMethodRef cb) :
+TrayItemMac::TrayItemMac(std::string& iconURL, MethodRef cb) :
     TrayItem(iconURL),
     nativeMenu(0),
     menu(0),

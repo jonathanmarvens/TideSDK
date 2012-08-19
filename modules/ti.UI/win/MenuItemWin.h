@@ -42,7 +42,7 @@ public:
     void SetLabelImpl(std::string newLabel);
     void SetIconImpl(std::string newIconPath);
     void SetStateImpl(bool newState);
-    void SetCallbackImpl(KMethodRef callback);
+    void SetCallbackImpl(MethodRef callback);
     void SetSubmenuImpl(AutoPtr<Menu> newSubmenu);
     void SetEnabledImpl(bool enabled);
 

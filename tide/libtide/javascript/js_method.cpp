@@ -8,7 +8,7 @@
 namespace tide
 {
 	KKJSMethod::KKJSMethod(JSContextRef context, JSObjectRef jsobject, JSObjectRef thisObject) :
-		KMethod("JavaScript.KKJSMethod"),
+		Method("JavaScript.KKJSMethod"),
 		context(NULL),
 		jsobject(jsobject),
 		thisObject(thisObject)

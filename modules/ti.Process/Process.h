@@ -38,8 +38,8 @@ public:
     virtual void ExitMonitorAsync();
     virtual void ExitMonitorSync();
     std::string ArgumentsToString();
-    void SetOnRead(KMethodRef method);
-    void SetOnExit(KMethodRef onExit);
+    void SetOnRead(MethodRef method);
+    void SetOnExit(MethodRef onExit);
     void Exited(bool async);
     void ExitCallback(const ValueList& args, ValueRef result);
     virtual ValueRef Call(const ValueList& args);
@@ -50,13 +50,13 @@ public:
     void SetStderr(AutoPtr<Pipe> stderrPipe);
     inline bool IsRunning() { return running; }
     inline void SetPID(int pid) { this->pid = pid; }
-    virtual inline void SetArguments(KListRef args) { this->args = args; }
+    virtual inline void SetArguments(ListRef args) { this->args = args; }
     inline void SetEnvironment(KObjectRef env) { this->environment = env; }
     inline int GetPID() { return this->pid; }
     inline AutoPtr<Pipe> GetStdin() { return this->stdinPipe; }
     inline AutoPtr<Pipe> GetStdout() { return this->stdoutPipe; }
     inline AutoPtr<Pipe> GetStderr() { return this->stderrPipe; }
-    inline KListRef GetArgs() { return this->args; };
+    inline ListRef GetArgs() { return this->args; };
     inline KObjectRef GetEnvironment() { return this->environment; }
     void SetEnvironment(const char *name, const char *value)
     {
@@ -100,14 +100,14 @@ protected:
     AutoPtr<Pipe> stderrPipe;
     AutoPtr<Pipe> stdinPipe;
     KObjectRef environment;
-    KListRef args;
+    ListRef args;
     int pid;
     ValueRef exitCode;
-    KMethodRef onRead;
-    KMethodRef onExit;
+    MethodRef onRead;
+    MethodRef onExit;
     Poco::RunnableAdapter<Process>* exitMonitorAdapter;
     Poco::Thread exitMonitorThread;
-    KMethodRef exitCallback;
+    MethodRef exitCallback;
     bool running;
 };
 

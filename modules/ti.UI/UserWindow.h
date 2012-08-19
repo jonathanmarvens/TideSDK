@@ -146,13 +146,13 @@ public:
     void _SetContents(const ValueList& args, ValueRef result);
     void SetContents(const std::string& content, const std::string& baseURL);
     void _SetPluginsEnabled(const ValueList& args, ValueRef result);
-    virtual void OpenFileChooserDialog(KMethodRef callback, bool multiple,
+    virtual void OpenFileChooserDialog(MethodRef callback, bool multiple,
         std::string& title, std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription) = 0;
-    virtual void OpenFolderChooserDialog( KMethodRef callback,
+    virtual void OpenFolderChooserDialog( MethodRef callback,
         bool multiple, std::string& title, std::string& path,
         std::string& defaultName) = 0;
-    virtual void OpenSaveAsDialog(KMethodRef callback, std::string& title,
+    virtual void OpenSaveAsDialog(MethodRef callback, std::string& title,
         std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription) = 0;
     void _SetDocumentEdited(const ValueList &args, ValueRef result);

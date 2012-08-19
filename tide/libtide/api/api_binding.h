@@ -23,12 +23,12 @@ namespace tide
 		virtual ~APIBinding();
 
 		void Log(int severity, ValueRef);
-		static KListRef ComponentVectorToKList(
+		static ListRef ComponentVectorToList(
 			vector<SharedComponent>&,
 			KComponentType filter = UNKNOWN);
-		static KListRef DependencyVectorToKList(
+		static ListRef DependencyVectorToList(
 			std::vector<SharedDependency>&);
-		static KListRef ManifestToKList(
+		static ListRef ManifestToList(
 			vector<pair<string, string> >&);
 
 
@@ -43,7 +43,7 @@ namespace tide
 		Poco::Thread* installerThread;
 		Poco::RunnableAdapter<APIBinding>* installerThreadAdapter;
 		vector<SharedDependency> installerDependencies;
-		KMethodRef installerCallback;
+		MethodRef installerCallback;
 
 		void RunInstaller();
 
@@ -86,8 +86,8 @@ namespace tide
 		void _InstallDependencies(const ValueList& args, ValueRef value);
 
 		void _CreateKObject(const ValueList& args, ValueRef result);
-		void _CreateKMethod(const ValueList& args, ValueRef result);
-		void _CreateKList(const ValueList& args, ValueRef result);
+		void _CreateMethod(const ValueList& args, ValueRef result);
+		void _CreateList(const ValueList& args, ValueRef result);
 		void _CreateBytes(const ValueList& args, ValueRef result);
 	};
 
@@ -110,12 +110,12 @@ namespace tide
 	};
 
 	/**
-	 * An wrapper for a KMethod which encapsulates another one for testing
+	 * An wrapper for a Method which encapsulates another one for testing
 	 */
-	class KMethodWrapper : public KMethod
+	class MethodWrapper : public Method
 	{
 	public:
-		KMethodWrapper(KMethodRef method);
+		MethodWrapper(MethodRef method);
 		ValueRef Call(const ValueList& args);
 		void Set(const char *name, ValueRef value);
 		ValueRef Get(const char *name);
@@ -125,16 +125,16 @@ namespace tide
 		bool Equals(KObjectRef other);
 
 	private:
-		KMethodRef method;
+		MethodRef method;
 	};
 
 	/**
-	 * An wrapper for a KList which encapsulates another one for testing
+	 * An wrapper for a List which encapsulates another one for testing
 	 */
-	class KListWrapper : public KList
+	class ListWrapper : public List
 	{
 	public:
-		KListWrapper(KListRef list);
+		ListWrapper(ListRef list);
 		void Append(ValueRef value);
 		unsigned int Size();
 		ValueRef At(unsigned int index);
@@ -147,7 +147,7 @@ namespace tide
 		SharedString DisplayString(int levels=3);
 		bool Equals(KObjectRef other);
 	private:
-		KListRef list;
+		ListRef list;
 	};
 }
 

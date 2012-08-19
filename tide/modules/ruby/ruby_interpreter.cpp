@@ -56,7 +56,7 @@ namespace tide
 		}
 		else if (v->IsMethod()) // Method call
 		{
-			rval = RubyUtils::GenericKMethodCall(v->ToMethod(), args);
+			rval = RubyUtils::GenericMethodCall(v->ToMethod(), args);
 		}
 		else // Plain old access
 		{
@@ -79,7 +79,7 @@ namespace tide
 		{
 			cid = idv->ToInt();
 		}
-		return std::string("$windowProc") + KList::IntToChars(cid);
+		return std::string("$windowProc") + List::IntToChars(cid);
 	}
 
 	VALUE RubyInterpreter::GetContext(KObjectRef global)
@@ -163,7 +163,7 @@ namespace tide
 				continue;
 
 			volatile VALUE rmeth = rb_funcall(ctx, rb_intern("method"), 1, meth_symbol);
-			KMethodRef method = new KRubyMethod(rmeth, meth_name);
+			MethodRef method = new KRubyMethod(rmeth, meth_name);
 			o->SetMethod(meth_name, method);
 		}
 	}

@@ -189,7 +189,7 @@ void Process::Exited(bool async)
     }
 }
 
-void Process::SetOnRead(KMethodRef newOnRead)
+void Process::SetOnRead(MethodRef newOnRead)
 {
     if (running)
     {
@@ -201,7 +201,7 @@ void Process::SetOnRead(KMethodRef newOnRead)
     this->onRead = newOnRead;
 }
 
-void Process::SetOnExit(KMethodRef newOnExit)
+void Process::SetOnExit(MethodRef newOnExit)
 {
     this->AddEventListener(Event::EXIT, newOnExit);
     if (!this->onExit.isNull())

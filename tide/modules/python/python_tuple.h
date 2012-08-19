@@ -11,7 +11,7 @@
 
 namespace tide
 {
-	class KPythonTuple : public KList
+	class KPythonTuple : public List
 	{
 	public:
 		KPythonTuple(PyObject *obj);

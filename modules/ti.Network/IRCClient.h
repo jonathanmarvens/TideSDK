@@ -50,7 +50,7 @@ private:
 
     KObjectRef global;
     IRC irc;
-    KMethodRef callback;
+    MethodRef callback;
     Poco::Thread *thread;
 };
 

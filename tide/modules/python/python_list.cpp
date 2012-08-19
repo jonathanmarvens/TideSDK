@@ -8,7 +8,7 @@
 namespace tide
 {
 	KPythonList::KPythonList(PyObject *list) :
-		KList("Python.KPythonList"),
+		List("Python.KPythonList"),
 		list(list),
 		object(new KPythonObject(list, true))
 	{
@@ -68,9 +68,9 @@ namespace tide
 
 	void KPythonList::Set(const char* name, ValueRef value)
 	{
-		if (KList::IsInt(name))
+		if (List::IsInt(name))
 		{
-			this->SetAt(KList::ToIndex(name), value);
+			this->SetAt(List::ToIndex(name), value);
 		}
 		else
 		{
@@ -95,9 +95,9 @@ namespace tide
 
 	ValueRef KPythonList::Get(const char* name)
 	{
-		if (KList::IsInt(name))
+		if (List::IsInt(name))
 		{
-			return this->At(KList::ToIndex(name));
+			return this->At(List::ToIndex(name));
 		}
 		else
 		{
@@ -110,7 +110,7 @@ namespace tide
 		SharedStringList property_names = object->GetPropertyNames();
 		for (size_t i = 0; i < this->Size(); i++)
 		{
-			std::string name = KList::IntToChars(i);
+			std::string name = List::IntToChars(i);
 			property_names->push_back(new std::string(name));
 		}
 

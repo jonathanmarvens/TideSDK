@@ -8,7 +8,7 @@
 namespace tide {
 
 	KPHPFunction::KPHPFunction(const char* functionName) :
-		KMethod("PHP.KPHPFunction"),
+		Method("PHP.KPHPFunction"),
 		methodName(functionName),
 		zMethodName(0),
 		globalObject(PHPUtils::GetCurrentGlobalObject())

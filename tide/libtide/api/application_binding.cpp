@@ -279,7 +279,7 @@ namespace tide
 		vector<pair<string, string> > manifest =
 			BootUtils::ReadManifestFile(this->application->manifestPath);
 
-		KListRef manifestList = APIBinding::ManifestToKList(manifest);
+		ListRef manifestList = APIBinding::ManifestToList(manifest);
 		result->SetList(manifestList);
 	}
 
@@ -299,7 +299,7 @@ namespace tide
 	void ApplicationBinding::_GetArguments(const ValueList& args, ValueRef result)
 	{
 		std::vector<std::string> arguments = this->application->GetArguments();
-		KListRef argumentList = StaticBoundList::FromStringVector(arguments);
+		ListRef argumentList = StaticBoundList::FromStringVector(arguments);
 		result->SetList(argumentList);
 	}
 
@@ -320,14 +320,14 @@ namespace tide
 
 	void ApplicationBinding::_GetDependencies(const ValueList& args, ValueRef result)
 	{
-		result->SetList(APIBinding::DependencyVectorToKList(
+		result->SetList(APIBinding::DependencyVectorToList(
 			this->application->dependencies));
 	}
 
 	void ApplicationBinding::_ResolveDependencies(const ValueList& args, ValueRef result)
 	{
 		std::vector<SharedDependency> unresolved = this->application->ResolveDependencies();
-		result->SetList(APIBinding::DependencyVectorToKList(unresolved));
+		result->SetList(APIBinding::DependencyVectorToList(unresolved));
 	}
 
 	void ApplicationBinding::_GetComponents(const ValueList& args, ValueRef result)
@@ -345,14 +345,14 @@ namespace tide
 		{
 			components.push_back(this->application->sdks[i]);
 		}
-		KListRef componentList = APIBinding::ComponentVectorToKList(components);
+		ListRef componentList = APIBinding::ComponentVectorToList(components);
 		result->SetList(componentList);
 	}
 
 	void ApplicationBinding::_GetModules(const ValueList& args, ValueRef result)
 	{
 		std::vector<SharedComponent>& components = this->application->modules;
-		KListRef componentList = APIBinding::ComponentVectorToKList(components);
+		ListRef componentList = APIBinding::ComponentVectorToList(components);
 		result->SetList(componentList);
 	}
 
@@ -372,7 +372,7 @@ namespace tide
 	{
 		std::vector<SharedComponent> components;
 		this->application->GetAvailableComponents(components);
-		KListRef componentList = APIBinding::ComponentVectorToKList(components);
+		ListRef componentList = APIBinding::ComponentVectorToList(components);
 		result->SetList(componentList);
 	}
 
@@ -380,7 +380,7 @@ namespace tide
 	{
 		std::vector<SharedComponent> components;
 		this->application->GetAvailableComponents(components);
-		KListRef componentList = APIBinding::ComponentVectorToKList(components, MODULE);
+		ListRef componentList = APIBinding::ComponentVectorToList(components, MODULE);
 		result->SetList(componentList);
 	}
 
@@ -388,7 +388,7 @@ namespace tide
 	{
 		std::vector<SharedComponent> components;
 		this->application->GetAvailableComponents(components);
-		KListRef componentList = APIBinding::ComponentVectorToKList(components, RUNTIME);
+		ListRef componentList = APIBinding::ComponentVectorToList(components, RUNTIME);
 		result->SetList(componentList);
 	}
 
@@ -396,7 +396,7 @@ namespace tide
 	{
 		std::vector<SharedComponent> components;
 		this->application->GetAvailableComponents(components, true);
-		KListRef componentList = APIBinding::ComponentVectorToKList(components);
+		ListRef componentList = APIBinding::ComponentVectorToList(components);
 		result->SetList(componentList);
 	}
 
@@ -404,7 +404,7 @@ namespace tide
 	{
 		std::vector<SharedComponent> components;
 		this->application->GetAvailableComponents(components, true);
-		KListRef componentList = APIBinding::ComponentVectorToKList(components, MODULE);
+		ListRef componentList = APIBinding::ComponentVectorToList(components, MODULE);
 		result->SetList(componentList);
 	}
 
@@ -412,7 +412,7 @@ namespace tide
 	{
 		std::vector<SharedComponent> components;
 		this->application->GetAvailableComponents(components, true);
-		KListRef componentList = APIBinding::ComponentVectorToKList(components, RUNTIME);
+		ListRef componentList = APIBinding::ComponentVectorToList(components, RUNTIME);
 		result->SetList(componentList);
 	}
 }

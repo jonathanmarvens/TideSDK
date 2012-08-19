@@ -8,7 +8,7 @@
 
 namespace tide
 {
-	class KPHPMethod : public KMethod
+	class KPHPMethod : public Method
 	{
 		public:
 		KPHPMethod(zval* object, const char* methodName);

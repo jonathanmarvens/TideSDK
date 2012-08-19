@@ -84,7 +84,7 @@ static void HandleHResultError(string message, HRESULT result, bool fatal=false)
             break;
         default:
             message.append("Unknown Error (");
-            message.append(KList::IntToChars(result));
+            message.append(List::IntToChars(result));
             message.append(")");
             break;
     }
@@ -1206,33 +1206,33 @@ void UserWindowWin::ShowInspector(bool console)
     }
 }
 
-void UserWindowWin::OpenFileChooserDialog(KMethodRef callback, bool multiple,
+void UserWindowWin::OpenFileChooserDialog(MethodRef callback, bool multiple,
     string& title, string& path, string& defaultName,
     vector<string>& types, string& typesDescription)
 {
 
-    KListRef results = this->SelectFile(
+    ListRef results = this->SelectFile(
         false, multiple, title, path, defaultName, types, typesDescription);
     callback->Call(ValueList(Value::NewList(results)));
 }
 
-void UserWindowWin::OpenFolderChooserDialog(KMethodRef callback, bool multiple,
+void UserWindowWin::OpenFolderChooserDialog(MethodRef callback, bool multiple,
     string& title, string& path, string& defaultName)
 {
-    KListRef results = SelectDirectory(multiple, title, path, defaultName);
+    ListRef results = SelectDirectory(multiple, title, path, defaultName);
     callback->Call(ValueList(Value::NewList(results)));
 }
 
-void UserWindowWin::OpenSaveAsDialog(KMethodRef callback, string& title,
+void UserWindowWin::OpenSaveAsDialog(MethodRef callback, string& title,
     string& path, string& defaultName,
     vector<string>& types, string& typesDescription)
 {
-    KListRef results = SelectFile(true, false, title, path, defaultName,
+    ListRef results = SelectFile(true, false, title, path, defaultName,
          types, typesDescription);
     callback->Call(ValueList(Value::NewList(results)));
 }
 
-KListRef UserWindowWin::SelectFile(bool saveDialog, bool multiple, string& title,
+ListRef UserWindowWin::SelectFile(bool saveDialog, bool multiple, string& title,
     string& path, string& defaultName, vector<string>& types,
     string& typesDescription)
 {
@@ -1331,7 +1331,7 @@ KListRef UserWindowWin::SelectFile(bool saveDialog, bool multiple, string& title
     // If multiple files have been selected there will be two '\0' characters
     // at the end of this array of characters, so if we enabled multiple file
     // selected, just check for that second '\0'.
-    KListRef results = new StaticBoundList();
+    ListRef results = new StaticBoundList();
     if (multiple && ofn.lpstrFile[ofn.nFileOffset - 1] == L'\0')
     {
         vector<wstring> files;
@@ -1351,10 +1351,10 @@ KListRef UserWindowWin::SelectFile(bool saveDialog, bool multiple, string& title
     return results;
 }
 
-KListRef UserWindowWin::SelectDirectory(bool multiple, string& title,
+ListRef UserWindowWin::SelectDirectory(bool multiple, string& title,
     string& path, string& defaultName)
 {
-    KListRef results = new StaticBoundList();
+    ListRef results = new StaticBoundList();
 
     BROWSEINFO bi = { 0 };
     wstring titleW = ::UTF8ToWide(title);

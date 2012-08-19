@@ -35,12 +35,12 @@ namespace tide
 	bool ProfiledBoundObject::AlreadyWrapped(ValueRef value)
 	{
 		if (value->IsMethod()) {
-			KMethodRef source = value->ToMethod();
+			MethodRef source = value->ToMethod();
 			AutoPtr<ProfiledBoundMethod> po = source.cast<ProfiledBoundMethod>();
 			return !po.isNull();
 
 		} else if (value->IsList()) {
-			KListRef source = value->ToList();
+			ListRef source = value->ToList();
 			AutoPtr<ProfiledBoundList> po = source.cast<ProfiledBoundList>();
 			return !po.isNull();
 
@@ -62,13 +62,13 @@ namespace tide
 		}
 		else if (value->IsMethod())
 		{
-			KMethodRef toWrap = value->ToMethod();
-			KMethodRef wrapped = new ProfiledBoundMethod(toWrap, type);
+			MethodRef toWrap = value->ToMethod();
+			MethodRef wrapped = new ProfiledBoundMethod(toWrap, type);
 			return Value::NewMethod(wrapped);
 		}
 		else if (value->IsList())
 		{
-			KListRef wrapped = new ProfiledBoundList(value->ToList());
+			ListRef wrapped = new ProfiledBoundList(value->ToList());
 			return Value::NewList(wrapped);
 		}
 		else if (value->IsObject())

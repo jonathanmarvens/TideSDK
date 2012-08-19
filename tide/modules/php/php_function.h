@@ -8,7 +8,7 @@
 
 namespace tide
 {
-	class KPHPFunction : public KMethod
+	class KPHPFunction : public Method
 	{
 		public:
 		KPHPFunction(const char *functionName);

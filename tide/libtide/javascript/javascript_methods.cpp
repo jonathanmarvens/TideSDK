@@ -25,7 +25,7 @@ namespace tide
 		class MainThreadCaller
 		{
 		public:
-			KMethodRef method;
+			MethodRef method;
 			ValueList args;
 			
 			void OnTimer(Poco::Timer& timer)
@@ -41,7 +41,7 @@ namespace tide
 		
 		static ValueRef CreateTimer(const ValueList& args, bool interval)
 		{
-			KMethodRef method = 0;
+			MethodRef method = 0;
 			if (args.at(0)->IsMethod())
 			{
 				method = args.GetMethod(0);

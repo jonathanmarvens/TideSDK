@@ -28,19 +28,19 @@ namespace tide
 		return new Event(AutoPtr<KEventObject>(this, true), eventName);
 	}
 
-	void KEventObject::AddEventListener(const char* event, KMethodRef callback)
+	void KEventObject::AddEventListener(const char* event, MethodRef callback)
 	{
 		Poco::FastMutex::ScopedLock lock(this->listenersMutex);
 		listeners.push_back(new EventListener(event, callback));
 	}
 
-	void KEventObject::AddEventListener(std::string& event, KMethodRef callback)
+	void KEventObject::AddEventListener(std::string& event, MethodRef callback)
 	{
 		Poco::FastMutex::ScopedLock lock(this->listenersMutex);
 		listeners.push_back(new EventListener(event, callback));
 	}
 
-	void KEventObject::RemoveEventListener(std::string& event, KMethodRef callback)
+	void KEventObject::RemoveEventListener(std::string& event, MethodRef callback)
 	{
 		Poco::FastMutex::ScopedLock lock(this->listenersMutex);
 
@@ -166,7 +166,7 @@ namespace tide
 	void KEventObject::_AddEventListener(const ValueList& args, ValueRef result)
 	{
 		std::string event;
-		KMethodRef callback;
+		MethodRef callback;
 
 		if (args.size() > 1 && args.at(0)->IsString() && args.at(1)->IsMethod())
 		{
@@ -202,13 +202,13 @@ namespace tide
 	}
 
 
-	EventListener::EventListener(std::string& targetedEvent, KMethodRef callback) :
+	EventListener::EventListener(std::string& targetedEvent, MethodRef callback) :
 		targetedEvent(targetedEvent),
 		callback(callback)
 	{
 	}
 
-	EventListener::EventListener(const char* targetedEvent, KMethodRef callback) :
+	EventListener::EventListener(const char* targetedEvent, MethodRef callback) :
 		targetedEvent(targetedEvent),
 		callback(callback)
 	{
@@ -219,7 +219,7 @@ namespace tide
 		return targetedEvent.compare(event) == 0 || targetedEvent == Event::ALL;
 	}
 
-	inline KMethodRef EventListener::Callback()
+	inline MethodRef EventListener::Callback()
 	{
 		return this->callback;
 	}
