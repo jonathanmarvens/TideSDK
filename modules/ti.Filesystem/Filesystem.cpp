@@ -292,7 +292,7 @@ void Filesystem::GetRootDirectories(const ValueList& args, ValueRef result)
         std::vector<std::string> roots;
         path.listRoots(roots);
 
-        KListRef rootList = new StaticBoundList();
+        ListRef rootList = new StaticBoundList();
         for(size_t i = 0; i < roots.size(); i++)
         {
             File* file = new File(roots.at(i));
@@ -300,7 +300,7 @@ void Filesystem::GetRootDirectories(const ValueList& args, ValueRef result)
             rootList->Append(value);
         }
 
-        KListRef list = rootList;
+        ListRef list = rootList;
         result->SetList(list);
     }
     catch (Poco::Exception& exc)
@@ -322,7 +322,7 @@ void Filesystem::ExecuteAsyncCopy(const ValueList& args, ValueRef result)
     }
     else if (args.at(0)->IsList())
     {
-        KListRef list = args.at(0)->ToList();
+        ListRef list = args.at(0)->ToList();
         for (unsigned int c = 0; c < list->Size(); c++)
         {
             files.push_back(FilenameFromValue(list->At(c)));
@@ -334,7 +334,7 @@ void Filesystem::ExecuteAsyncCopy(const ValueList& args, ValueRef result)
     }
     ValueRef v = args.at(1);
     std::string destination(FilenameFromValue(v));
-    KMethodRef method = args.at(2)->ToMethod();
+    MethodRef method = args.at(2)->ToMethod();
     KObjectRef copier = new AsyncCopy(this,host,files,destination,method);
     result->SetObject(copier);
     asyncOperations.push_back(copier);
@@ -384,7 +384,7 @@ void Filesystem::OnAsyncOperationTimer(Poco::Timer &timer)
     START_TIDE_THREAD;
 
     ValueList args = ValueList();
-    KMethodRef m = this->Get("_invoke")->ToMethod();
+    MethodRef m = this->Get("_invoke")->ToMethod();
     ValueRef result = RunOnMainThread(m, args);
     if (result->ToBool())
     {

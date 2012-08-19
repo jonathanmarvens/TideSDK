@@ -296,7 +296,7 @@ AutoPtr<Menu> UIMac::GetContextMenu()
     return this->contextMenu;
 }
 
-AutoPtr<TrayItem> UIMac::AddTray(string& iconPath, KMethodRef eventListener)
+AutoPtr<TrayItem> UIMac::AddTray(string& iconPath, MethodRef eventListener)
 {
     return new TrayItemMac(iconPath, eventListener);
 }

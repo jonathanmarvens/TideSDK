@@ -35,7 +35,7 @@ using namespace Poco::Net;
 
 namespace ti {
 
-static KListRef interfaceList(0);
+static ListRef interfaceList(0);
 static std::string firstIPv4Address = "127.0.0.1";
 
 static void GetInterfaceList()
@@ -234,7 +234,7 @@ void Network::_GetHostByAddress(const ValueList& args, ValueRef result)
         }
         else
         {
-            KMethodRef toStringMethod = obj->GetMethod("toString");
+            MethodRef toStringMethod = obj->GetMethod("toString");
             if (toStringMethod.isNull())
                 throw ValueException::FromString("Unknown object passed");
 
@@ -275,7 +275,7 @@ void Network::_CreateTCPSocket(const ValueList& args, ValueRef result)
 void Network::_CreateTCPServerSocket(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createTCPServerSocket", "m");
-    KMethodRef target = args.at(0)->ToMethod();
+    MethodRef target = args.at(0)->ToMethod();
     result->SetObject(new TCPServerSocket(target));
 }
 
@@ -304,7 +304,7 @@ void Network::_CreateHTTPCookie(const ValueList& args, ValueRef result)
 void Network::_AddConnectivityListener(const ValueList& args, ValueRef result)
 {
     args.VerifyException("addConnectivityListener", "m");
-    KMethodRef callback = args.at(0)->ToMethod();
+    MethodRef callback = args.at(0)->ToMethod();
 
     // DEPRECATED: invoke the callback and always alert we are online.
     callback->Call(Value::NewBool(true));

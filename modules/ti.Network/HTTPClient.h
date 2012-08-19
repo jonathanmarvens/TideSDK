@@ -87,11 +87,11 @@ private:
     Poco::Net::NameValueCollection nextResponseHeaders;
     std::vector<std::string> requestHeaders;
 
-    KMethodRef outputHandler;
-    KMethodRef ondatastream;
-    KMethodRef onreadystate;
-    KMethodRef onsendstream;
-    KMethodRef onload;
+    MethodRef outputHandler;
+    MethodRef ondatastream;
+    MethodRef onreadystate;
+    MethodRef onsendstream;
+    MethodRef onload;
 
     // This variables must be reset on each send()
     SharedPtr<Poco::Thread> thread;

@@ -34,7 +34,7 @@ private:
     void CreateProcess(const ValueList& args, ValueRef result);
     void CreatePipe(const ValueList& args, ValueRef result);
     void GetCurrentProcess(const ValueList& args, ValueRef result);
-    void ExtendArgs(KListRef dest, KListRef args);
+    void ExtendArgs(ListRef dest, ListRef args);
 };
 
 } // namespace ti

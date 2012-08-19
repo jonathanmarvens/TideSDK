@@ -35,8 +35,8 @@ namespace tide
 {
 	class Value;
 	class Object;
-	class KMethod;
-	class KList;
+	class Method;
+	class List;
 
 	class StaticBoundObject;
 	class StaticBoundMethod;
@@ -52,8 +52,8 @@ namespace tide
 
 	typedef AutoPtr<Value> ValueRef;
 	typedef AutoPtr<Object> KObjectRef;
-	typedef AutoPtr<KMethod> KMethodRef;
-	typedef AutoPtr<KList> KListRef;
+	typedef AutoPtr<Method> MethodRef;
+	typedef AutoPtr<List> ListRef;
 	typedef AutoPtr<Bytes> BytesRef;
 
 	typedef SharedPtr<std::string> SharedString;

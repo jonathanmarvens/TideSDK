@@ -198,7 +198,7 @@ void ProcessBinding::CreateProcess(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createProcess", "o|l");
     KObjectRef temp = 0;
-    KListRef argList = 0;
+    ListRef argList = 0;
     KObjectRef environment = 0;
     AutoPtr<Pipe> stdinPipe = 0;
     AutoPtr<Pipe> stdoutPipe = 0;
@@ -274,7 +274,7 @@ void ProcessBinding::CreateProcess(const ValueList& args, ValueRef result)
             "Titanium.Process 1st argument must not be null/empty");
     }
 
-    KListRef argsClone = new StaticBoundList();
+    ListRef argsClone = new StaticBoundList();
     ExtendArgs(argsClone, argList);
 
     AutoPtr<Process> process = Process::CreateProcess();
@@ -293,14 +293,14 @@ void ProcessBinding::CreateProcess(const ValueList& args, ValueRef result)
     result->SetMethod(process);
 }
 
-void ProcessBinding::ExtendArgs(KListRef dest, KListRef args)
+void ProcessBinding::ExtendArgs(ListRef dest, ListRef args)
 {
     for (size_t i = 0; i < args->Size(); i++)
     {
         ValueRef arg = Value::Undefined;
         if (args->At(i)->IsList())
         {
-            KListRef list = args->At(i)->ToList();
+            ListRef list = args->At(i)->ToList();
             ExtendArgs(dest, list);
             continue;
         }

@@ -36,12 +36,12 @@ public:
     UserWindowWin(AutoPtr<WindowConfig> config, AutoPtr<UserWindow>& parent);
     ~UserWindowWin();
 
-    void OpenFileChooserDialog(KMethodRef callback, bool multiple,
+    void OpenFileChooserDialog(MethodRef callback, bool multiple,
         std::string& title, std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription);
-    void OpenFolderChooserDialog( KMethodRef callback, bool multiple,
+    void OpenFolderChooserDialog( MethodRef callback, bool multiple,
         std::string& title, std::string& path, std::string& defaultName);
-    void OpenSaveAsDialog( KMethodRef callback, std::string& title,
+    void OpenSaveAsDialog( MethodRef callback, std::string& title,
         std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription);
     void ResizeSubViews();
@@ -160,11 +160,11 @@ private:
     void SetupMenu();
     void SetupIcon();
 
-    KListRef SelectFile(
+    ListRef SelectFile(
         bool saveDialog, bool multiple, std::string& title,
         std::string& path, std::string& defaultName,
         std::vector<std::string>& types, std::string& typesDescription);
-    KListRef SelectDirectory(bool multiple, std::string& title,
+    ListRef SelectDirectory(bool multiple, std::string& title,
         std::string& path, std::string& defaultName);
     Logger* logger;
 };

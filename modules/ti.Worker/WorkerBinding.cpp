@@ -42,7 +42,7 @@ WorkerBinding::~WorkerBinding()
 {
 }
 
-static std::string GetCodeFromMethod(KMethodRef method)
+static std::string GetCodeFromMethod(MethodRef method)
 {
     // Call the toString method on this JavaScript Function.
     if (!method->HasProperty("toString") || !method->Get("toString")->IsMethod())

@@ -312,7 +312,7 @@ namespace tide
 		}
 	}
 
-	KMethodRef ArgList::GetMethod(size_t index, KMethodRef defaultValue) const
+	MethodRef ArgList::GetMethod(size_t index, MethodRef defaultValue) const
 	{
 		if (this->size() > index && this->at(index)->IsMethod())
 		{
@@ -324,7 +324,7 @@ namespace tide
 		}
 	}
 
-	KListRef ArgList::GetList(size_t index, KListRef defaultValue) const
+	ListRef ArgList::GetList(size_t index, ListRef defaultValue) const
 	{
 		if (this->size() > index && this->at(index)->IsList())
 		{

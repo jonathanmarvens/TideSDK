@@ -28,7 +28,7 @@ vector<AutoPtr<TrayItemWin> > TrayItemWin::trayItems;
 UINT TrayItemWin::trayClickedMessage =
     ::RegisterWindowMessageA(PRODUCT_NAME"TrayClicked");
 
-TrayItemWin::TrayItemWin(string& iconURL, KMethodRef cbSingleClick)
+TrayItemWin::TrayItemWin(string& iconURL, MethodRef cbSingleClick)
     : TrayItem(iconURL)
     , oldNativeMenu(0)
     , trayIconData(0)

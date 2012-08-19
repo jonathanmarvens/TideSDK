@@ -9,7 +9,7 @@
 namespace tide
 {
 	KRubyMethod::KRubyMethod(VALUE method) :
-		KMethod("Ruby.KRubyMethod"),
+		Method("Ruby.KRubyMethod"),
 		method(method),
 		arg(Qnil),
 		object(new KRubyObject(method)),

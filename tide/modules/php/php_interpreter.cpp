@@ -25,7 +25,7 @@ static string GetContextId(KObjectRef global)
 	{
 		static int nextId = 0;
 		contextId.append("__kroll__namespace__");
-		contextId.append(KList::IntToChars(++nextId));
+		contextId.append(List::IntToChars(++nextId));
 		global->SetString("__php_module_id__", contextId);
 	}
 

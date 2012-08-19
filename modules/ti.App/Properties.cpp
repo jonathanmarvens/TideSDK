@@ -184,7 +184,7 @@ void Properties::GetList(const ValueList& args, ValueRef result)
 
     if (!stringValue->IsNull())
     {
-        KListRef list = new StaticBoundList();
+        ListRef list = new StaticBoundList();
         std::string string = stringValue->ToString();
         Poco::StringTokenizer t(string, ",", Poco::StringTokenizer::TOK_TRIM);
         for (size_t i = 0; i < t.count(); i++)
@@ -193,7 +193,7 @@ void Properties::GetList(const ValueList& args, ValueRef result)
             list->Append(token);
         }
 
-        KListRef list2 = list;
+        ListRef list2 = list;
         result->SetList(list2);
     }
 }
@@ -227,7 +227,7 @@ void Properties::SetList(const ValueList& args, ValueRef result)
     args.VerifyException("setList", "s l");
 
     std::string property = args.at(0)->ToString();
-    KListRef list = args.at(1)->ToList();
+    ListRef list = args.at(1)->ToList();
 
     std::string value = "";
     for (unsigned int i = 0; i < list->Size(); i++)
@@ -271,7 +271,7 @@ void Properties::ListProperties(const ValueList& args, ValueRef result)
     std::vector<std::string> keys;
     config->keys(keys);
 
-    KListRef property_list = new StaticBoundList();
+    ListRef property_list = new StaticBoundList();
     for (size_t i = 0; i < keys.size(); i++)
     {
         std::string property_name = keys.at(i);

@@ -84,7 +84,7 @@ static std::vector<std::string> ValueToURIList(ValueRef value)
     std::vector<std::string> uriList;
     if (value->IsList())
     {
-        KListRef list(value->ToList());
+        ListRef list(value->ToList());
         for (unsigned int i = 0; i < list->Size(); i++)
         {
             ValueRef element(list->At(i));

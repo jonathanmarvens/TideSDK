@@ -119,7 +119,7 @@ void UIWin::SetIcon(std::string& iconPath)
     }
 }
 
-AutoPtr<TrayItem> UIWin::AddTray(std::string& iconPath, KMethodRef cbSingleClick)
+AutoPtr<TrayItem> UIWin::AddTray(std::string& iconPath, MethodRef cbSingleClick)
 {
     AutoPtr<TrayItem> trayItem = new TrayItemWin(iconPath, cbSingleClick);
     return trayItem;

@@ -40,15 +40,15 @@ namespace tide
 				// PHP arrays are almost always passed by value, which means
 				// they are all just copies of each other. To emulate this
 				// behavior we might as well just make a copy of the array
-				// here and turn it into a KList.
-				returnValue = Value::NewList(PHPArrayToKList(value TSRMLS_CC));
+				// here and turn it into a List.
+				returnValue = Value::NewList(PHPArrayToList(value TSRMLS_CC));
 			}
 			else if (IS_OBJECT == type)
 			{
 				if (HAS_CLASS_ENTRY(*value) &&
 					Z_OBJCE_P(value) == PHPKObjectClassEntry ||
-					Z_OBJCE_P(value) == PHPKMethodClassEntry ||
-					Z_OBJCE_P(value) == PHPKListClassEntry)
+					Z_OBJCE_P(value) == PHPMethodClassEntry ||
+					Z_OBJCE_P(value) == PHPListClassEntry)
 				{
 					PHPKObject* phpKObject = reinterpret_cast<PHPKObject*>(
 						zend_object_store_get_object(value TSRMLS_CC));
@@ -114,11 +114,11 @@ namespace tide
 			}
 			else if (value->IsMethod())
 			{
-				KMethodToKPHPMethod(value, returnValue);
+				MethodToKPHPMethod(value, returnValue);
 			}
 			else if (value->IsList())
 			{
-				KListToKPHPArray(value, returnValue);
+				ListToKPHPArray(value, returnValue);
 			}
 			else
 			{
@@ -142,15 +142,15 @@ namespace tide
 			}
 		}
 
-		KListRef PHPArrayToKList(zval* array TSRMLS_DC, bool ignoreGlobals)
+		ListRef PHPArrayToList(zval* array TSRMLS_DC, bool ignoreGlobals)
 		{
 			HashTable* arrayHash = Z_ARRVAL_P(array);
-			return PHPHashTableToKList(arrayHash TSRMLS_CC);
+			return PHPHashTableToList(arrayHash TSRMLS_CC);
 		}
 
-		KListRef PHPHashTableToKList(HashTable* hashTable TSRMLS_DC, bool ignoreGlobals)
+		ListRef PHPHashTableToList(HashTable* hashTable TSRMLS_DC, bool ignoreGlobals)
 		{
-			KListRef list = new StaticBoundList();
+			ListRef list = new StaticBoundList();
 
 			for (zend_hash_internal_pointer_reset(hashTable);
 				zend_hash_has_more_elements(hashTable) == SUCCESS;
@@ -314,14 +314,14 @@ namespace tide
 			}
 		}
 
-		KListRef GetClassVars(zend_class_entry *ce TSRMLS_DC)
+		ListRef GetClassVars(zend_class_entry *ce TSRMLS_DC)
 		{
 			zval classVars;
 			array_init(&classVars);
 			zend_update_class_constants(ce TSRMLS_CC);
 			add_class_vars(ce, &ce->default_properties, &classVars TSRMLS_CC);
 			add_class_vars(ce, CE_STATIC_MEMBERS(ce), &classVars TSRMLS_CC);
-			return PHPArrayToKList(&classVars TSRMLS_CC);
+			return PHPArrayToList(&classVars TSRMLS_CC);
 		}
 
 		zend_function* GetGlobalFunction(const char *name TSRMLS_DC)
@@ -349,7 +349,7 @@ namespace tide
 			// Push the variables from the given symbol table to the global object.
 			if (!global.isNull())
 			{
-				KListRef symbols(PHPHashTableToKList(symbolTable TSRMLS_CC, true));
+				ListRef symbols(PHPHashTableToList(symbolTable TSRMLS_CC, true));
 				SharedStringList keys(symbols->GetPropertyNames());
 				for (size_t i = 0; i < keys->size(); i++)
 				{

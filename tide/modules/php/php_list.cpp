@@ -8,7 +8,7 @@
 namespace tide
 {
 	KPHPList::KPHPList(zval* list) :
-		KList("PHP.KPHPList"),
+		List("PHP.KPHPList"),
 		list(list)
 	{
 		if (Z_TYPE_P(list) != IS_ARRAY)
@@ -21,9 +21,9 @@ namespace tide
 
 	ValueRef KPHPList::Get(const char* name)
 	{
-		if (KList::IsInt(name))
+		if (List::IsInt(name))
 		{
-			return this->At(KList::ToIndex(name));
+			return this->At(List::ToIndex(name));
 		}
 
 		unsigned long hashval = zend_get_hash_value((char *) name, strlen(name));
@@ -46,9 +46,9 @@ namespace tide
 	void KPHPList::Set(const char* name, ValueRef value)
 	{
 		// Check for integer value as name
-		if (KList::IsInt(name))
+		if (List::IsInt(name))
 		{
-			this->SetAt(KList::ToIndex(name), value);
+			this->SetAt(List::ToIndex(name), value);
 		}
 		else
 		{

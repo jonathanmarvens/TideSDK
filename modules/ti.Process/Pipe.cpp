@@ -225,7 +225,7 @@ int Pipe::Write(BytesRef bytes)
 
 void Pipe::CallWrite(KObjectRef target, BytesRef bytes)
 {
-    KMethodRef writeMethod = target->GetMethod("write");
+    MethodRef writeMethod = target->GetMethod("write");
 
     if (writeMethod.isNull())
     {

@@ -71,7 +71,7 @@ void ProcessWin::RecreateNativePipes()
     See
     http://msdn.microsoft.com/library/en-us/vccelng/htm/progs_12.asp
 */
-std::string ProcessWin::ArgListToString(KListRef argList)
+std::string ProcessWin::ArgListToString(ListRef argList)
 {
     
     std::string result = "";
@@ -198,7 +198,7 @@ void ProcessWin::MonitorAsync()
 
 BytesRef ProcessWin::MonitorSync()
 {
-    KMethodRef readCallback =
+    MethodRef readCallback =
         StaticBoundMethod::FromMethod<ProcessWin>(
             this, &ProcessWin::ReadCallback);
 

@@ -109,14 +109,14 @@ namespace tide
 		return v;
 	}
 
-	ValueRef Value::NewList(KListRef value)
+	ValueRef Value::NewList(ListRef value)
 	{
 		ValueRef v(new Value());
 		v->SetList(value);
 		return v;
 	}
 
-	ValueRef Value::NewMethod(KMethodRef method)
+	ValueRef Value::NewMethod(MethodRef method)
 	{
 		ValueRef v(new Value());
 		v->SetMethod(method);
@@ -150,8 +150,8 @@ namespace tide
 	bool Value::ToBool() const { return boolValue; }
 	const char* Value::ToString() const { return stringValue; }
 	KObjectRef Value::ToObject() const { return objectValue; }
-	KMethodRef Value::ToMethod() const { return objectValue.cast<KMethod>(); }
-	KListRef Value::ToList() const { return objectValue.cast<KList>(); }
+	MethodRef Value::ToMethod() const { return objectValue.cast<Method>(); }
+	ListRef Value::ToList() const { return objectValue.cast<List>(); }
 
 	void Value::SetValue(ValueRef other)
 	{
@@ -229,7 +229,7 @@ namespace tide
 		this->SetString(value.get()->c_str());
 	}
 
-	void Value::SetList(KListRef value)
+	void Value::SetList(ListRef value)
 	{
 		reset();
 		this->objectValue = value;
@@ -251,7 +251,7 @@ namespace tide
 		}
 	}
 
-	void Value::SetMethod(KMethodRef value)
+	void Value::SetMethod(MethodRef value)
 	{
 		reset();
 		this->objectValue = value;
@@ -390,12 +390,12 @@ namespace tide
 
 		if (value->IsMethod())
 		{
-			KMethodRef list = KMethod::Unwrap(value->ToMethod());
+			MethodRef list = Method::Unwrap(value->ToMethod());
 			value->SetMethod(list);
 		}
 		else if (value->IsList())
 		{
-			KListRef list = KList::Unwrap(value->ToList());
+			ListRef list = List::Unwrap(value->ToList());
 			value->SetList(list);
 		}
 		else if (value->IsObject())

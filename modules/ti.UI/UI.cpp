@@ -144,7 +144,7 @@ void UI::RemoveFromOpenWindows(AutoPtr<UserWindow> window)
 
 void UI::_GetOpenWindows(const ValueList& args, ValueRef result)
 {
-    KListRef list = new StaticBoundList();
+    ListRef list = new StaticBoundList();
     std::vector<AutoPtr<UserWindow> >::iterator w = openWindows.begin();
     while (w != openWindows.end()) {
         list->Append(Value::NewObject(*w++));
@@ -188,7 +188,7 @@ AutoPtr<MenuItem> UI::__CreateMenuItem(const ValueList& args)
 {
     args.VerifyException("createMenuItem", "?s m|0 s|0");
     std::string label = args.GetString(0, "");
-    KMethodRef eventListener = args.GetMethod(1, NULL);
+    MethodRef eventListener = args.GetMethod(1, NULL);
     std::string iconURL = args.GetString(2, "");
 
     AutoPtr<MenuItem> item = this->CreateMenuItem();
@@ -212,7 +212,7 @@ AutoPtr<MenuItem> UI::__CreateCheckMenuItem(const ValueList& args)
 {
     args.VerifyException("createCheckMenuItem", "?s m|0");
     std::string label = args.GetString(0, "");
-    KMethodRef eventListener = args.GetMethod(1, NULL);
+    MethodRef eventListener = args.GetMethod(1, NULL);
 
     AutoPtr<MenuItem> item = this->CreateCheckMenuItem();
     if (!label.empty())
@@ -304,7 +304,7 @@ void UI::_AddTray(const ValueList& args, ValueRef result)
     args.VerifyException("createTrayIcon", "s,?m");
     std::string iconURL = args.GetString(0);
 
-    KMethodRef cbSingleClick = args.GetMethod(1, NULL);
+    MethodRef cbSingleClick = args.GetMethod(1, NULL);
     AutoPtr<TrayItem> item = this->AddTray(iconURL, cbSingleClick);
     this->trayItems.push_back(item);
     result->SetObject(item);
@@ -417,7 +417,7 @@ void UI::Log(Logger::Level level, std::string& message)
         if (console.isNull())
             continue;
 
-        KMethodRef method = console->GetMethod(origMethodName.c_str(), 0);
+        MethodRef method = console->GetMethod(origMethodName.c_str(), 0);
         if (method.isNull())
             method = console->GetMethod(methodName.c_str(), 0);
 

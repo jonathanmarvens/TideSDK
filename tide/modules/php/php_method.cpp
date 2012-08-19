@@ -8,7 +8,7 @@
 namespace tide {
 
 	KPHPMethod::KPHPMethod(zval* object, const char* methodName) :
-		KMethod("PHP.KPHPMethod"),
+		Method("PHP.KPHPMethod"),
 		object(object),
 		methodName(strdup(methodName)),
 		globalObject(PHPUtils::GetCurrentGlobalObject())

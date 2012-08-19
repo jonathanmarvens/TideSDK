@@ -9,7 +9,7 @@
 
 namespace tide
 {
-	AsyncJob::AsyncJob(KMethodRef job) :
+	AsyncJob::AsyncJob(MethodRef job) :
 		StaticBoundObject(),
 		job(job),
 		completed(false),
@@ -73,7 +73,7 @@ namespace tide
 			this->completed = true;
 			this->OnCompleted();
 
-			std::vector<KMethodRef>::iterator i = this->completedCallbacks.begin();
+			std::vector<MethodRef>::iterator i = this->completedCallbacks.begin();
 			while (i != this->completedCallbacks.end())
 			{
 				this->DoCallback(*i++, true);
@@ -104,7 +104,7 @@ namespace tide
 		return this->progress;
 	}
 
-	void AsyncJob::DoCallback(KMethodRef method, bool reportErrors)
+	void AsyncJob::DoCallback(MethodRef method, bool reportErrors)
 	{
 		ValueList args(Value::NewObject(GetAutoPtr()));
 		RunOnMainThread(method, args, false);
@@ -129,7 +129,7 @@ namespace tide
 		{
 			this->OnProgressChanged();
 
-			std::vector<KMethodRef>::iterator i = this->progressCallbacks.begin();
+			std::vector<MethodRef>::iterator i = this->progressCallbacks.begin();
 			while (i != this->progressCallbacks.end())
 			{
 				this->DoCallback(*i++, true);
@@ -142,24 +142,24 @@ namespace tide
 		this->hadError = true;
 		this->OnError(e);
 
-		std::vector<KMethodRef>::iterator i = this->errorCallbacks.begin();
+		std::vector<MethodRef>::iterator i = this->errorCallbacks.begin();
 		while (i != this->errorCallbacks.end())
 		{
 			this->DoCallback(*i++, false);
 		}
 	}
 
-	void AsyncJob::AddProgressCallback(KMethodRef callback)
+	void AsyncJob::AddProgressCallback(MethodRef callback)
 	{
 		this->progressCallbacks.push_back(callback);
 	}
 
-	void AsyncJob::AddCompletedCallback(KMethodRef callback)
+	void AsyncJob::AddCompletedCallback(MethodRef callback)
 	{
 		this->completedCallbacks.push_back(callback);
 	}
 
-	void AsyncJob::AddErrorCallback(KMethodRef callback)
+	void AsyncJob::AddErrorCallback(MethodRef callback)
 	{
 		this->errorCallbacks.push_back(callback);
 	}

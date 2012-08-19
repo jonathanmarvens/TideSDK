@@ -414,7 +414,7 @@ void Codec::CreateZip(const ValueList& args, ValueRef result)
         throw ValueException::FromFormat("Error: Directory %s doesn't exist in createZip", directory.c_str());
     }
     
-    KMethodRef zipAsyncMethod = new KFunctionPtrMethod(&Codec::CreateZipAsync);
+    MethodRef zipAsyncMethod = new KFunctionPtrMethod(&Codec::CreateZipAsync);
     ValueList zipArgs;
     zipArgs.push_back(Value::NewString(directory));
     zipArgs.push_back(Value::NewString(zipFile));
@@ -447,7 +447,7 @@ void Codec::ExtractZip(const ValueList& args, ValueRef result)
         throw ValueException::FromString("Error: Destination directory name in extractZip is empty");
     }
 
-    KMethodRef extractAsyncMethod = new KFunctionPtrMethod(&Codec::ExtractZipAsync);
+    MethodRef extractAsyncMethod = new KFunctionPtrMethod(&Codec::ExtractZipAsync);
     ValueList extractArgs;
     extractArgs.push_back(Value::NewString(zipFile));
     extractArgs.push_back(Value::NewString(directory));
@@ -470,7 +470,7 @@ ValueRef Codec::CreateZipAsync(const ValueList& args)
     std::string directory = args.GetString(0);
     std::string zipFile = args.GetString(1);
     AutoPtr<AsyncJob> job = args.GetObject(2).cast<AsyncJob>();
-    KMethodRef callback = 0;
+    MethodRef callback = 0;
     if (args.size() > 3)
     {
         callback = args.GetMethod(3);
@@ -511,7 +511,7 @@ ValueRef Codec::ExtractZipAsync(const ValueList& args)
     std::string zipFile = args.GetString(0);
     std::string directory = args.GetString(1);
     AutoPtr<AsyncJob> job = args.GetObject(2).cast<AsyncJob>();
-    KMethodRef callback = 0;
+    MethodRef callback = 0;
     if (args.size() > 3)
     {
         callback = args.GetMethod(3);

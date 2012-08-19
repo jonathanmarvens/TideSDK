@@ -11,7 +11,7 @@
 
 namespace tide
 {
-	class KPHPArrayObject : public KList
+	class KPHPArrayObject : public List
 	{
 		public:
 		KPHPArrayObject(zval *list);

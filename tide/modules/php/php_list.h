@@ -11,7 +11,7 @@
 
 namespace tide
 {
-	class KPHPList : public KList
+	class KPHPList : public List
 	{
 		public:
 		KPHPList(zval *list);

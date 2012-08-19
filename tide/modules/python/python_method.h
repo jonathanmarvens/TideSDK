@@ -12,7 +12,7 @@
 namespace tide
 {
 	class KPythonObject;
-	class KPythonMethod : public KMethod
+	class KPythonMethod : public Method
 	{
 	public:
 		KPythonMethod(PyObject *obj);

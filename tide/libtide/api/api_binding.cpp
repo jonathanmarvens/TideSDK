@@ -182,18 +182,18 @@ namespace tide
 		this->SetMethod("createKObject", &APIBinding::_CreateKObject);
 
 		/**
-		 * @tiapi(method=True,name=API.createKMethod,since=0.5) create a TIDE method.
-		 * @tiarg[Function, toWrap, optional=true] A function to wrap in a new KMethod
-		 * @tiresult[Function] A new KMethod.
+		 * @tiapi(method=True,name=API.createMethod,since=0.5) create a TIDE method.
+		 * @tiarg[Function, toWrap, optional=true] A function to wrap in a new Method
+		 * @tiresult[Function] A new Method.
 		 */
-		this->SetMethod("createKMethod", &APIBinding::_CreateKMethod);
+		this->SetMethod("createMethod", &APIBinding::_CreateMethod);
 		
 		/**
-		 * @tiapi(method=True,name=API.createKList,since=0.5) create a TIDE list.
-		 * @tiarg[Array, toWrap, optional=true] A function to wrap in a new KMethod
-		 * @tiresult[Array] A new KList.
+		 * @tiapi(method=True,name=API.createList,since=0.5) create a TIDE list.
+		 * @tiarg[Array, toWrap, optional=true] A function to wrap in a new Method
+		 * @tiresult[Array] A new List.
 		 */
-		this->SetMethod("createKList", &APIBinding::_CreateKList);
+		this->SetMethod("createList", &APIBinding::_CreateList);
 
 		/**
 		 * @tiapi(method=True,name=API.createBytes,since=0.9) Create a TIDE Bytes object.
@@ -659,7 +659,7 @@ namespace tide
 	{
 		bool force = args.GetBool(0, false);
 		vector<SharedComponent>& components = BootUtils::GetInstalledComponents(force);
-		KListRef componentList = ComponentVectorToKList(components, type);
+		ListRef componentList = ComponentVectorToList(components, type);
 		result->SetList(componentList);
 	}
 
@@ -696,7 +696,7 @@ namespace tide
 	void APIBinding::_GetComponentSearchPaths(const ValueList& args, ValueRef result)
 	{
 		vector<string>& paths = BootUtils::GetComponentSearchPaths();
-		KListRef pathList = StaticBoundList::FromStringVector(paths);
+		ListRef pathList = StaticBoundList::FromStringVector(paths);
 		result->SetList(pathList);
 	}
 
@@ -753,8 +753,8 @@ namespace tide
 	void APIBinding::_InstallDependencies(const ValueList& args, ValueRef result)
 	{
 		args.VerifyException("installDependencies", "l,m");
-		KListRef dependenciesList = args.GetList(0);
-		KMethodRef callback = args.GetMethod(1, 0);
+		ListRef dependenciesList = args.GetList(0);
+		MethodRef callback = args.GetMethod(1, 0);
 		vector<SharedDependency> dependencies;
 
 		for (unsigned int i = 0; i < dependenciesList->Size(); i++)
@@ -843,11 +843,11 @@ namespace tide
 		END_TIDE_THREAD;
 	}
 
-	KListRef APIBinding::ComponentVectorToKList(
+	ListRef APIBinding::ComponentVectorToList(
 		vector<SharedComponent>& components,
 		KComponentType filter)
 	{
-		KListRef componentList = new StaticBoundList();
+		ListRef componentList = new StaticBoundList();
 		vector<SharedComponent>::iterator i = components.begin();
 		while (i != components.end())
 		{
@@ -862,9 +862,9 @@ namespace tide
 		return componentList;
 	}
 
-	KListRef APIBinding::DependencyVectorToKList(std::vector<SharedDependency>& deps)
+	ListRef APIBinding::DependencyVectorToList(std::vector<SharedDependency>& deps)
 	{
-		KListRef dependencyList = new StaticBoundList();
+		ListRef dependencyList = new StaticBoundList();
 		std::vector<SharedDependency>::iterator i = deps.begin();
 		while (i != deps.end())
 		{
@@ -874,13 +874,13 @@ namespace tide
 		return dependencyList;
 	}
 
-	KListRef APIBinding::ManifestToKList(vector<pair<string, string> >& manifest)
+	ListRef APIBinding::ManifestToList(vector<pair<string, string> >& manifest)
 	{
-		KListRef list = new StaticBoundList();
+		ListRef list = new StaticBoundList();
 		vector<pair<string, string> >::iterator i = manifest.begin();
 		while (i != manifest.end())
 		{
-			KListRef entry = new StaticBoundList();
+			ListRef entry = new StaticBoundList();
 			entry->Append(Value::NewString(i->first));
 			entry->Append(Value::NewString(i->second));
 			list->Append(Value::NewList(entry));
@@ -903,24 +903,24 @@ namespace tide
 		}
 	}
 
-	void APIBinding::_CreateKMethod(const ValueList& args, ValueRef result)
+	void APIBinding::_CreateMethod(const ValueList& args, ValueRef result)
 	{
-		args.VerifyException("createKMethod", "m");
-		KMethodRef wrapped = args.GetMethod(0);
-		result->SetMethod(new KMethodWrapper(args.GetMethod(0)));
+		args.VerifyException("createMethod", "m");
+		MethodRef wrapped = args.GetMethod(0);
+		result->SetMethod(new MethodWrapper(args.GetMethod(0)));
 	}
 
-	void APIBinding::_CreateKList(const ValueList& args, ValueRef result)
+	void APIBinding::_CreateList(const ValueList& args, ValueRef result)
 	{
-		args.VerifyException("createKList", "?l");
+		args.VerifyException("createList", "?l");
 		if (args.size() <= 0)
 		{
 			result->SetList(new StaticBoundList());
 		}
 		else
 		{
-			KListRef wrapped = args.GetList(0);
-			result->SetList(new KListWrapper(wrapped));
+			ListRef wrapped = args.GetList(0);
+			result->SetList(new ListWrapper(wrapped));
 		}
 	}
 
@@ -936,7 +936,7 @@ namespace tide
 		}
 		else if (value->IsList())
 		{
-			KListRef list = value->ToList();
+			ListRef list = value->ToList();
 			for (size_t j = 0; j < list->Size(); j++)
 			{
 				GetBytes(list->At((int)j), blobs);
@@ -1006,102 +1006,102 @@ namespace tide
 		return object->Equals(other);	
 	}
 	
-	KMethodWrapper::KMethodWrapper(KMethodRef method) :
+	MethodWrapper::MethodWrapper(MethodRef method) :
 		method(method)
 	{
 	}
 
-	ValueRef KMethodWrapper::Call(const ValueList& args)
+	ValueRef MethodWrapper::Call(const ValueList& args)
 	{
 		return method->Call(args);
 	}
 
-	void KMethodWrapper::Set(const char *name, ValueRef value)
+	void MethodWrapper::Set(const char *name, ValueRef value)
 	{
 		method->Set(name, value);
 	}
 
-	ValueRef KMethodWrapper::Get(const char *name)
+	ValueRef MethodWrapper::Get(const char *name)
 	{
 		return method->Get(name);
 	}
 
-	bool KMethodWrapper::HasProperty(const char *name)
+	bool MethodWrapper::HasProperty(const char *name)
 	{
 		return method->HasProperty(name);
 	}
 	
-	SharedStringList KMethodWrapper::GetPropertyNames()
+	SharedStringList MethodWrapper::GetPropertyNames()
 	{
 		return method->GetPropertyNames();
 	}
 
-	SharedString KMethodWrapper::DisplayString(int levels)
+	SharedString MethodWrapper::DisplayString(int levels)
 	{
 		return method->DisplayString(levels);
 	}
 	
-	bool KMethodWrapper::Equals(KObjectRef other)
+	bool MethodWrapper::Equals(KObjectRef other)
 	{
 		return method->Equals(other);	
 	}
 
-	KListWrapper::KListWrapper(KListRef list) :
+	ListWrapper::ListWrapper(ListRef list) :
 		list(list)
 	{
 	}
 
-	void KListWrapper::Append(ValueRef value)
+	void ListWrapper::Append(ValueRef value)
 	{
 		list->Append(value);
 	}
 
-	unsigned int KListWrapper::Size()
+	unsigned int ListWrapper::Size()
 	{
 		return list->Size();
 	}
 
-	ValueRef KListWrapper::At(unsigned int index)
+	ValueRef ListWrapper::At(unsigned int index)
 	{
 		return list->At(index);
 	}
 
-	void KListWrapper::SetAt(unsigned int index, ValueRef value)
+	void ListWrapper::SetAt(unsigned int index, ValueRef value)
 	{
 		list->SetAt(index, value);
 	}
 
-	bool KListWrapper::Remove(unsigned int index)
+	bool ListWrapper::Remove(unsigned int index)
 	{
 		return list->Remove(index);
 	}
 
-	void KListWrapper::Set(const char *name, ValueRef value)
+	void ListWrapper::Set(const char *name, ValueRef value)
 	{
 		list->Set(name, value);
 	}
 
-	ValueRef KListWrapper::Get(const char *name)
+	ValueRef ListWrapper::Get(const char *name)
 	{
 		return list->Get(name);
 	}
 
-	bool KListWrapper::HasProperty(const char *name)
+	bool ListWrapper::HasProperty(const char *name)
 	{
 		return list->HasProperty(name);
 	}
 	
-	SharedStringList KListWrapper::GetPropertyNames()
+	SharedStringList ListWrapper::GetPropertyNames()
 	{
 		return list->GetPropertyNames();
 	}
 
-	SharedString KListWrapper::DisplayString(int levels)
+	SharedString ListWrapper::DisplayString(int levels)
 	{
 		return list->DisplayString(levels);
 	}
 	
-	bool KListWrapper::Equals(KObjectRef other)
+	bool ListWrapper::Equals(KObjectRef other)
 	{
 		return list->Equals(other);	
 	}

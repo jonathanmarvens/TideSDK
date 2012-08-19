@@ -48,7 +48,7 @@ public:
     bool IsLooping();
     bool IsPlaying();
     bool IsPaused();
-    void SetOnComplete(KMethodRef newCallback);
+    void SetOnComplete(MethodRef newCallback);
     void Load();
     void Unload();
     void SoundCompletedIteration();
@@ -66,7 +66,7 @@ protected:
     SoundState state;
     std::string url;
     std::string path;
-    KMethodRef callback;
+    MethodRef callback;
     bool looping;
 };
 

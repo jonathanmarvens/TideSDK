@@ -47,7 +47,7 @@ protected:
 
     KObjectRef global;
     Logger* logger;
-    KMethodRef callback;
+    MethodRef callback;
     std::vector<Script*> scripts;
 };
 

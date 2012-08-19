@@ -56,10 +56,10 @@ private:
     Poco::Net::StreamSocket socket;
     Poco::Net::SocketReactor& reactor;
     bool closed;
-    KMethodRef onRead;
-    KMethodRef onWrite;
-    KMethodRef onError;
-    KMethodRef onReadComplete;
+    MethodRef onRead;
+    MethodRef onWrite;
+    MethodRef onError;
+    MethodRef onReadComplete;
     std::queue<BytesRef> sendData;
     Poco::Mutex sendDataMutex;
     size_t currentSendDataOffset;

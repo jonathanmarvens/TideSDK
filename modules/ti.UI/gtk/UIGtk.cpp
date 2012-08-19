@@ -80,7 +80,7 @@ void UIGtk::SetIcon(std::string& iconPath)
     this->iconPath = iconPath;
 }
 
-AutoPtr<TrayItem> UIGtk::AddTray(std::string& iconPath, KMethodRef cb)
+AutoPtr<TrayItem> UIGtk::AddTray(std::string& iconPath, MethodRef cb)
 {
     AutoPtr<TrayItem> item = new TrayItemGtk(iconPath, cb);
     return item;

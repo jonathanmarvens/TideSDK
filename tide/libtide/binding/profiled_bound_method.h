@@ -10,21 +10,21 @@
 namespace tide
 {
 	/**
-	 * The ProfiledBoundMethod is a wrapped KMethod that does profiling
+	 * The ProfiledBoundMethod is a wrapped Method that does profiling
 	 */
-	class ProfiledBoundMethod : public ProfiledBoundObject, public KMethod
+	class ProfiledBoundMethod : public ProfiledBoundObject, public Method
 	{
 	public:
-		ProfiledBoundMethod(KMethodRef delegate, std::string& parentType);
+		ProfiledBoundMethod(MethodRef delegate, std::string& parentType);
 		virtual ~ProfiledBoundMethod();
 
-		// @see KMethod::Call
+		// @see Method::Call
 		virtual ValueRef Call(const ValueList& args);
-		// @see KMethod::Set
+		// @see Method::Set
 		virtual void Set(const char *name, ValueRef value);
-		// @see KMethod::Get
+		// @see Method::Get
 		virtual ValueRef Get(const char *name);
-		// @see KMethod::GetPropertyNames
+		// @see Method::GetPropertyNames
 		virtual SharedStringList GetPropertyNames();
 		// @see Object::GetType
 		virtual std::string& GetType();
@@ -34,7 +34,7 @@ namespace tide
 		/**
 		 * @return the delegate of this profiled bound method
 		 */
-		KMethodRef GetDelegate() { return method; }
+		MethodRef GetDelegate() { return method; }
 		virtual void duplicate()
 		{
 			++count;
@@ -54,7 +54,7 @@ namespace tide
 		}
 
 	private:
-		KMethodRef method;
+		MethodRef method;
 		std::string fullType;
 		Poco::AtomicCounter count;
 

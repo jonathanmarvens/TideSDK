@@ -55,7 +55,7 @@ void PosixProcess::RecreateNativePipes()
     stdinPipe->Attach(this->GetNativeStdin());
 }
 
-void PosixProcess::SetArguments(KListRef args)
+void PosixProcess::SetArguments(ListRef args)
 {
 #if defined(OS_OSX)
     std::string cmd = args->At(0)->ToString();
@@ -140,7 +140,7 @@ void PosixProcess::MonitorAsync()
 
 BytesRef PosixProcess::MonitorSync()
 {
-    KMethodRef readCallback =
+    MethodRef readCallback =
         StaticBoundMethod::FromMethod<PosixProcess>(
             this, &PosixProcess::ReadCallback);
 
