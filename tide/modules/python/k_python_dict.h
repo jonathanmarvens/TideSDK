@@ -11,7 +11,7 @@
 
 namespace tide
 {
-	class KPythonDict : public KObject
+	class KPythonDict : public Object
 	{
 	public:
 		KPythonDict(PyObject *obj);

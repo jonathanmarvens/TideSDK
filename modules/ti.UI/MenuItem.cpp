@@ -132,7 +132,7 @@ void MenuItem::_SetSubmenu(const ValueList& args, KValueRef result)
     if (args.at(0)->IsObject())
     {
         KObjectRef o = args.at(0)->ToObject();
-        o = KObject::Unwrap(o);
+        o = Object::Unwrap(o);
         newSubmenu = o.cast<Menu>();
     }
 

@@ -17,7 +17,7 @@ namespace tide
 {
 	/**
 	 * Extending this class is the easiest way to get started with your own
-	 * KObject implementation. In your sub-class' constructor, you can bind
+	 * Object implementation. In your sub-class' constructor, you can bind
 	 * properties and methods, i.e:
 	 * \code
 	 * MyObject::MyObject() {
@@ -39,7 +39,7 @@ namespace tide
 	 * alert(myObject.add(10, 15)); // 25
 	 * \endcode
 	 */
-	class TIDE_API StaticBoundObject : public KObject
+	class TIDE_API StaticBoundObject : public Object
 	{
 	public:
 		StaticBoundObject(const char* type = "StaticBoundObject");

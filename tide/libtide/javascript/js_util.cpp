@@ -164,7 +164,7 @@ namespace JSUtil
 			}
 			else
 			{
-				// this is a KObject that needs to be proxied
+				// this is a Object that needs to be proxied
 				jsValue = ObjectToJSValue(value, jsContext);
 			}
 		}

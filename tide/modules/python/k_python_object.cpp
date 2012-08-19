@@ -8,7 +8,7 @@
 namespace tide
 {
 	KPythonObject::KPythonObject(PyObject *obj) :
-		KObject("Python.KPythonObject"),
+		Object("Python.KPythonObject"),
 		object(obj),
 		readOnly(false),
 		delegate(NULL)

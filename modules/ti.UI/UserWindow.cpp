@@ -1554,7 +1554,7 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     // found in binding, KDelegatingObject will search for it in
     // the base. When developers modify this object, it will be modified
     // globally.
-    KObject* delegateUIAPI = new KDelegatingObject(binding, windowUIObject);
+    Object* delegateUIAPI = new KDelegatingObject(binding, windowUIObject);
     windowTiObject->Set("UI", Value::NewObject(delegateUIAPI));
 
     // Provide method for including other scripts within this window's context.

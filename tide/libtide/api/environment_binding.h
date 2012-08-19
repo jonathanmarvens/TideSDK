@@ -10,10 +10,10 @@
 
 namespace tide
 {
-	class EnvironmentBinding : public KObject
+	class EnvironmentBinding : public Object
 	{
 	public:
-		EnvironmentBinding() : KObject("API.Environment") {}
+		EnvironmentBinding() : Object("API.Environment") {}
 		
 		virtual KValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();

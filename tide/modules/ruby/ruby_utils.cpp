@@ -226,7 +226,7 @@ namespace tide
 		}
 	}
 
-	// A :method_missing method for finding KObject properties in Ruby
+	// A :method_missing method for finding Object properties in Ruby
 	static VALUE RubyKObjectMethodMissing(int argc, VALUE *argv, VALUE self)
 	{
 		KValueRef* dval = NULL;
@@ -276,7 +276,7 @@ namespace tide
 		}
 	}
 
-	// A :responds_to? method for finding KObject properties in Ruby
+	// A :responds_to? method for finding Object properties in Ruby
 	static VALUE RubyKObjectRespondTo(int argc, VALUE *argv, VALUE self)
 	{
 		KValueRef* dval = NULL;
@@ -311,7 +311,7 @@ namespace tide
 
 	VALUE RubyUtils::KObjectToRubyValue(KValueRef obj)
 	{
-		// Lazily initialize the KObject wrapper class
+		// Lazily initialize the Object wrapper class
 		if (KObjectClass == Qnil)
 		{
 			KObjectClass = rb_define_class("RubyKObject", rb_cObject);

@@ -8,7 +8,7 @@
 namespace tide
 {
 	KPythonDict::KPythonDict(PyObject *obj) :
-		KObject("Python,KPythonDict"),
+		Object("Python,KPythonDict"),
 		object(obj)
 	{
 		PyLockGIL lock;

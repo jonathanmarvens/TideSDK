@@ -23,17 +23,17 @@ namespace tide
 		virtual KValueRef Call(const ValueList& args);
 
 		/**
-		 * @see KObject::Set
+		 * @see Object::Set
 		 */
 		virtual void Set(const char *name, KValueRef value);
 
 		/**
-		 * @see KObject::Get
+		 * @see Object::Get
 		 */
 		virtual KValueRef Get(const char *name);
 
 		/**
-		 * @see KObject::GetPropertyNames
+		 * @see Object::GetPropertyNames
 		 */
 		virtual SharedStringList GetPropertyNames();
 		

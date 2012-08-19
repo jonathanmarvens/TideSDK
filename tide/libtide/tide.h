@@ -34,7 +34,7 @@ using Poco::AutoPtr;
 namespace tide
 {
 	class Value;
-	class KObject;
+	class Object;
 	class KMethod;
 	class KList;
 
@@ -51,7 +51,7 @@ namespace tide
 	class ArgList;
 
 	typedef AutoPtr<Value> KValueRef;
-	typedef AutoPtr<KObject> KObjectRef;
+	typedef AutoPtr<Object> KObjectRef;
 	typedef AutoPtr<KMethod> KMethodRef;
 	typedef AutoPtr<KList> KListRef;
 	typedef AutoPtr<Bytes> BytesRef;

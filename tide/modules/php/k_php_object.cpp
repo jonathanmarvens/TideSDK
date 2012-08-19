@@ -8,7 +8,7 @@
 namespace tide {
 
 	KPHPObject::KPHPObject(zval* object) :
-		KObject("PHP.KPHPObject"),
+		Object("PHP.KPHPObject"),
 		object(object)
 	{
 		zval_addref_p(object);

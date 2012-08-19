@@ -18,7 +18,7 @@ namespace tide
 		void _GetTimestamp(const ValueList&, KValueRef result);
 		void _StopPropagation(const ValueList&, KValueRef result);
 		void _PreventDefault(const ValueList&, KValueRef result);
-		static void SetEventConstants(KObject* target);
+		static void SetEventConstants(Object* target);
 
 		AutoPtr<KEventObject> target;
 		std::string eventName;

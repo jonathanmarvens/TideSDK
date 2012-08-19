@@ -8,7 +8,7 @@
 
 namespace tide
 {
-	class KPHPObject : public KObject
+	class KPHPObject : public Object
 	{
 		public:
 		KPHPObject(zval* object);

@@ -10,12 +10,12 @@
 namespace tide
 {
 
-	bool KObject::Equals(KObjectRef other)
+	bool Object::Equals(KObjectRef other)
 	{
 		return other.get() == this;
 	}
 
-	bool KObject::HasProperty(const char* name)
+	bool Object::HasProperty(const char* name)
 	{
 		SharedStringList names = this->GetPropertyNames();
 		for (size_t i = 0; i < names->size(); i++)
@@ -26,7 +26,7 @@ namespace tide
 		return false;
 	}
 
-	SharedString KObject::DisplayString(int levels)
+	SharedString Object::DisplayString(int levels)
 	{
 		std::stringstream ss;
 
@@ -49,17 +49,17 @@ namespace tide
 		return new std::string(ss.str());
 	}
 
-	void KObject::Set(SharedString name, KValueRef value)
+	void Object::Set(SharedString name, KValueRef value)
 	{
 		this->Set(name->c_str(), value);
 	}
 
-	KValueRef KObject::Get(SharedString name)
+	KValueRef Object::Get(SharedString name)
 	{
 		return this->Get(name->c_str());
 	}
 
-	int KObject::GetInt(const char* name, int defaultValue)
+	int Object::GetInt(const char* name, int defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if (prop->IsInt())
@@ -72,7 +72,7 @@ namespace tide
 		}
 	}
 
-	double KObject::GetDouble(const char* name, double defaultValue)
+	double Object::GetDouble(const char* name, double defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if (prop->IsDouble())
@@ -85,7 +85,7 @@ namespace tide
 		}
 	}
 
-	double KObject::GetNumber(const char* name, double defaultValue)
+	double Object::GetNumber(const char* name, double defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if (prop->IsNumber())
@@ -98,7 +98,7 @@ namespace tide
 		}
 	}
 
-	bool KObject::GetBool(const char* name, bool defaultValue)
+	bool Object::GetBool(const char* name, bool defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if (prop->IsBool())
@@ -111,7 +111,7 @@ namespace tide
 		}
 	}
 
-	std::string KObject::GetString(const char* name, std::string defaultValue)
+	std::string Object::GetString(const char* name, std::string defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if(prop->IsString())
@@ -124,7 +124,7 @@ namespace tide
 		}
 	}
 
-	KObjectRef KObject::GetObject(const char* name, KObjectRef defaultValue)
+	KObjectRef Object::GetObject(const char* name, KObjectRef defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if (prop->IsObject())
@@ -137,7 +137,7 @@ namespace tide
 		}
 	}
 
-	KMethodRef KObject::GetMethod(const char* name, KMethodRef defaultValue)
+	KMethodRef Object::GetMethod(const char* name, KMethodRef defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if (prop->IsMethod())
@@ -150,7 +150,7 @@ namespace tide
 		}
 	}
 
-	KListRef KObject::GetList(const char* name, KListRef defaultValue)
+	KListRef Object::GetList(const char* name, KListRef defaultValue)
 	{
 		KValueRef prop = this->Get(name);
 		if (prop->IsList())
@@ -163,65 +163,65 @@ namespace tide
 		}
 	}
 
-	void KObject::SetUndefined(const char *name)
+	void Object::SetUndefined(const char *name)
 	{
 		this->Set(name, Value::Undefined);
 	}
 
-	void KObject::SetNull(const char *name)
+	void Object::SetNull(const char *name)
 	{
 		this->Set(name, Value::Null);
 	}
 
-	void KObject::SetInt(const char *name, int v)
+	void Object::SetInt(const char *name, int v)
 	{
 		KValueRef val = Value::NewInt(v);
 		this->Set(name, val);
 	}
 
-	void KObject::SetDouble(const char *name, double v)
+	void Object::SetDouble(const char *name, double v)
 	{
 		KValueRef val = Value::NewDouble(v);
 		this->Set(name, val);
 	}
 
-	void KObject::SetNumber(const char *name, double v)
+	void Object::SetNumber(const char *name, double v)
 	{
 		KValueRef val = Value::NewDouble(v);
 		this->Set(name, val);
 	}
 
-	void KObject::SetBool(const char *name, bool v)
+	void Object::SetBool(const char *name, bool v)
 	{
 		KValueRef val = Value::NewBool(v);
 		this->Set(name, val);
 	}
 
-	void KObject::SetString(const char *name, std::string v)
+	void Object::SetString(const char *name, std::string v)
 	{
 		KValueRef val = Value::NewString(v);
 		this->Set(name, val);
 	}
 
-	void KObject::SetObject(const char *name, KObjectRef object)
+	void Object::SetObject(const char *name, KObjectRef object)
 	{
 		KValueRef obj_val = Value::NewObject(object);
 		this->Set(name, obj_val);
 	}
 
-	void KObject::SetMethod(const char *name, KMethodRef object)
+	void Object::SetMethod(const char *name, KMethodRef object)
 	{
 		KValueRef obj_val = Value::NewMethod(object);
 		this->Set(name, obj_val);
 	}
 
-	void KObject::SetList(const char *name, KListRef object)
+	void Object::SetList(const char *name, KListRef object)
 	{
 		KValueRef obj_val = Value::NewList(object);
 		this->Set(name, obj_val);
 	}
 
-	void KObject::GetStringList(const char *name, std::vector<std::string> &list)
+	void Object::GetStringList(const char *name, std::vector<std::string> &list)
 	{
 		KValueRef prop = this->Get(name);
 		if(!prop->IsUndefined() && prop->IsList())
@@ -242,12 +242,12 @@ namespace tide
 		}
 	}
 
-	void KObject::SetNS(const char *name, KValueRef value)
+	void Object::SetNS(const char *name, KValueRef value)
 	{
 		std::vector<std::string> tokens;
 		FileUtils::Tokenize(std::string(name), tokens, ".");
 
-		KObject *scope = this;
+		Object *scope = this;
 		for (size_t i = 0; i < tokens.size() - 1; i++)
 		{
 			const char* token = tokens[i].c_str();
@@ -283,13 +283,13 @@ namespace tide
 #endif
 	}
 
-	KValueRef KObject::GetNS(const char *name)
+	KValueRef Object::GetNS(const char *name)
 	{
 		std::string s(name);
 		std::string::size_type last = 0;
 		std::string::size_type pos = s.find_first_of(".");
 		KValueRef current;
-		KObject* scope = this;
+		Object* scope = this;
 		while (pos != std::string::npos)
 		{
 			std::string token = s.substr(last,pos-last);
@@ -314,20 +314,20 @@ namespace tide
 		return current;
 	}
 
-	KValueRef KObject::CallNS(const char *name)
+	KValueRef Object::CallNS(const char *name)
 	{
 		ValueList args;
 		return CallNS(name, args);
 	}
 	
-	KValueRef KObject::CallNS(const char *name, KValueRef val1)
+	KValueRef Object::CallNS(const char *name, KValueRef val1)
 	{
 		ValueList args;
 		args.push_back(val1);
 		return CallNS(name, args);
 	}
 
-	KValueRef KObject::CallNS(const char *name, KValueRef val1, KValueRef val2)
+	KValueRef Object::CallNS(const char *name, KValueRef val1, KValueRef val2)
 	{
 		ValueList args;
 		args.push_back(val1);
@@ -335,7 +335,7 @@ namespace tide
 		return CallNS(name, args);
 	}
 
-	KValueRef KObject::CallNS(const char *name, KValueRef val1, KValueRef val2, KValueRef val3)
+	KValueRef Object::CallNS(const char *name, KValueRef val1, KValueRef val2, KValueRef val3)
 	{
 		ValueList args;
 		args.push_back(val1);
@@ -344,7 +344,7 @@ namespace tide
 		return CallNS(name, args);
 	}
 
-	KValueRef KObject::CallNS(const char *name, const ValueList& args)
+	KValueRef Object::CallNS(const char *name, const ValueList& args)
 	{
 		KValueRef callable_value = GetNS(name);
 		if (callable_value->IsUndefined()) {
@@ -358,12 +358,12 @@ namespace tide
 		return callable_value->ToMethod()->Call(args);
 	}
 
-	std::string& KObject::GetType()
+	std::string& Object::GetType()
 	{
 		return type;
 	}
 
-	KObjectRef KObject::Unwrap(KObjectRef o)
+	KObjectRef Object::Unwrap(KObjectRef o)
 	{
 		AutoPtr<ProfiledBoundObject> pobj = o.cast<ProfiledBoundObject>();
 		if (pobj.isNull())

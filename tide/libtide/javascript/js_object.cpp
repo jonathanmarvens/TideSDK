@@ -8,7 +8,7 @@
 namespace tide
 {
 	KKJSObject::KKJSObject(JSContextRef context, JSObjectRef jsobject) :
-		KObject("JavaScript.KKJSObject"),
+		Object("JavaScript.KKJSObject"),
 		context(NULL),
 		jsobject(jsobject)
 	{
