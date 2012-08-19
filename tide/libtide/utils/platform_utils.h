@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_PLATFORM_UTILS_H_
-#define _KR_PLATFORM_UTILS_H_
+#ifndef _PLATFORM_UTILS_H_
+#define _PLATFORM_UTILS_H_
 
 #include <string>
 #include "poco/KTypes.h"

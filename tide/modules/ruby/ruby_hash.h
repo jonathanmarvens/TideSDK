@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_RUBY_HASH_H_
-#define _K_RUBY_HASH_H_
+#ifndef _RUBY_HASH_H_
+#define _RUBY_HASH_H_
 
 namespace tide {
 

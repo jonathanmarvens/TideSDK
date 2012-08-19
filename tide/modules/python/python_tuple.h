@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_PYTHON_TUPLE_H_
-#define _K_PYTHON_TUPLE_H_
+#ifndef _PYTHON_TUPLE_H_
+#define _PYTHON_TUPLE_H_
 
 #include "python_module.h"
 

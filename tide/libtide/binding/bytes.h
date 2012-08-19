@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_BYTES_OBJECT_H_
-#define _KR_BYTES_OBJECT_H_
+#ifndef _BYTES_OBJECT_H_
+#define _BYTES_OBJECT_H_
 
 #include "../tide.h"
 #include <vector>

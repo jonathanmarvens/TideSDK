@@ -5,8 +5,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#ifndef _KR_CALLBACK_H_
-#define _KR_CALLBACK_H_
+#ifndef _CALLBACK_H_
+#define _CALLBACK_H_
 
 namespace tide
 {

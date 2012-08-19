@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _K_PHP_OBJECT_H_
-#define _K_PHP_OBJECT_H_
+#ifndef _PHP_OBJECT_H_
+#define _PHP_OBJECT_H_
 
 namespace tide
 {

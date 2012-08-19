@@ -3,8 +3,8 @@
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
-#ifndef _KR_DATA_UTILS_H_
-#define _KR_DATA_UTILS_H_
+#ifndef _DATA_UTILS_H_
+#define _DATA_UTILS_H_
 #include <string>
 namespace UTILS_NS
 {

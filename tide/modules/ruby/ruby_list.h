@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_RUBY_LIST_H_
-#define _K_RUBY_LIST_H_
+#ifndef _RUBY_LIST_H_
+#define _RUBY_LIST_H_
 
 #include "ruby_module.h"
 

@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_STATIC_BOUND_METHOD_H_
-#define _KR_STATIC_BOUND_METHOD_H_
+#ifndef _STATIC_BOUND_METHOD_H_
+#define _STATIC_BOUND_METHOD_H_
 
 namespace tide
 {

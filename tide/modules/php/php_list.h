@@ -4,8 +4,8 @@
  * Copyright (c) 2009 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _K_PHP_LIST_H_
-#define _K_PHP_LIST_H_
+#ifndef _PHP_LIST_H_
+#define _PHP_LIST_H_
 
 #include "php_module.h"
 

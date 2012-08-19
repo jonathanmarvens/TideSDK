@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KR_VALUE_EXCEPTION_H_
-#define _KR_VALUE_EXCEPTION_H_
+#ifndef _VALUE_EXCEPTION_H_
+#define _VALUE_EXCEPTION_H_
 
 #include <vector>
 #include <string>
