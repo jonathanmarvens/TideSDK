@@ -4,8 +4,8 @@
  * Copyright (c) 2008 Appcelerator, Inc. All Rights Reserved.
  */
 
-#ifndef _KJS_UTIL_H_
-#define _KJS_UTIL_H_
+#ifndef _JS_UTIL_H_
+#define _JS_UTIL_H_
 
 namespace tide
 {
@@ -14,9 +14,9 @@ namespace JSUtil
 
 TIDE_API KValueRef ToTideValue(JSValueRef, JSContextRef, JSObjectRef);
 TIDE_API JSValueRef ToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KObjectToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KMethodToJSValue(KValueRef, JSContextRef);
-TIDE_API JSValueRef KListToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef ObjectToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef MethodToJSValue(KValueRef, JSContextRef);
+TIDE_API JSValueRef ListToJSValue(KValueRef, JSContextRef);
 TIDE_API std::string ToChars(JSStringRef);
 TIDE_API bool IsArrayLike(JSObjectRef, JSContextRef);
 TIDE_API JSGlobalContextRef CreateGlobalContext();

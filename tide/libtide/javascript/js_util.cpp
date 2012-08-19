@@ -21,9 +21,9 @@ namespace JSUtil
 		return logger;
 	}
 
-	static JSClassRef KJSKObjectClass = NULL;
-	static JSClassRef KJSKMethodClass = NULL;
-	static JSClassRef KJSKListClass = NULL;
+	static JSClassRef JSObjectClass = NULL;
+	static JSClassRef JSMethodClass = NULL;
+	static JSClassRef JSListClass = NULL;
 	static const JSClassDefinition emptyClassDefinition =
 	{
 		0, 0, 0, 0, 0, 0,
@@ -31,7 +31,7 @@ namespace JSUtil
 		0, 0, 0, 0, 0
 	};
 
-	// These are all KJSK*Class class methods.
+	// These are all JS*Class class methods.
 	static void GetPropertyNamesCallback(JSContextRef, JSObjectRef, JSPropertyNameAccumulatorRef);
 	static bool HasPropertyCallback(JSContextRef, JSObjectRef, JSStringRef);
 	static JSValueRef GetPropertyCallback(JSContextRef, JSObjectRef, JSStringRef, JSValueRef*);
@@ -165,7 +165,7 @@ namespace JSUtil
 			else
 			{
 				// this is a KObject that needs to be proxied
-				jsValue = KObjectToJSValue(value, jsContext);
+				jsValue = ObjectToJSValue(value, jsContext);
 			}
 		}
 		else if (value->IsMethod())
@@ -180,7 +180,7 @@ namespace JSUtil
 			else
 			{
 				// this is a KMethod that needs to be proxied
-				jsValue = KMethodToJSValue(value, jsContext);
+				jsValue = MethodToJSValue(value, jsContext);
 			}
 		}
 		else if (value->IsList())
@@ -195,7 +195,7 @@ namespace JSUtil
 			else
 			{
 				// this is a KList that needs to be proxied
-				jsValue = KListToJSValue(value, jsContext);
+				jsValue = ListToJSValue(value, jsContext);
 			}
 		}
 		else if (value->IsNull())
@@ -215,9 +215,9 @@ namespace JSUtil
 
 	}
 
-	JSValueRef KObjectToJSValue(KValueRef objectValue, JSContextRef jsContext)
+	JSValueRef ObjectToJSValue(KValueRef objectValue, JSContextRef jsContext)
 	{
-		if (KJSKObjectClass == NULL)
+		if (JSObjectClass == NULL)
 		{
 			JSClassDefinition jsClassDefinition = emptyClassDefinition;
 			jsClassDefinition.className = "Object";
@@ -226,14 +226,14 @@ namespace JSUtil
 			jsClassDefinition.hasProperty = HasPropertyCallback;
 			jsClassDefinition.getProperty = GetPropertyCallback;
 			jsClassDefinition.setProperty = SetPropertyCallback;
-			KJSKObjectClass = JSClassCreate(&jsClassDefinition);
+			JSObjectClass = JSClassCreate(&jsClassDefinition);
 		}
-		return JSObjectMake(jsContext, KJSKObjectClass, new KValueRef(objectValue));
+		return JSObjectMake(jsContext, JSObjectClass, new KValueRef(objectValue));
 	}
 
-	JSValueRef KMethodToJSValue(KValueRef methodValue, JSContextRef jsContext)
+	JSValueRef MethodToJSValue(KValueRef methodValue, JSContextRef jsContext)
 	{
-		if (KJSKMethodClass == NULL)
+		if (JSMethodClass == NULL)
 		{
 			JSClassDefinition jsClassDefinition = emptyClassDefinition;
 			jsClassDefinition.className = "Function";
@@ -243,18 +243,18 @@ namespace JSUtil
 			jsClassDefinition.getProperty = GetPropertyCallback;
 			jsClassDefinition.setProperty = SetPropertyCallback;
 			jsClassDefinition.callAsFunction = CallAsFunctionCallback;
-			KJSKMethodClass = JSClassCreate(&jsClassDefinition);
+			JSMethodClass = JSClassCreate(&jsClassDefinition);
 		}
-		JSObjectRef jsobject = JSObjectMake(jsContext, KJSKMethodClass, new KValueRef(methodValue));
+		JSObjectRef jsobject = JSObjectMake(jsContext, JSMethodClass, new KValueRef(methodValue));
 		JSValueRef functionPrototype = GetFunctionPrototype(jsContext, NULL);
 		JSObjectSetPrototype(jsContext, jsobject, functionPrototype);
 		return jsobject;
 	}
 
-	JSValueRef KListToJSValue(KValueRef listValue, JSContextRef jsContext)
+	JSValueRef ListToJSValue(KValueRef listValue, JSContextRef jsContext)
 	{
 
-		if (KJSKListClass == NULL)
+		if (JSListClass == NULL)
 		{
 			JSClassDefinition jsClassDefinition = emptyClassDefinition;
 			jsClassDefinition.className = "Array";
@@ -263,10 +263,10 @@ namespace JSUtil
 			jsClassDefinition.hasProperty = HasPropertyCallback;
 			jsClassDefinition.getProperty = GetPropertyCallback;
 			jsClassDefinition.setProperty = SetPropertyCallback;
-			KJSKListClass = JSClassCreate(&jsClassDefinition);
+			JSListClass = JSClassCreate(&jsClassDefinition);
 		}
 
-		JSObjectRef jsobject = JSObjectMake(jsContext, KJSKListClass, new KValueRef(listValue));
+		JSObjectRef jsobject = JSObjectMake(jsContext, JSListClass, new KValueRef(listValue));
 		JSValueRef arrayPrototype = GetArrayPrototype(jsContext, NULL);
 		JSObjectSetPrototype(jsContext, jsobject, arrayPrototype);
 		return jsobject;
