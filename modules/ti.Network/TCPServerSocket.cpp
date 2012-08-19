@@ -104,7 +104,7 @@ void TCPServerSocket::ListenThread()
     }
 }
 
-void TCPServerSocket::Listen(const ValueList& args, KValueRef result)
+void TCPServerSocket::Listen(const ValueList& args, ValueRef result)
 {
     args.VerifyException("listen", "n");
 
@@ -122,7 +122,7 @@ void TCPServerSocket::Listen(const ValueList& args, KValueRef result)
     result->SetBool(true);
 }
 
-void TCPServerSocket::Close(const ValueList& args, KValueRef result)
+void TCPServerSocket::Close(const ValueList& args, ValueRef result)
 {
     if (this->listening)
     {

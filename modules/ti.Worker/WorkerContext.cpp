@@ -99,7 +99,7 @@ void WorkerContext::MessageLoop()
     {
         while (!inbox.empty())
         {
-            KValueRef message(0);
+            ValueRef message(0);
             {
                 Poco::Mutex::ScopedLock lock(inboxLock);
                 message = inbox.front();
@@ -115,12 +115,12 @@ void WorkerContext::MessageLoop()
     }
 }
 
-void WorkerContext::DeliverMessage(KValueRef message)
+void WorkerContext::DeliverMessage(ValueRef message)
 {
     AutoPtr<Event> event(this->CreateEvent("worker.message"));
     event->Set("message", message);
 
-    KValueRef callback = this->Get("onmessage");
+    ValueRef callback = this->Get("onmessage");
     if (callback->IsMethod())
         callback->ToMethod()->Call(Value::NewObject(event));
 }
@@ -133,7 +133,7 @@ void WorkerContext::Terminate()
     terminateEvent.set();
 }
 
-void WorkerContext::SendMessageToWorker(KValueRef message)
+void WorkerContext::SendMessageToWorker(ValueRef message)
 {
     {
         Poco::Mutex::ScopedLock lock(inboxLock);
@@ -144,12 +144,12 @@ void WorkerContext::SendMessageToWorker(KValueRef message)
     messageEvent.set();
 }
 
-void WorkerContext::_PostMessage(const ValueList &args, KValueRef result)
+void WorkerContext::_PostMessage(const ValueList &args, ValueRef result)
 {
     worker->SendMessageToMainThread(args.GetValue(0));
 }
 
-void WorkerContext::_Sleep(const ValueList &args, KValueRef result)
+void WorkerContext::_Sleep(const ValueList &args, ValueRef result)
 {
     args.VerifyException("sleep", "i");
 
@@ -165,7 +165,7 @@ void WorkerContext::_Sleep(const ValueList &args, KValueRef result)
     }
 }
 
-void WorkerContext::_ImportScripts(const ValueList &args, KValueRef result)
+void WorkerContext::_ImportScripts(const ValueList &args, ValueRef result)
 {
     for (size_t c = 0; c < args.size(); c++)
     {
@@ -175,7 +175,7 @@ void WorkerContext::_ImportScripts(const ValueList &args, KValueRef result)
     }
 }
 
-KValueRef WorkerContext::Get(const char* name)
+ValueRef WorkerContext::Get(const char* name)
 {
     if (!jsContext)
         return Value::Undefined;
@@ -185,7 +185,7 @@ KValueRef WorkerContext::Get(const char* name)
     return global->Get(name);
 }
 
-void WorkerContext::Set(const char* name, KValueRef value)
+void WorkerContext::Set(const char* name, ValueRef value)
 {
     if (!jsContext)
         return;

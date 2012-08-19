@@ -93,12 +93,12 @@ HTTPClient::~HTTPClient()
 {
 }
 
-void HTTPClient::Abort(const ValueList& args, KValueRef result)
+void HTTPClient::Abort(const ValueList& args, ValueRef result)
 {
     this->aborted = true;
 }
 
-void HTTPClient::Open(const ValueList& args, KValueRef result)
+void HTTPClient::Open(const ValueList& args, ValueRef result)
 {
     args.VerifyException("open", "s s ?b s s");
 
@@ -140,25 +140,25 @@ void HTTPClient::Open(const ValueList& args, KValueRef result)
     result->SetBool(true);
 }
 
-void HTTPClient::SetCredentials(const ValueList& args, KValueRef result)
+void HTTPClient::SetCredentials(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setCredentials", "s s");
     this->username = args.GetString(0);
     this->password = args.GetString(1);
 }
 
-void HTTPClient::Send(const ValueList& args, KValueRef result)
+void HTTPClient::Send(const ValueList& args, ValueRef result)
 {
     // Get send data if provided
     args.VerifyException("send", "?s|o|0");
-    KValueRef sendData(args.GetValue(0));
+    ValueRef sendData(args.GetValue(0));
 
     // Setup output stream for data
     this->responseStream = new std::ostringstream(std::ios::binary | std::ios::out);
     result->SetBool(this->BeginRequest(sendData));
 }
 
-void HTTPClient::Receive(const ValueList& args, KValueRef result)
+void HTTPClient::Receive(const ValueList& args, ValueRef result)
 {
     args.VerifyException("receive", "m|o ?s|o|0");
 
@@ -191,11 +191,11 @@ void HTTPClient::Receive(const ValueList& args, KValueRef result)
     }
 
     // Get the send data if provided
-    KValueRef sendData(args.GetValue(1));
+    ValueRef sendData(args.GetValue(1));
     result->SetBool(this->BeginRequest(sendData));
 }
 
-void HTTPClient::SetRequestHeader(const ValueList& args, KValueRef result)
+void HTTPClient::SetRequestHeader(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setRequestHeader", "s s");
     std::string key(args.GetString(0));
@@ -213,7 +213,7 @@ void HTTPClient::SetRequestHeader(const ValueList& args, KValueRef result)
     this->requestHeaders.push_back(key);
 }
 
-void HTTPClient::GetResponseHeader(const ValueList& args, KValueRef result)
+void HTTPClient::GetResponseHeader(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getResponseHeader", "s");
     std::string name(args.GetString(0));
@@ -228,7 +228,7 @@ void HTTPClient::GetResponseHeader(const ValueList& args, KValueRef result)
     }
 }
 
-void HTTPClient::GetResponseHeaders(const ValueList& args, KValueRef result)
+void HTTPClient::GetResponseHeaders(const ValueList& args, ValueRef result)
 {
     KListRef headers(new StaticBoundList());
 
@@ -245,18 +245,18 @@ void HTTPClient::GetResponseHeaders(const ValueList& args, KValueRef result)
     result->SetList(headers);
 }
 
-void HTTPClient::SetCookie(const ValueList& args, KValueRef result)
+void HTTPClient::SetCookie(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setCookie", "ss");
     this->requestCookies.add(args.GetString(0), args.GetString(1));
 }
 
-void HTTPClient::ClearCookies(const ValueList& args, KValueRef result)
+void HTTPClient::ClearCookies(const ValueList& args, ValueRef result)
 {
     this->requestCookies.clear();
 }
 
-void HTTPClient::GetCookie(const ValueList& args, KValueRef result)
+void HTTPClient::GetCookie(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getCookie", "s");
     std::string cookieName = args.GetString(0);
@@ -271,23 +271,23 @@ void HTTPClient::GetCookie(const ValueList& args, KValueRef result)
     }
 }
 
-void HTTPClient::SetTimeout(const ValueList& args, KValueRef result)
+void HTTPClient::SetTimeout(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setTimeout", "i");
     this->timeout = args.GetInt(0);
 }
 
-void HTTPClient::GetTimeout(const ValueList& args, KValueRef result)
+void HTTPClient::GetTimeout(const ValueList& args, ValueRef result)
 {
     result->SetInt(this->timeout);
 }
 
-void HTTPClient::GetMaxRedirects(const ValueList& args, KValueRef result)
+void HTTPClient::GetMaxRedirects(const ValueList& args, ValueRef result)
 {
     result->SetInt(this->maxRedirects);
 }
 
-void HTTPClient::SetMaxRedirects(const ValueList& args, KValueRef result)
+void HTTPClient::SetMaxRedirects(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setMaxRedirects", "n");
     this->maxRedirects = args.GetInt(0);
@@ -343,7 +343,7 @@ static std::string ObjectToFilename(KObjectRef dataObject)
     if (nativePathMethod.isNull())
         return "data";
 
-    KValueRef pathValue(nativePathMethod->Call());
+    ValueRef pathValue(nativePathMethod->Call());
     if (!pathValue->IsString())
         return "data";
 
@@ -352,7 +352,7 @@ static std::string ObjectToFilename(KObjectRef dataObject)
 }
 
 void HTTPClient::AddScalarValueToCurlForm(SharedString propertyName,
-    KValueRef value, curl_httppost** last)
+    ValueRef value, curl_httppost** last)
 {
     if (value->IsString())
     {
@@ -399,7 +399,7 @@ void HTTPClient::BeginWithPostDataObject(KObjectRef object)
     for (unsigned int i = 0; i < properties->size(); i++)
     {
         SharedString propertyName(properties->at(i));
-        KValueRef value(object->Get(propertyName->c_str()));
+        ValueRef value(object->Get(propertyName->c_str()));
         if (value->IsList())
         {
             KListRef list(value->ToList());
@@ -413,7 +413,7 @@ void HTTPClient::BeginWithPostDataObject(KObjectRef object)
     }
 }
 
-bool HTTPClient::BeginRequest(KValueRef sendData)
+bool HTTPClient::BeginRequest(ValueRef sendData)
 {
     int currentState = 0;
 

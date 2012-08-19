@@ -24,9 +24,9 @@ namespace tide
 
 		public:
 		// @see Object::Set
-		virtual void Set(const char *name, KValueRef value);
+		virtual void Set(const char *name, ValueRef value);
 		// @see Object::Get
-		virtual KValueRef Get(const char *name);
+		virtual ValueRef Get(const char *name);
 		// @see Object::GetPropertyNames
 		virtual SharedStringList GetPropertyNames();
 		// @see Object::DisplayString
@@ -60,10 +60,10 @@ namespace tide
 
 	protected:
 		KObjectRef delegate;
-		KValueRef Wrap(KValueRef value, std::string type);
+		ValueRef Wrap(ValueRef value, std::string type);
 		std::string GetSubType(std::string name);
 		void Log(const char* eventType, std::string& name, Poco::Timestamp::TimeDiff);
-		static bool AlreadyWrapped(KValueRef);
+		static bool AlreadyWrapped(ValueRef);
 		static Poco::FileOutputStream *stream;
 		static Poco::Mutex logMutex;
 		Poco::AtomicCounter count;

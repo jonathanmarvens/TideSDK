@@ -26,17 +26,17 @@ public:
     Sound(std::string& url);
     virtual ~Sound();
 
-    void Play(const ValueList& args, KValueRef result);
-    void Pause(const ValueList& args, KValueRef result);
-    void Stop(const ValueList& args, KValueRef result);
-    void Reload(const ValueList& args, KValueRef result);
-    void SetVolume(const ValueList& args, KValueRef result);
-    void GetVolume(const ValueList& args, KValueRef result);
-    void SetLooping(const ValueList& args, KValueRef result);
-    void IsLooping(const ValueList& args, KValueRef result);
-    void IsPlaying(const ValueList& args, KValueRef result);
-    void IsPaused(const ValueList& args, KValueRef result);
-    void SetOnComplete(const ValueList& args, KValueRef result);
+    void Play(const ValueList& args, ValueRef result);
+    void Pause(const ValueList& args, ValueRef result);
+    void Stop(const ValueList& args, ValueRef result);
+    void Reload(const ValueList& args, ValueRef result);
+    void SetVolume(const ValueList& args, ValueRef result);
+    void GetVolume(const ValueList& args, ValueRef result);
+    void SetLooping(const ValueList& args, ValueRef result);
+    void IsLooping(const ValueList& args, ValueRef result);
+    void IsPlaying(const ValueList& args, ValueRef result);
+    void IsPaused(const ValueList& args, ValueRef result);
+    void SetOnComplete(const ValueList& args, ValueRef result);
 
     void Play();
     void Pause();

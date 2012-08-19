@@ -201,46 +201,46 @@ Application::~Application()
 {
 }
 
-void Application::GetID(const ValueList& args, KValueRef result)
+void Application::GetID(const ValueList& args, ValueRef result)
 {
     result->SetString(ApplicationConfig::Instance()->GetAppID().c_str());
 }
-void Application::GetName(const ValueList& args, KValueRef result)
+void Application::GetName(const ValueList& args, ValueRef result)
 {
     result->SetString(ApplicationConfig::Instance()->GetAppName().c_str());
 }
-void Application::GetVersion(const ValueList& args, KValueRef result)
+void Application::GetVersion(const ValueList& args, ValueRef result)
 {
     result->SetString(ApplicationConfig::Instance()->GetVersion().c_str());
 }
-void Application::GetPublisher(const ValueList& args, KValueRef result)
+void Application::GetPublisher(const ValueList& args, ValueRef result)
 {
     result->SetString(ApplicationConfig::Instance()->GetPublisher().c_str());
 }
-void Application::GetCopyright(const ValueList& args, KValueRef result)
+void Application::GetCopyright(const ValueList& args, ValueRef result)
 {
     result->SetString(ApplicationConfig::Instance()->GetCopyright().c_str());
 }
-void Application::GetDescription(const ValueList& args, KValueRef result)
+void Application::GetDescription(const ValueList& args, ValueRef result)
 {
     result->SetString(ApplicationConfig::Instance()->GetDescription().c_str());
 }
-void Application::GetURL(const ValueList& args, KValueRef result)
+void Application::GetURL(const ValueList& args, ValueRef result)
 {
     result->SetString(ApplicationConfig::Instance()->GetURL().c_str());
 }
-void Application::GetGUID(const ValueList& args, KValueRef result)
+void Application::GetGUID(const ValueList& args, ValueRef result)
 {
     std::string guid = host->GetApplication()->guid;
     result->SetString(guid);
 }
 
-void Application::Exit(const ValueList& args, KValueRef result)
+void Application::Exit(const ValueList& args, ValueRef result)
 {
     host->Exit(args.GetInt(0, 0));
 }
 
-void Application::AppURLToPath(const ValueList& args, KValueRef result)
+void Application::AppURLToPath(const ValueList& args, ValueRef result)
 {
     args.VerifyException("appURLToPath", "s");
     std::string url = args.GetString(0);
@@ -252,7 +252,7 @@ void Application::AppURLToPath(const ValueList& args, KValueRef result)
     result->SetString(path);
 }
 
-void Application::CreateProperties(const ValueList& args, KValueRef result)
+void Application::CreateProperties(const ValueList& args, ValueRef result)
 {
     AutoPtr<Properties> properties = new Properties();
     result->SetObject(properties);
@@ -263,7 +263,7 @@ void Application::CreateProperties(const ValueList& args, KValueRef result)
         SharedStringList names = p->GetPropertyNames();
         for (size_t i = 0; i < names->size(); i++)
         {
-            KValueRef value = p->Get(names->at(i));
+            ValueRef value = p->Get(names->at(i));
             ValueList setterArgs;
             setterArgs.push_back(Value::NewString(names->at(i)));
             setterArgs.push_back(value);
@@ -280,7 +280,7 @@ void Application::CreateProperties(const ValueList& args, KValueRef result)
     }
 }
 
-void Application::LoadProperties(const ValueList& args, KValueRef result)
+void Application::LoadProperties(const ValueList& args, ValueRef result)
 {
     if (args.size() >= 1 && args.at(0)->IsString()) {
         std::string file_path = args.at(0)->ToString();
@@ -289,16 +289,16 @@ void Application::LoadProperties(const ValueList& args, KValueRef result)
     }
 }
 
-void Application::GetSystemProperties(const ValueList& args, KValueRef result)
+void Application::GetSystemProperties(const ValueList& args, ValueRef result)
 {
     result->SetObject(ApplicationConfig::Instance()->GetSystemProperties());
 }
 
-void Application::StdOut(const ValueList& args, KValueRef result)
+void Application::StdOut(const ValueList& args, ValueRef result)
 {
     for (size_t c=0; c < args.size(); c++)
     {
-        KValueRef arg = args.at(c);
+        ValueRef arg = args.at(c);
         if (arg->IsString())
         {
             const char *s = arg->ToString();
@@ -313,11 +313,11 @@ void Application::StdOut(const ValueList& args, KValueRef result)
     std::cout << std::endl;
 }
 
-void Application::StdErr(const ValueList& args, KValueRef result)
+void Application::StdErr(const ValueList& args, ValueRef result)
 {
     for (size_t c = 0; c < args.size(); c++)
     {
-        KValueRef arg = args.at(c);
+        ValueRef arg = args.at(c);
         if (arg->IsString())
         {
             const char *s = arg->ToString();
@@ -332,7 +332,7 @@ void Application::StdErr(const ValueList& args, KValueRef result)
     std::cerr << std::endl;
 }
 
-void Application::StdIn(const ValueList& args, KValueRef result)
+void Application::StdIn(const ValueList& args, ValueRef result)
 {
     args.VerifyException("stdin", "?ss");
     std::string input;
@@ -352,14 +352,14 @@ void Application::StdIn(const ValueList& args, KValueRef result)
     result->SetString(input);
 }
 
-void Application::GetStreamURL(const ValueList& args, KValueRef result)
+void Application::GetStreamURL(const ValueList& args, ValueRef result)
 {
     SharedApplication app = this->host->GetApplication();
     std::string url(app->GetStreamURL("https"));
 
     for (size_t c = 0; c < args.size(); c++)
     {
-        KValueRef arg = args.at(c);
+        ValueRef arg = args.at(c);
         if (arg->IsString())
         {
             url.append("/");
@@ -369,7 +369,7 @@ void Application::GetStreamURL(const ValueList& args, KValueRef result)
     result->SetString(url);
 }
 
-void Application::GetIcon(const ValueList& args, KValueRef result)
+void Application::GetIcon(const ValueList& args, ValueRef result)
 {
     SharedApplication app = this->host->GetApplication();
     result->SetNull();  
@@ -380,17 +380,17 @@ void Application::GetIcon(const ValueList& args, KValueRef result)
     }
 }
 
-void Application::GetPath(const ValueList& args, KValueRef result)
+void Application::GetPath(const ValueList& args, ValueRef result)
 {
     result->SetString(host->GetApplication()->GetArguments().at(0).c_str());
 }
 
-void Application::GetHome(const ValueList& args, KValueRef result)
+void Application::GetHome(const ValueList& args, ValueRef result)
 {
     result->SetString(host->GetApplication()->path);
 }
 
-void Application::GetArguments(const ValueList& args, KValueRef result)
+void Application::GetArguments(const ValueList& args, ValueRef result)
 {
     static KListRef argList(0);
     if (argList.isNull())

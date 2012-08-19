@@ -45,8 +45,8 @@ public:
 private:
     static void Run(void*);
 
-    void ToString(const ValueList& args, KValueRef result);
-    void Cancel(const ValueList& args, KValueRef result);
+    void ToString(const ValueList& args, ValueRef result);
+    void Cancel(const ValueList& args, ValueRef result);
     void Copy(Poco::Path &src, Poco::Path &dest);
 
     Filesystem* parent;

@@ -15,7 +15,7 @@ class PHPInterpreter : public Interpreter {
 public:
 	PHPInterpreter();
 
-    KValueRef EvaluateFile(const char* filepath, KObjectRef context);
+    ValueRef EvaluateFile(const char* filepath, KObjectRef context);
 	
 private:
 	std::string CreateContextName();

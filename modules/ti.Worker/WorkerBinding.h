@@ -27,7 +27,7 @@ public:
     ~WorkerBinding();
 
 private:
-    void _CreateWorker(const ValueList& args, KValueRef result);
+    void _CreateWorker(const ValueList& args, ValueRef result);
 };
 
 } // namespace ti

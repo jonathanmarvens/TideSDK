@@ -13,11 +13,11 @@ namespace tide
 	{
 	public:
 		Event(AutoPtr<KEventObject> target, const std::string& eventName);
-		void _GetTarget(const ValueList&, KValueRef result);
-		void _GetType(const ValueList&, KValueRef result);
-		void _GetTimestamp(const ValueList&, KValueRef result);
-		void _StopPropagation(const ValueList&, KValueRef result);
-		void _PreventDefault(const ValueList&, KValueRef result);
+		void _GetTarget(const ValueList&, ValueRef result);
+		void _GetType(const ValueList&, ValueRef result);
+		void _GetTimestamp(const ValueList&, ValueRef result);
+		void _StopPropagation(const ValueList&, ValueRef result);
+		void _PreventDefault(const ValueList&, ValueRef result);
 		static void SetEventConstants(Object* target);
 
 		AutoPtr<KEventObject> target;

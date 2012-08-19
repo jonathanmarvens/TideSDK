@@ -76,29 +76,29 @@ MenuItem::~MenuItem()
 {
 }
 
-void MenuItem::_IsSeparator(const ValueList& args, KValueRef result)
+void MenuItem::_IsSeparator(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->type == SEPARATOR);
 }
 
-void MenuItem::_IsCheck(const ValueList& args, KValueRef result)
+void MenuItem::_IsCheck(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->type == CHECK);
 }
 
-void MenuItem::_SetLabel(const ValueList& args, KValueRef result)
+void MenuItem::_SetLabel(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setLabel", "s|0");
     string newLabel = args.GetString(0, "");
     this->SetLabel(newLabel);
 }
 
-void MenuItem::_GetLabel(const ValueList& args, KValueRef result)
+void MenuItem::_GetLabel(const ValueList& args, ValueRef result)
 {
     result->SetString(this->label);
 }
 
-void MenuItem::_SetIcon(const ValueList& args, KValueRef result)
+void MenuItem::_SetIcon(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setIcon", "s|0");
     std::string newIcon = "";
@@ -108,23 +108,23 @@ void MenuItem::_SetIcon(const ValueList& args, KValueRef result)
     this->SetIcon(newIcon);
 }
 
-void MenuItem::_GetIcon(const ValueList& args, KValueRef result)
+void MenuItem::_GetIcon(const ValueList& args, ValueRef result)
 {
     result->SetString(this->iconURL);
 }
 
-void MenuItem::_SetState(const ValueList& args, KValueRef result)
+void MenuItem::_SetState(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setState", "b");
     this->SetState(args.GetBool(0));
 }
 
-void MenuItem::_GetState(const ValueList& args, KValueRef result)
+void MenuItem::_GetState(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->state);
 }
 
-void MenuItem::_SetSubmenu(const ValueList& args, KValueRef result)
+void MenuItem::_SetSubmenu(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setSubmenu", "o|0");
     AutoPtr<Menu> newSubmenu = NULL;
@@ -145,7 +145,7 @@ void MenuItem::_SetSubmenu(const ValueList& args, KValueRef result)
     this->SetSubmenuImpl(newSubmenu);
 }
 
-void MenuItem::_GetSubmenu(const ValueList& args, KValueRef result)
+void MenuItem::_GetSubmenu(const ValueList& args, ValueRef result)
 {
     if (this->submenu.isNull())
     {
@@ -157,40 +157,40 @@ void MenuItem::_GetSubmenu(const ValueList& args, KValueRef result)
     }
 }
 
-void MenuItem::_Enable(const ValueList& args, KValueRef result)
+void MenuItem::_Enable(const ValueList& args, ValueRef result)
 {
     this->enabled = true;
     this->SetEnabledImpl(true);
 }
 
-void MenuItem::_Disable(const ValueList& args, KValueRef result)
+void MenuItem::_Disable(const ValueList& args, ValueRef result)
 {
     this->enabled = false;
     this->SetEnabledImpl(false);
 }
 
-void MenuItem::_SetAutoCheck(const ValueList& args, KValueRef result)
+void MenuItem::_SetAutoCheck(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setAutoCheck", "b");
     this->autoCheck = args.GetBool(0);
 }
 
-void MenuItem::_IsAutoCheck(const ValueList& args, KValueRef result)
+void MenuItem::_IsAutoCheck(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->autoCheck);
 }
 
-void MenuItem::_IsEnabled(const ValueList& args, KValueRef result)
+void MenuItem::_IsEnabled(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->enabled);
 }
 
-void MenuItem::_Click(const ValueList& args, KValueRef result)
+void MenuItem::_Click(const ValueList& args, ValueRef result)
 {
     this->HandleClickEvent(0);
 }
 
-void MenuItem::_AddItem(const ValueList& args, KValueRef result)
+void MenuItem::_AddItem(const ValueList& args, ValueRef result)
 {
     args.VerifyException("addItem", "?s m|0 s|0");
     UI* binding = UI::GetInstance();
@@ -203,7 +203,7 @@ void MenuItem::_AddItem(const ValueList& args, KValueRef result)
     result->SetObject(newItem);
 }
 
-void MenuItem::_AddSeparatorItem(const ValueList& args, KValueRef result)
+void MenuItem::_AddSeparatorItem(const ValueList& args, ValueRef result)
 {
     UI* binding = UI::GetInstance();
     AutoPtr<MenuItem> newItem = binding->__CreateSeparatorMenuItem(args);
@@ -213,7 +213,7 @@ void MenuItem::_AddSeparatorItem(const ValueList& args, KValueRef result)
     result->SetObject(newItem);
 }
 
-void MenuItem::_AddCheckItem(const ValueList& args, KValueRef result)
+void MenuItem::_AddCheckItem(const ValueList& args, ValueRef result)
 {
     UI* binding = UI::GetInstance();
 

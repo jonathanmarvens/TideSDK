@@ -22,14 +22,14 @@ namespace tide
 	{
 	}
 
-	void StaticBoundList::Append(KValueRef value)
+	void StaticBoundList::Append(ValueRef value)
 	{
 		std::string name = KList::IntToChars(this->length);
 		this->object->Set(name.c_str(), value);
 		this->length++;
 	}
 
-	void StaticBoundList::SetAt(unsigned int index, KValueRef value)
+	void StaticBoundList::SetAt(unsigned int index, ValueRef value)
 	{
 		std::string name = KList::IntToChars(index);
 		this->object->Set(name.c_str(), value);
@@ -56,14 +56,14 @@ namespace tide
 		return this->length;
 	}
 
-	KValueRef StaticBoundList::At(unsigned int index)
+	ValueRef StaticBoundList::At(unsigned int index)
 	{
 		std::string name = KList::IntToChars(index);
-		KValueRef value = this->object->Get(name.c_str());
+		ValueRef value = this->object->Get(name.c_str());
 		return value;
 	}
 
-	void StaticBoundList::Set(const char *name, KValueRef value)
+	void StaticBoundList::Set(const char *name, ValueRef value)
 	{
 		int index = -1;
 		if (KList::IsInt(name) && (index = atoi(name)) >= 0)
@@ -76,7 +76,7 @@ namespace tide
 		}
 	}
 
-	KValueRef StaticBoundList::Get(const char *name)
+	ValueRef StaticBoundList::Get(const char *name)
 	{
 		return this->object->Get(name);
 	}

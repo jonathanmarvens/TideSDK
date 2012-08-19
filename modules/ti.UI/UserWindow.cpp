@@ -248,17 +248,17 @@ void UserWindow::Closed()
     }
 }
 
-void UserWindow::_GetCurrentWindow(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetCurrentWindow(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetObject(AutoPtr<UserWindow>(this, true));
 }
 
-void UserWindow::_GetDOMWindow(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetDOMWindow(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetObject(this->domWindow);
 }
 
-void UserWindow::_InsertAPI(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_InsertAPI(const tide::ValueList& args, tide::ValueRef result)
 {
     if (!this->active)
         return;
@@ -269,7 +269,7 @@ void UserWindow::_InsertAPI(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_Hide(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Hide(const tide::ValueList& args, tide::ValueRef result)
 {
     this->config->SetVisible(false);
     if (this->active)
@@ -278,7 +278,7 @@ void UserWindow::_Hide(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_Show(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Show(const tide::ValueList& args, tide::ValueRef result)
 {
     this->config->SetVisible(true);
     if (this->active)
@@ -287,7 +287,7 @@ void UserWindow::_Show(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_Minimize(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Minimize(const tide::ValueList& args, tide::ValueRef result)
 {
     this->config->SetMinimized(true);
     if (this->active)
@@ -296,7 +296,7 @@ void UserWindow::_Minimize(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_Unminimize(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Unminimize(const tide::ValueList& args, tide::ValueRef result)
 {
     this->config->SetMinimized(false);
     if (this->active)
@@ -305,7 +305,7 @@ void UserWindow::_Unminimize(const tide::ValueList& args, tide::KValueRef result
     }
 }
 
-void UserWindow::_IsMinimized(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsMinimized(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -317,7 +317,7 @@ void UserWindow::_IsMinimized(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_Maximize(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Maximize(const tide::ValueList& args, tide::ValueRef result)
 {
     this->config->SetMaximized(true);
     if (this->active)
@@ -326,7 +326,7 @@ void UserWindow::_Maximize(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_IsMaximized(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsMaximized(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -338,7 +338,7 @@ void UserWindow::_IsMaximized(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_Unmaximize(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Unmaximize(const tide::ValueList& args, tide::ValueRef result)
 {
     this->config->SetMaximized(false);
     if (this->active)
@@ -347,7 +347,7 @@ void UserWindow::_Unmaximize(const tide::ValueList& args, tide::KValueRef result
     }
 }
 
-void UserWindow::_Focus(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Focus(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -355,7 +355,7 @@ void UserWindow::_Focus(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_Unfocus(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Unfocus(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -363,7 +363,7 @@ void UserWindow::_Unfocus(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_IsUsingChrome(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsUsingChrome(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -375,7 +375,7 @@ void UserWindow::_IsUsingChrome(const tide::ValueList& args, tide::KValueRef res
     }
 }
 
-void UserWindow::_SetUsingChrome(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetUsingChrome(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setUsingChrome", "b");
     bool b = args.at(0)->ToBool();
@@ -387,29 +387,29 @@ void UserWindow::_SetUsingChrome(const tide::ValueList& args, tide::KValueRef re
 }
 
 
-void UserWindow::_IsToolWindow(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsToolWindow(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetBool(this->IsToolWindow());
 }
 
-void UserWindow::_SetToolWindow(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetToolWindow(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setToolWindow", "b");
     config->SetToolWindow(args.GetBool(0));
 }
 
-void UserWindow::_HasTransparentBackground(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_HasTransparentBackground(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetBool(this->HasTransparentBackground());
 }
 
-void UserWindow::_SetTransparentBackground(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetTransparentBackground(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setTransparentBackground", "b");
     config->SetTransparentBackground(args.GetBool(0));
 }
 
-void UserWindow::_SetTopMost(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetTopMost(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setTopMost", "b");
     bool b = args.at(0)->ToBool();
@@ -420,7 +420,7 @@ void UserWindow::_SetTopMost(const tide::ValueList& args, tide::KValueRef result
     }
 }
 
-void UserWindow::_IsTopMost(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsTopMost(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -433,7 +433,7 @@ void UserWindow::_IsTopMost(const tide::ValueList& args, tide::KValueRef result)
 }
 
 
-void UserWindow::_IsUsingScrollbars(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsUsingScrollbars(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -445,7 +445,7 @@ void UserWindow::_IsUsingScrollbars(const tide::ValueList& args, tide::KValueRef
     }
 }
 
-void UserWindow::_IsFullscreen(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsFullscreen(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -457,7 +457,7 @@ void UserWindow::_IsFullscreen(const tide::ValueList& args, tide::KValueRef resu
     }
 }
 
-void UserWindow::_SetFullscreen(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetFullscreen(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setFullscreen", "b");
     bool b = args.at(0)->ToBool();
@@ -468,12 +468,12 @@ void UserWindow::_SetFullscreen(const tide::ValueList& args, tide::KValueRef res
     }
 }
 
-void UserWindow::_GetId(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetId(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetString(this->config->GetID());
 }
 
-void UserWindow::_Open(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Open(const tide::ValueList& args, tide::ValueRef result)
 {
     // Don't allow a window to be opened twice
     if (this->active || this->initialized)
@@ -486,7 +486,7 @@ void UserWindow::_Open(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_Close(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_Close(const tide::ValueList& args, tide::ValueRef result)
 {
     // Don't allow a non-active window to be closed
     if (this->active)
@@ -495,7 +495,7 @@ void UserWindow::_Close(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_GetX(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetX(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetDouble(this->_GetX());
 }
@@ -512,7 +512,7 @@ double UserWindow::_GetX()
     }
 }
 
-void UserWindow::_SetX(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetX(const tide::ValueList& args, tide::ValueRef result)
 {
     // Manual argument type-checking for speed considerations
     if (args.size() > 0 && args.at(0)->IsNumber())
@@ -531,7 +531,7 @@ void UserWindow::_SetX(double x)
     }
 }
 
-void UserWindow::_GetY(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetY(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetDouble(this->_GetY());
 }
@@ -548,7 +548,7 @@ double UserWindow::_GetY()
     }
 }
 
-void UserWindow::_SetY(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetY(const tide::ValueList& args, tide::ValueRef result)
 {
     // Manual argument type-checking for speed considerations
     if (args.size() > 0 && args.at(0)->IsNumber())
@@ -568,7 +568,7 @@ void UserWindow::_SetY(double y)
 
 }
 
-void UserWindow::_MoveTo(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_MoveTo(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("moveTo", "nn");
 
@@ -584,7 +584,7 @@ void UserWindow::_MoveTo(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_SetSize(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetSize(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setSize", "nn");
 
@@ -596,7 +596,7 @@ void UserWindow::_SetSize(const tide::ValueList& args, tide::KValueRef result)
     SetSize(width, height);
 }
 
-void UserWindow::_GetWidth(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetWidth(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetDouble(this->_GetWidth());
 }
@@ -613,7 +613,7 @@ double UserWindow::_GetWidth()
     }
 }
 
-void UserWindow::_SetWidth(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetWidth(const tide::ValueList& args, tide::ValueRef result)
 {
     // Manual argument type-checking for speed considerations
     if (args.size() > 0 && args.at(0)->IsNumber())
@@ -636,7 +636,7 @@ void UserWindow::_SetWidth(double w)
     }
 }
 
-void UserWindow::_GetMinWidth(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetMinWidth(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -648,7 +648,7 @@ void UserWindow::_GetMinWidth(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_SetMinWidth(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetMinWidth(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMinWidth", "n");
     double mw = args.at(0)->ToNumber();
@@ -674,7 +674,7 @@ void UserWindow::_SetMinWidth(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_GetMaxWidth(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetMaxWidth(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -686,7 +686,7 @@ void UserWindow::_GetMaxWidth(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_SetMaxWidth(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetMaxWidth(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMaxWidth", "n");
     double mw = args.at(0)->ToNumber();
@@ -712,7 +712,7 @@ void UserWindow::_SetMaxWidth(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_GetHeight(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetHeight(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetDouble(this->_GetHeight());
 }
@@ -729,7 +729,7 @@ double UserWindow::_GetHeight()
     }
 }
 
-void UserWindow::_SetHeight(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetHeight(const tide::ValueList& args, tide::ValueRef result)
 {
     // Manual argument type-checking for speed considerations
     if (args.size() > 0 && args.at(0)->IsNumber())
@@ -752,7 +752,7 @@ void UserWindow::_SetHeight(double h)
     }
 }
 
-void UserWindow::_GetMinHeight(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetMinHeight(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -764,7 +764,7 @@ void UserWindow::_GetMinHeight(const tide::ValueList& args, tide::KValueRef resu
     }
 }
 
-void UserWindow::_SetMinHeight(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetMinHeight(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMinHeight", "n");
     double mh = args.at(0)->ToNumber();
@@ -789,7 +789,7 @@ void UserWindow::_SetMinHeight(const tide::ValueList& args, tide::KValueRef resu
     }
 }
 
-void UserWindow::_GetMaxHeight(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetMaxHeight(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -801,7 +801,7 @@ void UserWindow::_GetMaxHeight(const tide::ValueList& args, tide::KValueRef resu
     }
 }
 
-void UserWindow::_SetMaxHeight(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetMaxHeight(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMaxHeight", "n");
     double mh = args.at(0)->ToNumber();
@@ -826,7 +826,7 @@ void UserWindow::_SetMaxHeight(const tide::ValueList& args, tide::KValueRef resu
     }
 }
 
-void UserWindow::_GetBounds(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetBounds(const tide::ValueList& args, tide::ValueRef result)
 {
     Bounds bounds = this->GetBounds();
     KObjectRef b(new StaticBoundObject());
@@ -850,7 +850,7 @@ Bounds UserWindow::GetBounds()
     return bounds;
 }
 
-void UserWindow::_SetBounds(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetBounds(const tide::ValueList& args, tide::ValueRef result)
 {
     if (args.size() < 1 || !args.at(0)->IsObject())
     {
@@ -897,7 +897,7 @@ void UserWindow::SetBounds(Bounds b)
     }
 }
 
-void UserWindow::_GetTitle(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetTitle(const tide::ValueList& args, tide::ValueRef result)
 {
     std::string title;
     if (this->active)
@@ -911,7 +911,7 @@ void UserWindow::_GetTitle(const tide::ValueList& args, tide::KValueRef result)
     result->SetString(title);
 }
 
-void UserWindow::_SetTitle(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetTitle(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setTitle", "s");
     std::string newTitle = args.at(0)->ToString();
@@ -927,7 +927,7 @@ void UserWindow::SetTitle(const std::string& newTitle)
     }
 }
 
-void UserWindow::_GetURL(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetURL(const tide::ValueList& args, tide::ValueRef result)
 {
     string url;
     if (this->active)
@@ -941,7 +941,7 @@ void UserWindow::_GetURL(const tide::ValueList& args, tide::KValueRef result)
     result->SetString(url);
 }
 
-void UserWindow::_SetURL(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetURL(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setURL", "s");
 
@@ -958,7 +958,7 @@ void UserWindow::_SetURL(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_IsResizable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsResizable(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -970,7 +970,7 @@ void UserWindow::_IsResizable(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_SetResizable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetResizable(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setResizable", "b");
     this->SetResizable(args.at(0)->ToBool());
@@ -985,7 +985,7 @@ void UserWindow::SetResizable(bool resizable)
     }
 }
 
-void UserWindow::_IsMaximizable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsMaximizable(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -997,7 +997,7 @@ void UserWindow::_IsMaximizable(const tide::ValueList& args, tide::KValueRef res
     }
 }
 
-void UserWindow::_SetMaximizable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetMaximizable(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMaximizable", "b");
     bool b = args.at(0)->ToBool();
@@ -1008,7 +1008,7 @@ void UserWindow::_SetMaximizable(const tide::ValueList& args, tide::KValueRef re
     }
 }
 
-void UserWindow::_IsMinimizable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsMinimizable(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -1020,7 +1020,7 @@ void UserWindow::_IsMinimizable(const tide::ValueList& args, tide::KValueRef res
     }
 }
 
-void UserWindow::_SetMinimizable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetMinimizable(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMinimizable", "b");
     bool b = args.at(0)->ToBool();
@@ -1031,7 +1031,7 @@ void UserWindow::_SetMinimizable(const tide::ValueList& args, tide::KValueRef re
     }
 }
 
-void UserWindow::_IsCloseable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsCloseable(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -1043,7 +1043,7 @@ void UserWindow::_IsCloseable(const tide::ValueList& args, tide::KValueRef resul
     }
 }
 
-void UserWindow::_SetCloseable(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetCloseable(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setCloseable", "b");
     bool b = args.at(0)->ToBool();
@@ -1054,7 +1054,7 @@ void UserWindow::_SetCloseable(const tide::ValueList& args, tide::KValueRef resu
     }
 }
 
-void UserWindow::_IsVisible(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsVisible(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -1066,12 +1066,12 @@ void UserWindow::_IsVisible(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_IsActive(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_IsActive(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetBool(this->active);
 }
 
-void UserWindow::_SetVisible(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetVisible(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setVisible", "b");
     bool b = args.at(0)->ToBool();
@@ -1090,7 +1090,7 @@ void UserWindow::_SetVisible(const tide::ValueList& args, tide::KValueRef result
     }
 }
 
-void UserWindow::_GetTransparency(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetTransparency(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->active)
     {
@@ -1102,7 +1102,7 @@ void UserWindow::_GetTransparency(const tide::ValueList& args, tide::KValueRef r
     }
 }
 
-void UserWindow::_SetTransparency(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetTransparency(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setTransparency", "n");
     double t = args.at(0)->ToNumber();
@@ -1115,7 +1115,7 @@ void UserWindow::_SetTransparency(const tide::ValueList& args, tide::KValueRef r
     }
 }
 
-void UserWindow::_SetMenu(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetMenu(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMenu", "o|0");
     AutoPtr<Menu> menu(args.GetObject(0, 0).cast<Menu>());
@@ -1124,7 +1124,7 @@ void UserWindow::_SetMenu(const tide::ValueList& args, tide::KValueRef result)
         this->SetMenu(menu);
 }
 
-void UserWindow::_GetMenu(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetMenu(const tide::ValueList& args, tide::ValueRef result)
 {
     AutoPtr<Menu> menu = this->GetMenu();
     if (!menu.isNull())
@@ -1137,7 +1137,7 @@ void UserWindow::_GetMenu(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_SetContextMenu(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetContextMenu(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setMenu", "o|0");
     AutoPtr<Menu> menu(args.GetObject(0, 0).cast<Menu>());
@@ -1146,7 +1146,7 @@ void UserWindow::_SetContextMenu(const tide::ValueList& args, tide::KValueRef re
         this->SetContextMenu(menu);
 }
 
-void UserWindow::_GetContextMenu(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetContextMenu(const tide::ValueList& args, tide::ValueRef result)
 {
     AutoPtr<Menu> menu = this->GetContextMenu();
     if (!menu.isNull())
@@ -1159,7 +1159,7 @@ void UserWindow::_GetContextMenu(const tide::ValueList& args, tide::KValueRef re
     }
 }
 
-void UserWindow::_SetIcon(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_SetIcon(const tide::ValueList& args, tide::ValueRef result)
 {
     args.VerifyException("setIcon", "s|0");
     std::string iconPath;
@@ -1179,12 +1179,12 @@ void UserWindow::_SetIcon(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_GetIcon(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetIcon(const tide::ValueList& args, tide::ValueRef result)
 {
     result->SetString(this->iconURL);
 }
 
-void UserWindow::_GetParent(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetParent(const tide::ValueList& args, tide::ValueRef result)
 {
     if (this->parent.isNull())
     {
@@ -1196,7 +1196,7 @@ void UserWindow::_GetParent(const tide::ValueList& args, tide::KValueRef result)
     }
 }
 
-void UserWindow::_GetChildren(const tide::ValueList& args, tide::KValueRef result)
+void UserWindow::_GetChildren(const tide::ValueList& args, tide::ValueRef result)
 {
     KListRef childList = new StaticBoundList();
 
@@ -1210,7 +1210,7 @@ void UserWindow::_GetChildren(const tide::ValueList& args, tide::KValueRef resul
     result->SetList(childList);
 }
 
-void UserWindow::_CreateWindow(const ValueList& args, KValueRef result)
+void UserWindow::_CreateWindow(const ValueList& args, ValueRef result)
 {
     AutoPtr<WindowConfig> config(0);
     if (args.size() > 0 && args.at(0)->IsObject())
@@ -1294,7 +1294,7 @@ void UserWindow::ReadChooserDialogObject(
 
 }
 
-void UserWindow::_OpenFileChooserDialog(const ValueList& args, KValueRef result)
+void UserWindow::_OpenFileChooserDialog(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openFileChooserDialog", "m ?o");
 
@@ -1329,7 +1329,7 @@ void UserWindow::_OpenFileChooserDialog(const ValueList& args, KValueRef result)
     }
 }
 
-void UserWindow::_OpenFolderChooserDialog(const ValueList& args, KValueRef result)
+void UserWindow::_OpenFolderChooserDialog(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openFolderChooserDialog", "m ?o");
     KMethodRef callback = args.at(0)->ToMethod();
@@ -1363,7 +1363,7 @@ void UserWindow::_OpenFolderChooserDialog(const ValueList& args, KValueRef resul
     }
 }
 
-void UserWindow::_OpenSaveAsDialog(const ValueList& args, KValueRef result)
+void UserWindow::_OpenSaveAsDialog(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openFolderChooserDialog", "m ?o");
     KMethodRef callback = args.at(0)->ToMethod();
@@ -1397,7 +1397,7 @@ void UserWindow::_OpenSaveAsDialog(const ValueList& args, KValueRef result)
     }
 }
 
-void UserWindow::_ShowInspector(const ValueList& args, KValueRef result)
+void UserWindow::_ShowInspector(const ValueList& args, ValueRef result)
 {
     if (!this->active)
         return;
@@ -1413,7 +1413,7 @@ void UserWindow::_ShowInspector(const ValueList& args, KValueRef result)
     }
 }
 
-void UserWindow::_SetContents(const ValueList& args, KValueRef result)
+void UserWindow::_SetContents(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setContents", "s ?s");
     this->SetContents(args.GetString(0), args.GetString(1));
@@ -1435,7 +1435,7 @@ void UserWindow::SetContents(const std::string& content, const std::string& base
     this->SetContentsImpl(content, normalizedURL);
 }
 
-void UserWindow::_SetPluginsEnabled(const ValueList& args, KValueRef result)
+void UserWindow::_SetPluginsEnabled(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setPluginsEnabled", "b");
     this->SetPluginsEnabled(args.GetBool(0));
@@ -1566,7 +1566,7 @@ void UserWindow::InsertAPI(KObjectRef frameGlobal)
     frameGlobal->SetObject(GLOBAL_NS_VARNAME, delegateGlobalObject);
 }
 
-static KValueRef DeferredGarbageCollection(const ValueList& args)
+static ValueRef DeferredGarbageCollection(const ValueList& args)
 {
     JavaScriptModuleInstance::GarbageCollect();
     return Value::Undefined;
@@ -1664,18 +1664,18 @@ std::string UserWindow::GetId()
     return config->GetID();
 }
 
-void UserWindow::_SetDocumentEdited(const ValueList& args, KValueRef result)
+void UserWindow::_SetDocumentEdited(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setDocumentEdited", "b");
     this->SetDocumentEdited(args.GetBool(0));
 }
 
-void UserWindow::_IsDocumentEdited(const ValueList& args, KValueRef result)
+void UserWindow::_IsDocumentEdited(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->IsDocumentEdited());
 }
 
-void UserWindow::_IncludeScript(const ValueList& args, KValueRef result)
+void UserWindow::_IncludeScript(const ValueList& args, ValueRef result)
 {
     args.VerifyException("include", "s");
     const char* filepath = args.at(0)->ToString();
@@ -1685,7 +1685,7 @@ void UserWindow::_IncludeScript(const ValueList& args, KValueRef result)
     std::string absoluteFilePath = FileUtils::Join(resourcesPath.c_str(), filepath, NULL);
 
     ScriptController* script = Host::GetInstance()->script();
-    KValueRef scriptResult = script->EvaluateFile(absoluteFilePath.c_str(), domWindow);
+    ValueRef scriptResult = script->EvaluateFile(absoluteFilePath.c_str(), domWindow);
     result->SetValue(scriptResult);
 }
 

@@ -20,7 +20,7 @@
 
 namespace ti {
 
-void Application::Restart(const ValueList& args, KValueRef result)
+void Application::Restart(const ValueList& args, ValueRef result)
 {
     Host* host = Host::GetInstance();
     std::wstring cmdline(::UTF8ToWide(host->GetApplication()->arguments.at(0)));

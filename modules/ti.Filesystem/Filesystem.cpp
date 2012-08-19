@@ -84,7 +84,7 @@ Filesystem::~Filesystem()
     }
 }
 
-void Filesystem::CreateTempFile(const ValueList& args, KValueRef result)
+void Filesystem::CreateTempFile(const ValueList& args, ValueRef result)
 {
     try
     {
@@ -101,7 +101,7 @@ void Filesystem::CreateTempFile(const ValueList& args, KValueRef result)
     }
 }
 
-void Filesystem::CreateTempDirectory(const ValueList& args, KValueRef result)
+void Filesystem::CreateTempDirectory(const ValueList& args, ValueRef result)
 {
     try
     {
@@ -119,41 +119,41 @@ void Filesystem::CreateTempDirectory(const ValueList& args, KValueRef result)
 }
 
 
-void Filesystem::GetFile(const ValueList& args, KValueRef result)
+void Filesystem::GetFile(const ValueList& args, ValueRef result)
 {
     result->SetObject(new File(FilenameFromArguments(args)));
 }
 
-void Filesystem::GetFileStream(const ValueList& args, KValueRef result)
+void Filesystem::GetFileStream(const ValueList& args, ValueRef result)
 {
     result->SetObject(new FileStream(FilenameFromArguments(args)));
 }
 
-void Filesystem::GetApplicationDirectory(const ValueList& args, KValueRef result)
+void Filesystem::GetApplicationDirectory(const ValueList& args, ValueRef result)
 {
     result->SetObject(new File(host->GetApplication()->path));
 }
 
-void Filesystem::GetApplicationDataDirectory(const ValueList& args, KValueRef result)
+void Filesystem::GetApplicationDataDirectory(const ValueList& args, ValueRef result)
 {
     result->SetObject(new File(
         Host::GetInstance()->GetApplication()->GetDataPath()));
 }
 
-void Filesystem::GetRuntimeHomeDirectory(const ValueList& args, KValueRef result)
+void Filesystem::GetRuntimeHomeDirectory(const ValueList& args, ValueRef result)
 {
     std::string dir = FileUtils::GetSystemRuntimeHomeDirectory();
     File* file = new File(dir);
     result->SetObject(file);
 }
 
-void Filesystem::GetResourcesDirectory(const ValueList& args, KValueRef result)
+void Filesystem::GetResourcesDirectory(const ValueList& args, ValueRef result)
 {
     File* file = new File(host->GetApplication()->GetResourcesPath());
     result->SetObject(file);
 }
 
-void Filesystem::GetProgramsDirectory(const ValueList &args, KValueRef result)
+void Filesystem::GetProgramsDirectory(const ValueList &args, ValueRef result)
 {
 #ifdef OS_WIN32
     wchar_t path[MAX_PATH];
@@ -174,7 +174,7 @@ void Filesystem::GetProgramsDirectory(const ValueList &args, KValueRef result)
     result->SetObject(file);
 }
 
-void Filesystem::GetDesktopDirectory(const ValueList& args, KValueRef result)
+void Filesystem::GetDesktopDirectory(const ValueList& args, ValueRef result)
 {
 #ifdef OS_WIN32
     wchar_t path[MAX_PATH];
@@ -200,7 +200,7 @@ void Filesystem::GetDesktopDirectory(const ValueList& args, KValueRef result)
     result->SetObject(file);
 }
 
-void Filesystem::GetDocumentsDirectory(const ValueList& args, KValueRef result)
+void Filesystem::GetDocumentsDirectory(const ValueList& args, ValueRef result)
 {
 #ifdef OS_WIN32
     wchar_t path[MAX_PATH];
@@ -226,7 +226,7 @@ void Filesystem::GetDocumentsDirectory(const ValueList& args, KValueRef result)
     result->SetObject(file);
 }
 
-void Filesystem::GetUserDirectory(const ValueList& args, KValueRef result)
+void Filesystem::GetUserDirectory(const ValueList& args, ValueRef result)
 {
     std::string dir;
     try
@@ -258,7 +258,7 @@ void Filesystem::GetUserDirectory(const ValueList& args, KValueRef result)
     result->SetObject(file);
 }
 
-void Filesystem::GetLineEnding(const ValueList& args, KValueRef result)
+void Filesystem::GetLineEnding(const ValueList& args, ValueRef result)
 {
     try
     {
@@ -270,7 +270,7 @@ void Filesystem::GetLineEnding(const ValueList& args, KValueRef result)
     }
 }
 
-void Filesystem::GetSeparator(const ValueList& args, KValueRef result)
+void Filesystem::GetSeparator(const ValueList& args, ValueRef result)
 {
     try
     {
@@ -284,7 +284,7 @@ void Filesystem::GetSeparator(const ValueList& args, KValueRef result)
     }
 }
 
-void Filesystem::GetRootDirectories(const ValueList& args, KValueRef result)
+void Filesystem::GetRootDirectories(const ValueList& args, ValueRef result)
 {
     try
     {
@@ -296,7 +296,7 @@ void Filesystem::GetRootDirectories(const ValueList& args, KValueRef result)
         for(size_t i = 0; i < roots.size(); i++)
         {
             File* file = new File(roots.at(i));
-            KValueRef value = Value::NewObject((KObjectRef) file);
+            ValueRef value = Value::NewObject((KObjectRef) file);
             rootList->Append(value);
         }
 
@@ -309,7 +309,7 @@ void Filesystem::GetRootDirectories(const ValueList& args, KValueRef result)
     }
 }
 
-void Filesystem::ExecuteAsyncCopy(const ValueList& args, KValueRef result)
+void Filesystem::ExecuteAsyncCopy(const ValueList& args, ValueRef result)
 {
     if (args.size()!=3)
     {
@@ -332,7 +332,7 @@ void Filesystem::ExecuteAsyncCopy(const ValueList& args, KValueRef result)
     {
         files.push_back(FilenameFromValue(args.at(0)));
     }
-    KValueRef v = args.at(1);
+    ValueRef v = args.at(1);
     std::string destination(FilenameFromValue(v));
     KMethodRef method = args.at(2)->ToMethod();
     KObjectRef copier = new AsyncCopy(this,host,files,destination,method);
@@ -352,7 +352,7 @@ void Filesystem::ExecuteAsyncCopy(const ValueList& args, KValueRef result)
     }
 }
 
-void Filesystem::DeletePendingOperations(const ValueList& args, KValueRef result)
+void Filesystem::DeletePendingOperations(const ValueList& args, ValueRef result)
 {
     KR_DUMP_LOCATION
     if (asyncOperations.size()==0)
@@ -365,7 +365,7 @@ void Filesystem::DeletePendingOperations(const ValueList& args, KValueRef result
     while (iter!=asyncOperations.end())
     {
         KObjectRef c = (*iter);
-        KValueRef v = c->Get("running");
+        ValueRef v = c->Get("running");
         bool running = v->ToBool();
         if (!running)
         {
@@ -385,7 +385,7 @@ void Filesystem::OnAsyncOperationTimer(Poco::Timer &timer)
 
     ValueList args = ValueList();
     KMethodRef m = this->Get("_invoke")->ToMethod();
-    KValueRef result = RunOnMainThread(m, args);
+    ValueRef result = RunOnMainThread(m, args);
     if (result->ToBool())
     {
         timer.restart(0);

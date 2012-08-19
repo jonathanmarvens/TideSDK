@@ -149,24 +149,24 @@ AutoPtr<Pipe> Pipe::Clone()
     return pipe;
 }
 
-void Pipe::_Attach(const ValueList& args, KValueRef result)
+void Pipe::_Attach(const ValueList& args, ValueRef result)
 {
     args.VerifyException("attach", "o");
     this->Attach(args.at(0)->ToObject());
 }
 
-void Pipe::_Detach(const ValueList& args, KValueRef result)
+void Pipe::_Detach(const ValueList& args, ValueRef result)
 {
     args.VerifyException("detach", "o");
     this->Detach(args.at(0)->ToObject());
 }
 
-void Pipe::_IsAttached(const ValueList& args, KValueRef result)
+void Pipe::_IsAttached(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->IsAttached());
 }
 
-void Pipe::_Write(const ValueList& args, KValueRef result)
+void Pipe::_Write(const ValueList& args, ValueRef result)
 {
     args.VerifyException("write", "o|s");
     
@@ -189,12 +189,12 @@ void Pipe::_Write(const ValueList& args, KValueRef result)
     result->SetInt(written);
 }
 
-void Pipe::_Flush(const ValueList& args, KValueRef result)
+void Pipe::_Flush(const ValueList& args, ValueRef result)
 {
     this->Flush();
 }
 
-void Pipe::_Close(const ValueList& args, KValueRef result)
+void Pipe::_Close(const ValueList& args, ValueRef result)
 {
     this->Close();
 }
@@ -268,7 +268,7 @@ void Pipe::Close()
 
 void Pipe::CallClose(KObjectRef target)
 {
-    KValueRef closeMethod = target->Get("close");
+    ValueRef closeMethod = target->Get("close");
 
     if (!closeMethod->IsMethod())
     {

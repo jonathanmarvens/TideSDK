@@ -39,7 +39,7 @@ namespace tide
 		static std::map<int, MainThreadCaller*> callers;
 		static Poco::Mutex timersMutex;
 		
-		static KValueRef CreateTimer(const ValueList& args, bool interval)
+		static ValueRef CreateTimer(const ValueList& args, bool interval)
 		{
 			KMethodRef method = 0;
 			if (args.at(0)->IsMethod())
@@ -80,7 +80,7 @@ namespace tide
 		}
 		
 		// this gets called on the main thread to avoid deadlock during the thread callback
-		static KValueRef StopTimer(const ValueList& args)
+		static ValueRef StopTimer(const ValueList& args)
 		{
 			int id = args.GetInt(0);
 			Poco::ScopedLock<Poco::Mutex> l(timersMutex);
@@ -104,25 +104,25 @@ namespace tide
 			return Value::NewBool(false);
 		}
 		
-		KValueRef SetTimeout(const ValueList& args)
+		ValueRef SetTimeout(const ValueList& args)
 		{
 			args.VerifyException("setTimeout", "m|s i");
 			return CreateTimer(args, false);
 		}
 		
-		KValueRef SetInterval(const ValueList& args)
+		ValueRef SetInterval(const ValueList& args)
 		{
 			args.VerifyException("setInterval", "m|s i");
 			return CreateTimer(args, true);
 		}
 		
-		KValueRef ClearTimeout(const ValueList& args)
+		ValueRef ClearTimeout(const ValueList& args)
 		{
 			args.VerifyException("clearTimeout", "i");
 			return Host::GetInstance()->RunOnMainThread(new KFunctionPtrMethod(&StopTimer), 0, args, false);
 		}
 		
-		KValueRef ClearInterval(const ValueList& args)
+		ValueRef ClearInterval(const ValueList& args)
 		{
 			args.VerifyException("clearInterval", "i");
 			return Host::GetInstance()->RunOnMainThread(new KFunctionPtrMethod(&StopTimer), 0, args, false);

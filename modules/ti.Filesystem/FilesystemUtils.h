@@ -21,7 +21,7 @@
 
 namespace ti {
 
-std::string FilenameFromValue(KValueRef);
+std::string FilenameFromValue(ValueRef);
 std::string FilenameFromArguments(const ValueList& args);
 
 } // namespace ti

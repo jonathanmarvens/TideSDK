@@ -255,7 +255,7 @@ int ProcessWin::GetPID()
     return pid;
 }
 
-void ProcessWin::ReadCallback(const ValueList& args, KValueRef result)
+void ProcessWin::ReadCallback(const ValueList& args, ValueRef result)
 {
     if (args.at(0)->IsObject())
     {

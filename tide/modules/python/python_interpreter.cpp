@@ -24,7 +24,7 @@ namespace tide
 			if ((!PyDict_GetItemString(globals, k) && !PyObject_HasAttrString(builtins, k))
 					|| !strcmp(k, PRODUCT_NAME))
 			{
-				KValueRef v = context->Get(k);
+				ValueRef v = context->Get(k);
 				PyObject* pv = PythonUtils::ToPyObject(v);
 				PyDict_SetItemString(globals, k, pv);
 				Py_DECREF(pv);
@@ -53,8 +53,8 @@ namespace tide
 			std::string sk = PythonUtils::ToString(k);
 			if (sk.find("__") != 0)
 			{
-				KValueRef newValue = PythonUtils::ToTideValue(v);
-				KValueRef existingValue = context->Get(sk.c_str());
+				ValueRef newValue = PythonUtils::ToTideValue(v);
+				ValueRef existingValue = context->Get(sk.c_str());
 				if (!newValue->Equals(existingValue))
 				{
 					context->Set(sk.c_str(), newValue);
@@ -68,7 +68,7 @@ namespace tide
 	{
 	}
 
-    KValueRef PythonInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
+    ValueRef PythonInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
     {
         PyLockGIL lock;
 
@@ -85,7 +85,7 @@ namespace tide
         MergePyGlobalsWithContext(globals, context);
         Py_DECREF(globals);
 
-        KValueRef result = PythonUtils::ToTideValue(pyResult);
+        ValueRef result = PythonUtils::ToTideValue(pyResult);
         Py_DECREF(pyResult);
         return result;
     }

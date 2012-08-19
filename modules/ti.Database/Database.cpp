@@ -53,7 +53,7 @@ static Logger* GetLogger()
 class ValueBinding
 {
 public:
-    void convert (Statement &select, KValueRef arg)
+    void convert (Statement &select, ValueRef arg)
     {
         if (arg->IsString())
         {
@@ -202,7 +202,7 @@ Database::~Database()
         delete session;
 }
 
-void Database::Execute(const ValueList& args, KValueRef result)
+void Database::Execute(const ValueList& args, ValueRef result)
 {
     args.VerifyException("execute", "s");
 
@@ -225,13 +225,13 @@ void Database::Execute(const ValueList& args, KValueRef result)
             
             for (size_t c=1;c<args.size();c++)
             {
-                KValueRef anarg = args.at(c);
+                ValueRef anarg = args.at(c);
                 if (anarg->IsList())
                 {
                     KListRef list = anarg->ToList();
                     for (size_t a=0;a<list->Size();a++)
                     {
-                        KValueRef arg = list->At(a);
+                        ValueRef arg = list->At(a);
                         binding.convert(select,arg);
                     }
                 }
@@ -277,7 +277,7 @@ void Database::Execute(const ValueList& args, KValueRef result)
     }
 }
 
-void Database::Close(const ValueList& args, KValueRef result)
+void Database::Close(const ValueList& args, ValueRef result)
 {
     GetLogger()->Debug("Closing database: %s", name.c_str());
     this->Close();
@@ -292,12 +292,12 @@ void Database::Close()
     }
 }
 
-void Database::GetPath(const ValueList& args, KValueRef result)
+void Database::GetPath(const ValueList& args, ValueRef result)
 {
     result->SetString(this->path);
 }
 
-void Database::Remove(const ValueList& args, KValueRef result)
+void Database::Remove(const ValueList& args, ValueRef result)
 {
     this->Close();
 

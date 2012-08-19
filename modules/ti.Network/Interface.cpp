@@ -75,37 +75,37 @@ Interface::~Interface()
 {
 }
 
-void Interface::_GetAddress(const ValueList& args, KValueRef result)
+void Interface::_GetAddress(const ValueList& args, ValueRef result)
 {
     result->SetString(interface.address().toString().c_str());
 }
 
-void Interface::_GetIPAddress(const ValueList& args, KValueRef result)
+void Interface::_GetIPAddress(const ValueList& args, ValueRef result)
 {
     result->SetObject(new IPAddress(interface.address()));
 }
 
-void Interface::_GetName(const ValueList& args, KValueRef result)
+void Interface::_GetName(const ValueList& args, ValueRef result)
 {
     result->SetString(interface.name().c_str());
 }
 
-void Interface::_GetDisplayName(const ValueList& args, KValueRef result)
+void Interface::_GetDisplayName(const ValueList& args, ValueRef result)
 {
     result->SetString(interface.displayName().c_str());
 }
 
-void Interface::_GetSubnetMask(const ValueList& args, KValueRef result)
+void Interface::_GetSubnetMask(const ValueList& args, ValueRef result)
 {
     result->SetObject(new IPAddress(interface.subnetMask()));
 }
 
-void Interface::_SupportsIPv4(const ValueList& args, KValueRef result)
+void Interface::_SupportsIPv4(const ValueList& args, ValueRef result)
 {
     result->SetBool(interface.supportsIPv4());
 }
 
-void Interface::_SupportsIPv6(const ValueList& args, KValueRef result)
+void Interface::_SupportsIPv6(const ValueList& args, ValueRef result)
 {
     result->SetBool(interface.supportsIPv6());
 }

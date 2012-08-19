@@ -14,11 +14,11 @@ namespace tide
 	class RubyUtils
 	{
 	public:
-		static KValueRef ToTideValue(VALUE value);
-		static VALUE ToRubyValue(KValueRef value);
-		static VALUE KObjectToRubyValue(KValueRef value);
-		static VALUE KMethodToRubyValue(KValueRef value);
-		static VALUE KListToRubyValue(KValueRef value);
+		static ValueRef ToTideValue(VALUE value);
+		static VALUE ToRubyValue(ValueRef value);
+		static VALUE KObjectToRubyValue(ValueRef value);
+		static VALUE KMethodToRubyValue(ValueRef value);
+		static VALUE KListToRubyValue(ValueRef value);
 		static bool KindOf(VALUE value, VALUE klass);
 
 		static ValueException GetException();
