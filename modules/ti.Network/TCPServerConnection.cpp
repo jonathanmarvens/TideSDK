@@ -235,7 +235,7 @@ void TCPServerConnection::onErrored(const Poco::AutoPtr<Poco::Net::ErrorNotifica
     RunOnMainThread(this->onError, args, false);
 }
 
-void TCPServerConnection::Close(const ValueList& args, KValueRef result)
+void TCPServerConnection::Close(const ValueList& args, ValueRef result)
 {
     if (!closed)
     {
@@ -249,7 +249,7 @@ void TCPServerConnection::Close(const ValueList& args, KValueRef result)
     }
 }
 
-void TCPServerConnection::Write(const ValueList& args, KValueRef result)
+void TCPServerConnection::Write(const ValueList& args, ValueRef result)
 {
     args.VerifyException("Write", "o|s");
 
@@ -288,27 +288,27 @@ void TCPServerConnection::Write(const ValueList& args, KValueRef result)
     result->SetBool(true);
 }
 
-void TCPServerConnection::SetOnRead(const ValueList& args, KValueRef result)
+void TCPServerConnection::SetOnRead(const ValueList& args, ValueRef result)
 {
     this->onRead = args.at(0)->ToMethod();
 }
 
-void TCPServerConnection::SetOnWrite(const ValueList& args, KValueRef result)
+void TCPServerConnection::SetOnWrite(const ValueList& args, ValueRef result)
 {
     this->onWrite = args.at(0)->ToMethod();
 }
 
-void TCPServerConnection::SetOnError(const ValueList& args, KValueRef result)
+void TCPServerConnection::SetOnError(const ValueList& args, ValueRef result)
 {
     this->onError = args.at(0)->ToMethod();
 }
 
-void TCPServerConnection::SetOnReadComplete(const ValueList& args, KValueRef result)
+void TCPServerConnection::SetOnReadComplete(const ValueList& args, ValueRef result)
 {
     this->onReadComplete = args.at(0)->ToMethod();
 }
 
-void TCPServerConnection::IsClosed(const ValueList& args, KValueRef result)
+void TCPServerConnection::IsClosed(const ValueList& args, ValueRef result)
 {
     return result->SetBool(this->closed);
 }

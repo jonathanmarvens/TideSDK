@@ -141,7 +141,7 @@ Codec::~Codec()
 {
 }
 
-static std::string& GetStringFromValue(KValueRef value)
+static std::string& GetStringFromValue(ValueRef value)
 {
     static std::string data;
     if (value->IsString())
@@ -163,7 +163,7 @@ static std::string& GetStringFromValue(KValueRef value)
     return data;
 }
 
-void Codec::EncodeBase64(const ValueList& args, KValueRef result)
+void Codec::EncodeBase64(const ValueList& args, ValueRef result)
 {
     args.VerifyException("encodeBase64", "s|o");
     
@@ -175,7 +175,7 @@ void Codec::EncodeBase64(const ValueList& args, KValueRef result)
     result->SetString(encoded);
 }
 
-void Codec::DecodeBase64(const ValueList& args, KValueRef result)
+void Codec::DecodeBase64(const ValueList& args, ValueRef result)
 {
     args.VerifyException("decodeBase64", "s");
 
@@ -188,7 +188,7 @@ void Codec::DecodeBase64(const ValueList& args, KValueRef result)
     result->SetString(decoded);
 }
 
-void Codec::DigestToHex(const ValueList& args, KValueRef result)
+void Codec::DigestToHex(const ValueList& args, ValueRef result)
 {
     args.VerifyException("digestToHex", "i s|o");
     
@@ -243,7 +243,7 @@ void Codec::DigestToHex(const ValueList& args, KValueRef result)
     delete engine;
 }
 
-void Codec::DigestHMACToHex(const ValueList& args, KValueRef result)
+void Codec::DigestHMACToHex(const ValueList& args, ValueRef result)
 {
     args.VerifyException("digestHMACToHex", "i s s");
     
@@ -294,7 +294,7 @@ void Codec::DigestHMACToHex(const ValueList& args, KValueRef result)
     }
 }
 
-void Codec::EncodeHexBinary(const ValueList& args, KValueRef result)
+void Codec::EncodeHexBinary(const ValueList& args, ValueRef result)
 {
     args.VerifyException("encodeHexBinary", "s|o");
     
@@ -306,7 +306,7 @@ void Codec::EncodeHexBinary(const ValueList& args, KValueRef result)
     result->SetString(encoded);
 }
 
-void Codec::DecodeHexBinary(const ValueList& args, KValueRef result)
+void Codec::DecodeHexBinary(const ValueList& args, ValueRef result)
 {
     args.VerifyException("decodeHexBinary", "s");
     
@@ -319,7 +319,7 @@ void Codec::DecodeHexBinary(const ValueList& args, KValueRef result)
     result->SetString(decoded);
 }
 
-void Codec::Checksum(const ValueList& args, KValueRef result)
+void Codec::Checksum(const ValueList& args, ValueRef result)
 {
     args.VerifyException("checksum", "s|o ?i");
 
@@ -379,7 +379,7 @@ void Codec::Checksum(const ValueList& args, KValueRef result)
     delete checksum;
 }
 
-static std::string GetPathFromValue(KValueRef value)
+static std::string GetPathFromValue(ValueRef value)
 {
     if (value->IsObject())
     {
@@ -391,7 +391,7 @@ static std::string GetPathFromValue(KValueRef value)
     }
 }
 
-void Codec::CreateZip(const ValueList& args, KValueRef result)
+void Codec::CreateZip(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createZip", "s|o s|o ?m");
     
@@ -431,7 +431,7 @@ void Codec::CreateZip(const ValueList& args, KValueRef result)
     result->SetObject(zipJob);
 }
 
-void Codec::ExtractZip(const ValueList& args, KValueRef result)
+void Codec::ExtractZip(const ValueList& args, ValueRef result)
 {
     args.VerifyException("extractZip", "s|o s|o ?m");
 
@@ -465,7 +465,7 @@ void Codec::ExtractZip(const ValueList& args, KValueRef result)
 }
 
 /*static*/
-KValueRef Codec::CreateZipAsync(const ValueList& args)
+ValueRef Codec::CreateZipAsync(const ValueList& args)
 {
     std::string directory = args.GetString(0);
     std::string zipFile = args.GetString(1);
@@ -506,7 +506,7 @@ KValueRef Codec::CreateZipAsync(const ValueList& args)
 }
 
 /*static*/
-KValueRef Codec::ExtractZipAsync(const ValueList& args)
+ValueRef Codec::ExtractZipAsync(const ValueList& args)
 {
     std::string zipFile = args.GetString(0);
     std::string directory = args.GetString(1);

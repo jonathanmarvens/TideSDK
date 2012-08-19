@@ -52,8 +52,8 @@ private:
     };
     
     void ListenThread();
-    void Listen(const ValueList& args, KValueRef result);
-    void Close(const ValueList& args, KValueRef result);
+    void Listen(const ValueList& args, ValueRef result);
+    void Close(const ValueList& args, ValueRef result);
 
     KMethodRef onCreate;
     Poco::Net::ServerSocket* socket;

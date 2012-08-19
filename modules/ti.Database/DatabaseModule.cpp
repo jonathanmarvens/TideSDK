@@ -56,14 +56,14 @@ void DatabaseModule::Stop()
     host->GetGlobalObject()->SetUndefined("Database");
 }
 
-void DatabaseModule::Open(const ValueList& args, KValueRef result)
+void DatabaseModule::Open(const ValueList& args, ValueRef result)
 {
     args.VerifyException("open", "?s");
     std::string name(args.GetString(0, "unnamed"));
     result->SetObject(new Database(name, true));
 }
 
-void DatabaseModule::OpenFile(const ValueList& args, KValueRef result)
+void DatabaseModule::OpenFile(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openFile", "s|o");
     std::string name;
@@ -80,7 +80,7 @@ void DatabaseModule::OpenFile(const ValueList& args, KValueRef result)
         if (!o->Get("toString")->IsMethod())
             throw ValueException::FromString(error);
 
-        KValueRef v(o->Get("toString")->ToMethod()->Call());
+        ValueRef v(o->Get("toString")->ToMethod()->Call());
         if (!v->IsString())
             throw ValueException::FromString(error);
 

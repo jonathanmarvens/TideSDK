@@ -18,8 +18,8 @@ namespace tide
 		KPythonObject(PyObject *obj, bool readOnly);
 		virtual ~KPythonObject();
 
-		virtual void Set(const char *name, KValueRef value);
-		virtual KValueRef Get(const char *name);
+		virtual void Set(const char *name, ValueRef value);
+		virtual ValueRef Get(const char *name);
 		virtual bool Equals(KObjectRef);
 		virtual SharedStringList GetPropertyNames();
 		PyObject* ToPython();

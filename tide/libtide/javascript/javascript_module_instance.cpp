@@ -63,7 +63,7 @@ namespace tide
 		bool syntax = JSCheckScriptSyntax(context, jsCode, NULL, 0, &exception);
 		if (!syntax)
 		{
-			KValueRef e = JSUtil::ToTideValue(exception, context, NULL);
+			ValueRef e = JSUtil::ToTideValue(exception, context, NULL);
 			JSStringRelease(jsCode);
 			throw ValueException(e);
 		}

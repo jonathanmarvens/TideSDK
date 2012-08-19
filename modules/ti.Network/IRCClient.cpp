@@ -143,7 +143,7 @@ void IRCClient::Run (void* p)
 
     END_TIDE_THREAD;
 }
-void IRCClient::GetUsers(const ValueList& args, KValueRef result)
+void IRCClient::GetUsers(const ValueList& args, ValueRef result)
 {
     const char *channel = args.at(0)->ToString();
     KListRef list = new StaticBoundList();
@@ -162,7 +162,7 @@ void IRCClient::GetUsers(const ValueList& args, KValueRef result)
     }
     result->SetList(list);
 }
-void IRCClient::Connect(const ValueList& args, KValueRef result)
+void IRCClient::Connect(const ValueList& args, ValueRef result)
 {
     //TODO: check to make sure not connected already
     //TODO: check args
@@ -185,7 +185,7 @@ void IRCClient::Connect(const ValueList& args, KValueRef result)
     this->Set("connected",Value::NewBool(true));
     this->thread->start(&IRCClient::Run,&irc);
 }
-void IRCClient::Disconnect(const ValueList& args, KValueRef result)
+void IRCClient::Disconnect(const ValueList& args, ValueRef result)
 {
     bool connected = this->Get("connected")->ToBool();
     if (connected)
@@ -195,7 +195,7 @@ void IRCClient::Disconnect(const ValueList& args, KValueRef result)
         this->Set("connected",Value::NewBool(false));
     }
 }
-void IRCClient::Send(const ValueList& args, KValueRef result)
+void IRCClient::Send(const ValueList& args, ValueRef result)
 {
     bool connected = this->Get("connected")->ToBool();
     if (connected)
@@ -219,7 +219,7 @@ void IRCClient::Send(const ValueList& args, KValueRef result)
         }
     }
 }
-void IRCClient::SetNick(const ValueList& args, KValueRef result)
+void IRCClient::SetNick(const ValueList& args, ValueRef result)
 {
     const char *nick = args.at(0)->ToString();
 #ifdef DEBUG
@@ -227,7 +227,7 @@ void IRCClient::SetNick(const ValueList& args, KValueRef result)
 #endif
     this->irc.nick((char*)nick);
 }
-void IRCClient::GetNick(const ValueList& args, KValueRef result)
+void IRCClient::GetNick(const ValueList& args, ValueRef result)
 {
     std::string nick = this->irc.current_nick();
 #ifdef DEBUG
@@ -235,7 +235,7 @@ void IRCClient::GetNick(const ValueList& args, KValueRef result)
 #endif
     result->SetString(nick);
 }
-void IRCClient::Join(const ValueList& args, KValueRef result)
+void IRCClient::Join(const ValueList& args, ValueRef result)
 {
     bool connected = this->Get("connected")->ToBool();
     if (connected)
@@ -247,7 +247,7 @@ void IRCClient::Join(const ValueList& args, KValueRef result)
         this->irc.join((char*)channel);
     }
 }
-void IRCClient::Unjoin(const ValueList& args, KValueRef result)
+void IRCClient::Unjoin(const ValueList& args, ValueRef result)
 {
     bool connected = this->Get("connected")->ToBool();
     if (connected)
@@ -256,11 +256,11 @@ void IRCClient::Unjoin(const ValueList& args, KValueRef result)
         this->irc.part((char*)channel);
     }
 }
-void IRCClient::IsOp(const ValueList& args, KValueRef result)
+void IRCClient::IsOp(const ValueList& args, ValueRef result)
 {
     //TODO:
 }
-void IRCClient::IsVoice(const ValueList& args, KValueRef result)
+void IRCClient::IsVoice(const ValueList& args, ValueRef result)
 {
     //TODO:
 }

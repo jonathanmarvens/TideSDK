@@ -18,18 +18,18 @@ namespace tide
 		return new std::string(oss.str());
 	}
 
-	KValueRef KMethod::Call(KObjectRef thisObject, const ValueList& args)
+	ValueRef KMethod::Call(KObjectRef thisObject, const ValueList& args)
 	{
 		return this->Call(args);
 	}
 
-	KValueRef KMethod::Call()
+	ValueRef KMethod::Call()
 	{
 		return this->Call(ValueList());
 	}
 
-	KValueRef KMethod::Call(const char* one, KValueRef two, KValueRef three,
-		KValueRef four)
+	ValueRef KMethod::Call(const char* one, ValueRef two, ValueRef three,
+		ValueRef four)
 	{
 		ValueList args;
 		args.push_back(Value::NewString(one));
@@ -39,14 +39,14 @@ namespace tide
 		return this->Call(args);
 	}
 
-	KValueRef KMethod::Call(KValueRef one)
+	ValueRef KMethod::Call(ValueRef one)
 	{
 		ValueList args;
 		args.push_back(one);
 		return this->Call(args);
 	}
 
-	KValueRef KMethod::Call(KValueRef one, KValueRef two)
+	ValueRef KMethod::Call(ValueRef one, ValueRef two)
 	{
 		ValueList args;
 		args.push_back(one);
@@ -54,7 +54,7 @@ namespace tide
 		return this->Call(args);
 	}
 
-	KValueRef KMethod::Call(KValueRef one, KValueRef two, KValueRef three)
+	ValueRef KMethod::Call(ValueRef one, ValueRef two, ValueRef three)
 	{
 		ValueList args;
 		args.push_back(one);
@@ -63,14 +63,14 @@ namespace tide
 		return this->Call(args);
 	}
 
-	KValueRef KMethod::Call(const char* one)
+	ValueRef KMethod::Call(const char* one)
 	{
 		ValueList args;
 		args.push_back(Value::NewString(one));
 		return this->Call(args);
 	}
 
-	KValueRef KMethod::Call(const char* one, KValueRef two)
+	ValueRef KMethod::Call(const char* one, ValueRef two)
 	{
 		ValueList args;
 		args.push_back(Value::NewString(one));
@@ -78,7 +78,7 @@ namespace tide
 		return this->Call(args);
 	}
 
-	KValueRef KMethod::Call(const char* one, KValueRef two, KValueRef three)
+	ValueRef KMethod::Call(const char* one, ValueRef two, ValueRef three)
 	{
 		ValueList args;
 		args.push_back(Value::NewString(one));

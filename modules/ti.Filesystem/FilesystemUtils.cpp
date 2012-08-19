@@ -23,7 +23,7 @@
 
 namespace ti {
 
-std::string FilenameFromValue(KValueRef v)
+std::string FilenameFromValue(ValueRef v)
 {
     if (v->IsString())
     {

@@ -18,16 +18,16 @@ namespace tide
 			count(1) {}
 
 		// @see KMethod::Call
-		virtual KValueRef Call(const ValueList& args) = 0;
+		virtual ValueRef Call(const ValueList& args) = 0;
 
 		// @see KMethod::Set
-		virtual void Set(const char *name, KValueRef value)
+		virtual void Set(const char *name, ValueRef value)
 		{
 			KEventObject::Set(name, value);
 		}
 
 		// @see KMethod::Get
-		virtual KValueRef Get(const char *name)
+		virtual ValueRef Get(const char *name)
 		{
 			return KEventObject::Get(name);
 		}
@@ -55,12 +55,12 @@ namespace tide
 		 * occurs will throw an exception of type ValueException.
 		 */
 		template <typename T>
-		void SetMethod(const char *name, void (T::*method)(const ValueList&, KValueRef))
+		void SetMethod(const char *name, void (T::*method)(const ValueList&, ValueRef))
 		{
-			MethodCallback* callback = NewCallback<T, const ValueList&, KValueRef>(static_cast<T*>(this), method);
+			MethodCallback* callback = NewCallback<T, const ValueList&, ValueRef>(static_cast<T*>(this), method);
 
 			KMethodRef bound_method = new StaticBoundMethod(callback);
-			KValueRef method_value = Value::NewMethod(bound_method);
+			ValueRef method_value = Value::NewMethod(bound_method);
 			KEventObject::Set(name, method_value);
 		}
 

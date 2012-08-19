@@ -14,8 +14,8 @@ namespace tide
 		KPHPObject(zval* object);
 		virtual ~KPHPObject();
 
-		virtual void Set(const char *name, KValueRef value);
-		virtual KValueRef Get(const char *name);
+		virtual void Set(const char *name, ValueRef value);
+		virtual ValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();
 		virtual SharedString DisplayString(int);
 		virtual bool Equals(KObjectRef);

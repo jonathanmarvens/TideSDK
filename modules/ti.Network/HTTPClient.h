@@ -43,7 +43,7 @@ public:
 
 private:
     void run(); // Poco Thread implementation.
-    bool BeginRequest(KValueRef sendData);
+    bool BeginRequest(ValueRef sendData);
     void BeginWithPostDataObject(KObjectRef object);
     void SetRequestData();
     void ChangeState(int readyState);
@@ -54,23 +54,23 @@ private:
     void HandleCurlResult(CURLcode result);
     void SetupCurlMethodType();
     void CleanupCurl(curl_slist* headers);
-    void AddScalarValueToCurlForm(SharedString propertyName, KValueRef value, curl_httppost** last);
+    void AddScalarValueToCurlForm(SharedString propertyName, ValueRef value, curl_httppost** last);
 
-    void Abort(const ValueList& args, KValueRef result);
-    void Open(const ValueList& args, KValueRef result);
-    void SetCredentials(const ValueList& args, KValueRef result);
-    void Send(const ValueList& args, KValueRef result);
-    void Receive(const ValueList& args, KValueRef result);
-    void SetRequestHeader(const ValueList& args, KValueRef result);
-    void GetResponseHeader(const ValueList& args, KValueRef result);
-    void GetResponseHeaders(const ValueList& args, KValueRef result);
-    void SetCookie(const ValueList& args, KValueRef result);
-    void ClearCookies(const ValueList& args, KValueRef result);
-    void GetCookie(const ValueList& args, KValueRef result);
-    void GetTimeout(const ValueList& args, KValueRef result);
-    void SetTimeout(const ValueList& args, KValueRef result);
-    void GetMaxRedirects(const ValueList& args, KValueRef result);
-    void SetMaxRedirects(const ValueList& args, KValueRef result);
+    void Abort(const ValueList& args, ValueRef result);
+    void Open(const ValueList& args, ValueRef result);
+    void SetCredentials(const ValueList& args, ValueRef result);
+    void Send(const ValueList& args, ValueRef result);
+    void Receive(const ValueList& args, ValueRef result);
+    void SetRequestHeader(const ValueList& args, ValueRef result);
+    void GetResponseHeader(const ValueList& args, ValueRef result);
+    void GetResponseHeaders(const ValueList& args, ValueRef result);
+    void SetCookie(const ValueList& args, ValueRef result);
+    void ClearCookies(const ValueList& args, ValueRef result);
+    void GetCookie(const ValueList& args, ValueRef result);
+    void GetTimeout(const ValueList& args, ValueRef result);
+    void SetTimeout(const ValueList& args, ValueRef result);
+    void GetMaxRedirects(const ValueList& args, ValueRef result);
+    void SetMaxRedirects(const ValueList& args, ValueRef result);
 
     std::string url;
     std::string httpMethod;
@@ -107,7 +107,7 @@ private:
     std::vector<BytesRef> responseData;
     std::vector<BytesRef> preservedPostData;
     struct curl_httppost* postData;
-    KValueRef sendData;
+    ValueRef sendData;
 };
 
 } // namespace ti

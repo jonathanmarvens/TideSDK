@@ -10,9 +10,9 @@ namespace tide
 {
 	namespace PHPUtils
 	{
-		KValueRef ToTideValue(zval *value TSRMLS_DC)
+		ValueRef ToTideValue(zval *value TSRMLS_DC)
 		{
-			KValueRef returnValue = Value::NewNull();
+			ValueRef returnValue = Value::NewNull();
 			int type = Z_TYPE_P(value);
 
 			if (IS_NULL == type)
@@ -70,7 +70,7 @@ namespace tide
 			return returnValue;
 		}
 
-		zval* ToPHPValue(KValueRef value)
+		zval* ToPHPValue(ValueRef value)
 		{
 			zval* returnValue;
 			ALLOC_INIT_ZVAL(returnValue);
@@ -78,7 +78,7 @@ namespace tide
 			return returnValue;
 		}
 
-		void ToPHPValue(KValueRef value, zval** returnValue)
+		void ToPHPValue(ValueRef value, zval** returnValue)
 		{
 			if (value->IsNull() || value->IsUndefined())
 			{
@@ -354,7 +354,7 @@ namespace tide
 				for (size_t i = 0; i < keys->size(); i++)
 				{
 					const char* name = keys->at(i)->c_str();
-					KValueRef newValue(symbols->Get(name));
+					ValueRef newValue(symbols->Get(name));
 					if (!newValue->Equals(global->Get(name)))
 					{
 						global->Set(name, newValue);

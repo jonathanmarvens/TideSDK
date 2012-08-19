@@ -30,7 +30,7 @@ void ProcessModule::Initialize()
     this->binding = new ProcessBinding();
 
     // set our ti.Process
-    KValueRef value = Value::NewObject(this->binding);
+    ValueRef value = Value::NewObject(this->binding);
     host->GetGlobalObject()->Set("Process", value);
 
     // simple test to make the app crash

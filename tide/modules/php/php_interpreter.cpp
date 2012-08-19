@@ -32,7 +32,7 @@ static string GetContextId(KObjectRef global)
 	return contextId;
 }
 
-KValueRef PHPInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
+ValueRef PHPInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
 {
 	static Poco::Mutex evaluatorMutex;
 	Poco::Mutex::ScopedLock evaluatorLock(evaluatorMutex);

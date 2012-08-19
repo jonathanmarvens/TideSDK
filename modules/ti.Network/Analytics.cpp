@@ -92,7 +92,7 @@ Analytics::Analytics()
         Event::PAGE_LOADED, this->startCallback);
 }
 
-void Analytics::_StartAnalyticsThread(const ValueList &args, KValueRef result)
+void Analytics::_StartAnalyticsThread(const ValueList &args, ValueRef result)
 {
     // If we've already started the Analytics thread, bail out.
     if (this->startCallback.isNull())
@@ -118,7 +118,7 @@ void Analytics::Shutdown()
     this->thread.join();
 }
 
-void Analytics::_SendEvent(const ValueList &args, KValueRef result)
+void Analytics::_SendEvent(const ValueList &args, ValueRef result)
 {
     std::string eventString(args.GetString(0));
     {

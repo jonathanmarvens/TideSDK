@@ -163,7 +163,7 @@ namespace tide
 		FireEvent("error", ValueList(Value::NewString(e.what())));
 	}
 
-	void KEventObject::_AddEventListener(const ValueList& args, KValueRef result)
+	void KEventObject::_AddEventListener(const ValueList& args, ValueRef result)
 	{
 		std::string event;
 		KMethodRef callback;
@@ -187,7 +187,7 @@ namespace tide
 		result->SetMethod(callback);
 	}
 
-	void KEventObject::_RemoveEventListener(const ValueList& args, KValueRef result)
+	void KEventObject::_RemoveEventListener(const ValueList& args, ValueRef result)
 	{
 		args.VerifyException("removeEventListener", "s m");
 
@@ -226,7 +226,7 @@ namespace tide
 
 	bool EventListener::Dispatch(KObjectRef thisObject, const ValueList& args, bool synchronous)
 	{
-		KValueRef result = RunOnMainThread(this->callback, thisObject, args, synchronous);
+		ValueRef result = RunOnMainThread(this->callback, thisObject, args, synchronous);
 		if (result->IsBool())
 			return result->ToBool();
 		return true;

@@ -42,7 +42,7 @@ HTTPServer::~HTTPServer()
     Close();
 }
 
-void HTTPServer::Bind(const ValueList& args, KValueRef result)
+void HTTPServer::Bind(const ValueList& args, ValueRef result)
 {
     Close();
     
@@ -87,12 +87,12 @@ void HTTPServer::Close()
     this->callback = NULL;
 }
 
-void HTTPServer::Close(const ValueList& args, KValueRef result)
+void HTTPServer::Close(const ValueList& args, ValueRef result)
 {
     Close();
 }
 
-void HTTPServer::IsClosed(const ValueList& args, KValueRef result)
+void HTTPServer::IsClosed(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->connection==NULL);
 }

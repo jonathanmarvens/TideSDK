@@ -17,8 +17,8 @@ namespace tide
 	{
 	public:
 		KAccessorMethod(MethodCallback* callback, const char* type = "KAccessorMethod");
-		virtual void Set(const char* name, KValueRef value);
-		virtual KValueRef Get(const char* name);
+		virtual void Set(const char* name, ValueRef value);
+		virtual ValueRef Get(const char* name);
 		virtual bool HasProperty(const char* name);
 
 	private:

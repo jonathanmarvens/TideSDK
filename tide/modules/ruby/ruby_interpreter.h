@@ -15,7 +15,7 @@ class RubyInterpreter : public Interpreter {
 public:
 	RubyInterpreter();
 
-    KValueRef EvaluateFile(const char* filepath, KObjectRef context);
+    ValueRef EvaluateFile(const char* filepath, KObjectRef context);
 
 private:
 	std::string GetContextId(KObjectRef global);

@@ -18,9 +18,9 @@ namespace tide
 		KPythonMethod(PyObject *obj);
 		virtual ~KPythonMethod();
 
-		KValueRef Call(const ValueList& args);
-		virtual void Set(const char *name, KValueRef value);
-		virtual KValueRef Get(const char *name);
+		ValueRef Call(const ValueList& args);
+		virtual void Set(const char *name, ValueRef value);
+		virtual ValueRef Get(const char *name);
 		virtual bool Equals(KObjectRef);
 		virtual SharedStringList GetPropertyNames();
 		PyObject* ToPython();

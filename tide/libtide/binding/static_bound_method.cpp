@@ -18,9 +18,9 @@ namespace tide
 	{
 	}
 
-	KValueRef StaticBoundMethod::Call(const ValueList& args)
+	ValueRef StaticBoundMethod::Call(const ValueList& args)
 	{
-		KValueRef tv = Value::NewUndefined();
+		ValueRef tv = Value::NewUndefined();
 		if (this->callback)
 		{
 			this->callback->Run(args, tv);
@@ -28,12 +28,12 @@ namespace tide
 		return tv;
 	}
 
-	void StaticBoundMethod::Set(const char *name, KValueRef value)
+	void StaticBoundMethod::Set(const char *name, ValueRef value)
 	{
 		this->object->Set(name, value);
 	}
 
-	KValueRef StaticBoundMethod::Get(const char *name)
+	ValueRef StaticBoundMethod::Get(const char *name)
 	{
 		return this->object->Get(name);
 	}

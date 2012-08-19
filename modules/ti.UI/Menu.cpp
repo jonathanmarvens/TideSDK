@@ -47,7 +47,7 @@ Menu::~Menu()
     this->children.clear();
 }
 
-void Menu::_AddItem(const ValueList& args, KValueRef result)
+void Menu::_AddItem(const ValueList& args, ValueRef result)
 {
     args.VerifyException("addItem", "?s m|0 s|0");
     UI* binding = UI::GetInstance();
@@ -58,7 +58,7 @@ void Menu::_AddItem(const ValueList& args, KValueRef result)
     result->SetObject(newItem);
 }
 
-void Menu::_AddSeparatorItem(const ValueList& args, KValueRef result)
+void Menu::_AddSeparatorItem(const ValueList& args, ValueRef result)
 {
     UI* binding = UI::GetInstance();
     AutoPtr<MenuItem> newItem = binding->__CreateSeparatorMenuItem(args);
@@ -66,7 +66,7 @@ void Menu::_AddSeparatorItem(const ValueList& args, KValueRef result)
     result->SetObject(newItem);
 }
 
-void Menu::_AddCheckItem(const ValueList& args, KValueRef result)
+void Menu::_AddCheckItem(const ValueList& args, ValueRef result)
 {
     UI* binding = UI::GetInstance();
     AutoPtr<MenuItem> newItem = binding->__CreateCheckMenuItem(args);
@@ -74,7 +74,7 @@ void Menu::_AddCheckItem(const ValueList& args, KValueRef result)
     result->SetObject(newItem);
 }
 
-void Menu::_AppendItem(const ValueList& args, KValueRef result)
+void Menu::_AppendItem(const ValueList& args, ValueRef result)
 {
     args.VerifyException("appendItem", "o");
     KObjectRef o = args.at(0)->ToObject();
@@ -88,14 +88,14 @@ void Menu::_AppendItem(const ValueList& args, KValueRef result)
     }
 }
 
-void Menu::_GetItemAt(const ValueList& args, KValueRef result)
+void Menu::_GetItemAt(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getItemAt", "i");
     AutoPtr<MenuItem> item = this->GetItemAt(args.GetInt(0));
     result->SetObject(item);
 }
 
-void Menu::_InsertItemAt(const ValueList& args, KValueRef result)
+void Menu::_InsertItemAt(const ValueList& args, ValueRef result)
 {
     args.VerifyException("insertItemAt", "o,i");
     KObjectRef o = args.at(0)->ToObject();
@@ -110,7 +110,7 @@ void Menu::_InsertItemAt(const ValueList& args, KValueRef result)
     }
 }
 
-void Menu::_RemoveItemAt(const ValueList& args, KValueRef result)
+void Menu::_RemoveItemAt(const ValueList& args, ValueRef result)
 {
     args.VerifyException("removeItemAt", "i");
     size_t index = static_cast<size_t>(args.GetInt(0));
@@ -118,12 +118,12 @@ void Menu::_RemoveItemAt(const ValueList& args, KValueRef result)
     this->RemoveItemAt(index);
 }
 
-void Menu::_GetLength(const ValueList& args, KValueRef result)
+void Menu::_GetLength(const ValueList& args, ValueRef result)
 {
     result->SetInt(this->children.size());
 }
 
-void Menu::_Clear(const ValueList& args, KValueRef result)
+void Menu::_Clear(const ValueList& args, ValueRef result)
 {
     this->children.clear();
     this->ClearImpl();

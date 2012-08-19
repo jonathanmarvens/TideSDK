@@ -23,7 +23,7 @@ namespace tide
 
 	typedef struct {
 		PyObject_HEAD
-		KValueRef* value;
+		ValueRef* value;
 	} PyKObject;
 
 	static PyTypeObject PyKObjectType =
@@ -162,7 +162,7 @@ namespace tide
 
 	}
 
-	PyObject* PythonUtils::ToPyObject(KValueRef value)
+	PyObject* PythonUtils::ToPyObject(ValueRef value)
 	{
 		PyLockGIL lock;
 		PyObject* pythonValue = 0;
@@ -269,7 +269,7 @@ namespace tide
 		}
 	}
 
-	KValueRef PythonUtils::ToTideValue(PyObject* value)
+	ValueRef PythonUtils::ToTideValue(PyObject* value)
 	{
 		PyLockGIL lock;
 
@@ -279,7 +279,7 @@ namespace tide
 		// trick. Therefore we should avoid using PyString_Check and friends for now
 		// unless it does the right thing on Snow Leopard.
 
-		KValueRef kvalue(0);
+		ValueRef kvalue(0);
 		if (Py_None == value)
 		{
 			kvalue = Value::Null;
@@ -407,7 +407,7 @@ namespace tide
 		Py_INCREF(self);
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
 
-		KValueRef result = 0;
+		ValueRef result = 0;
 		{
 			PyAllowThreads allow;
 			result = pyko->value->get()->ToObject()->Get(name);
@@ -422,7 +422,7 @@ namespace tide
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(self);
 		Py_INCREF(self);
-		KValueRef tiValue = PythonUtils::ToTideValue(value);
+		ValueRef tiValue = PythonUtils::ToTideValue(value);
 
 		{
 			PyAllowThreads allow;
@@ -450,11 +450,11 @@ namespace tide
 		return PyString_FromString(ss->c_str());
 	}
 
-	PyObject* PythonUtils::KObjectToPyObject(KValueRef v)
+	PyObject* PythonUtils::KObjectToPyObject(ValueRef v)
 	{
 		PyLockGIL lock;
 		PyKObject* obj = PyObject_New(PyKObject, &PyKObjectType);
-		obj->value = new KValueRef(v);
+		obj->value = new ValueRef(v);
 		return (PyObject*) obj;
 	}
 
@@ -500,7 +500,7 @@ namespace tide
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
 		KListRef klist = pyko->value->get()->ToList();
 
-		KValueRef listVal = 0;
+		ValueRef listVal = 0;
 		{
 			PyAllowThreads allow;
 			if (i < (int) klist->Size())
@@ -520,7 +520,7 @@ namespace tide
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
 		KListRef klist = pyko->value->get()->ToList();
-		KValueRef kv = PythonUtils::ToTideValue(v);
+		ValueRef kv = PythonUtils::ToTideValue(v);
 
 		{
 			PyAllowThreads allow;
@@ -535,7 +535,7 @@ namespace tide
 		PyLockGIL lock;
 		PyKObject *pyko = reinterpret_cast<PyKObject*>(o);
 		KListRef klist = pyko->value->get()->ToList();
-		KValueRef kv = PythonUtils::ToTideValue(value);
+		ValueRef kv = PythonUtils::ToTideValue(value);
 
 		{
 			PyAllowThreads allow;
@@ -558,7 +558,7 @@ namespace tide
 		for (int i = 0; i < size; i++)
 		{
 			PyObject* v = PySequence_GetItem(o2, i);
-			KValueRef kv = PythonUtils::ToTideValue(v);
+			ValueRef kv = PythonUtils::ToTideValue(v);
 
 			{
 				PyAllowThreads allow;
@@ -591,11 +591,11 @@ namespace tide
 		return o;
 	}
 
-	PyObject* PythonUtils::KListToPyObject(KValueRef v)
+	PyObject* PythonUtils::KListToPyObject(ValueRef v)
 	{
 		PyLockGIL lock;
 		PyKObject* obj = PyObject_New(PyKObject, &PyKListType);
-		obj->value = new KValueRef(v);
+		obj->value = new ValueRef(v);
 		return (PyObject*) obj;
 	}
 
@@ -607,13 +607,13 @@ namespace tide
 		KMethodRef kmeth = pyko->value->get()->ToMethod();
 
 		ValueList a;
-		KValueRef result = Value::Undefined;
+		ValueRef result = Value::Undefined;
 		try
 		{
 			for (int c = 0; c < PyTuple_Size(args); c++)
 			{
 				PyObject* arg = PyTuple_GetItem(args, c);
-				KValueRef kValue = PythonUtils::ToTideValue(arg);
+				ValueRef kValue = PythonUtils::ToTideValue(arg);
 				Value::Unwrap(kValue);
 				a.push_back(kValue);
 			}
@@ -639,11 +639,11 @@ namespace tide
 		return PythonUtils::ToPyObject(result);
 	}
 
-	PyObject* PythonUtils::KMethodToPyObject(KValueRef v)
+	PyObject* PythonUtils::KMethodToPyObject(ValueRef v)
 	{
 		PyLockGIL lock;
 		PyKObject* obj = PyObject_New(PyKObject, &PyKMethodType);
-		obj->value = new KValueRef(v);
+		obj->value = new ValueRef(v);
 		return (PyObject*) obj;
 	}
 

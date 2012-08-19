@@ -45,13 +45,13 @@ private:
     void onWritable (const Poco::AutoPtr<Poco::Net::WritableNotification>&);
     void onErrored(const Poco::AutoPtr<Poco::Net::ErrorNotification>&);
 
-    void Write(const ValueList& args, KValueRef result);
-    void Close(const ValueList& args, KValueRef result);
-    void IsClosed(const ValueList& args, KValueRef result);
-    void SetOnRead(const ValueList& args, KValueRef result);
-    void SetOnWrite(const ValueList& args, KValueRef result);
-    void SetOnError(const ValueList& args, KValueRef result);
-    void SetOnReadComplete(const ValueList& args, KValueRef result);
+    void Write(const ValueList& args, ValueRef result);
+    void Close(const ValueList& args, ValueRef result);
+    void IsClosed(const ValueList& args, ValueRef result);
+    void SetOnRead(const ValueList& args, ValueRef result);
+    void SetOnWrite(const ValueList& args, ValueRef result);
+    void SetOnError(const ValueList& args, ValueRef result);
+    void SetOnReadComplete(const ValueList& args, ValueRef result);
 
     Poco::Net::StreamSocket socket;
     Poco::Net::SocketReactor& reactor;

@@ -194,7 +194,7 @@ ProcessBinding::~ProcessBinding()
 {
 }
 
-void ProcessBinding::CreateProcess(const ValueList& args, KValueRef result)
+void ProcessBinding::CreateProcess(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createProcess", "o|l");
     KObjectRef temp = 0;
@@ -297,7 +297,7 @@ void ProcessBinding::ExtendArgs(KListRef dest, KListRef args)
 {
     for (size_t i = 0; i < args->Size(); i++)
     {
-        KValueRef arg = Value::Undefined;
+        ValueRef arg = Value::Undefined;
         if (args->At(i)->IsList())
         {
             KListRef list = args->At(i)->ToList();
@@ -317,7 +317,7 @@ void ProcessBinding::ExtendArgs(KListRef dest, KListRef args)
     }
 }
 
-void ProcessBinding::CreatePipe(const ValueList& args, KValueRef result)
+void ProcessBinding::CreatePipe(const ValueList& args, ValueRef result)
 {
     result->SetObject(new Pipe());
 }

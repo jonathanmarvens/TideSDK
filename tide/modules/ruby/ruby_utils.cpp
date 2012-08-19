@@ -21,9 +21,9 @@ namespace tide
 		return rb_obj_is_kind_of(value, klass) == Qtrue;
 	}
 
-	KValueRef RubyUtils::ToTideValue(VALUE value)
+	ValueRef RubyUtils::ToTideValue(VALUE value)
 	{
-		KValueRef kvalue = Value::Undefined;
+		ValueRef kvalue = Value::Undefined;
 
 		int t = TYPE(value);
 		if (T_NIL == t)
@@ -72,20 +72,20 @@ namespace tide
 		}
 		else if (T_DATA == t && KObjectClass != Qnil && KindOf(value, KObjectClass))
 		{
-			KValueRef* kval = NULL;
-			Data_Get_Struct(value, KValueRef, kval);
+			ValueRef* kval = NULL;
+			Data_Get_Struct(value, ValueRef, kval);
 			kvalue = Value::NewObject((*kval)->ToObject());
 		}
 		else if (T_DATA == t && KMethodClass != Qnil && KindOf(value, KMethodClass))
 		{
-			KValueRef* kval = NULL;
-			Data_Get_Struct(value, KValueRef, kval);
+			ValueRef* kval = NULL;
+			Data_Get_Struct(value, ValueRef, kval);
 			kvalue = Value::NewMethod((*kval)->ToMethod());
 		}
 		else if (T_DATA == t && KListClass != Qnil && KindOf(value, KListClass))
 		{
-			KValueRef* kval = NULL;
-			Data_Get_Struct(value, KValueRef, kval);
+			ValueRef* kval = NULL;
+			Data_Get_Struct(value, ValueRef, kval);
 			kvalue = Value::NewList((*kval)->ToList());
 		}
 		else if (T_DATA == t && KindOf(value, rb_cMethod))
@@ -107,7 +107,7 @@ namespace tide
 		return kvalue;
 	}
 
-	VALUE RubyUtils::ToRubyValue(KValueRef value)
+	VALUE RubyUtils::ToRubyValue(ValueRef value)
 	{
 		if (value->IsNull() || value->IsUndefined())
 		{
@@ -158,8 +158,8 @@ namespace tide
 
 	static VALUE RubyKObjectMethods(VALUE self)
 	{
-		KValueRef* value = NULL;
-		Data_Get_Struct(self, KValueRef, value);
+		ValueRef* value = NULL;
+		Data_Get_Struct(self, ValueRef, value);
 		KObjectRef object = (*value)->ToObject();
 
 		VALUE* args = NULL;
@@ -180,14 +180,14 @@ namespace tide
 		for (int i = 0; i < RARRAY_LEN(args); i++)
 		{
 			VALUE rarg = rb_ary_entry(args, i);
-			KValueRef arg = RubyUtils::ToTideValue(rarg);
+			ValueRef arg = RubyUtils::ToTideValue(rarg);
 			Value::Unwrap(arg);
 			kargs.push_back(arg);
 		}
 
 		try
 		{
-			KValueRef result = method->Call(kargs);
+			ValueRef result = method->Call(kargs);
 			return RubyUtils::ToRubyValue(result);
 		}
 		catch (ValueException& e)
@@ -203,8 +203,8 @@ namespace tide
 	// A :method method for pulling methods off of KObjects in Ruby
 	static VALUE RubyKObjectMethod(int argc, VALUE *argv, VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KObjectRef object = (*dval)->ToObject();
 
 		// TODO: We should raise an exception instead
@@ -215,7 +215,7 @@ namespace tide
 
 		VALUE meth_name = argv[0];
 		const char* name = rb_id2name(SYM2ID(meth_name));
-		KValueRef v = object->Get(name);
+		ValueRef v = object->Get(name);
 		if (v->IsMethod())
 		{
 			return RubyUtils::ToRubyValue(v);
@@ -229,8 +229,8 @@ namespace tide
 	// A :method_missing method for finding Object properties in Ruby
 	static VALUE RubyKObjectMethodMissing(int argc, VALUE *argv, VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KObjectRef object = (*dval)->ToObject();
 
 		// TODO: We should raise an exception instead
@@ -250,7 +250,7 @@ namespace tide
 		const char* name = rb_id2name(SYM2ID(r_name));
 
 		// Check if this is an assignment
-		KValueRef value = object->Get(name);
+		ValueRef value = object->Get(name);
 		if (name[strlen(name) - 1] == '=' && argc > 1)
 		{
 			char* mod_name = strdup(name);
@@ -279,27 +279,27 @@ namespace tide
 	// A :responds_to? method for finding Object properties in Ruby
 	static VALUE RubyKObjectRespondTo(int argc, VALUE *argv, VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KObjectRef object = (*dval)->ToObject();
 		VALUE mid, priv; // We ignore the priv argument
 
 		rb_scan_args(argc, argv, "11", &mid, &priv);
 		const char* name = rb_id2name(rb_to_id(mid));
-		KValueRef value = object->Get(name);
+		ValueRef value = object->Get(name);
 		return value->IsUndefined() ? Qfalse : Qtrue;
 	}
 
 	static void RubyKObjectFree(void *p)
 	{
-		KValueRef* kval = static_cast<KValueRef*>(p);
+		ValueRef* kval = static_cast<ValueRef*>(p);
 		delete kval;
 	}
 
 	static VALUE RubyKMethodCall(VALUE self, VALUE args)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KMethodRef method = (*dval)->ToMethod();
 
 		// TODO: We should raise an exception instead
@@ -309,7 +309,7 @@ namespace tide
 		return RubyUtils::GenericKMethodCall(method, args);
 	}
 
-	VALUE RubyUtils::KObjectToRubyValue(KValueRef obj)
+	VALUE RubyUtils::KObjectToRubyValue(ValueRef obj)
 	{
 		// Lazily initialize the Object wrapper class
 		if (KObjectClass == Qnil)
@@ -325,12 +325,12 @@ namespace tide
 				RUBY_METHOD_FUNC(RubyKObjectRespondTo), -1);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(KObjectClass, 0, RubyKObjectFree, new KValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(KObjectClass, 0, RubyKObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}
 
-	VALUE RubyUtils::KMethodToRubyValue(KValueRef obj)
+	VALUE RubyUtils::KMethodToRubyValue(ValueRef obj)
 	{
 		// Lazily initialize the KMethod wrapper class
 		if (KMethodClass == Qnil)
@@ -348,15 +348,15 @@ namespace tide
 				RUBY_METHOD_FUNC(RubyKMethodCall), -2);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(KMethodClass, 0, RubyKObjectFree, new KValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(KMethodClass, 0, RubyKObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}
 
 	static VALUE RubyKListGetElt(int argc, VALUE *argv, VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KListRef list = (*dval)->ToList();
 
 		// TODO: We should raise an exception instead
@@ -369,7 +369,7 @@ namespace tide
 
 		if (idx >= 0 && idx < (int) list->Size())
 		{
-			KValueRef v = list->At(idx);
+			ValueRef v = list->At(idx);
 			return RubyUtils::ToRubyValue(v);
 		}
 		else
@@ -380,8 +380,8 @@ namespace tide
 
 	static VALUE RubyKListSetElt(int argc, VALUE *argv, VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KListRef klist = (*dval)->ToList();
 
 		// TODO: We should raise an exception instead
@@ -395,7 +395,7 @@ namespace tide
 		if (idx < 0)
 			return Qnil;
 
-		KValueRef value = RubyUtils::ToTideValue(argv[1]);
+		ValueRef value = RubyUtils::ToTideValue(argv[1]);
 		klist->SetAt(idx, value);
 
 		return argv[1];
@@ -403,8 +403,8 @@ namespace tide
 
 	static VALUE RubyKListLength(int argc, VALUE *argv, VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KListRef klist = (*dval)->ToList();
 
 		// TODO: We should raise an exception instead
@@ -424,8 +424,8 @@ namespace tide
 
 	static VALUE RubyKListEach(VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KListRef list = (*dval)->ToList();
 
 		if (list.isNull() || !rb_block_given_p())
@@ -439,8 +439,8 @@ namespace tide
 
 	static VALUE RubyKListCollect(VALUE self)
 	{
-		KValueRef* dval = NULL;
-		Data_Get_Struct(self, KValueRef, dval);
+		ValueRef* dval = NULL;
+		Data_Get_Struct(self, ValueRef, dval);
 		KListRef list = (*dval)->ToList();
 
 		if (list.isNull() || !rb_block_given_p())
@@ -453,7 +453,7 @@ namespace tide
 		return resultArray;
 	}
 
-	VALUE RubyUtils::KListToRubyValue(KValueRef obj)
+	VALUE RubyUtils::KListToRubyValue(ValueRef obj)
 	{
 		// Lazily initialize the KMethod wrapper class
 		if (KListClass == Qnil)
@@ -481,7 +481,7 @@ namespace tide
 				RUBY_METHOD_FUNC(RubyKListCollect), 0);
 		}
 
-		VALUE wrapper = Data_Wrap_Struct(KListClass, 0, RubyKObjectFree, new KValueRef(obj));
+		VALUE wrapper = Data_Wrap_Struct(KListClass, 0, RubyKObjectFree, new ValueRef(obj));
 		rb_obj_call_init(wrapper, 0, 0);
 		return wrapper;
 	}
@@ -489,7 +489,7 @@ namespace tide
 	ValueException RubyUtils::GetException()
 	{
 		VALUE e = rb_gv_get("$!");
-		KValueRef v = RubyUtils::ToTideValue(e);
+		ValueRef v = RubyUtils::ToTideValue(e);
 		return ValueException(v);
 	}
 }

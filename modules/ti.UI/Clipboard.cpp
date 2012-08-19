@@ -59,7 +59,7 @@ static Clipboard::DataType MimeTypeToDataType(std::string& mimeType)
     }
 }
 
-static BytesRef ValueToBytes(KValueRef value)
+static BytesRef ValueToBytes(ValueRef value)
 {
     if (value->IsObject())
     {
@@ -79,7 +79,7 @@ static BytesRef ValueToBytes(KValueRef value)
     }
 }
 
-static std::vector<std::string> ValueToURIList(KValueRef value)
+static std::vector<std::string> ValueToURIList(ValueRef value)
 {
     std::vector<std::string> uriList;
     if (value->IsList())
@@ -87,7 +87,7 @@ static std::vector<std::string> ValueToURIList(KValueRef value)
         KListRef list(value->ToList());
         for (unsigned int i = 0; i < list->Size(); i++)
         {
-            KValueRef element(list->At(i));
+            ValueRef element(list->At(i));
             if (element->IsString())
                 uriList.push_back(element->ToString());
         }
@@ -108,7 +108,7 @@ static std::vector<std::string> ValueToURIList(KValueRef value)
     return uriList;
 }
 
-void Clipboard::_GetData(const ValueList& args, KValueRef result)
+void Clipboard::_GetData(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getData", "s");
 
@@ -140,7 +140,7 @@ void Clipboard::_GetData(const ValueList& args, KValueRef result)
     }
 }
 
-void Clipboard::_SetData(const ValueList& args, KValueRef result)
+void Clipboard::_SetData(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setData", "s s|o|l|0");
 
@@ -169,7 +169,7 @@ void Clipboard::_SetData(const ValueList& args, KValueRef result)
     }
 }
 
-void Clipboard::_HasData(const ValueList& args, KValueRef result)
+void Clipboard::_HasData(const ValueList& args, ValueRef result)
 {
     args.VerifyException("hasData", "?s");
 
@@ -183,7 +183,7 @@ void Clipboard::_HasData(const ValueList& args, KValueRef result)
     result->SetBool(this->HasData(type));
 }
 
-void Clipboard::_ClearData(const ValueList& args, KValueRef result)
+void Clipboard::_ClearData(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setData", "?s");
 
@@ -197,24 +197,24 @@ void Clipboard::_ClearData(const ValueList& args, KValueRef result)
     this->ClearData(type);
 }
 
-void Clipboard::_SetText(const ValueList& args, KValueRef result)
+void Clipboard::_SetText(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setText", "s");
     std::string newText(args.GetString(0, ""));
     this->SetText(newText);
 }
 
-void Clipboard::_GetText(const ValueList& args, KValueRef result)
+void Clipboard::_GetText(const ValueList& args, ValueRef result)
 {
     result->SetString(this->GetText());
 }
 
-void Clipboard::_ClearText(const ValueList& args, KValueRef result)
+void Clipboard::_ClearText(const ValueList& args, ValueRef result)
 {
     this->ClearText();
 }
 
-void Clipboard::_HasText(const ValueList& args, KValueRef result)
+void Clipboard::_HasText(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->HasText());
 }

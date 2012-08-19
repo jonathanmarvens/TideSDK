@@ -89,7 +89,7 @@ void ResultSet::Bind()
 ResultSet::~ResultSet()
 {
 }
-void ResultSet::IsValidRow(const ValueList& args, KValueRef result)
+void ResultSet::IsValidRow(const ValueList& args, ValueRef result)
 {
     if (rs.isNull())
     {
@@ -100,21 +100,21 @@ void ResultSet::IsValidRow(const ValueList& args, KValueRef result)
         result->SetBool(!eof);
     }
 }
-void ResultSet::Next(const ValueList& args, KValueRef result)
+void ResultSet::Next(const ValueList& args, ValueRef result)
 {
     if (!rs.isNull() && !eof)
     {
         eof = (rs->moveNext() == false);
     }
 }
-void ResultSet::Close(const ValueList& args, KValueRef result)
+void ResultSet::Close(const ValueList& args, ValueRef result)
 {
     if (!rs.isNull())
     {
         rs = NULL;
     }
 }
-void ResultSet::RowCount(const ValueList& args, KValueRef result)
+void ResultSet::RowCount(const ValueList& args, ValueRef result)
 {
     if (rs.isNull())
     {
@@ -125,7 +125,7 @@ void ResultSet::RowCount(const ValueList& args, KValueRef result)
         result->SetInt(rs->rowCount());
     }
 }
-void ResultSet::FieldCount(const ValueList& args, KValueRef result)
+void ResultSet::FieldCount(const ValueList& args, ValueRef result)
 {
     if (rs.isNull())
     {
@@ -136,7 +136,7 @@ void ResultSet::FieldCount(const ValueList& args, KValueRef result)
         result->SetInt(rs->columnCount());
     }
 }
-void ResultSet::FieldName(const ValueList& args, KValueRef result)
+void ResultSet::FieldName(const ValueList& args, ValueRef result)
 {
     if (rs.isNull())
     {
@@ -149,7 +149,7 @@ void ResultSet::FieldName(const ValueList& args, KValueRef result)
         result->SetString(str.c_str());
     }
 }
-void ResultSet::Field(const ValueList& args, KValueRef result)
+void ResultSet::Field(const ValueList& args, ValueRef result)
 {
     if (rs.isNull())
     {
@@ -161,7 +161,7 @@ void ResultSet::Field(const ValueList& args, KValueRef result)
         TransformValue(args.at(0)->ToInt(),result);
     }
 }
-void ResultSet::FieldByName(const ValueList& args, KValueRef result)
+void ResultSet::FieldByName(const ValueList& args, ValueRef result)
 {
     result->SetNull();
     if (!rs.isNull())
@@ -180,7 +180,7 @@ void ResultSet::FieldByName(const ValueList& args, KValueRef result)
         }
     }
 }
-void ResultSet::TransformValue(size_t index, KValueRef result)
+void ResultSet::TransformValue(size_t index, ValueRef result)
 {
     MetaColumn::ColumnDataType type = rs->columnType(index);
     Poco::DynamicAny value = rs->value(index);

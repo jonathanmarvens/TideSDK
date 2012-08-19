@@ -19,19 +19,19 @@ namespace tide
 		virtual ~ProfiledBoundList();
 
 		// @see KList::Append
-		virtual void Append(KValueRef value);
+		virtual void Append(ValueRef value);
 		// @see KList::Size
 		virtual unsigned int Size();
 		// @see KList::At
-		virtual KValueRef At(unsigned int index);
+		virtual ValueRef At(unsigned int index);
 		// @see KList::SetAt
-		virtual void SetAt(unsigned int index, KValueRef value);
+		virtual void SetAt(unsigned int index, ValueRef value);
 		// @see KList::Remove
 		virtual bool Remove(unsigned int index);
 		// @See KList::Set
-		virtual void Set(const char *name, KValueRef value);
+		virtual void Set(const char *name, ValueRef value);
 		// @see KList::Get
-		virtual KValueRef Get(const char *name);
+		virtual ValueRef Get(const char *name);
 		// @see KList::GetPropertyNames
 		virtual SharedStringList GetPropertyNames();
 

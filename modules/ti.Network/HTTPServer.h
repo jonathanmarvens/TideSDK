@@ -31,9 +31,9 @@ public:
 private:    
     static void Run(void*);
     
-    void Bind(const ValueList& args, KValueRef result);
-    void Close(const ValueList& args, KValueRef result);
-    void IsClosed(const ValueList& args, KValueRef result);
+    void Bind(const ValueList& args, ValueRef result);
+    void Close(const ValueList& args, ValueRef result);
+    void IsClosed(const ValueList& args, ValueRef result);
     
     void Close();
 

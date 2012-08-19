@@ -28,7 +28,7 @@ void CodecModule::Initialize()
     this->binding = new Codec(host->GetGlobalObject());
 
     // set our ti.Codec
-    KValueRef value = Value::NewObject(this->binding);
+    ValueRef value = Value::NewObject(this->binding);
     host->GetGlobalObject()->Set("Codec", value);
 }
 

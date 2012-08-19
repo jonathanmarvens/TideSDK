@@ -101,12 +101,12 @@ Platform::~Platform()
 {
 }
 
-void Platform::_GetName(const ValueList& args, KValueRef result)
+void Platform::_GetName(const ValueList& args, ValueRef result)
 {
     result->SetString(Poco::Environment::osName().c_str());
 }
 
-void Platform::_GetVersion(const ValueList& args, KValueRef result)
+void Platform::_GetVersion(const ValueList& args, ValueRef result)
 {
     static std::string osVersion;
     if (osVersion.empty())
@@ -115,49 +115,49 @@ void Platform::_GetVersion(const ValueList& args, KValueRef result)
     result->SetString(osVersion.c_str());
 }
 
-void Platform::_GetType(const ValueList& args, KValueRef result)
+void Platform::_GetType(const ValueList& args, ValueRef result)
 {
     result->SetString(OS_TYPE);
 }
 
-void Platform::_GetProcessorCount(const ValueList& args, KValueRef result)
+void Platform::_GetProcessorCount(const ValueList& args, ValueRef result)
 {
     result->SetInt(PlatformUtils::GetProcessorCount());
 }
 
-void Platform::_GetArchitecture(const ValueList& args, KValueRef result)
+void Platform::_GetArchitecture(const ValueList& args, ValueRef result)
 {
     result->SetString(Poco::Environment::osArchitecture().c_str());
 }
 
-void Platform::_GetMachineId(const ValueList& args, KValueRef result)
+void Platform::_GetMachineId(const ValueList& args, ValueRef result)
 {
     result->SetString(PlatformUtils::GetMachineId().c_str());
 }
 
-void Platform::_GetUsername(const ValueList& args, KValueRef result)
+void Platform::_GetUsername(const ValueList& args, ValueRef result)
 {
     result->SetString(PlatformUtils::GetUsername().c_str());
 }
 
-void Platform::_CreateUUID(const ValueList& args, KValueRef result)
+void Platform::_CreateUUID(const ValueList& args, ValueRef result)
 {
     result->SetString(DataUtils::GenerateUUID().c_str());
 }
 
-void Platform::_OpenApplication(const ValueList& args, KValueRef result)
+void Platform::_OpenApplication(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openApplication", "s");
     result->SetBool(this->OpenApplicationImpl(args.at(0)->ToString()));
 }
 
-void Platform::_OpenURL(const ValueList& args, KValueRef result)
+void Platform::_OpenURL(const ValueList& args, ValueRef result)
 {
     args.VerifyException("openURL", "s");
     result->SetBool(this->OpenURLImpl(args.at(0)->ToString()));
 }
 
-void Platform::_TakeScreenshot(const ValueList& args, KValueRef result)
+void Platform::_TakeScreenshot(const ValueList& args, ValueRef result)
 {
     args.VerifyException("takeScreenshot", "s");
     this->TakeScreenshotImpl(args.at(0)->ToString());

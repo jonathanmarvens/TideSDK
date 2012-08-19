@@ -20,17 +20,17 @@ namespace tide
 		/**
 		 * @see KMethod::Call
 		 */
-		virtual KValueRef Call(const ValueList& args);
+		virtual ValueRef Call(const ValueList& args);
 
 		/**
 		 * @see Object::Set
 		 */
-		virtual void Set(const char *name, KValueRef value);
+		virtual void Set(const char *name, ValueRef value);
 
 		/**
 		 * @see Object::Get
 		 */
-		virtual KValueRef Get(const char *name);
+		virtual ValueRef Get(const char *name);
 
 		/**
 		 * @see Object::GetPropertyNames
@@ -42,26 +42,26 @@ namespace tide
 		 * occurs will throw an exception of type ValueException.
 		 */
 		template <typename T>
-		void SetMethod(const char *name, void (T::*method)(const ValueList&, KValueRef))
+		void SetMethod(const char *name, void (T::*method)(const ValueList&, ValueRef))
 		{
-			MethodCallback* callback = NewCallback<T, const ValueList&, KValueRef>(static_cast<T*>(this), method);
+			MethodCallback* callback = NewCallback<T, const ValueList&, ValueRef>(static_cast<T*>(this), method);
 
 			KMethodRef bound_method = new StaticBoundMethod(callback);
-			KValueRef method_value = Value::NewMethod(bound_method);
+			ValueRef method_value = Value::NewMethod(bound_method);
 			this->Set(name, method_value);
 		}
 
 		template <typename T>
-		static AutoPtr<StaticBoundMethod> FromMethod(T* owner, void (T::*method)(const ValueList&, KValueRef))
+		static AutoPtr<StaticBoundMethod> FromMethod(T* owner, void (T::*method)(const ValueList&, ValueRef))
 		{
-			MethodCallback* callback = NewCallback<T, const ValueList&, KValueRef>(static_cast<T*>(owner), method);
+			MethodCallback* callback = NewCallback<T, const ValueList&, ValueRef>(static_cast<T*>(owner), method);
 			return new StaticBoundMethod(callback);
 		}
 
 	protected:
 		SharedPtr<MethodCallback> callback;
 		AutoPtr<StaticBoundObject> object;
-		std::map<std::string, KValueRef > properties;
+		std::map<std::string, ValueRef > properties;
 
 	private:
 		DISALLOW_EVIL_CONSTRUCTORS(StaticBoundMethod);
