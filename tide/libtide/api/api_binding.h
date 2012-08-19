@@ -92,9 +92,9 @@ namespace tide
 	};
 
 	/**
-	 * An wrapper for a KObject which encapsulates another one for testing
+	 * An wrapper for a Object which encapsulates another one for testing
 	 */
-	class KObjectWrapper : public KObject
+	class KObjectWrapper : public Object
 	{
 	public:
 		KObjectWrapper(KObjectRef object);

@@ -26,7 +26,7 @@ namespace tide
 		virtual KValueRef Get(const char *name);
 		// @see KMethod::GetPropertyNames
 		virtual SharedStringList GetPropertyNames();
-		// @see KObject::GetType
+		// @see Object::GetType
 		virtual std::string& GetType();
 
 		bool HasProperty(const char* name);

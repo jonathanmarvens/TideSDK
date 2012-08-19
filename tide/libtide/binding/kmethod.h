@@ -15,12 +15,12 @@ namespace tide
 	/**
 	 * An abstract representation of a method
 	 */
-	class TIDE_API KMethod : public KObject
+	class TIDE_API KMethod : public Object
 	{
 
 	public:
 
-		KMethod(const char *type = "KMethod") : KObject(type) {}
+		KMethod(const char *type = "KMethod") : Object(type) {}
 		virtual ~KMethod() {}
 
 		/**

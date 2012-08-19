@@ -8,7 +8,7 @@
 namespace tide
 {
 	KRubyObject::KRubyObject(VALUE object) :
-		KObject("Ruby.KRubyObject"),
+		Object("Ruby.KRubyObject"),
 		object(object)
 	{
 		rb_gc_register_address(&object);

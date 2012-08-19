@@ -17,19 +17,19 @@ namespace tide
 	/**
 	 * An abstract object.
 	 *
-	 * In general, KObject implementations follow two patterns:
-	 * - Dynamic implementation (subclassing KObject directly)
+	 * In general, Object implementations follow two patterns:
+	 * - Dynamic implementation (subclassing Object directly)
 	 *   This allows the implementation to do custom logic for specific
 	 *   properties, but is also more verbose
 	 * - Static implementation (subclassing StaticBoundObject)
 	 *   This implementation uses an internal map to bind property names
 	 *   to \link Value Values\endlink (objects, methods, etc).
 	 */
-	class TIDE_API KObject : public ReferenceCounted
+	class TIDE_API Object : public ReferenceCounted
 	{
 	public:
-		KObject(std::string type = "KObject") : type(type) {}
-		virtual ~KObject() {}
+		Object(std::string type = "Object") : type(type) {}
+		virtual ~Object() {}
 
 	public:
 
@@ -89,7 +89,7 @@ namespace tide
 		void Set(SharedString name, KValueRef value);
 
 		/**
-		 * @see KObject::Get(const char*)
+		 * @see Object::Get(const char*)
 		 * @param name The property name
 		 * Helpful overload to Get which takes a SharedString
 		 */
@@ -295,22 +295,22 @@ namespace tide
 		KValueRef CallNS(const char *name);
 		
 		/**
-		 * @see KObject::CallNS(const char *name);
+		 * @see Object::CallNS(const char *name);
 		 */
 		KValueRef CallNS(const char *name, KValueRef val1);
 
 		/**
-		 * @see KObject::CallNS(const char *name);
+		 * @see Object::CallNS(const char *name);
 		 */
 		KValueRef CallNS(const char *name, KValueRef val1, KValueRef val2);
 
 		/**
-		 * @see KObject::CallNS(const char *name);
+		 * @see Object::CallNS(const char *name);
 		 */
 		KValueRef CallNS(const char *name, KValueRef val1, KValueRef val2, KValueRef val3);
 
 		/**
-		 * @see KObject::CallNS(const char *name);
+		 * @see Object::CallNS(const char *name);
 		 */
 		KValueRef CallNS(const char *name, const ValueList& args);
 
@@ -328,9 +328,9 @@ namespace tide
 		 * If this object is already exposed as an AutoPtr, this method
 		 * returns a shared version of this object
 		 */
-		AutoPtr<KObject> GetAutoPtr()
+		AutoPtr<Object> GetAutoPtr()
 		{
-			return AutoPtr<KObject>(this, true);
+			return AutoPtr<Object>(this, true);
 		}
 
 	protected:
@@ -342,7 +342,7 @@ namespace tide
 		}
 
 	private:
-		DISALLOW_EVIL_CONSTRUCTORS(KObject);
+		DISALLOW_EVIL_CONSTRUCTORS(Object);
 	};
 
 }

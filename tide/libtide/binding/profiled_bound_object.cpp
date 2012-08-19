@@ -22,7 +22,7 @@ namespace tide
 	}
 
 	ProfiledBoundObject::ProfiledBoundObject(KObjectRef delegate) :
-		KObject(delegate->GetType()),
+		Object(delegate->GetType()),
 		delegate(delegate),
 		count(1)
 	{

@@ -400,7 +400,7 @@ namespace tide
 		}
 		else if (value->IsObject())
 		{
-			KObjectRef obj = KObject::Unwrap(value->ToObject());
+			KObjectRef obj = Object::Unwrap(value->ToObject());
 			value->SetObject(obj);
 		}
 	}

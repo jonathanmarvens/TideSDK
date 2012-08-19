@@ -10,7 +10,7 @@
 namespace tide
 {
 	StaticBoundObject::StaticBoundObject(const char* type)
-		: KObject(type)
+		: Object(type)
 	{
 	}
 

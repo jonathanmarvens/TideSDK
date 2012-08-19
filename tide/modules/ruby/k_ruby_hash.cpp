@@ -29,7 +29,7 @@ namespace tide
 	}
 
 	KRubyHash::KRubyHash(VALUE hash) :
-		KObject("Ruby.KRubyHash"),
+		Object("Ruby.KRubyHash"),
 		hash(hash),
 		object(new KRubyObject(hash))
 	{

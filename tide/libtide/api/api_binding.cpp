@@ -176,8 +176,8 @@ namespace tide
 
 		/**
 		 * @tiapi(method=True,name=API.createKObject,since=0.5) Create a TIDE object.
-		 * @tiarg[Object, toWrap, optional=true] An object to wrap in a new KObject.
-		 * @tiresult[Object] A new KObject.
+		 * @tiarg[Object, toWrap, optional=true] An object to wrap in a new Object.
+		 * @tiresult[Object] A new Object.
 		 */
 		this->SetMethod("createKObject", &APIBinding::_CreateKObject);
 
