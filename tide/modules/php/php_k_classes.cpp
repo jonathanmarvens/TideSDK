@@ -144,8 +144,8 @@ namespace tide
 
 		PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
 			zend_object_store_get_object(getThis() TSRMLS_CC));
-		KObjectRef kobject = kthis->kvalue->ToObject();
-		KMethodRef method = kobject->GetMethod(methodName, 0);
+		KObjectRef obj = kthis->kvalue->ToObject();
+		KMethodRef method = obj->GetMethod(methodName, 0);
 
 		// Find the method by its name.
 		if (method.isNull())
@@ -241,12 +241,12 @@ namespace tide
 	{
 		PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
 			zend_object_store_get_object(zthis TSRMLS_CC));
-		KObjectRef kobject = kthis->kvalue->ToObject();
+		KObjectRef obj = kthis->kvalue->ToObject();
 		string propertyName = PHPUtils::ZvalToPropertyName(property);
 
 		try
 		{
-			KValueRef value = kobject->Get(propertyName.c_str());
+			KValueRef value = obj->Get(propertyName.c_str());
 			return PHPUtils::ToPHPValue(value);
 		}
 		catch (ValueException& e)
@@ -277,9 +277,9 @@ namespace tide
 			}
 			else
 			{
-				KObjectRef kobject = kthis->kvalue->ToObject();
+				KObjectRef obj = kthis->kvalue->ToObject();
 				string propertyName = PHPUtils::ZvalToPropertyName(property);
-					kobject->Set(propertyName.c_str(), tideValue);
+					obj->Set(propertyName.c_str(), tideValue);
 			}
 		}
 		catch (ValueException& e)
@@ -293,11 +293,11 @@ namespace tide
 	{
 		PHPKObject *kthis = reinterpret_cast<PHPKObject*>(
 			zend_object_store_get_object(zthis TSRMLS_CC));
-		KObjectRef kobject = kthis->kvalue->ToObject();
+		KObjectRef obj = kthis->kvalue->ToObject();
 
 		try
 		{
-			SharedStringList propertyNames = kobject->GetPropertyNames();
+			SharedStringList propertyNames = obj->GetPropertyNames();
 			HashTable* properties;
 			ALLOC_HASHTABLE(properties);
 			zend_hash_init(properties, propertyNames->size(), NULL, ZVAL_PTR_DTOR, 0);
@@ -305,7 +305,7 @@ namespace tide
 			for (size_t i = 0; i < propertyNames->size(); i++)
 			{
 				const char *key = propertyNames->at(i)->c_str();
-				KValueRef value = kobject->Get(key);
+				KValueRef value = obj->Get(key);
 				zval* zvalue = PHPUtils::ToPHPValue(value);
 				zend_hash_add(properties, (char *)key, strlen(key)+1, &zvalue, sizeof(zval*), NULL);
 			}
@@ -336,24 +336,24 @@ namespace tide
 	{
 		PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
 			zend_object_store_get_object(zthis TSRMLS_CC));
-		KObjectRef kobject = kthis->kvalue->ToObject();
+		KObjectRef obj = kthis->kvalue->ToObject();
 		string propertyName = PHPUtils::ZvalToPropertyName(property);
 
 		if (checkType == 0)
 		{
-			KValueRef value = kobject->Get(propertyName.c_str());
+			KValueRef value = obj->Get(propertyName.c_str());
 			return !value->IsUndefined() && !value->IsNull();
 		}
 		else if (checkType == 1)
 		{
-			KValueRef value = kobject->Get(propertyName.c_str());
+			KValueRef value = obj->Get(propertyName.c_str());
 			zval* phpValue = PHPUtils::ToPHPValue(value);
 			convert_to_boolean(phpValue);
 			return Z_BVAL_P(phpValue);
 		}
 		else // Generally this should be checkType == 2
 		{
-			return kobject->HasProperty(propertyName.c_str());
+			return obj->HasProperty(propertyName.c_str());
 		}
 	}
 
@@ -371,22 +371,22 @@ namespace tide
 	{
 		PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
 			zend_object_store_get_object(zthis TSRMLS_CC));
-		KObjectRef kobject = kthis->kvalue->ToObject();
+		KObjectRef obj = kthis->kvalue->ToObject();
 		string propertyName = PHPUtils::ZvalToPropertyName(property);
 
 		if (checkType == 0)
 		{
-			return kobject->HasProperty(propertyName.c_str());
+			return obj->HasProperty(propertyName.c_str());
 		}
 		else
 		{
-			if (!kobject->HasProperty(propertyName.c_str()))
+			if (!obj->HasProperty(propertyName.c_str()))
 			{
 				return false;
 			}
 			else
 			{
-				KValueRef value = kobject->Get(propertyName.c_str());
+				KValueRef value = obj->Get(propertyName.c_str());
 				zval* phpValue = PHPUtils::ToPHPValue(value);
 				convert_to_boolean(phpValue);
 				return Z_BVAL_P(phpValue);
@@ -413,12 +413,12 @@ namespace tide
 	{
 		PHPKObject* kthis = reinterpret_cast<PHPKObject*>(
 			zend_object_store_get_object(zthis TSRMLS_CC));
-		KObjectRef kobject = kthis->kvalue->ToObject();
+		KObjectRef obj = kthis->kvalue->ToObject();
 		string propertyName = PHPUtils::ZvalToPropertyName(property);
 
 		try
 		{
-			kobject->Set(propertyName.c_str(), Value::Undefined);
+			obj->Set(propertyName.c_str(), Value::Undefined);
 		}
 		catch (ValueException& e)
 		{
@@ -665,7 +665,7 @@ namespace tide
 
 		void KObjectToKPHPObject(KValueRef objectValue, zval** returnValue)
 		{
-			// Initialize our object with our pre-defined KObject class entry.
+			// Initialize our object with our pre-defined Object class entry.
 			TSRMLS_FETCH();
 			object_init_ex(*returnValue, PHPKObjectClassEntry);
 
@@ -677,7 +677,7 @@ namespace tide
 
 		void KMethodToKPHPMethod(KValueRef methodValue, zval** returnValue)
 		{
-			// Initialize our object with our pre-defined KObject class entry.
+			// Initialize our object with our pre-defined Object class entry.
 			TSRMLS_FETCH();
 			object_init_ex(*returnValue, PHPKMethodClassEntry);
 
@@ -689,7 +689,7 @@ namespace tide
 
 		void KListToKPHPArray(KValueRef listValue, zval** returnValue)
 		{
-			// Initialize our object with our pre-defined KObject class entry.
+			// Initialize our object with our pre-defined Object class entry.
 			TSRMLS_FETCH();
 			object_init_ex(*returnValue, PHPKListClassEntry);
 

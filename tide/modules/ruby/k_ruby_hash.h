@@ -9,7 +9,7 @@
 
 namespace tide {
 
-class KRubyHash : public KObject {
+class KRubyHash : public Object {
 public:
 	KRubyHash(VALUE object);
 	virtual ~KRubyHash();

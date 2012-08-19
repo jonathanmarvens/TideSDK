@@ -15,10 +15,10 @@ namespace tide
 	/**
 	 * A binding that represents a list§
 	 */
-	class TIDE_API KList : public KObject
+	class TIDE_API KList : public Object
 	{
 	public:
-		KList(const char *type = "KList") : KObject(type) {}
+		KList(const char *type = "KList") : Object(type) {}
 		virtual ~KList() {}
 
 		/**

@@ -30,7 +30,7 @@ namespace tide
 	{
 		PyObject_HEAD_INIT(NULL)
 		0,
-		"KObject",
+		"Object",
 		sizeof(PyKObject),
 		0,
 		PyKObject_dealloc,          /*tp_dealloc*/

@@ -39,7 +39,7 @@ namespace tide {
 		KValueRef Call(const ValueList& args);
 
 		/**
-		 * create a delegate from a KObject to a wrapped
+		 * create a delegate from a Object to a wrapped
 		 * StaticBoundObject and delegate set/get to the new
 		 * static bound object
 		 */

@@ -12,10 +12,10 @@
 namespace tide
 {
 	/**
-	 * The ProfiledBoundObject is a wrapped KObject that does profiling on a 
-	 * wrapped KObject
+	 * The ProfiledBoundObject is a wrapped Object that does profiling on a 
+	 * wrapped Object
 	 */
-	class TIDE_API ProfiledBoundObject : public KObject
+	class TIDE_API ProfiledBoundObject : public Object
 	{
 		public:
 		ProfiledBoundObject(KObjectRef delegate);
@@ -23,15 +23,15 @@ namespace tide
 		static void SetStream(Poco::FileOutputStream*);
 
 		public:
-		// @see KObject::Set
+		// @see Object::Set
 		virtual void Set(const char *name, KValueRef value);
-		// @see KObject::Get
+		// @see Object::Get
 		virtual KValueRef Get(const char *name);
-		// @see KObject::GetPropertyNames
+		// @see Object::GetPropertyNames
 		virtual SharedStringList GetPropertyNames();
-		// @see KObject::DisplayString
+		// @see Object::DisplayString
 		virtual SharedString DisplayString(int levels=3);
-		// @see KObject::Equals
+		// @see Object::Equals
 		virtual bool Equals(KObjectRef other);
 
 		bool HasProperty(const char* name);
