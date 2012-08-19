@@ -41,7 +41,7 @@ public:
 protected:
     virtual ~Monkey();
     void ParseFile(string filePath);
-    void Callback(const ValueList &args, KValueRef result);
+    void Callback(const ValueList &args, ValueRef result);
     void EvaluateUserScript(
         KObjectRef, std::string&,KObjectRef, std::string&);
 

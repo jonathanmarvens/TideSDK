@@ -20,13 +20,13 @@ namespace tide
 		return StaticBoundObject::HasProperty(name) || this->HasGetterFor(name);
 	}
 
-	void KAccessorObject::Set(const char* name, KValueRef value)
+	void KAccessorObject::Set(const char* name, ValueRef value)
 	{
 		if (!this->UseSetter(name, value, StaticBoundObject::Get(name)))
 			StaticBoundObject::Set(name, value);
 	}
 
-	KValueRef KAccessorObject::Get(const char* name)
+	ValueRef KAccessorObject::Get(const char* name)
 	{
 		return this->UseGetter(name, StaticBoundObject::Get(name));
 	}

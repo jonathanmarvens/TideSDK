@@ -16,7 +16,7 @@ namespace tide
 	protected:
 		KAccessor() {}
 
-		inline void RecordAccessor(const std::string& name, KValueRef value)
+		inline void RecordAccessor(const std::string& name, ValueRef value)
 		{
 			if (name.find("set") == 0)
 				DoMap(name.substr(3), value, setterMap);
@@ -33,7 +33,7 @@ namespace tide
 			return !FindAccessor(name, getterMap).isNull();
 		}
 
-		KValueRef UseGetter(std::string name, KValueRef existingValue)
+		ValueRef UseGetter(std::string name, ValueRef existingValue)
 		{
 			if (!existingValue->IsUndefined())
 				return existingValue;
@@ -45,7 +45,7 @@ namespace tide
 			return getter->Call();
 		}
 
-		bool UseSetter(std::string name, KValueRef newValue, KValueRef existingValue)
+		bool UseSetter(std::string name, ValueRef newValue, ValueRef existingValue)
 		{
 			RecordAccessor(name, newValue);
 
@@ -63,7 +63,7 @@ namespace tide
 		}
 
 	private:
-		inline void DoMap(std::string name, KValueRef accessor, AccessorMap& map)
+		inline void DoMap(std::string name, ValueRef accessor, AccessorMap& map)
 		{
 			// Lower-case the name so that all comparisons are case-insensitive.
 			std::transform(name.begin(), name.end(), name.begin(), tolower);

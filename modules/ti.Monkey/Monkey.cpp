@@ -125,7 +125,7 @@ void Monkey::ParseFile(string filePath)
     }
 }
 
-void Monkey::Callback(const ValueList &args, KValueRef result)
+void Monkey::Callback(const ValueList &args, ValueRef result)
 {
     KObjectRef event = args.at(0)->ToObject();
     if (!event->Get("url")->IsString() ||

@@ -29,9 +29,9 @@ namespace tide
 		KDelegatingObject(KObjectRef global);
 		KDelegatingObject(KObjectRef global, KObjectRef local);
 		virtual ~KDelegatingObject();
-		virtual KValueRef Get(const char *name);
+		virtual ValueRef Get(const char *name);
 		virtual SharedStringList GetPropertyNames();
-		virtual void Set(const char *name, KValueRef value);
+		virtual void Set(const char *name, ValueRef value);
 		virtual bool HasProperty(const char* name);
 
 		virtual inline KObjectRef GetGlobal() { return this->global; }

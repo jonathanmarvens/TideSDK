@@ -40,11 +40,11 @@ private:
     bool invalid;
 
 private:
-    void ToString(const ValueList& args, KValueRef result);
-    void IsInvalid(const ValueList& args, KValueRef result);
-    void GetName(const ValueList& args, KValueRef result);
-    void GetAliases(const ValueList& args, KValueRef result);
-    void GetAddresses(const ValueList& args, KValueRef result);
+    void ToString(const ValueList& args, ValueRef result);
+    void IsInvalid(const ValueList& args, ValueRef result);
+    void GetName(const ValueList& args, ValueRef result);
+    void GetAliases(const ValueList& args, ValueRef result);
+    void GetAddresses(const ValueList& args, ValueRef result);
 };
 
 } // namespace ti

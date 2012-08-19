@@ -36,8 +36,8 @@ class EXPORT DatabaseModule : public tide::Module, public StaticBoundObject {
 
 private:
     tide::KObjectRef binding;
-    void Open(const ValueList& args, KValueRef result);
-    void OpenFile(const ValueList& args, KValueRef result);
+    void Open(const ValueList& args, ValueRef result);
+    void OpenFile(const ValueList& args, ValueRef result);
 };
 
 } // namespace ti

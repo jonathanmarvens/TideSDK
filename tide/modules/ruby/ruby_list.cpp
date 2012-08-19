@@ -21,7 +21,7 @@ namespace tide
 		rb_gc_unregister_address(&list);
 	}
 
-	void KRubyList::Append(KValueRef value)
+	void KRubyList::Append(ValueRef value)
 	{
 		rb_ary_push(list, RubyUtils::ToRubyValue(value));
 	}
@@ -36,7 +36,7 @@ namespace tide
 		return (rb_ary_delete_at(list, index) != Qnil);
 	}
 
-	KValueRef KRubyList::At(unsigned int index)
+	ValueRef KRubyList::At(unsigned int index)
 	{
 		if (index >= 0 && index < this->Size())
 		{
@@ -48,7 +48,7 @@ namespace tide
 		}
 	}
 
-	void KRubyList::Set(const char* name, KValueRef value)
+	void KRubyList::Set(const char* name, ValueRef value)
 	{
 		if (KList::IsInt(name))
 		{
@@ -60,7 +60,7 @@ namespace tide
 		}
 	}
 
-	void KRubyList::SetAt(unsigned int index, KValueRef value)
+	void KRubyList::SetAt(unsigned int index, ValueRef value)
 	{
 		VALUE rv = RubyUtils::ToRubyValue(value);
 
@@ -69,7 +69,7 @@ namespace tide
 		rb_ary_store(list, index, rv);
 	}
 
-	KValueRef KRubyList::Get(const char* name)
+	ValueRef KRubyList::Get(const char* name)
 	{
 		if (KList::IsInt(name))
 		{

@@ -46,12 +46,12 @@ public:
     bool HideImpl();
 
 private:
-    void _SetTitle(const ValueList& args, KValueRef result);
-    void _SetMessage(const ValueList& args, KValueRef result);
-    void _SetIcon(const ValueList& args, KValueRef result);
-    void _SetTimeout(const ValueList& args, KValueRef result);
-    void _Show(const ValueList& args, KValueRef result);
-    void _Hide(const ValueList& args, KValueRef result);
+    void _SetTitle(const ValueList& args, ValueRef result);
+    void _SetMessage(const ValueList& args, ValueRef result);
+    void _SetIcon(const ValueList& args, ValueRef result);
+    void _SetTimeout(const ValueList& args, ValueRef result);
+    void _Show(const ValueList& args, ValueRef result);
+    void _Hide(const ValueList& args, ValueRef result);
 
     std::string title;
     std::string message;

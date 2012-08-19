@@ -21,12 +21,12 @@ ScopeMethodDelegate::~ScopeMethodDelegate()
 }
 
 
-void ScopeMethodDelegate::Set(const char *name, KValueRef value)
+void ScopeMethodDelegate::Set(const char *name, ValueRef value)
 {
 	delegate->Set(name,value);
 }
 
-KValueRef ScopeMethodDelegate::Get(const char *name)
+ValueRef ScopeMethodDelegate::Get(const char *name)
 {
 	return delegate->Get(name);
 }
@@ -42,7 +42,7 @@ bool ScopeMethodDelegate::IsGlobalKey(std::string& key)
 	return (pos!=std::string::npos);
 }
 
-KValueRef ScopeMethodDelegate::Call(const ValueList& args)
+ValueRef ScopeMethodDelegate::Call(const ValueList& args)
 {
 	std::string key = args.at(0)->ToString();
 	KObjectRef obj = IsGlobalKey(key) ? global : scope;
@@ -53,7 +53,7 @@ KValueRef ScopeMethodDelegate::Call(const ValueList& args)
 	}
 	else
 	{
-		KValueRef result = args.at(1);
+		ValueRef result = args.at(1);
 		obj->SetNS(key.c_str(),result);
 		return Value::Undefined;
 	}
@@ -69,18 +69,18 @@ AutoPtr<StaticBoundObject> ScopeMethodDelegate::CreateDelegate(KObjectRef global
 	{
 		SharedString key_ptr = (*iter++);
 		std::string key = *key_ptr;
-		KValueRef value = bo->Get(key.c_str());
+		ValueRef value = bo->Get(key.c_str());
 
 		if (key == "set")
 		{
 			KMethodRef d = new ScopeMethodDelegate(SET, global, scope, value->ToMethod());
-			KValueRef v = Value::NewMethod(d);
+			ValueRef v = Value::NewMethod(d);
 			scope->Set(key.c_str(), v);
 		}
 		else if (key == "get")
 		{
 			KMethodRef d = new ScopeMethodDelegate(GET, global, scope, value->ToMethod());
-			KValueRef v = Value::NewMethod(d);
+			ValueRef v = Value::NewMethod(d);
 			scope->Set(key.c_str(), v);
 		}
 		else

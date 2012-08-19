@@ -30,13 +30,13 @@ public:
     virtual ~Interface();
 
 private:
-    void _GetAddress(const ValueList& args, KValueRef result);
-    void _GetIPAddress(const ValueList& args, KValueRef result);
-    void _GetName(const ValueList& args, KValueRef result);
-    void _GetDisplayName(const ValueList& args, KValueRef result);
-    void _GetSubnetMask(const ValueList& args, KValueRef result);
-    void _SupportsIPv4(const ValueList& args, KValueRef result);
-    void _SupportsIPv6(const ValueList& args, KValueRef result);
+    void _GetAddress(const ValueList& args, ValueRef result);
+    void _GetIPAddress(const ValueList& args, ValueRef result);
+    void _GetName(const ValueList& args, ValueRef result);
+    void _GetDisplayName(const ValueList& args, ValueRef result);
+    void _GetSubnetMask(const ValueList& args, ValueRef result);
+    void _SupportsIPv4(const ValueList& args, ValueRef result);
+    void _SupportsIPv6(const ValueList& args, ValueRef result);
 
     Poco::Net::NetworkInterface interface;
 };

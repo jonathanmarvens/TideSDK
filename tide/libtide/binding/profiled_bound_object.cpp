@@ -32,7 +32,7 @@ namespace tide
 	{
 	}
 
-	bool ProfiledBoundObject::AlreadyWrapped(KValueRef value)
+	bool ProfiledBoundObject::AlreadyWrapped(ValueRef value)
 	{
 		if (value->IsMethod()) {
 			KMethodRef source = value->ToMethod();
@@ -54,7 +54,7 @@ namespace tide
 		}
 	}
 
-	KValueRef ProfiledBoundObject::Wrap(KValueRef value, std::string type)
+	ValueRef ProfiledBoundObject::Wrap(ValueRef value, std::string type)
 	{
 		if (AlreadyWrapped(value))
 		{
@@ -82,10 +82,10 @@ namespace tide
 		}
 	}
 
-	void ProfiledBoundObject::Set(const char *name, KValueRef value)
+	void ProfiledBoundObject::Set(const char *name, ValueRef value)
 	{
 		std::string type = this->GetSubType(name);
-		KValueRef result = ProfiledBoundObject::Wrap(value, type);
+		ValueRef result = ProfiledBoundObject::Wrap(value, type);
 
 		Poco::Stopwatch sw;
 		sw.start();
@@ -95,13 +95,13 @@ namespace tide
 		this->Log("set", type, sw.elapsed());
 	}
 
-	KValueRef ProfiledBoundObject::Get(const char *name)
+	ValueRef ProfiledBoundObject::Get(const char *name)
 	{
 		std::string type = this->GetSubType(name);
 
 		Poco::Stopwatch sw;
 		sw.start();
-		KValueRef value = delegate->Get(name);
+		ValueRef value = delegate->Get(name);
 		sw.stop();
 
 		this->Log("get", type, sw.elapsed());

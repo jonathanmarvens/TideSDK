@@ -184,7 +184,7 @@ int PosixProcess::Wait()
     return exitCode;
 }
 
-void PosixProcess::ReadCallback(const ValueList& args, KValueRef result)
+void PosixProcess::ReadCallback(const ValueList& args, ValueRef result)
 {
     if (args.at(0)->IsObject())
     {

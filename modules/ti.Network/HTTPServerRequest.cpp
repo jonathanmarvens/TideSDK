@@ -33,36 +33,36 @@ HTTPServerRequest::HTTPServerRequest(Poco::Net::HTTPServerRequest& request)
     SetMethod("read",&HTTPServerRequest::Read);
 }
 
-void HTTPServerRequest::GetMethod(const ValueList& args, KValueRef result)
+void HTTPServerRequest::GetMethod(const ValueList& args, ValueRef result)
 {
     std::string method = request.getMethod();
     result->SetString(method);
 }
 
-void HTTPServerRequest::GetVersion(const ValueList& args, KValueRef result)
+void HTTPServerRequest::GetVersion(const ValueList& args, ValueRef result)
 {
     std::string version = request.getVersion();
     result->SetString(version);
 }
 
-void HTTPServerRequest::GetURI(const ValueList& args, KValueRef result)
+void HTTPServerRequest::GetURI(const ValueList& args, ValueRef result)
 {
     std::string uri = request.getURI();
     result->SetString(uri);
 }
 
-void HTTPServerRequest::GetContentType(const ValueList& args, KValueRef result)
+void HTTPServerRequest::GetContentType(const ValueList& args, ValueRef result)
 {
     std::string ct = request.getContentType();
     result->SetString(ct);
 }
 
-void HTTPServerRequest::GetContentLength(const ValueList& args, KValueRef result)
+void HTTPServerRequest::GetContentLength(const ValueList& args, ValueRef result)
 {
     result->SetInt(request.getContentLength());
 }
 
-void HTTPServerRequest::GetHeader(const ValueList& args, KValueRef result)
+void HTTPServerRequest::GetHeader(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getHeader", "s");
     std::string name = args.at(0)->ToString();
@@ -77,7 +77,7 @@ void HTTPServerRequest::GetHeader(const ValueList& args, KValueRef result)
     }
 }
 
-void HTTPServerRequest::GetHeaders(const ValueList& args, KValueRef result)
+void HTTPServerRequest::GetHeaders(const ValueList& args, ValueRef result)
 {
     Poco::Net::HTTPServerRequest::ConstIterator iter = request.begin();
     KObjectRef headers = new StaticBoundObject();
@@ -91,14 +91,14 @@ void HTTPServerRequest::GetHeaders(const ValueList& args, KValueRef result)
     result->SetObject(headers);
 }
 
-void HTTPServerRequest::HasHeader(const ValueList& args, KValueRef result)
+void HTTPServerRequest::HasHeader(const ValueList& args, ValueRef result)
 {
     args.VerifyException("hasHeader", "s");
     std::string name = args.at(0)->ToString();
     result->SetBool(request.has(name));
 }
 
-void HTTPServerRequest::Read(const ValueList& args, KValueRef result)
+void HTTPServerRequest::Read(const ValueList& args, ValueRef result)
 {
     args.VerifyException("read", "?i");
 

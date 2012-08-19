@@ -21,7 +21,7 @@ namespace tide {
 
 class Interpreter {
 public:
-    virtual KValueRef EvaluateFile(const char* filepath, KObjectRef context) = 0;
+    virtual ValueRef EvaluateFile(const char* filepath, KObjectRef context) = 0;
 };
 
 } // namespace tide

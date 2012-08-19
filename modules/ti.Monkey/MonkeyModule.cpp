@@ -28,7 +28,7 @@ void MonkeyModule::Initialize()
     this->binding = new Monkey(host,host->GetGlobalObject());
 
     // set our ti.Monkey
-    KValueRef value = Value::NewObject(this->binding);
+    ValueRef value = Value::NewObject(this->binding);
     host->GetGlobalObject()->Set("Monkey", value);
 }
 

@@ -9,7 +9,7 @@
 
 namespace tide
 {
-	ValueException::ValueException(KValueRef v) : std::exception(), value(v)
+	ValueException::ValueException(ValueRef v) : std::exception(), value(v)
 	{
 	}
 
@@ -43,7 +43,7 @@ namespace tide
 		return ValueException(Value::NewObject(o));
 	}
 
-	KValueRef ValueException::GetValue()
+	ValueRef ValueException::GetValue()
 	{
 		return this->value;
 	}

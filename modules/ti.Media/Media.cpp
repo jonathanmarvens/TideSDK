@@ -40,7 +40,7 @@ namespace ti
   {
   }
 
-  void Media::_CreateSound(const ValueList& args, KValueRef result)
+  void Media::_CreateSound(const ValueList& args, ValueRef result)
   {
     if (args.size()!=1)
       throw ValueException::FromString("createSound takes 1 parameter");
@@ -49,7 +49,7 @@ namespace ti
     result->SetObject(this->CreateSound(path));
   }
 
-  void Media::_Beep(const ValueList& args, KValueRef result)
+  void Media::_Beep(const ValueList& args, ValueRef result)
   {
     this->Beep();
   }

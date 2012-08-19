@@ -171,87 +171,87 @@ void IPAddress::Init()
     this->SetMethod("isGlobalMC",&IPAddress::IsGlobalMC);
 }
 
-void IPAddress::IsInvalid(const ValueList& args, KValueRef result)
+void IPAddress::IsInvalid(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->invalid);
 }
 
-void IPAddress::ToString(const ValueList& args, KValueRef result)
+void IPAddress::ToString(const ValueList& args, ValueRef result)
 {
     result->SetString(this->address->toString().c_str());
 }
 
-void IPAddress::IsIPV4(const ValueList& args, KValueRef result)
+void IPAddress::IsIPV4(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->family() == Poco::Net::IPAddress::IPv4);
 }
 
-void IPAddress::IsIPV6(const ValueList& args, KValueRef result)
+void IPAddress::IsIPV6(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->family() == Poco::Net::IPAddress::IPv6);
 }
 
-void IPAddress::IsWildcard(const ValueList& args, KValueRef result)
+void IPAddress::IsWildcard(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isWildcard());
 }
 
-void IPAddress::IsBroadcast(const ValueList& args, KValueRef result)
+void IPAddress::IsBroadcast(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isBroadcast());
 }
 
-void IPAddress::IsLoopback(const ValueList& args, KValueRef result)
+void IPAddress::IsLoopback(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isLoopback());
 }
 
-void IPAddress::IsMulticast(const ValueList& args, KValueRef result)
+void IPAddress::IsMulticast(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isMulticast());
 }
 
-void IPAddress::IsUnicast(const ValueList& args, KValueRef result)
+void IPAddress::IsUnicast(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isUnicast());
 }
 
-void IPAddress::IsLinkLocal(const ValueList& args, KValueRef result)
+void IPAddress::IsLinkLocal(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isLinkLocal());
 }
 
-void IPAddress::IsSiteLocal(const ValueList& args, KValueRef result)
+void IPAddress::IsSiteLocal(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isSiteLocal());
 }
 
-void IPAddress::IsWellKnownMC(const ValueList& args, KValueRef result)
+void IPAddress::IsWellKnownMC(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isWellKnownMC());
 }
 
-void IPAddress::IsNodeLocalMC(const ValueList& args, KValueRef result)
+void IPAddress::IsNodeLocalMC(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isNodeLocalMC());
 }
 
-void IPAddress::IsLinkLocalMC(const ValueList& args, KValueRef result)
+void IPAddress::IsLinkLocalMC(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isLinkLocalMC());
 }
 
-void IPAddress::IsSiteLocalMC(const ValueList& args, KValueRef result)
+void IPAddress::IsSiteLocalMC(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isSiteLocalMC());
 }
 
-void IPAddress::IsOrgLocalMC(const ValueList& args, KValueRef result)
+void IPAddress::IsOrgLocalMC(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isOrgLocalMC());
 }
 
-void IPAddress::IsGlobalMC(const ValueList& args, KValueRef result)
+void IPAddress::IsGlobalMC(const ValueList& args, ValueRef result)
 {
     result->SetBool(!this->invalid && this->address->isGlobalMC());
 }

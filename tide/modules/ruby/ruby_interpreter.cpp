@@ -37,7 +37,7 @@ namespace tide
 		}
 		// If we can't find this property perhaps we should return
 		// the same property name except capitalized.
-		KValueRef v = global_object->Get(name);
+		ValueRef v = global_object->Get(name);
 		if (v->IsUndefined())
 		{
 			name[0] = toupper(name[0]);
@@ -51,7 +51,7 @@ namespace tide
 		if (assignment) // Assignment
 		{
 			rval = rb_ary_entry(args, 0);
-			KValueRef val = RubyUtils::ToTideValue(rval);
+			ValueRef val = RubyUtils::ToTideValue(rval);
 			global_object->Set(name, val);
 		}
 		else if (v->IsMethod()) // Method call
@@ -69,7 +69,7 @@ namespace tide
 	{
 		static int nextId = 0;
 		int cid = 0;
-		KValueRef idv = global->Get("__ruby_module_id__");
+		ValueRef idv = global->Get("__ruby_module_id__");
 		if (idv->IsUndefined())
 		{
 			cid = nextId++;
@@ -106,7 +106,7 @@ namespace tide
 		return rb_funcall(ctx, rb_intern("instance_eval"), 1, code);
 	}
 
-	KValueRef RubyInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
+	ValueRef RubyInterpreter::EvaluateFile(const char* filepath, KObjectRef context)
 	{
         global_object = context;
 		VALUE ctx = this->GetContext(context);
@@ -128,7 +128,7 @@ namespace tide
 
 			// Display a stringified version of the exception.
 			VALUE exception = rb_gv_get("$!");
-			KValueRef v = RubyUtils::ToTideValue(exception);
+			ValueRef v = RubyUtils::ToTideValue(exception);
 			SharedString ss = v->DisplayString();
 			error.append(ss->c_str());
 

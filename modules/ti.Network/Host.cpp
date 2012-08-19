@@ -102,7 +102,7 @@ void Host::Init()
     this->SetMethod("getAddresses",&Host::GetAddresses);
 }
 
-void Host::ToString(const ValueList& args, KValueRef result)
+void Host::ToString(const ValueList& args, ValueRef result)
 {
     std::string s("[IPAddress ");
     s+=name;
@@ -110,17 +110,17 @@ void Host::ToString(const ValueList& args, KValueRef result)
     result->SetString(s.c_str());
 }
 
-void Host::IsInvalid(const ValueList& args, KValueRef result)
+void Host::IsInvalid(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->invalid);
 }
 
-void Host::GetName(const ValueList& args, KValueRef result)
+void Host::GetName(const ValueList& args, ValueRef result)
 {
     result->SetString(this->host.name().c_str());
 }
 
-void Host::GetAliases(const ValueList& args, KValueRef result)
+void Host::GetAliases(const ValueList& args, ValueRef result)
 {
     KListRef list = new StaticBoundList();
     std::vector<std::string> aliases = this->host.aliases();
@@ -133,7 +133,7 @@ void Host::GetAliases(const ValueList& args, KValueRef result)
     result->SetList(list);
 }
 
-void Host::GetAddresses(const ValueList& args, KValueRef result)
+void Host::GetAddresses(const ValueList& args, ValueRef result)
 {
     KListRef list = new StaticBoundList();
     std::vector<Poco::Net::IPAddress> addresses = this->host.addresses();
@@ -142,7 +142,7 @@ void Host::GetAddresses(const ValueList& args, KValueRef result)
     {
         Poco::Net::IPAddress address = (*iter++);
         KObjectRef obj = new IPAddress(address);
-        KValueRef addr = Value::NewObject(obj);
+        ValueRef addr = Value::NewObject(obj);
         list->Append(addr);
     }
     result->SetList(list);

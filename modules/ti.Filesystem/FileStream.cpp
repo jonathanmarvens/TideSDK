@@ -206,7 +206,7 @@ bool FileStream::IsReadable() const
     return this->istream != NULL;
 }
 
-void FileStream::_Open(const ValueList& args, KValueRef result)
+void FileStream::_Open(const ValueList& args, ValueRef result)
 {
     args.VerifyException("open", "?ibb");
 
@@ -218,17 +218,17 @@ void FileStream::_Open(const ValueList& args, KValueRef result)
     result->SetBool(opened);
 }
 
-void FileStream::_IsOpen(const ValueList& args, KValueRef result)
+void FileStream::_IsOpen(const ValueList& args, ValueRef result)
 {
     result->SetBool(this->IsOpen());
 }
 
-void FileStream::_Close(const ValueList& args, KValueRef result)
+void FileStream::_Close(const ValueList& args, ValueRef result)
 {
     this->Close();
 }
 
-void FileStream::_Seek(const ValueList& args, KValueRef result)
+void FileStream::_Seek(const ValueList& args, ValueRef result)
 {
     args.VerifyException("seek", "i?i");
 
@@ -237,12 +237,12 @@ void FileStream::_Seek(const ValueList& args, KValueRef result)
     this->Seek(offset, direction);
 }
 
-void FileStream::_Tell(const ValueList& args, KValueRef result)
+void FileStream::_Tell(const ValueList& args, ValueRef result)
 {
     result->SetInt(this->Tell());
 }
 
-void FileStream::_Write(const ValueList& args, KValueRef result)
+void FileStream::_Write(const ValueList& args, ValueRef result)
 {
     args.VerifyException("write", "s|o|n");
 
@@ -296,7 +296,7 @@ void FileStream::_Write(const ValueList& args, KValueRef result)
     result->SetBool(true);
 }
 
-void FileStream::_Read(const ValueList& args, KValueRef result)
+void FileStream::_Read(const ValueList& args, ValueRef result)
 {
     args.VerifyException("read", "?i");
 
@@ -352,7 +352,7 @@ void FileStream::_Read(const ValueList& args, KValueRef result)
     }
 }
 
-void FileStream::_ReadLine(const ValueList& args, KValueRef result)
+void FileStream::_ReadLine(const ValueList& args, ValueRef result)
 {
     try
     {
@@ -409,7 +409,7 @@ void FileStream::_ReadLine(const ValueList& args, KValueRef result)
     }
 }
 
-void FileStream::_WriteLine(const ValueList& args, KValueRef result)
+void FileStream::_WriteLine(const ValueList& args, ValueRef result)
 {
     args.VerifyException("writeLine", "s|o|n");
 
@@ -474,7 +474,7 @@ void FileStream::_WriteLine(const ValueList& args, KValueRef result)
     result->SetBool(true);
 }
 
-void FileStream::_Ready(const ValueList& args, KValueRef result)
+void FileStream::_Ready(const ValueList& args, ValueRef result)
 {
     if(!this->stream)
     {

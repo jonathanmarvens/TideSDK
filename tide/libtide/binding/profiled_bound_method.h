@@ -19,11 +19,11 @@ namespace tide
 		virtual ~ProfiledBoundMethod();
 
 		// @see KMethod::Call
-		virtual KValueRef Call(const ValueList& args);
+		virtual ValueRef Call(const ValueList& args);
 		// @see KMethod::Set
-		virtual void Set(const char *name, KValueRef value);
+		virtual void Set(const char *name, ValueRef value);
 		// @see KMethod::Get
-		virtual KValueRef Get(const char *name);
+		virtual ValueRef Get(const char *name);
 		// @see KMethod::GetPropertyNames
 		virtual SharedStringList GetPropertyNames();
 		// @see Object::GetType

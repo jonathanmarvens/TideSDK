@@ -37,19 +37,19 @@ HTTPServerResponse::HTTPServerResponse(Poco::Net::HTTPServerResponse &response)
     SetMethod("write",&HTTPServerResponse::Write);
 }
 
-void HTTPServerResponse::SetStatus(const ValueList& args, KValueRef result)
+void HTTPServerResponse::SetStatus(const ValueList& args, ValueRef result)
 {
     std::string status = args.at(0)->ToString();
     response.setStatus(status);
 }
 
-void HTTPServerResponse::SetReason(const ValueList& args, KValueRef result)
+void HTTPServerResponse::SetReason(const ValueList& args, ValueRef result)
 {
     std::string reason = args.at(0)->ToString();
     response.setReason(reason);
 }
 
-void HTTPServerResponse::SetStatusAndReason(const ValueList& args, KValueRef result)
+void HTTPServerResponse::SetStatusAndReason(const ValueList& args, ValueRef result)
 {
     std::string status = args.at(0)->ToString();
     std::string reason = args.at(1)->ToString();
@@ -57,19 +57,19 @@ void HTTPServerResponse::SetStatusAndReason(const ValueList& args, KValueRef res
     response.setReason(reason);
 }
 
-void HTTPServerResponse::SetContentType(const ValueList& args, KValueRef result)
+void HTTPServerResponse::SetContentType(const ValueList& args, ValueRef result)
 {
     std::string ct = args.at(0)->ToString();
     response.setContentType(ct);
 }
 
-void HTTPServerResponse::SetContentLength(const ValueList& args, KValueRef result)
+void HTTPServerResponse::SetContentLength(const ValueList& args, ValueRef result)
 {
     int len = args.at(0)->ToInt();
     response.setContentLength(len);
 }
 
-void HTTPServerResponse::AddCookie(const ValueList& args, KValueRef result)
+void HTTPServerResponse::AddCookie(const ValueList& args, ValueRef result)
 {
     //name,value,[max_age,domain,path]
     std::string name = args.at(0)->ToString();
@@ -92,14 +92,14 @@ void HTTPServerResponse::AddCookie(const ValueList& args, KValueRef result)
     }
 }
 
-void HTTPServerResponse::SetHeader(const ValueList& args, KValueRef result)
+void HTTPServerResponse::SetHeader(const ValueList& args, ValueRef result)
 {
     std::string name = args.at(0)->ToString();
     std::string value = args.at(1)->ToString();
     response.set(name,value);
 }
 
-void HTTPServerResponse::Write(const ValueList& args, KValueRef result)
+void HTTPServerResponse::Write(const ValueList& args, ValueRef result)
 {
     std::ostream& ostr = response.send();
     

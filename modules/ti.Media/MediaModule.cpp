@@ -39,7 +39,7 @@ void MediaModule::Initialize()
 #elif OS_OSX
     this->binding = new MediaMac(host->GetGlobalObject());
 #endif
-    KValueRef value = Value::NewObject(this->binding);
+    ValueRef value = Value::NewObject(this->binding);
     host->GetGlobalObject()->Set("Media", value);
 }
 

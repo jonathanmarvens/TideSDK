@@ -75,7 +75,7 @@ AutoPtr<UserWindow> UI::GetMainWindow()
     return this->mainWindow;
 }
 
-void UI::_CreateWindow(const ValueList& args, KValueRef result)
+void UI::_CreateWindow(const ValueList& args, ValueRef result)
 {
     AutoPtr<WindowConfig> config(0);
     if (args.size() > 0 && args.at(0)->IsObject())
@@ -142,7 +142,7 @@ void UI::RemoveFromOpenWindows(AutoPtr<UserWindow> window)
     logger->Warn("Tried to remove a non-existant window: %lx", (long int) window.get());
 }
 
-void UI::_GetOpenWindows(const ValueList& args, KValueRef result)
+void UI::_GetOpenWindows(const ValueList& args, ValueRef result)
 {
     KListRef list = new StaticBoundList();
     std::vector<AutoPtr<UserWindow> >::iterator w = openWindows.begin();
@@ -152,12 +152,12 @@ void UI::_GetOpenWindows(const ValueList& args, KValueRef result)
     result->SetList(list);
 }
 
-void UI::_GetMainWindow(const ValueList& args, KValueRef result)
+void UI::_GetMainWindow(const ValueList& args, ValueRef result)
 {
     result->SetObject(this->mainWindow);
 }
 
-void UI::_CreateNotification(const ValueList& args, KValueRef result)
+void UI::_CreateNotification(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createNotification", "?o");
     AutoPtr<Notification> n(new Notification());
@@ -168,7 +168,7 @@ void UI::_CreateNotification(const ValueList& args, KValueRef result)
     result->SetObject(n);
 }
 
-void UI::_CreateMenu(const ValueList& args, KValueRef result)
+void UI::_CreateMenu(const ValueList& args, ValueRef result)
 {
     result->SetObject(__CreateMenu(args));
 }
@@ -179,7 +179,7 @@ AutoPtr<Menu> UI::__CreateMenu(const ValueList& args)
     return this->CreateMenu();
 }
 
-void UI::_CreateMenuItem(const ValueList& args, KValueRef result)
+void UI::_CreateMenuItem(const ValueList& args, ValueRef result)
 {
     result->SetObject(__CreateMenuItem(args));
 }
@@ -203,7 +203,7 @@ AutoPtr<MenuItem> UI::__CreateMenuItem(const ValueList& args)
 }
 
 
-void UI::_CreateCheckMenuItem(const ValueList& args, KValueRef result)
+void UI::_CreateCheckMenuItem(const ValueList& args, ValueRef result)
 {
     result->SetObject(__CreateCheckMenuItem(args));
 }
@@ -223,7 +223,7 @@ AutoPtr<MenuItem> UI::__CreateCheckMenuItem(const ValueList& args)
     return item;
 }
 
-void UI::_CreateSeparatorMenuItem(const ValueList& args, KValueRef result)
+void UI::_CreateSeparatorMenuItem(const ValueList& args, ValueRef result)
 {
     result->SetObject(__CreateSeparatorMenuItem(args));
 }
@@ -233,7 +233,7 @@ AutoPtr<MenuItem> UI::__CreateSeparatorMenuItem(const ValueList& args)
     return this->CreateSeparatorMenuItem();
 }
 
-void UI::_SetMenu(const ValueList& args, KValueRef result)
+void UI::_SetMenu(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setMenu", "o|0");
     AutoPtr<Menu> menu(args.GetObject(0, 0).cast<Menu>());
@@ -247,7 +247,7 @@ void UI::_SetMenu(const ValueList& args, KValueRef result)
     }
 }
 
-void UI::_GetMenu(const ValueList& args, KValueRef result)
+void UI::_GetMenu(const ValueList& args, ValueRef result)
 {
     AutoPtr<Menu> menu = this->GetMenu();
     if (menu.isNull())
@@ -260,20 +260,20 @@ void UI::_GetMenu(const ValueList& args, KValueRef result)
     }
 }
 
-void UI::_SetContextMenu(const ValueList& args, KValueRef result)
+void UI::_SetContextMenu(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setContextMenu", "o|0");
     AutoPtr<Menu> menu(args.GetObject(0, 0).cast<Menu>());
     this->SetContextMenu(menu);
 }
 
-void UI::_GetContextMenu(const ValueList& args, KValueRef result)
+void UI::_GetContextMenu(const ValueList& args, ValueRef result)
 {
     AutoPtr<Menu> menu = this->GetContextMenu();
     result->SetObject(menu);
 }
 
-void UI::_SetIcon(const ValueList& args, KValueRef result)
+void UI::_SetIcon(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setIcon", "s|0");
 
@@ -299,7 +299,7 @@ void UI::_SetIcon(std::string iconURL)
     }
 }
 
-void UI::_AddTray(const ValueList& args, KValueRef result)
+void UI::_AddTray(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createTrayIcon", "s,?m");
     std::string iconURL = args.GetString(0);
@@ -310,7 +310,7 @@ void UI::_AddTray(const ValueList& args, KValueRef result)
     result->SetObject(item);
 }
 
-void UI::_ClearTray(const ValueList& args, KValueRef result)
+void UI::_ClearTray(const ValueList& args, ValueRef result)
 {
     this->ClearTray();
 }
@@ -342,7 +342,7 @@ void UI::UnregisterTrayItem(TrayItem* item)
     }
 }
 
-void UI::_SetDockIcon(const ValueList& args, KValueRef result)
+void UI::_SetDockIcon(const ValueList& args, ValueRef result)
 {
 #if defined(OS_OSX)
     std::string iconPath;
@@ -354,7 +354,7 @@ void UI::_SetDockIcon(const ValueList& args, KValueRef result)
 #endif
 }
 
-void UI::_SetDockMenu(const ValueList& args, KValueRef result)
+void UI::_SetDockMenu(const ValueList& args, ValueRef result)
 {
 #if defined(OS_OSX)
     AutoPtr<Menu> menu(args.GetObject(0, 0).cast<Menu>());
@@ -362,7 +362,7 @@ void UI::_SetDockMenu(const ValueList& args, KValueRef result)
 #endif
 }
 
-void UI::_SetBadge(const ValueList& args, KValueRef result)
+void UI::_SetBadge(const ValueList& args, ValueRef result)
 {
 #if defined(OS_OSX)
     std::string badgeText;
@@ -374,7 +374,7 @@ void UI::_SetBadge(const ValueList& args, KValueRef result)
 #endif
 }
 
-void UI::_SetBadgeImage(const ValueList& args, KValueRef result)
+void UI::_SetBadgeImage(const ValueList& args, ValueRef result)
 {
 #if defined(OS_OSX)
     std::string iconPath;
@@ -389,7 +389,7 @@ void UI::_SetBadgeImage(const ValueList& args, KValueRef result)
 
 void UI::_GetIdleTime(
     const ValueList& args,
-    KValueRef result)
+    ValueRef result)
 {
     result->SetDouble(this->GetIdleTime());
 }

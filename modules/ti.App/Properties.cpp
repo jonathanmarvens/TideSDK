@@ -63,7 +63,7 @@ void Properties::SaveConfig()
         config->save(filePath);
 }
 
-void Properties::Getter(const ValueList& args, KValueRef result, Type type)
+void Properties::Getter(const ValueList& args, ValueRef result, Type type)
 {
     std::string eprefix = "Properties::Get: ";
     try
@@ -138,7 +138,7 @@ void Properties::Setter(const ValueList& args, Type type)
                 config->setString(property, args.at(1)->ToString());
                 break;
             case List: {
-                KValueRef result;
+                ValueRef result;
                 this->SetList(args, result);
             }
             default: break;
@@ -152,34 +152,34 @@ void Properties::Setter(const ValueList& args, Type type)
     }
 }
 
-void Properties::GetBool(const ValueList& args, KValueRef result)
+void Properties::GetBool(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getBool", "s");
     Getter(args, result, Bool);
 }
 
-void Properties::GetDouble(const ValueList& args, KValueRef result)
+void Properties::GetDouble(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getDouble", "s");
     Getter(args, result, Double);
 }
 
-void Properties::GetInt(const ValueList& args, KValueRef result)
+void Properties::GetInt(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getInt", "s");
     Getter(args, result, Int);
 }
 
-void Properties::GetString(const ValueList& args, KValueRef result)
+void Properties::GetString(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getString", "s");
     Getter(args, result, String);
 }
 
-void Properties::GetList(const ValueList& args, KValueRef result)
+void Properties::GetList(const ValueList& args, ValueRef result)
 {
     args.VerifyException("getList", "s");
-    KValueRef stringValue = Value::Null;
+    ValueRef stringValue = Value::Null;
     GetString(args, stringValue);
 
     if (!stringValue->IsNull())
@@ -189,7 +189,7 @@ void Properties::GetList(const ValueList& args, KValueRef result)
         Poco::StringTokenizer t(string, ",", Poco::StringTokenizer::TOK_TRIM);
         for (size_t i = 0; i < t.count(); i++)
         {
-            KValueRef token = Value::NewString(t[i].c_str());
+            ValueRef token = Value::NewString(t[i].c_str());
             list->Append(token);
         }
 
@@ -198,31 +198,31 @@ void Properties::GetList(const ValueList& args, KValueRef result)
     }
 }
 
-void Properties::SetBool(const ValueList& args, KValueRef result)
+void Properties::SetBool(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setBool", "s b");
     Setter(args, Bool);
 }
 
-void Properties::SetDouble(const ValueList& args, KValueRef result)
+void Properties::SetDouble(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setDouble", "s n");
     Setter(args, Double);
 }
 
-void Properties::SetInt(const ValueList& args, KValueRef result)
+void Properties::SetInt(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setInt", "s n");
     Setter(args, Int);
 }
 
-void Properties::SetString(const ValueList& args, KValueRef result)
+void Properties::SetString(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setString", "s s");
     Setter(args, String);
 }
 
-void Properties::SetList(const ValueList& args, KValueRef result)
+void Properties::SetList(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setList", "s l");
 
@@ -232,7 +232,7 @@ void Properties::SetList(const ValueList& args, KValueRef result)
     std::string value = "";
     for (unsigned int i = 0; i < list->Size(); i++)
     {
-        KValueRef arg = list->At(i);
+        ValueRef arg = list->At(i);
         if (arg->IsString())
         {
             value += list->At(i)->ToString();
@@ -251,13 +251,13 @@ void Properties::SetList(const ValueList& args, KValueRef result)
     
 }
 
-void Properties::HasProperty(const ValueList& args, KValueRef result)
+void Properties::HasProperty(const ValueList& args, ValueRef result)
 {
     args.VerifyException("hasProperty", "s");
     result->SetBool(config->hasProperty(args.GetString(0)));
 }
 
-void Properties::RemoveProperty(const ValueList& args, KValueRef result)
+void Properties::RemoveProperty(const ValueList& args, ValueRef result)
 {
     args.VerifyException("removeProperty", "s");
     result->SetBool(config->removeProperty(args.GetString(0)));
@@ -266,7 +266,7 @@ void Properties::RemoveProperty(const ValueList& args, KValueRef result)
     }
 }
 
-void Properties::ListProperties(const ValueList& args, KValueRef result)
+void Properties::ListProperties(const ValueList& args, ValueRef result)
 {
     std::vector<std::string> keys;
     config->keys(keys);
@@ -275,13 +275,13 @@ void Properties::ListProperties(const ValueList& args, KValueRef result)
     for (size_t i = 0; i < keys.size(); i++)
     {
         std::string property_name = keys.at(i);
-        KValueRef name_value = Value::NewString(property_name.c_str());
+        ValueRef name_value = Value::NewString(property_name.c_str());
         property_list->Append(name_value);
     }
     result->SetList(property_list);
 }
 
-void Properties::SaveTo(const ValueList& args, KValueRef result)
+void Properties::SaveTo(const ValueList& args, ValueRef result)
 {
     args.VerifyException("saveTo", "s");
 

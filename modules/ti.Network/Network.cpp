@@ -212,7 +212,7 @@ AutoPtr<Host> Network::GetHostBinding(const std::string& hostname)
     return binding;
 }
 
-void Network::_GetHostByAddress(const ValueList& args, KValueRef result)
+void Network::_GetHostByAddress(const ValueList& args, ValueRef result)
 {
     if (args.at(0)->IsObject())
     {
@@ -249,12 +249,12 @@ void Network::_GetHostByAddress(const ValueList& args, KValueRef result)
     }
 }
 
-void Network::_GetHostByName(const ValueList& args, KValueRef result)
+void Network::_GetHostByName(const ValueList& args, ValueRef result)
 {
     result->SetObject(GetHostBinding(args.GetString(0)));
 }
 
-void Network::_CreateIPAddress(const ValueList& args, KValueRef result)
+void Network::_CreateIPAddress(const ValueList& args, ValueRef result)
 {
     AutoPtr<IPAddress> binding = new IPAddress(args.at(0)->ToString());
     if (binding->IsInvalid())
@@ -264,7 +264,7 @@ void Network::_CreateIPAddress(const ValueList& args, KValueRef result)
     result->SetObject(binding);
 }
 
-void Network::_CreateTCPSocket(const ValueList& args, KValueRef result)
+void Network::_CreateTCPSocket(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createTCPSocket", "sn");
     std::string host(args.GetString(0));
@@ -272,36 +272,36 @@ void Network::_CreateTCPSocket(const ValueList& args, KValueRef result)
     result->SetObject(new TCPSocket(host, port));
 }
 
-void Network::_CreateTCPServerSocket(const ValueList& args, KValueRef result)
+void Network::_CreateTCPServerSocket(const ValueList& args, ValueRef result)
 {
     args.VerifyException("createTCPServerSocket", "m");
     KMethodRef target = args.at(0)->ToMethod();
     result->SetObject(new TCPServerSocket(target));
 }
 
-void Network::_CreateIRCClient(const ValueList& args, KValueRef result)
+void Network::_CreateIRCClient(const ValueList& args, ValueRef result)
 {
     Logger::Get("Network")->Warn("DEPRECATED: IRCClient will be removed.");
     AutoPtr<IRCClient> irc = new IRCClient();
     result->SetObject(irc);
 }
 
-void Network::_CreateHTTPClient(const ValueList& args, KValueRef result)
+void Network::_CreateHTTPClient(const ValueList& args, ValueRef result)
 {
     result->SetObject(new HTTPClient());
 }
 
-void Network::_CreateHTTPServer(const ValueList& args, KValueRef result)
+void Network::_CreateHTTPServer(const ValueList& args, ValueRef result)
 {
     result->SetObject(new HTTPServer());
 }
 
-void Network::_CreateHTTPCookie(const ValueList& args, KValueRef result)
+void Network::_CreateHTTPCookie(const ValueList& args, ValueRef result)
 {
     result->SetObject(new HTTPCookie());
 }
 
-void Network::_AddConnectivityListener(const ValueList& args, KValueRef result)
+void Network::_AddConnectivityListener(const ValueList& args, ValueRef result)
 {
     args.VerifyException("addConnectivityListener", "m");
     KMethodRef callback = args.at(0)->ToMethod();
@@ -311,12 +311,12 @@ void Network::_AddConnectivityListener(const ValueList& args, KValueRef result)
 }
 
 void Network::_RemoveConnectivityListener(
-    const ValueList& args, KValueRef result)
+    const ValueList& args, ValueRef result)
 {
     // DEPRECATED
 }
 
-void Network::_EncodeURIComponent(const ValueList &args, KValueRef result)
+void Network::_EncodeURIComponent(const ValueList &args, ValueRef result)
 {
     if (args.at(0)->IsNull() || args.at(0)->IsUndefined())
     {
@@ -352,7 +352,7 @@ void Network::_EncodeURIComponent(const ValueList &args, KValueRef result)
     }
 }
 
-void Network::_DecodeURIComponent(const ValueList &args, KValueRef result)
+void Network::_DecodeURIComponent(const ValueList &args, ValueRef result)
 {
     if (args.at(0)->IsNull() || args.at(0)->IsUndefined())
     {
@@ -384,14 +384,14 @@ static SharedProxy ArgumentsToProxy(const ValueList& args, const std::string& sc
     return ProxyConfig::ParseProxyEntry(entry, scheme, std::string());
 }
 
-void Network::_SetHTTPProxy(const ValueList& args, KValueRef result)
+void Network::_SetHTTPProxy(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setHTTPProxy", "s|0 ?s s s");
     SharedProxy proxy(ArgumentsToProxy(args, "http"));
     ProxyConfig::SetHTTPProxyOverride(proxy);
 }
 
-void Network::_GetHTTPProxy(const ValueList& args, KValueRef result)
+void Network::_GetHTTPProxy(const ValueList& args, ValueRef result)
 {
     SharedProxy proxy = ProxyConfig::GetHTTPProxyOverride();
 
@@ -401,14 +401,14 @@ void Network::_GetHTTPProxy(const ValueList& args, KValueRef result)
         result->SetString(proxy->ToString().c_str());
 }
 
-void Network::_SetHTTPSProxy(const ValueList& args, KValueRef result)
+void Network::_SetHTTPSProxy(const ValueList& args, ValueRef result)
 {
     args.VerifyException("setHTTPSProxy", "s|0 ?s s s");
     SharedProxy proxy(ArgumentsToProxy(args, "https"));
     ProxyConfig::SetHTTPSProxyOverride(proxy);
 }
 
-void Network::_GetHTTPSProxy(const ValueList& args, KValueRef result)
+void Network::_GetHTTPSProxy(const ValueList& args, ValueRef result)
 {
     SharedProxy proxy = ProxyConfig::GetHTTPSProxyOverride();
 
@@ -418,12 +418,12 @@ void Network::_GetHTTPSProxy(const ValueList& args, KValueRef result)
         result->SetString(proxy->ToString().c_str());
 }
 
-void Network::_GetFirstMACAddress(const ValueList& args, KValueRef result)
+void Network::_GetFirstMACAddress(const ValueList& args, ValueRef result)
 {
     result->SetString(PlatformUtils::GetFirstMACAddress().c_str());
 }
 
-void Network::_GetFirstIPAddress(const ValueList& args, KValueRef result)
+void Network::_GetFirstIPAddress(const ValueList& args, ValueRef result)
 {
     static std::string address(Network::GetFirstIPAddress());
     result->SetString(address.c_str());
@@ -435,7 +435,7 @@ const std::string& Network::GetFirstIPAddress()
     return firstIPv4Address;
 }
 
-void Network::_GetInterfaces(const ValueList& args, KValueRef result)
+void Network::_GetInterfaces(const ValueList& args, ValueRef result)
 {
     result->SetList(interfaceList);
 }

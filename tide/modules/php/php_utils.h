@@ -13,7 +13,7 @@ namespace tide
 	typedef struct
 	{
 		zend_object std;
-		KValueRef kvalue;
+		ValueRef kvalue;
 	} PHPKObject;
 	extern zend_class_entry *PHPKObjectClassEntry;
 	extern zend_class_entry *PHPKMethodClassEntry;
@@ -22,18 +22,18 @@ namespace tide
 
 	namespace PHPUtils
 	{
-		KValueRef ToTideValue(zval* value TSRMLS_DC);
-		zval* ToPHPValue(KValueRef value);
-		void ToPHPValue(KValueRef value, zval** returnValue);
+		ValueRef ToTideValue(zval* value TSRMLS_DC);
+		zval* ToPHPValue(ValueRef value);
+		void ToPHPValue(ValueRef value, zval** returnValue);
 		std::string ZvalToPropertyName(zval* property);
 		KListRef PHPArrayToKList(zval* array TSRMLS_DC,
 			bool ignoreGlobals=false);
 		KListRef PHPHashTableToKList(HashTable* hashtable TSRMLS_DC,
 			 bool ignoreGlobals=false);
 		SharedStringList GetHashKeys(HashTable* hash);
-		void KObjectToKPHPObject(KValueRef objectValue, zval** returnValue);
-		void KMethodToKPHPMethod(KValueRef methodValue, zval** returnValue);
-		void KListToKPHPArray(KValueRef listValue, zval** returnValue);
+		void KObjectToKPHPObject(ValueRef objectValue, zval** returnValue);
+		void KMethodToKPHPMethod(ValueRef methodValue, zval** returnValue);
+		void KListToKPHPArray(ValueRef listValue, zval** returnValue);
 		void InitializePHPKrollClasses();
 		bool PHPObjectsEqual(zval* val1, zval* val2 TSRMLS_DC);
 		int HashZvalCompareCallback(const zval** one, const zval** two TSRMLS_DC);

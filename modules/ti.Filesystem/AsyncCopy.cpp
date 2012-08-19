@@ -151,7 +151,7 @@ void AsyncCopy::Run(void* data)
             }
             logger->Debug("File copied");
 
-            KValueRef value = Value::NewString(file);
+            ValueRef value = Value::NewString(file);
             ValueList args;
             args.push_back(value);
             args.push_back(Value::NewInt(c));
@@ -186,12 +186,12 @@ void AsyncCopy::Run(void* data)
     END_TIDE_THREAD;
 }
 
-void AsyncCopy::ToString(const ValueList& args, KValueRef result)
+void AsyncCopy::ToString(const ValueList& args, ValueRef result)
 {
     result->SetString("[Async Copy]");
 }
 
-void AsyncCopy::Cancel(const ValueList& args, KValueRef result)
+void AsyncCopy::Cancel(const ValueList& args, ValueRef result)
 {
     KR_DUMP_LOCATION
     if (thread!=NULL && thread->isRunning())

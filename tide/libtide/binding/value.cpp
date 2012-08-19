@@ -32,7 +32,7 @@ namespace tide
 	{
 	}
 
-	Value::Value(KValueRef value) :
+	Value::Value(ValueRef value) :
 		type(UNDEFINED),
 		numberValue(0),
 		stringValue(0),
@@ -54,84 +54,84 @@ namespace tide
 		reset();
 	}
 
-	KValueRef Value::NewUndefined()
+	ValueRef Value::NewUndefined()
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		return v;
 	}
 
-	KValueRef Value::NewNull()
+	ValueRef Value::NewNull()
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetNull();
 		return v;
 	}
 
-	KValueRef Value::NewInt(int value)
+	ValueRef Value::NewInt(int value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetInt(value);
 		return v;
 	}
 
-	KValueRef Value::NewDouble(double value)
+	ValueRef Value::NewDouble(double value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetDouble(value);
 		return v;
 	}
 
-	KValueRef Value::NewBool(bool value)
+	ValueRef Value::NewBool(bool value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetBool(value);
 		return v;
 	}
 
-	KValueRef Value::NewString(const char* value)
+	ValueRef Value::NewString(const char* value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetString(value);
 		return v;
 	}
 
-	KValueRef Value::NewString(std::string value)
+	ValueRef Value::NewString(std::string value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetString(value.c_str());
 		return v;
 	}
 
-	KValueRef Value::NewString(SharedString value)
+	ValueRef Value::NewString(SharedString value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetString(value.get()->c_str());
 		return v;
 	}
 
-	KValueRef Value::NewList(KListRef value)
+	ValueRef Value::NewList(KListRef value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetList(value);
 		return v;
 	}
 
-	KValueRef Value::NewMethod(KMethodRef method)
+	ValueRef Value::NewMethod(KMethodRef method)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetMethod(method);
 		return v;
 	}
 
-	KValueRef Value::NewObject(KObjectRef value)
+	ValueRef Value::NewObject(KObjectRef value)
 	{
-		KValueRef v(new Value());
+		ValueRef v(new Value());
 		v->SetObject(value);
 		return v;
 	}
 
-	KValueRef Value::Undefined = NewUndefined();
-	KValueRef Value::Null = NewNull();
+	ValueRef Value::Undefined = NewUndefined();
+	ValueRef Value::Null = NewNull();
 
 	bool Value::IsInt() const { return type == INT || (type == DOUBLE && ((int) numberValue) == numberValue); }
 	bool Value::IsDouble() const { return type == DOUBLE; }
@@ -153,7 +153,7 @@ namespace tide
 	KMethodRef Value::ToMethod() const { return objectValue.cast<KMethod>(); }
 	KListRef Value::ToList() const { return objectValue.cast<KList>(); }
 
-	void Value::SetValue(KValueRef other)
+	void Value::SetValue(ValueRef other)
 	{
 		SetValue(other.get());
 	}
@@ -274,7 +274,7 @@ namespace tide
 		type = UNDEFINED;
 	}
 
-	bool Value::Equals(KValueRef i)
+	bool Value::Equals(ValueRef i)
 	{
 		if (this->IsInt() && i->IsInt()
 			&& this->ToInt() == i->ToInt())
@@ -381,7 +381,7 @@ namespace tide
 			return unknownString;
 	}
 
-	void Value::Unwrap(KValueRef value)
+	void Value::Unwrap(ValueRef value)
 	{
 		if (!Host::GetInstance()->ProfilingEnabled())
 		{

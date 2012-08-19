@@ -22,7 +22,7 @@ namespace tide
 		this->object = 0;
 	}
 
-	void KPythonDict::Set(const char* name, KValueRef value)
+	void KPythonDict::Set(const char* name, ValueRef value)
 	{
 		PyLockGIL lock;
 		PyObject* pyval = PythonUtils::ToPyObject(value);
@@ -34,7 +34,7 @@ namespace tide
 		}
 	}
 
-	KValueRef KPythonDict::Get(const char *name)
+	ValueRef KPythonDict::Get(const char *name)
 	{
 		PyLockGIL lock;
 
@@ -49,7 +49,7 @@ namespace tide
 
 		try
 		{
-			KValueRef value = PythonUtils::ToTideValue(item);
+			ValueRef value = PythonUtils::ToTideValue(item);
 			Py_DECREF(item);
 			return value;
 		}

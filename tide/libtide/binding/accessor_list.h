@@ -17,8 +17,8 @@ namespace tide
 	{
 	public:
 		KAccessorList(const char* type = "KAccessorList");
-		virtual void Set(const char* name, KValueRef value);
-		virtual KValueRef Get(const char* name);
+		virtual void Set(const char* name, ValueRef value);
+		virtual ValueRef Get(const char* name);
 		virtual bool HasProperty(const char* name);
 
 	private:
