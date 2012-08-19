@@ -43,7 +43,7 @@ WorkerContext::~WorkerContext()
 
 static JSGlobalContextRef CreateGlobalContext(WorkerContext* context)
 {
-    JSGlobalContextRef jsContext = KJSUtil::CreateGlobalContext();
+    JSGlobalContextRef jsContext = JSUtil::CreateGlobalContext();
     JSGlobalContextRetain(jsContext);
 
     KObjectRef global(new KKJSObject(jsContext,
@@ -63,7 +63,7 @@ static JSGlobalContextRef CreateGlobalContext(WorkerContext* context)
 
 static void DestroyGlobalContext(JSGlobalContextRef jsContext)
 {
-    KJSUtil::UnregisterGlobalContext(jsContext);
+    JSUtil::UnregisterGlobalContext(jsContext);
     JSGlobalContextRelease(jsContext);
 }
 
@@ -76,7 +76,7 @@ void WorkerContext::StartWorker(const std::string& code)
 
     try
     {
-        KJSUtil::Evaluate(jsContext, code.c_str());
+        JSUtil::Evaluate(jsContext, code.c_str());
     }
     catch (ValueException& e)
     {
@@ -171,7 +171,7 @@ void WorkerContext::_ImportScripts(const ValueList &args, KValueRef result)
     {
         std::string path(URLUtils::URLToPath(args.GetString(c)));
         GetLogger()->Debug("Attempting to import worker script = %s", path.c_str());
-        KJSUtil::EvaluateFile(this->jsContext, path.c_str());
+        JSUtil::EvaluateFile(this->jsContext, path.c_str());
     }
 }
 
