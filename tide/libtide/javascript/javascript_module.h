@@ -26,7 +26,7 @@ namespace tide
 #include "k_kjs_object.h"
 #include "k_kjs_method.h"
 #include "k_kjs_list.h"
-#include "kjs_util.h"
+#include "js_util.h"
 #include "javascript_module_instance.h"
 #include "javascript_methods.h"
 
