@@ -49,11 +49,11 @@ describe("php tests",
 		value_of(test_js_type_float(0)).should_be_true();
 		value_of(test_js_type_float(10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)).should_be_true();
 		value_of(test_js_type_float(3.14)).should_be_true();
-		value_of(test_js_type_object(function() { }, 'PHPKMethod')).should_be_true();
-		value_of(test_js_type_object([1,2,3], 'PHPKList')).should_be_true();
-		value_of(test_js_klist_elements([1,2,3])).should_be_true();
-		value_of(test_js_type_object({'a1':'sauce'}, 'PHPKObject')).should_be_true();
-		value_of(test_js_type_object({}, 'PHPKObject')).should_be_true();
+		value_of(test_js_type_object(function() { }, 'PHPMethod')).should_be_true();
+		value_of(test_js_type_object([1,2,3], 'PHPList')).should_be_true();
+		value_of(test_js_List_elements([1,2,3])).should_be_true();
+		value_of(test_js_type_object({'a1':'sauce'}, 'PHPObject')).should_be_true();
+		value_of(test_js_type_object({}, 'PHPObject')).should_be_true();
 		value_of(test_js_type_null(null)).should_be_true();
 		value_of(test_js_type_null(undefined)).should_be_true();
 		value_of(test_js_type_false_bool(false)).should_be_true();
