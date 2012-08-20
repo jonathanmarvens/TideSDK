@@ -155,7 +155,7 @@ using namespace ti;
     ObjectRef globalTideObject  = new KKJSObject(context, globalObject);
     [self registerGlobalObject:globalTideObject forFrame:frame];
 
-    return globalObject;
+    return globalTideObject;
 }
 
 - (BOOL)isGlobalObjectRegisteredForFrame:(WebFrame*) frame
