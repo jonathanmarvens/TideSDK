@@ -152,8 +152,8 @@ using namespace ti;
 
     // Track that we've cleared this frame
     JSObjectRef globalObject = JSContextGetGlobalObject(context);
-    ObjectRef globalObject  = new KKJSObject(context, globalObject);
-    [self registerGlobalObject:globalObject forFrame:frame];
+    ObjectRef globalTideObject  = new KKJSObject(context, globalObject);
+    [self registerGlobalObject:globalTideObject forFrame:frame];
 
     return globalObject;
 }
