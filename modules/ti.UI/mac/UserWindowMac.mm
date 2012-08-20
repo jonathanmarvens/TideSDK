@@ -746,7 +746,7 @@ void UserWindowMac::OpenChooserDialog(bool files, MethodRef callback,
     bool multiple, string& title, string& path, string& defaultName,
     vector<string>& types, string& typesDescription)
 {
-    ListRef results = new StaticBoundList();
+    tide::ListRef results = new StaticBoundList();
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
     [openDlg setTitle:[NSString stringWithUTF8String:title.c_str()]];
     [openDlg setCanChooseFiles:files];
@@ -844,7 +844,7 @@ void UserWindowMac::OpenSaveAsDialog(MethodRef callback, string& title,
 
     ValueList args;
 
-    ListRef results = new StaticBoundList();
+    tide::ListRef results = new StaticBoundList();
     if (runResult == NSFileHandlingPanelOKButton) 
     {
         NSString *selected = [sp filename];
