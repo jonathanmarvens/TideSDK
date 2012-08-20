@@ -178,19 +178,19 @@ def test_js_type_list(t)
 	return t.class == Array
 end
 
-def test_js_type_klist(t)
-	return t.class.name == 'RubyKList'
+def test_js_type_List(t)
+	return t.class.name == 'RubyList'
 end
 
-def test_js_klist_elements(t)
+def test_js_List_elements(t)
 	return t[0] == 1 && t[1] == 2 && t[2] == 3
 end
 
-def test_js_type_kobject(t)
-	return t.class.name == 'RubyKObject'
+def test_js_type_Object(t)
+	return t.class.name == 'RubyObject'
 end
-def test_js_type_kmethod(t)
-	return t.class.name == 'RubyKMethod'
+def test_js_type_Method(t)
+	return t.class.name == 'RubyMethod'
 end
 
 def test_js_type_dict(t)
@@ -209,7 +209,7 @@ def test_js_type_nil(t)
 	return t.class == NilClass
 end
 
-def test_rubykobject_respond_to(o)
+def test_rubyObject_respond_to(o)
 	if not(o.respond_to?(:sheep))
 		return "Oops: Did not respond to sheep"
 	end
@@ -228,7 +228,7 @@ def test_rubykobject_respond_to(o)
 	return ""
 end
 
-def test_rubykobject_method_missing_exception(o)
+def test_rubyObject_method_missing_exception(o)
 	exception = ""
 	begin
 		o.method_missing(:blahblah)
@@ -254,7 +254,7 @@ def test_rubykobject_method_missing_exception(o)
 	return exception
 end
 
-def test_rubyklist_length(l, length)
+def test_rubyList_length(l, length)
 	if l.length == length
 		return ""
 	else
@@ -273,7 +273,7 @@ def test_rubyklist_length(l, length)
 	end
 end
 
-def test_rubyklist_each(l, *list_items)
+def test_rubyList_each(l, *list_items)
 	length = l.length
 	exp_length = list_items.length
 	if length != exp_length
