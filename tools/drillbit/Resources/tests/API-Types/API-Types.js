@@ -1,16 +1,16 @@
-describe("Bytes, KObject, KList, etc",{
+describe("Bytes, Object, List, etc",{
 	test_core_types_harness: function()
 	{
-		value_of(Titanium.API.createKObject).should_be_function();
-		value_of(Titanium.API.createKMethod).should_be_function();
-		value_of(Titanium.API.createKList).should_be_function();
+		value_of(Titanium.API.createObject).should_be_function();
+		value_of(Titanium.API.createMethod).should_be_function();
+		value_of(Titanium.API.createList).should_be_function();
 		value_of(Titanium.API.createBytes).should_be_function();
 	},
-	test_empty_kobject: function()
+	test_empty_Object: function()
 	{
 		var count_properties = function(o) { var n = 0; for (x in o) { n++; } return n; };
-		var o = Titanium.API.createKObject();
-		// There should be no properties showing for a blank KObject
+		var o = Titanium.API.createObject();
+		// There should be no properties showing for a blank Object
 		value_of(count_properties(o)).should_be(0);
 
 		// Yet there are some hidden methods that should be there
@@ -21,7 +21,7 @@ describe("Bytes, KObject, KList, etc",{
 
 		var other = Object();
 		value_of(o.equals(other)).should_be_false();
-		other = Titanium.API.createKObject();
+		other = Titanium.API.createObject();
 		value_of(o.equals(other)).should_be_false();
 		value_of(o.toString()).should_be_string();
 
@@ -39,12 +39,12 @@ describe("Bytes, KObject, KList, etc",{
 		value_of(o.property_two).should_be("Foo2!");
 		value_of(count_properties(o)).should_be(2);
 	},
-	test_wrapped_kobject: function()
+	test_wrapped_Object: function()
 	{
 		var count_properties = function(o) { var n = 0; for (x in o) { n++; } return n; };
 		var o = Object();
 		o.property_one = "blahblah";
-		var ko = Titanium.API.createKObject(o);
+		var ko = Titanium.API.createObject(o);
 
 		value_of(count_properties(ko)).should_be(1);
 		value_of(count_properties(o)).should_be(1);
@@ -57,9 +57,9 @@ describe("Bytes, KObject, KList, etc",{
 		value_of(o['		 weird property name	   ']).should_be("oh noes");
 		value_of(ko['		 weird property name	   ']).should_be("oh noes");
 	},
-	test_empty_klist: function()
+	test_empty_List: function()
 	{
-		var l = Titanium.API.createKList();
+		var l = Titanium.API.createList();
 		value_of(l.length).should_be_number();
 		value_of(l.equals).should_be_function();
 		value_of(l.toString).should_be_function();
@@ -76,9 +76,9 @@ describe("Bytes, KObject, KList, etc",{
 		value_of(l.join).should_be_function();
 		value_of(l.slice).should_be_function();
 	},
-	test_modifying_klist: function()
+	test_modifying_List: function()
 	{
-		var l = Titanium.API.createKList();
+		var l = Titanium.API.createList();
 		value_of(l.length).should_be(0);
 		l.push(123);
 		value_of(l.length).should_be(1);
@@ -119,10 +119,10 @@ describe("Bytes, KObject, KList, etc",{
 		l.length = 0;
 		value_of(l.length).should_be(0);
 	},
-	test_wrapped_klist: function()
+	test_wrapped_List: function()
 	{
 		var mylist = [1, 2, 3];
-		var l = Titanium.API.createKList(mylist);
+		var l = Titanium.API.createList(mylist);
 		value_of(l.length).should_be_number();
 		value_of(l.equals).should_be_function();
 		value_of(l.toString).should_be_function();
@@ -194,7 +194,7 @@ describe("Bytes, KObject, KList, etc",{
 		l.length = 0;
 		value_of(l.length).should_be(0);
 	},
-	test_kmethod_closure: function()
+	test_Method_closure: function()
 	{
 		var variable = "uno";
 		var other_variable = "yes";
@@ -205,12 +205,12 @@ describe("Bytes, KObject, KList, etc",{
 		}
 
 		variable = "dos";
-		var f = Titanium.API.createKMethod(myfunction);
+		var f = Titanium.API.createMethod(myfunction);
 		var result = f();
 		value_of(result).should_be("dos");
 		value_of(other_variable).should_be("no");
 	},
-	test_kmethod_closure_superduper_as_async: function(callback)
+	test_Method_closure_superduper_as_async: function(callback)
 	{
 		var variable = "uno";
 		var other_variable = "yes";
@@ -227,7 +227,7 @@ describe("Bytes, KObject, KList, etc",{
 		setTimeout(function()
 		{
 			variable = "dos";
-			var f = Titanium.API.createKMethod(myfunction2());
+			var f = Titanium.API.createMethod(myfunction2());
 			var result = f();
 
 			if (result !== "dos")
