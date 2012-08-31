@@ -5,8 +5,8 @@ from tide import BuildConfig
 
 build = BuildConfig(
 	PRODUCT_VERSION = sdk.get_titanium_version(),
-	PRODUCT_NAME = 'Titanium',
-	GLOBAL_NS_VARNAME = 'Titanium',
+	PRODUCT_NAME = 'TideSDK',
+	GLOBAL_NS_VARNAME = 'TideSDK',
 	CONFIG_FILENAME = 'tiapp.xml',
 	BUILD_DIR = path.abspath('build'),
 	THIRD_PARTY_DIR = path.join(path.abspath('tide'), 'thirdparty'),
@@ -72,7 +72,7 @@ SConscript('installer/SConscript')
 # against libtide, so anything that should not be
 # linked against libtide should be above this point.
 SConscript('tide/SConscript', exports='debug')
-SConscript('modules/SConscript')
+SConscript('modules/SConscript', exports='debug')
 SConscript('SConscript.dist')
 
 run = ARGUMENTS.get('run', 0)
