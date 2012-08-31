@@ -21,11 +21,6 @@ build.set_libtide_source_dir(path.abspath('tide'))
 build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
 
-# This should only be used for accessing various
-# scripts in the tide build directory. All resources
-# should instead be built to build.dir
-build.libtide_build_dir = path.join(build.libtide_source_dir, 'build')
-
 build.env.Append(CPPPATH=[
 	build.titanium_source_dir,
 	build.libtide_source_dir,
