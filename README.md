@@ -7,10 +7,10 @@ The ability to deploy a Webkit-based desktop application across all three major 
 
 Users create applications using familiar HTML5, JavaScript and CSS technologies. Beyond this, the unique support for Python, PHP and Ruby extend the capabilities of TideSDK beyond the realm of any competitive framework. Further, our plans include the expansion and extension TideSDK's API's for even better, more complex, and reliable user experiences on the desktop as we move forward.
 
-## Tide-MicroKernel
+## Tide MicroKernel
 
-Tide has a compact microkernel written in C++ for running pluggable
-modules. The Tide microKernel supports a cross-language, cross-platform 'binding' and invocation framework which supports mixing and matching code. This means you can pass a Javascript object to a Python function and so on.
+TideSDK has a compact microkernel written in C++ for running pluggable
+modules. The microKernel supports a cross-language, cross-platform 'binding' and invocation framework which supports mixing and matching code. This means you can pass a Javascript object to a Python function and so on.
 
 Tide currently supports the following languages:
 
