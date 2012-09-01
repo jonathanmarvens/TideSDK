@@ -51,7 +51,7 @@ Downloads are available for the previous Titanium Desktop 1.2.0.RC4 in the inter
 
 APIs will remain compatible between 1.2.0.RC4 and 1.3.x however the JavaScript namespace will be shortened to 'Ti' as opposed to the former 'Titanium'.
 
-Our enhanced documentation efforts are in progress. The link below with take your to the most current docs. Additional support is available though our Wiki however our future efforts will be on creating focused guides to assist users.
+Our enhanced documentation efforts are in progress. The link below with take your to the most current docs. Additional support is available though our Wiki. Our future efforts will be on creating focused guides to assist users.
 
 
 Building TideSDK (Developers)
