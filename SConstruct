@@ -60,7 +60,7 @@ if ARGUMENTS.get('test_crash', 0):
 	build.env.Append(CPPDEFINES = ('TEST_CRASH_DETECTION', 1))
 
 ## libtide *must not be required* for installation
-SConscript('tide/SConscript.thirdparty')
+SConscript('SConscript.thirdparty')
 SConscript('installer/SConscript')
 
 # After libtide builds, the environment will  link 
