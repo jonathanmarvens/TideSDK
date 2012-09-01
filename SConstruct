@@ -50,7 +50,7 @@ clean = 'clean' in targets or ARGUMENTS.get('clean', 0)
 build.nopackage = ARGUMENTS.get('nopackage', 0)
 
 if clean:
-	print "Obliterating your build directory: %s" % build.dir
+	print "cleaning build directory: %s" % build.dir
 	if path.exists(build.dir):
 		dir_util.remove_tree(build.dir)
 	Exit(0)
