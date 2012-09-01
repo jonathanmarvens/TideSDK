@@ -45,15 +45,13 @@ As an extreme example, you could invoke a function from Ruby which might take a 
 Getting and Using TideSDK
 -------------------------
 
-Downloads are available for the previous Titanium Desktop 1.2.0.RC4 in the interim while we prepare for our 1.3.0-beta release. Downloads are available in in the downloads area for the project:
+Downloads are available for the previous Titanium Desktop 1.2.0.RC4 in the interim while we prepare for our 1.3.0-beta release.
 
 * [https://github.com/TideSDK/TideSDK/downloads](https://github.com/TideSDK/TideSDK/downloads)
 
-API's will remain compatible between 1.2.0.RC4 and 1.3.x however the JavaScript namespace will be shortened to 'Ti' as opposed to the former 'Titanium'.
+APIs will remain compatible between 1.2.0.RC4 and 1.3.x however the JavaScript namespace will be shortened to 'Ti' as opposed to the former 'Titanium'.
 
-Our enhanced documentation efforts are in progress and our docs. The link to the current documentation under the support section below. Additional resources to support you are located in our Wiki.
-
-* [https://github.com/TideSDK/TideSDK/wiki](https://github.com/TideSDK/TideSDK/wiki)
+Our enhanced documentation efforts are in progress. The link below with take your to the most current docs. Additional support is available in our Wiki however our future efforts will focus on focused guides to assist users.
 
 
 Building TideSDK (Developers)
@@ -67,6 +65,7 @@ Support
 - Documentation: [http://tidesdk.multipart.net/docs/user-dev/generated](http://tidesdk.multipart.net/docs/user-dev/generated)
 - Source Code: [https://github.com/TideSDK/TideSDK](https://github.com/TideSDK/TideSDK)
 - Tutorials: Get started easily [http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide](http://tidesdk.multipart.net/docs/user-dev/generated/#!/guide)
+- Wiki: Access additional resources in our wiki [https://github.com/TideSDK/TideSDK/wiki](https://github.com/TideSDK/TideSDK/wiki) 
 - Report a Bug: Help us improve [https://github.com/TideSDK/TideSDK/issues](https://github.com/TideSDK/TideSDK/issues).
 - IRC: Chat with us on #tidesdk on freenode.net
 - Twitter: Follow TideSDK [@tidesdk](http://twitter.com/tidesdk).
