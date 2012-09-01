@@ -328,7 +328,7 @@ describe("Ruby Tests",
 	{
 		var count_properties = function(o) { var n = 0; for (var x in o) { n++; } return n; };
 		var o = get_empty_ruby_object();
-		// There should be no properties showing for a blank KObject
+		// There should be no properties showing for a blank Object
 		var orig_property_count = count_properties(o);
 
 		// Yet there are some hidden methods that should be there
@@ -369,7 +369,7 @@ describe("Ruby Tests",
 		var count_properties = function(o) { var n = 0; for (var x in o) { n++; } return n; };
 		var o = get_empty_ruby_hash();
 		value_of(true).should_be(true);
-		// There should be no properties showing for a blank KObject
+		// There should be no properties showing for a blank Object
 		var orig_property_count = count_properties(o);
 
 		// Yet there are some hidden methods that should be there
