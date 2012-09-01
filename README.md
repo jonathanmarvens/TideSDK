@@ -69,7 +69,7 @@ Support
 - Report a Bug: Help us improve [https://github.com/TideSDK/TideSDK/issues](https://github.com/TideSDK/TideSDK/issues).
 - IRC: Chat with us on #tidesdk on freenode.net
 - Twitter: Follow TideSDK [@tidesdk](http://twitter.com/tidesdk).
-- Blog: Read our blog at [http://tidesdk.org/blog](http://tidesdk.org/blog]).
+- Blog: Read our blog at [http://tidesdk.org/blog](http://tidesdk.org/blog).
 - Mailing List: Join our mailing list at [https://groups.google.com/forum/#!forum/tidesdk](https://groups.google.com/forum/#!forum/tidesdk).
 
 Legal
