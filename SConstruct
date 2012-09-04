@@ -16,7 +16,7 @@ build = BuildConfig(
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)
 
-build.set_libtide_source_dir(path.abspath('tide'))
+build.set_libtide_source_dir(path.abspath('src/tide'))
 
 build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
@@ -66,8 +66,8 @@ SConscript('installer/SConscript')
 # After libtide builds, the environment will  link 
 # against libtide, so anything that should not be
 # linked against libtide should be above this point.
-SConscript('tide/SConscript', exports='debug')
-SConscript('modules/SConscript', exports='debug')
+SConscript('src/tide/SConscript', exports='debug')
+SConscript('src/modules/SConscript', exports='debug')
 SConscript('SConscript.dist')
 
 run = ARGUMENTS.get('run', 0)
