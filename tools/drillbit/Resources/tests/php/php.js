@@ -123,9 +123,9 @@ describe("php tests",
 	},
 	test_preprocess_as_async: function(callback)
 	{ 
-		var w = Titanium.UI.currentWindow.createWindow('app://test.php?param1=1&param2=2');
+		var w = Tide.UI.currentWindow.createWindow('app://test.php?param1=1&param2=2');
 		var timer = 0;
-		w.addEventListener(Titanium.PAGE_LOADED, function(event) {
+		w.addEventListener(Tide.PAGE_LOADED, function(event) {
 			clearTimeout(timer);
 			try
 			{
@@ -166,11 +166,11 @@ describe("php tests",
 	},
 	test_deep_global_variable_isolation_as_async: function(callback)
 	{
-		Titanium.page_two_loaded = function()
+		Tide.page_two_loaded = function()
 		{
 			// Modify the main page version of '$substance'
 			modify_substance();
-			var result = Titanium.get_page_two_substance();
+			var result = Tide.get_page_two_substance();
 			if (result == "page two")
 			{
 				callback.passed();
@@ -182,7 +182,7 @@ describe("php tests",
 			}
 		}
 
-		var w = Titanium.UI.getCurrentWindow().createWindow('app://another.html');
+		var w = Tide.UI.getCurrentWindow().createWindow('app://another.html');
 		w.open();
 
 		setTimeout(function()
@@ -204,7 +204,7 @@ describe("php tests",
 		result = anon3("dino", "bones");
 		value_of(result).should_be("DINOBONES");
 	},
-	test_titanium_object_access: function(callback)
+	test_Tide_object_access: function(callback)
 	{
 		var result = get_resources_directory_via_php().toString();
 		value_of(result).should_be_string();
@@ -215,7 +215,7 @@ describe("php tests",
 		// Test that files in the Resources directory
 		//  are on the include path.
 		var include_path = get_include_path();
-		var res_dir = Titanium.API.getApplication().getResourcesPath();
+		var res_dir = Tide.API.getApplication().getResourcesPath();
 		value_of(include_path.indexOf(res_dir) != -1).should_be_true();
 	},
 	test_include_access: function()

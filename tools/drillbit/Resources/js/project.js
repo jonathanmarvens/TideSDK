@@ -1,9 +1,9 @@
 
-if (typeof(Titanium)=='undefined') Titanium = {};
+if (typeof(Tide)=='undefined') Tide = {};
 
-var TFS = Titanium.Filesystem;
+var TFS = Tide.Filesystem;
 
-Titanium.Project = 
+Tide.Project = 
 {
 	requiredModulesList: ['api','tiapp','tifilesystem','tiplatform','tiui','javascript'],
 	requiredModules:[],
@@ -86,7 +86,7 @@ Titanium.Project =
 			// use default if not exists
 			if (!image.exists())
 			{
-				var path = Titanium.App.appURLToPath('app://images');
+				var path = Tide.App.appURLToPath('app://images');
 				image = TFS.getFile(path,'default_app_logo.png')
 			}
 			
@@ -156,10 +156,10 @@ Titanium.Project =
 			var manifest = this.writeManifest(project);
 
 			// create dist dir
-			var dist = TFS.getFile(project.dir,'dist',Titanium.platform);
+			var dist = TFS.getFile(project.dir,'dist',Tide.platform);
 			dist.createDirectory(true);
 
-			var app = Titanium.createApp(dist,project.name,project.appid,install);
+			var app = Tide.createApp(dist,project.name,project.appid,install);
 
 			// write out new manifest
 			var app_manifest = TFS.getFile(app.base,'manifest');
@@ -183,8 +183,8 @@ Titanium.Project =
 						var moduleDest = TFS.getFile(app.base,"modules");
 						TFS.asyncCopy(appModules,moduleDest, function()
 						{
-							Titanium.Process.setEnv('KR_DEBUG','true');
-							var x =  Titanium.Process.launch(app.executable.nativePath(),args);
+							Tide.Process.setEnv('KR_DEBUG','true');
+							var x =  Tide.Process.launch(app.executable.nativePath(),args);
 							if (x && callback)
 							{
 								callback(x);
@@ -193,8 +193,8 @@ Titanium.Project =
 					}
 					else
 					{
-						Titanium.Process.setEnv('KR_DEBUG','true');
-						var x = Titanium.Process.launch(app.executable.nativePath(),args);
+						Tide.Process.setEnv('KR_DEBUG','true');
+						var x = Tide.Process.launch(app.executable.nativePath(),args);
 						if (x && callback)
 						{
 							callback(x);
@@ -212,7 +212,7 @@ Titanium.Project =
 	
 	getRuntimes: function(appDir)
 	{
-		var app = Titanium.API.readApplicationManifest(appDir + Titanium.Filesystem.getSeparator() + 'manifest');
+		var app = Tide.API.readApplicationManifest(appDir + Tide.Filesystem.getSeparator() + 'manifest');
 		var modules = app.getAvailableComponents();
 		var versions = [];
 		var tracker = {};
@@ -234,12 +234,12 @@ Titanium.Project =
 	},
 	getModulesAndRuntime:function(appDir,runtime)
 	{
-		var os = Titanium.platform ;
+		var os = Tide.platform ;
 		var results = [];
 		var runtimeDir = null;
 		
 		// get core runtime modules
-		var app = Titanium.API.readApplicationManifest(appDir + Titanium.Filesystem.getSeparator() + 'manifest');
+		var app = Tide.API.readApplicationManifest(appDir + Tide.Filesystem.getSeparator() + 'manifest');
 		var modules = app.getAvailableComponents();
 		var tracker = {};
 		if (modules)
@@ -295,7 +295,7 @@ Titanium.Project =
 	{
 		if (line)
 		{
-			var entry = Titanium.Project.parseEntry(line);
+			var entry = Tide.Project.parseEntry(line);
 			if (!entry) return;
 			if (entry.token) 
 				result.properties[entry.key]=entry.value;
@@ -320,12 +320,12 @@ Titanium.Project =
 			properties:{}
 		};
 		var line = manifest.readLine(true);
-		Titanium.Project.addEntry(line,result);
+		Tide.Project.addEntry(line,result);
 		while (true)
 		{
 			line = manifest.readLine();
 			if(!line) break;
-			Titanium.Project.addEntry(line,result);
+			Tide.Project.addEntry(line,result);
 		}
 		return result;
 	},
@@ -438,7 +438,7 @@ Titanium.Project =
 			head+='<head><style>body{background-color:#292929;color:white}</style>\n';
 		}
 		
-		var path = Titanium.App.appURLToPath('app://thirdparty_js');
+		var path = Tide.App.appURLToPath('app://thirdparty_js');
 		if (jsLibs)
 		{
 			for (var i=0;i<jsLibs.length;i++)
@@ -515,7 +515,7 @@ Titanium.Project =
 		}
 		else
 		{
-			index.write('<html>\n'+head+'\n<body>\nWelcome to Titanium\n</body>\n</html>');
+			index.write('<html>\n'+head+'\n<body>\nWelcome to Tide\n</body>\n</html>');
 		}
 		
 		var manifest = "#appname: "+name+"\n" +
@@ -582,14 +582,14 @@ Titanium.Project =
 		}
 
 		var line = manifest.readLine(true);
-		var entry = Titanium.Project.parseEntry(line);
+		var entry = Tide.Project.parseEntry(line);
 		for (var i=0;i<1000;i++)
 		{
 			if (entry == null)
 			{
 				line = manifest.readLine();
 				if (!line || line == null)break;
-				entry = Titanium.Project.parseEntry(line);
+				entry = Tide.Project.parseEntry(line);
 			}
 			if (entry.key.indexOf('appname') != -1)
 			{
@@ -633,23 +633,23 @@ Titanium.Project =
 // // by default, add our current modules
 // (function()
 // {
-// 	var tok = Titanium.platform=='win32' ? ';' : ':';
-// 	var modules = Titanium.Process.getEnv('KR_MODULES').split(tok);
+// 	var tok = Tide.platform=='win32' ? ';' : ':';
+// 	var modules = Tide.Process.getEnv('KR_MODULES').split(tok);
 // 	for (var c=0;c<modules.length;c++)
 // 	{
 // 		var m = modules[c];
 // 		if (m)
 // 		{
-// 			var f = Titanium.Filesystem.getFile(m);
+// 			var f = Tide.Filesystem.getFile(m);
 // 			alert("name="+m+",f="+f);
 // 			var name = f.getName();
-// 			Titanium.Project.optionalModules.push(name);
+// 			Tide.Project.optionalModules.push(name);
 // 		}
 // 	}
 // })();
 
-Titanium.Project.XML_PROLOG = "<?xml version='1.0' encoding='UTF-8'?>\n" +
+Tide.Project.XML_PROLOG = "<?xml version='1.0' encoding='UTF-8'?>\n" +
 	"<ti:app xmlns:ti='http://ti.appcelerator.org'>\n";
 	
-Titanium.Project.XML_EPILOG = "</ti:app>";
+Tide.Project.XML_EPILOG = "</ti:app>";
 	

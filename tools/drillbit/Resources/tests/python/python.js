@@ -163,7 +163,7 @@ describe("Python Tests", {
 	},
 	test_py_override_delegators: function()
 	{
-		value_of(Titanium.UI.currentWindow).should_be_object();
+		value_of(Tide.UI.currentWindow).should_be_object();
 	},
 	test_python_list: function()
 	{
@@ -334,7 +334,7 @@ describe("Python Tests", {
 	test_resources_directory_in_include_path: function()
 	{
 		var include_path = get_include_path();
-		var res_dir = Titanium.API.getApplication().getResourcesPath();
+		var res_dir = Tide.API.getApplication().getResourcesPath();
 		value_of(include_path.indexOf(res_dir) != -1).should_be_true();
 	},
 });

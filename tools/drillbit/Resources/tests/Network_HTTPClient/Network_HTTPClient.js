@@ -1,23 +1,23 @@
 describe('Network.HTTPClient', {
   before_all: function() {
     // Launch test http server
-    this.httpd = Titanium.Process.createProcess({
+    this.httpd = Tide.Process.createProcess({
       args: [
-        'python', Titanium.API.application.resourcesPath + '/httpd.py'
+        'python', Tide.API.application.resourcesPath + '/httpd.py'
       ]
     });
     this.httpd.launch();
     
     this.text = 'here is some text for you!';
     this.reply = 'I got it!';
-    this.filepath = Titanium.API.application.resourcesPath + '/test.txt';
+    this.filepath = Tide.API.application.resourcesPath + '/test.txt';
   },
   after_all: function() {
     this.httpd.kill();
   },
   before: function() {
     this.url = 'http://127.0.0.1:8888/';
-    this.client = Titanium.Network.createHTTPClient();
+    this.client = Tide.Network.createHTTPClient();
   },
   after: function() {
     this.client = null;
@@ -51,28 +51,28 @@ describe('Network.HTTPClient', {
     value_of(this.client.DONE).should_be(4);
   },
   test_encode_decode: function() {
-    var foo = Titanium.Network.encodeURIComponent(null);
+    var foo = Tide.Network.encodeURIComponent(null);
     value_of(foo).should_be('');
     
-    foo = Titanium.Network.encodeURIComponent('');
+    foo = Tide.Network.encodeURIComponent('');
     value_of(foo).should_be('');
     
-    foo = Titanium.Network.encodeURIComponent('a');
+    foo = Tide.Network.encodeURIComponent('a');
     value_of(foo).should_be('a');
     
-    foo = Titanium.Network.decodeURIComponent(null);
+    foo = Tide.Network.decodeURIComponent(null);
     value_of(foo).should_be('');
     
-    foo = Titanium.Network.decodeURIComponent('');
+    foo = Tide.Network.decodeURIComponent('');
     value_of(foo).should_be('');
     
-    foo = Titanium.Network.decodeURIComponent('a');
+    foo = Tide.Network.decodeURIComponent('a');
     value_of(foo).should_be('a');
     
-    foo = Titanium.Network.encodeURIComponent('a b');
+    foo = Tide.Network.encodeURIComponent('a b');
     value_of(foo).should_be('a%20b');
     
-    foo = Titanium.Network.decodeURIComponent(foo);
+    foo = Tide.Network.decodeURIComponent(foo);
     value_of(foo).should_be('a b');
   },
   test_open: function() {
@@ -91,7 +91,7 @@ describe('Network.HTTPClient', {
     // We want to make sure the web server has started up, so sleep
     // a little bit before starting this test.
     function runTest() {
-      client.addEventListener(Titanium.HTTP_DONE, function() {
+      client.addEventListener(Tide.HTTP_DONE, function() {
         try {
           value_of(this.responseText).should_be(text);
           clearTimeout(timer);
@@ -114,7 +114,7 @@ describe('Network.HTTPClient', {
   test_sync_get: function() {
     done = false;
     
-    this.client.addEventListener(Titanium.HTTP_DONE, function() {
+    this.client.addEventListener(Tide.HTTP_DONE, function() {
       done = true;
     });
     
@@ -125,7 +125,7 @@ describe('Network.HTTPClient', {
   },
   test_timeout_as_async: function(callback) {
     var timer = null;
-    this.client.addEventListener(Titanium.HTTP_TIMEOUT, function(e) {
+    this.client.addEventListener(Tide.HTTP_TIMEOUT, function(e) {
       try {
         value_of(this.timedOut).should_be_true();
         
@@ -149,12 +149,12 @@ describe('Network.HTTPClient', {
   test_abort_as_async: function(callback) {
     var timer = null;
     
-    this.client.addEventListener(Titanium.HTTP_ABORT, function() {
+    this.client.addEventListener(Tide.HTTP_ABORT, function() {
       clearTimeout(timer);
       callback.passed();
     });
     
-    this.client.addEventListener(Titanium.HTTP_DONE, function() {
+    this.client.addEventListener(Tide.HTTP_DONE, function() {
       // This should not get called
       clearTimeout(timer);
       callback.failed('Request was not aborted');
@@ -177,7 +177,7 @@ describe('Network.HTTPClient', {
     var client = this.client;
     var timer = 0;
     
-    this.client.addEventListener(Titanium.HTTP_DONE, function() {
+    this.client.addEventListener(Tide.HTTP_DONE, function() {
       clearTimeout(timer);
       
       if (client.status !== 200) {
@@ -198,7 +198,7 @@ describe('Network.HTTPClient', {
     var timer = 0;
     var reply = this.reply;
     
-    this.client.addEventListener(Titanium.HTTP_DONE, function(e) {
+    this.client.addEventListener(Tide.HTTP_DONE, function(e) {
       try {
         value_of(this.status).should_be(200);
         value_of(this.responseText).should_be(reply);
@@ -222,7 +222,7 @@ describe('Network.HTTPClient', {
     var timer = 0;
     var reply = this.reply;
     
-    this.client.addEventListener(Titanium.HTTP_DONE, function(e) {
+    this.client.addEventListener(Tide.HTTP_DONE, function(e) {
       try {
         value_of(this.status).should_be(200);
         value_of(this.responseText).should_be(reply);
@@ -250,7 +250,7 @@ describe('Network.HTTPClient', {
     var timer = 0;
     var reply = this.reply;
     
-    this.client.addEventListener(Titanium.HTTP_DONE, function(e) {
+    this.client.addEventListener(Tide.HTTP_DONE, function(e) {
       try {
         value_of(this.status).should_be(200);
         value_of(this.responseText).should_be(reply);
@@ -278,7 +278,7 @@ describe('Network.HTTPClient', {
     var text = this.text;
     var url = this.url;
     
-    this.client.addEventListener(Titanium.HTTP_REDIRECT, function() {
+    this.client.addEventListener(Tide.HTTP_REDIRECT, function() {
       try {
         value_of(this.url).should_be(url);
       } catch(e) {
@@ -286,7 +286,7 @@ describe('Network.HTTPClient', {
         callback.failed(e);
       }
     });
-    this.client.addEventListener(Titanium.HTTP_DONE, function() {
+    this.client.addEventListener(Tide.HTTP_DONE, function() {
       try
       {
         value_of(this.status).should_be(200);
@@ -314,7 +314,7 @@ describe('Network.HTTPClient', {
     var text = this.text;
     var data = '';
     
-    this.client.addEventListener(Titanium.HTTP_DONE, function() {
+    this.client.addEventListener(Tide.HTTP_DONE, function() {
       try {
         value_of(data).should_be(text);
         clearTimeout(timer);
@@ -358,7 +358,7 @@ describe('Network.HTTPClient', {
     value_of(this.client.responseText).should_be('authorized');
   },
   test_send_file: function() {
-    var file = Titanium.Filesystem.getFileStream(this.filepath);    
+    var file = Tide.Filesystem.getFileStream(this.filepath);    
     value_of(file).should_be_object();
     this.client.open('POST', this.url + 'recvfile', false);
     this.client.send(file);

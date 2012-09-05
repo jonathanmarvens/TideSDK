@@ -3,11 +3,11 @@ describe("Network.IRCClient",{
 
 	before_all: function()
 	{
-		value_of(Titanium.Network).should_not_be_null();
-		value_of(Titanium.Network.createIRCClient).should_be_function();
-		value_of(Titanium.Network.IRCClient).should_not_be_null();
+		value_of(Tide.Network).should_not_be_null();
+		value_of(Tide.Network.createIRCClient).should_be_function();
+		value_of(Tide.Network.IRCClient).should_not_be_null();
 		
-		this.client = Titanium.Network.createIRCClient()
+		this.client = Tide.Network.createIRCClient()
 		value_of(this.client).should_be_object();
 		
 		this.connectCount = 0;
@@ -40,14 +40,14 @@ describe("Network.IRCClient",{
 		test.passed();
 		//var connectCount = this.connectCount;
 		//
-		//var client = Titanium.Network.createIRCClient()
+		//var client = Tide.Network.createIRCClient()
 		//value_of(client).should_be_object();
 		//
 		//var connTimer = null;
 		//value_of(client).should_be_object();
 		//try
 		//{
-		//	client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "titaniumDrillbit", "tester", String(new Date().getTime()), function(cmd, channel, data, nick)
+		//	client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "TideDrillbit", "tester", String(new Date().getTime()), function(cmd, channel, data, nick)
 		//	{
 		//		clearTimeout(connTimer);
 		//		
@@ -87,29 +87,29 @@ describe("Network.IRCClient",{
 		value_of(true).should_be(true);
 		test.passed();
 		// var connectCount = this.connectCount;
-		// var client = Titanium.Network.createIRCClient()
+		// var client = Tide.Network.createIRCClient()
 		// value_of(client).should_be_object();
 		// 
 		// var connTimer = null;
 		// try
 		// {
-		// 	client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "titaniumDrillbit", "tester", String(new Date().getTime()), function(cmd, channel, data, nick)
+		// 	client.connect("irc.freenode.net", 6667, "drillbit_tester_app", "TideDrillbit", "tester", String(new Date().getTime()), function(cmd, channel, data, nick)
 		// 	{
 		// 		connectCount++;
 		// 		clearTimeout(connTimer);
 		// 		
-		// 		Titanium.API.debug("Connected to IRC server "+connectCount);
+		// 		Tide.API.debug("Connected to IRC server "+connectCount);
 		// 		if (client.connected)
 		// 		{
 		// 			var nicTimer = setTimeout( function()
 		// 			{
 		// 				try
 		// 				{
-		// 					Titanium.API.debug("checking the default nickname");
+		// 					Tide.API.debug("checking the default nickname");
 		// 					value_of(client.getNick()).should_be("drillbit_tester_app");
 		// 					value_of(client.getNick()).should_not_be("drillbitNickName");
 		// 					
-		// 					Titanium.API.debug("setup a new nickname");
+		// 					Tide.API.debug("setup a new nickname");
 //		// 					var newUser = "nickname"+String(new Date().getTime());
 		// 					var newUser = "drillbitNickName";
 		// 					client.setNick(newUser);
@@ -138,7 +138,7 @@ describe("Network.IRCClient",{
 		// 		}
 		// 		else
 		// 		{
-		// 			Titanium.API.debug("potentially kicked off IRC, don't know what to do");
+		// 			Tide.API.debug("potentially kicked off IRC, don't know what to do");
 		// 			test.passed();
 		// 		}
 		// 	});

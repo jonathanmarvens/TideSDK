@@ -1,15 +1,15 @@
 describe("Bytes, Object, List, etc",{
 	test_core_types_harness: function()
 	{
-		value_of(Titanium.API.createObject).should_be_function();
-		value_of(Titanium.API.createMethod).should_be_function();
-		value_of(Titanium.API.createList).should_be_function();
-		value_of(Titanium.API.createBytes).should_be_function();
+		value_of(Tide.API.createObject).should_be_function();
+		value_of(Tide.API.createMethod).should_be_function();
+		value_of(Tide.API.createList).should_be_function();
+		value_of(Tide.API.createBytes).should_be_function();
 	},
 	test_empty_Object: function()
 	{
 		var count_properties = function(o) { var n = 0; for (x in o) { n++; } return n; };
-		var o = Titanium.API.createObject();
+		var o = Tide.API.createObject();
 		// There should be no properties showing for a blank Object
 		value_of(count_properties(o)).should_be(0);
 
@@ -21,7 +21,7 @@ describe("Bytes, Object, List, etc",{
 
 		var other = Object();
 		value_of(o.equals(other)).should_be_false();
-		other = Titanium.API.createObject();
+		other = Tide.API.createObject();
 		value_of(o.equals(other)).should_be_false();
 		value_of(o.toString()).should_be_string();
 
@@ -44,7 +44,7 @@ describe("Bytes, Object, List, etc",{
 		var count_properties = function(o) { var n = 0; for (x in o) { n++; } return n; };
 		var o = Object();
 		o.property_one = "blahblah";
-		var ko = Titanium.API.createObject(o);
+		var ko = Tide.API.createObject(o);
 
 		value_of(count_properties(ko)).should_be(1);
 		value_of(count_properties(o)).should_be(1);
@@ -59,7 +59,7 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_empty_List: function()
 	{
-		var l = Titanium.API.createList();
+		var l = Tide.API.createList();
 		value_of(l.length).should_be_number();
 		value_of(l.equals).should_be_function();
 		value_of(l.toString).should_be_function();
@@ -78,7 +78,7 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_modifying_List: function()
 	{
-		var l = Titanium.API.createList();
+		var l = Tide.API.createList();
 		value_of(l.length).should_be(0);
 		l.push(123);
 		value_of(l.length).should_be(1);
@@ -122,7 +122,7 @@ describe("Bytes, Object, List, etc",{
 	test_wrapped_List: function()
 	{
 		var mylist = [1, 2, 3];
-		var l = Titanium.API.createList(mylist);
+		var l = Tide.API.createList(mylist);
 		value_of(l.length).should_be_number();
 		value_of(l.equals).should_be_function();
 		value_of(l.toString).should_be_function();
@@ -205,7 +205,7 @@ describe("Bytes, Object, List, etc",{
 		}
 
 		variable = "dos";
-		var f = Titanium.API.createMethod(myfunction);
+		var f = Tide.API.createMethod(myfunction);
 		var result = f();
 		value_of(result).should_be("dos");
 		value_of(other_variable).should_be("no");
@@ -227,7 +227,7 @@ describe("Bytes, Object, List, etc",{
 		setTimeout(function()
 		{
 			variable = "dos";
-			var f = Titanium.API.createMethod(myfunction2());
+			var f = Tide.API.createMethod(myfunction2());
 			var result = f();
 
 			if (result !== "dos")
@@ -243,7 +243,7 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_basic_empty_blob: function()
 	{
-		var b1 = Titanium.API.createBytes();
+		var b1 = Tide.API.createBytes();
 		value_of(b1).should_be_object();
 		value_of(b1.length).should_be_number();
 		value_of(b1.toString).should_be_function();
@@ -261,7 +261,7 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_basic_blob: function()
 	{
-		var b1 = Titanium.API.createBytes("abcdefgA");
+		var b1 = Tide.API.createBytes("abcdefgA");
 		value_of(b1).should_be_object();
 		value_of(b1.length).should_be_number();
 		value_of(b1.toString).should_be_function();
@@ -281,7 +281,7 @@ describe("Bytes, Object, List, etc",{
 	{
 		// must conform to behavior:
 		// https://developer.mozilla.org/en/core_javascript_1.5_reference/global_objects/string/chara://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/indexOf
-		var b1 = Titanium.API.createBytes("abcdefgA");
+		var b1 = Tide.API.createBytes("abcdefgA");
 		value_of(b1.indexOf).should_be_function();
 		value_of(b1.indexOf("a")).should_be(0);
 		value_of(b1.indexOf("b")).should_be(1);
@@ -312,7 +312,7 @@ describe("Bytes, Object, List, etc",{
 		value_of(b1.indexOf("bcd", 30)).should_be(-1);
 		value_of(b1.indexOf("defe", 1)).should_be(-1);
 
-		var b2 = Titanium.API.createBytes("");
+		var b2 = Tide.API.createBytes("");
 		value_of(b2.indexOf).should_be_function();
 		value_of(b2.indexOf("a")).should_be(-1);
 		value_of(b2.indexOf("b")).should_be(-1);
@@ -347,7 +347,7 @@ describe("Bytes, Object, List, etc",{
 	{
 		// must conform to behavior:
 		// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Global_Objects/String/lastIndexOf
-		var b1 = Titanium.API.createBytes("abcdefgA");
+		var b1 = Tide.API.createBytes("abcdefgA");
 		value_of(b1.lastIndexOf).should_be_function();
 		value_of(b1.lastIndexOf("a")).should_be(0);
 		value_of(b1.lastIndexOf("b")).should_be(1);
@@ -381,7 +381,7 @@ describe("Bytes, Object, List, etc",{
 		value_of(b1.lastIndexOf("bcd", 30)).should_be(1);
 		value_of(b1.lastIndexOf("defe", 1)).should_be(-1);
 
-		var b2 = Titanium.API.createBytes("");
+		var b2 = Tide.API.createBytes("");
 		value_of(b2.lastIndexOf).should_be_function();
 		value_of(b2.lastIndexOf("a")).should_be(-1);
 		value_of(b2.lastIndexOf("b")).should_be(-1);
@@ -412,7 +412,7 @@ describe("Bytes, Object, List, etc",{
 		value_of(b2.lastIndexOf("bcd", 30)).should_be(-1);
 		value_of(b2.lastIndexOf("defe", 1)).should_be(-1);
 
-		var b3 = Titanium.API.createBytes("abcdefgAadef");
+		var b3 = Tide.API.createBytes("abcdefgAadef");
 		value_of(b3.lastIndexOf).should_be_function();
 		value_of(b3.lastIndexOf("a")).should_be(8);
 		value_of(b3.lastIndexOf("b")).should_be(1);
@@ -448,7 +448,7 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_blob_charat: function()
 	{
-		var b1 = Titanium.API.createBytes("abcdefg");
+		var b1 = Tide.API.createBytes("abcdefg");
 		value_of(b1.charAt(-100)).should_be("");
 		value_of(b1.charAt(-1)).should_be("");
 		value_of(b1.charAt(0)).should_be("a");
@@ -461,7 +461,7 @@ describe("Bytes, Object, List, etc",{
 		value_of(b1.charAt(7)).should_be("");
 		value_of(b1.charAt(700)).should_be("");
 
-		var b2 = Titanium.API.createBytes("");
+		var b2 = Tide.API.createBytes("");
 		value_of(b2.charAt(-100)).should_be("");
 		value_of(b2.charAt(-1)).should_be("");
 		value_of(b2.charAt(0)).should_be("");
@@ -476,31 +476,31 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_blob_split: function()
 	{
-		var b1 = Titanium.API.createBytes("abcdefg");
+		var b1 = Tide.API.createBytes("abcdefg");
 		var b1s = b1.split();
 		value_of(b1s).should_be_object();
 		value_of(b1s.length).should_be(1);
 		value_of(b1s[0]).should_be("abcdefg");
 
-		var b2 = Titanium.API.createBytes("");
+		var b2 = Tide.API.createBytes("");
 		var b2s = b2.split();
 		value_of(b2s.length).should_be(1);
 		value_of(b2s[0]).should_be("");
 
-		var b3 = Titanium.API.createBytes("abcdefg");
+		var b3 = Tide.API.createBytes("abcdefg");
 		var b3s = b3.split(",");
 		value_of(b3s).should_be_object();
 		value_of(b3s.length).should_be(1);
 		value_of(b3s[0]).should_be("abcdefg");
 
-		var b4 = Titanium.API.createBytes("ab,cdefg");
+		var b4 = Tide.API.createBytes("ab,cdefg");
 		var b4s = b4.split(",");
 		value_of(b4s).should_be_object();
 		value_of(b4s.length).should_be(2);
 		value_of(b4s[0]).should_be("ab");
 		value_of(b4s[1]).should_be("cdefg");
 
-		var b5 = Titanium.API.createBytes(",ab,cdefg,,");
+		var b5 = Tide.API.createBytes(",ab,cdefg,,");
 		var b5s = b5.split(",");
 		value_of(b5s).should_be_object();
 		value_of(b5s.length).should_be(5);
@@ -510,19 +510,19 @@ describe("Bytes, Object, List, etc",{
 		value_of(b5s[3]).should_be("");
 		value_of(b5s[4]).should_be("");
 
-		var b6 = Titanium.API.createBytes(",ab,cdefg,");
+		var b6 = Tide.API.createBytes(",ab,cdefg,");
 		var b6s = b6.split(",", 2);
 		value_of(b6s).should_be_object();
 		value_of(b6s.length).should_be(2);
 		value_of(b6s[0]).should_be("");
 		value_of(b6s[1]).should_be("ab");
 
-		var b7 = Titanium.API.createBytes("abc,def,ghi");
+		var b7 = Tide.API.createBytes("abc,def,ghi");
 		var b7s = b7.split(",", 0);
 		value_of(b7s).should_be_object();
 		value_of(b7s.length).should_be(0);
 
-		var b8 = Titanium.API.createBytes("abcde");
+		var b8 = Tide.API.createBytes("abcde");
 		var b8s = b8.split("");
 		value_of(b8s).should_be_object();
 		value_of(b8s.length).should_be(5);
@@ -534,7 +534,7 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_blob_substr: function()
 	{
-		var blob = Titanium.API.createBytes("abcdefghij");
+		var blob = Tide.API.createBytes("abcdefghij");
 		value_of(blob.substr).should_be_function();
 		value_of(blob.substr(1,2)).should_be("bc");
 		value_of(blob.substr(-3,2)).should_be("hi");
@@ -547,7 +547,7 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_blob_substring: function()
 	{
-		var blob = Titanium.API.createBytes("Mozilla");
+		var blob = Tide.API.createBytes("Mozilla");
 		value_of(blob.substring).should_be_function();
 		value_of(blob.substring(3,0)).should_be("Moz");
 		value_of(blob.substring(0,3)).should_be("Moz");
@@ -563,35 +563,35 @@ describe("Bytes, Object, List, etc",{
 	},
 	test_blob_tolowercase: function()
 	{
-		var blob = Titanium.API.createBytes("Mozilla123!?");
+		var blob = Tide.API.createBytes("Mozilla123!?");
 		value_of(blob.toLowerCase).should_be_function();
 		value_of(blob.toLowerCase()).should_be("mozilla123!?");
-		blob = Titanium.API.createBytes("mOZILLA123!?");
+		blob = Tide.API.createBytes("mOZILLA123!?");
 		value_of(blob.toLowerCase()).should_be("mozilla123!?");
-		blob = Titanium.API.createBytes("mO   ZILLA123!?");
+		blob = Tide.API.createBytes("mO   ZILLA123!?");
 		value_of(blob.toLowerCase()).should_be("mo   zilla123!?");
-		blob = Titanium.API.createBytes("1234567890-=!@#$%^&*()_+");
+		blob = Tide.API.createBytes("1234567890-=!@#$%^&*()_+");
 		value_of(blob.toLowerCase()).should_be("1234567890-=!@#$%^&*()_+");
 	},
 	test_blob_touppercase: function()
 	{
-		var blob = Titanium.API.createBytes("Mozilla123!?");
+		var blob = Tide.API.createBytes("Mozilla123!?");
 		value_of(blob.toUpperCase).should_be_function();
 		value_of(blob.toUpperCase()).should_be("MOZILLA123!?");
 
-		blob = Titanium.API.createBytes("mOZILLA123!?");
+		blob = Tide.API.createBytes("mOZILLA123!?");
 		value_of(blob.toUpperCase()).should_be("MOZILLA123!?");
 
-		blob = Titanium.API.createBytes("mO   ZILLA123!?");
+		blob = Tide.API.createBytes("mO   ZILLA123!?");
 		value_of(blob.toUpperCase()).should_be("MO   ZILLA123!?");
 
-		blob = Titanium.API.createBytes("1234567890-=!@#$%^&*()_+");
+		blob = Tide.API.createBytes("1234567890-=!@#$%^&*()_+");
 		value_of(blob.toUpperCase()).should_be("1234567890-=!@#$%^&*()_+");
 	},
 	test_blob_concat: function()
 	{
-		var blob = Titanium.API.createBytes("Moz");
-		var blob2 = Titanium.API.createBytes("illa");
+		var blob = Tide.API.createBytes("Moz");
+		var blob2 = Tide.API.createBytes("illa");
 		value_of(blob.concat).should_be_function();
 		value_of(blob.concat("illa")).should_be("Mozilla");
 		value_of(blob.concat("illa", " 123", "456")).should_be("Mozilla 123456");

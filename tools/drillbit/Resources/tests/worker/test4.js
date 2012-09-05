@@ -1,5 +1,5 @@
 
 onmessage = function(msg)
 {
-	postMessage(Titanium.version);
+	postMessage(Tide.version);
 }

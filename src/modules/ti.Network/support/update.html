@@ -18,7 +18,7 @@
 </style>
 <script type="text/javascript" src="ti://tiui/jquery-1.3.2.js"></script>
 <script>
-   Titanium.UI.currentWindow.addEventListener(function(name)
+   Tide.UI.currentWindow.addEventListener(function(name)
    {
         switch(name)
         {
@@ -47,7 +47,7 @@
    }
     $(function()
     {
-        var currentWindow = Titanium.UI.getCurrentWindow();
+        var currentWindow = Tide.UI.getCurrentWindow();
         var name = currentWindow.getDialogParameter('name');
         var icon = currentWindow.getDialogParameter('icon');
         var ver_from = currentWindow.getDialogParameter('ver_from');
@@ -55,7 +55,7 @@
         var notes_url = currentWindow.getDialogParameter('notes_url');
         var parent = currentWindow.getParent();
         
-        Titanium.UI.currentWindow.setTitle(name+' Update Available');
+        Tide.UI.currentWindow.setTitle(name+' Update Available');
         
         if (notes_url)
         {

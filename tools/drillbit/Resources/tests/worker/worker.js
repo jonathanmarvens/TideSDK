@@ -2,7 +2,7 @@ describe("async worker tests",
 {
 	test_worker_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker(function()
+		var worker = Tide.Worker.createWorker(function()
 		{
 			postMessage("123");
 		});
@@ -31,13 +31,13 @@ describe("async worker tests",
 		worker.start();
 	},
 
-	test_worker_with_titanium_as_async: function(result)
+	test_worker_with_Tide_as_async: function(result)
 	{
-		var version = Titanium.version;
+		var version = Tide.version;
 		
-		var worker = Titanium.Worker.createWorker(function()
+		var worker = Tide.Worker.createWorker(function()
 		{
-			postMessage(Titanium.version);
+			postMessage(Tide.version);
 		});
 		
 		worker.onmessage = function(v)
@@ -66,7 +66,7 @@ describe("async worker tests",
 	},
 	test_worker_as_external_file_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test.js');
+		var worker = Tide.Worker.createWorker('test.js');
 		
 		worker.onmessage = function(v)
 		{
@@ -95,7 +95,7 @@ describe("async worker tests",
 	},
 	test_worker_as_external_file_with_import_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test2.js');
+		var worker = Tide.Worker.createWorker('test2.js');
 
 		var timer = setTimeout(function()
 		{
@@ -124,7 +124,7 @@ describe("async worker tests",
 	},
 	test_worker_as_queue_before_start_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test2.js');
+		var worker = Tide.Worker.createWorker('test2.js');
 
 		var timer = setTimeout(function()
 		{
@@ -155,7 +155,7 @@ describe("async worker tests",
 	},
 	test_worker_attach_onmessage_after_start_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test2.js');
+		var worker = Tide.Worker.createWorker('test2.js');
 
 		var timer = setTimeout(function()
 		{
@@ -185,7 +185,7 @@ describe("async worker tests",
 	},
 	test_worker_test_multiple_imports_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test3.js');
+		var worker = Tide.Worker.createWorker('test3.js');
 
 		var timer = setTimeout(function()
 		{
@@ -213,9 +213,9 @@ describe("async worker tests",
 			}
 		};
 	},
-	test_worker_test_titanium_as_async: function(result)
+	test_worker_test_Tide_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test4.js');
+		var worker = Tide.Worker.createWorker('test4.js');
 
 		var timer = setTimeout(function()
 		{
@@ -234,7 +234,7 @@ describe("async worker tests",
 			try
 			{
 				value_of(v).should_be_object();
-				value_of(v.message).should_be(Titanium.version);
+				value_of(v.message).should_be(Tide.version);
 				result.passed();
 			}
 			catch(e)
@@ -245,7 +245,7 @@ describe("async worker tests",
 	},
 	test_worker_data_types_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test5.js');
+		var worker = Tide.Worker.createWorker('test5.js');
 
 		worker.start();
 
@@ -277,7 +277,7 @@ describe("async worker tests",
 	},
 	test_worker_multiple_queued_items_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test5.js');
+		var worker = Tide.Worker.createWorker('test5.js');
 
 		var timer = setTimeout(function()
 		{
@@ -312,7 +312,7 @@ describe("async worker tests",
 	},
 	test_worker_multiple_sleep_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test6.js');
+		var worker = Tide.Worker.createWorker('test6.js');
 
 		var timer = setTimeout(function()
 		{
@@ -342,7 +342,7 @@ describe("async worker tests",
 	},
 	test_worker_multiple_sleep_interrupted_as_async: function(result)
 	{
-		var worker = Titanium.Worker.createWorker('test6.js');
+		var worker = Tide.Worker.createWorker('test6.js');
 		worker.start();
 		worker.onmessage = function(v)
 		{

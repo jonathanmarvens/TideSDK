@@ -2,82 +2,82 @@ describe("Codec Tests",{
 	
 	test_base64_encode: function()
 	{
-		value_of(Titanium.Codec).should_be_object();
-		value_of(Titanium.Codec.encodeBase64("abc")).should_be("YWJj");
+		value_of(Tide.Codec).should_be_object();
+		value_of(Tide.Codec.encodeBase64("abc")).should_be("YWJj");
 	},
 
 	test_base64_decode: function()
 	{
-		value_of(Titanium.Codec.decodeBase64("YWJj")).should_be("abc");
+		value_of(Tide.Codec.decodeBase64("YWJj")).should_be("abc");
 	},
 	
 	test_md2: function()
 	{
-		value_of(Titanium.Codec.digestToHex(Titanium.Codec.MD2,"abc")).should_be("da853b0d3f88d99b30283a69e6ded6bb");
+		value_of(Tide.Codec.digestToHex(Tide.Codec.MD2,"abc")).should_be("da853b0d3f88d99b30283a69e6ded6bb");
 	},
 
 	test_md4: function()
 	{
-		value_of(Titanium.Codec.digestToHex(Titanium.Codec.MD4,"abc")).should_be("a448017aaf21d8525fc10ae87aa6729d");
+		value_of(Tide.Codec.digestToHex(Tide.Codec.MD4,"abc")).should_be("a448017aaf21d8525fc10ae87aa6729d");
 	},
 
 	test_md5: function()
 	{
-		value_of(Titanium.Codec.digestToHex(Titanium.Codec.MD5,"abc")).should_be("900150983cd24fb0d6963f7d28e17f72");
+		value_of(Tide.Codec.digestToHex(Tide.Codec.MD5,"abc")).should_be("900150983cd24fb0d6963f7d28e17f72");
 	},
 
 	test_sha1: function()
 	{
-		value_of(Titanium.Codec.digestToHex(Titanium.Codec.SHA1,"abc")).should_be("a9993e364706816aba3e25717850c26c9cd0d89d");
+		value_of(Tide.Codec.digestToHex(Tide.Codec.SHA1,"abc")).should_be("a9993e364706816aba3e25717850c26c9cd0d89d");
 	},
 	
 	test_hmac_md5: function()
 	{
-		value_of(Titanium.Codec.digestHMACToHex(Titanium.Codec.MD5,"abc","123")).should_be("ffb7c0fc166f7ca075dfa04d59aed232");
+		value_of(Tide.Codec.digestHMACToHex(Tide.Codec.MD5,"abc","123")).should_be("ffb7c0fc166f7ca075dfa04d59aed232");
 	},
 
 	test_hmac_sha1: function()
 	{
-		value_of(Titanium.Codec.digestHMACToHex(Titanium.Codec.SHA1,"abc","123")).should_be("540b0c53d4925837bd92b3f71abe7a9d70b676c4");
+		value_of(Tide.Codec.digestHMACToHex(Tide.Codec.SHA1,"abc","123")).should_be("540b0c53d4925837bd92b3f71abe7a9d70b676c4");
 	},
 
 	test_encode_hex_binary: function()
 	{
-		value_of(Titanium.Codec.encodeHexBinary("ABCDEF")).should_be("414243444546");
+		value_of(Tide.Codec.encodeHexBinary("ABCDEF")).should_be("414243444546");
 	},
 
 	test_decode_hex_binary: function()
 	{
-		value_of(Titanium.Codec.decodeHexBinary("414243444546")).should_be("ABCDEF");
+		value_of(Tide.Codec.decodeHexBinary("414243444546")).should_be("ABCDEF");
 	},
 	
 	test_checksum_crc32: function()
 	{
-		value_of(Titanium.Codec.checksum("abc")).should_be(891568578);
-		value_of(Titanium.Codec.checksum("abc",Titanium.Codec.CRC32)).should_be(891568578);
-		var blob = Titanium.API.createBytes("abc");
-		value_of(Titanium.Codec.checksum(blob,Titanium.Codec.CRC32)).should_be(891568578);
+		value_of(Tide.Codec.checksum("abc")).should_be(891568578);
+		value_of(Tide.Codec.checksum("abc",Tide.Codec.CRC32)).should_be(891568578);
+		var blob = Tide.API.createBytes("abc");
+		value_of(Tide.Codec.checksum(blob,Tide.Codec.CRC32)).should_be(891568578);
 	},
 	
 	test_checksum_adler32: function()
 	{
-		value_of(Titanium.Codec.checksum("abc",Titanium.Codec.ADLER32)).should_be(38600999);
+		value_of(Tide.Codec.checksum("abc",Tide.Codec.ADLER32)).should_be(38600999);
 
-		var blob = Titanium.API.createBytes("abc");
-		value_of(Titanium.Codec.checksum(blob,Titanium.Codec.ADLER32)).should_be(38600999);
+		var blob = Tide.API.createBytes("abc");
+		value_of(Tide.Codec.checksum(blob,Tide.Codec.ADLER32)).should_be(38600999);
 	},
 	
 	test_createZip_as_async: function(callback)
 	{
-		var fs = Titanium.Filesystem;
+		var fs = Tide.Filesystem;
 		function appFile(url)
 		{
-			return fs.getFile(Titanium.App.appURLToPath(url));
+			return fs.getFile(Tide.App.appURLToPath(url));
 		}
 		function getFileSHA1(file)
 		{
 			var blob = file.read();
-			return Titanium.Codec.digestToHex(Titanium.Codec.SHA1, blob);
+			return Tide.Codec.digestToHex(Tide.Codec.SHA1, blob);
 		}
 		
 		var dir = appFile("app://zipdir");
@@ -87,11 +87,11 @@ describe("Codec Tests",{
 		var file1 = appFile("app://zipdir/file1.txt");
 		var file2 = appFile("app://zipdir/file2.txt");
 		
-		Titanium.API.debug("zipfile="+zipFile);
+		Tide.API.debug("zipfile="+zipFile);
 		value_of(dir.isDirectory()).should_be_true();
 		
 		var timer = 0;
-		Titanium.Codec.createZip(dir, zipFile, function(destFile)
+		Tide.Codec.createZip(dir, zipFile, function(destFile)
 		{
 			try
 			{
@@ -139,30 +139,30 @@ describe("Codec Tests",{
 	{
 		function appFile(url)
 		{
-			return Titanium.Filesystem.getFile(Titanium.App.appURLToPath(url));
+			return Tide.Filesystem.getFile(Tide.App.appURLToPath(url));
 		}
 		function getFileSHA1(file)
 		{
 			var blob = file.read();
-			return Titanium.Codec.digestToHex(Titanium.Codec.SHA1, blob);
+			return Tide.Codec.digestToHex(Tide.Codec.SHA1, blob);
 		}
 
-		var zipFile = Titanium.App.appURLToPath("app://stuff.zip");
-		var destDir = Titanium.Filesystem.createTempDirectory();
+		var zipFile = Tide.App.appURLToPath("app://stuff.zip");
+		var destDir = Tide.Filesystem.createTempDirectory();
 		var png = appFile("app://zipdir/default_app_logo.png");
 		var file1 = appFile("app://zipdir/file1.txt");
 		var file2 = appFile("app://zipdir/file2.txt");
 
 		var timer = 0;
-		Titanium.Codec.extractZip(zipFile, destDir, function(dest) {
+		Tide.Codec.extractZip(zipFile, destDir, function(dest) {
 			clearTimeout(timer);
 
 			// Verify extracted directory contents
 			try
 			{
-				var zipPNG = Titanium.Filesystem.getFile(destDir, "default_app_logo.png");
-				var zipFile1 = Titanium.Filesystem.getFile(destDir, "file1.txt");
-				var zipFile2 = Titanium.Filesystem.getFile(destDir, "file2.txt");
+				var zipPNG = Tide.Filesystem.getFile(destDir, "default_app_logo.png");
+				var zipFile1 = Tide.Filesystem.getFile(destDir, "file1.txt");
+				var zipFile2 = Tide.Filesystem.getFile(destDir, "file2.txt");
 				
 				value_of(zipPNG.isFile()).should_be_true();
 				value_of(zipPNG.size()).should_be(png.size());

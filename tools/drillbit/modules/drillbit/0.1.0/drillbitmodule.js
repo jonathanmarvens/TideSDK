@@ -1,7 +1,7 @@
 (function() {
 	var Drillbit = function() {
-		var TFS = Titanium.Filesystem;
-		var TA  = Titanium.App;
+		var TFS = Tide.Filesystem;
+		var TA  = Tide.App;
 		
 		this.frontend = null;
 		this.auto_close = false;
@@ -32,7 +32,7 @@
 		var app_dir = TFS.getApplicationDirectory();
 		var drillbit_funcs = TFS.getFile(TA.appURLToPath('app://drillbit_func.js')).read();
 		var user_scripts_dir = null;
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		var tiapp_backup = null, tiapp = null;
 		var manifest_backup = null, manifest = null;
 		var non_visual_ti = null;
@@ -51,7 +51,7 @@
 					eval(code.toString());
 				}
 			} catch (e) {
-				Titanium.App.stdout("Error: "+String(e)+", "+path+", line:"+e.line);
+				Tide.App.stdout("Error: "+String(e)+", "+path+", line:"+e.line);
 			}
 		};
 		
@@ -71,7 +71,7 @@
 			}
 			catch (e)
 			{
-				Titanium.App.stderr("Error: " +e);
+				Tide.App.stderr("Error: " +e);
 			}
 		}
 		
@@ -168,7 +168,7 @@
 		{
 			this.results_dir.createDirectory();
 
-			var f = Titanium.Filesystem.getFile(this.results_dir, "results.html");
+			var f = Tide.Filesystem.getFile(this.results_dir, "results.html");
 			if (f.exists()) {
 				f.deleteFile();
 			}
@@ -194,8 +194,8 @@
 			this.require('app://js/app.js');
 			this.require('app://js/project.js');
 			// create app structure
-			app = Titanium.createApp(
-				Titanium.API.application.getResourcesPath(), // Stage in Resources directory
+			app = Tide.createApp(
+				Tide.API.application.getResourcesPath(), // Stage in Resources directory
 				'test_harness', // app name
 				'CF0D2CB7-B4BD-488F-9F8E-669E6B53E0C4', // app guid
 				false);
@@ -328,7 +328,7 @@
 						default:
 						{
 							// just copy the file otherwise
-							Titanium.API.debug("copying "+src+" to "+dir);
+							Tide.API.debug("copying "+src+" to "+dir);
 							src.copy(dir);
 							break;
 						}
@@ -347,7 +347,7 @@
 				tiapp.write(non_visual_ti);
 			}
 			
-			var modules = Titanium.API.getApplication().getModules();
+			var modules = Tide.API.getApplication().getModules();
 			var module = null;
 			for (var i = 0; i < modules.length; i++)
 			{
@@ -362,7 +362,7 @@
 			
 			this.include(file.nativePath());
 			var runner_js = TFS.getFile(user_scripts_dir,entry.name+'_driver.js');
-			var data = {entry: entry, Titanium: Titanium, excludes: excludes};
+			var data = {entry: entry, Tide: Tide, excludes: excludes};
 			var user_script = null;
 			
 			try {
@@ -390,8 +390,8 @@
 			}
 
 			args.push('--results-dir="' + this.results_dir + '"');
-			var process = Titanium.Process.createProcess(args);
-			Titanium.App.stdout("running: " + process);
+			var process = Tide.Process.createProcess(args);
+			Tide.App.stdout("running: " + process);
 			var passed = 0;
 			var failed = 0;
 			process.setOnReadLine(function(data)
@@ -478,7 +478,7 @@
 				},1000);
 			}
 
-			process.addEventListener(Titanium.EXIT, function(event)
+			process.addEventListener(Tide.EXIT, function(event)
 			{
 				self.frontend_do('suite_finished', self.current_test.name);
 				try
@@ -524,7 +524,7 @@
 				f.write("{\"success\":" + String(!test_failures) + "}");
 				if (self.auto_close)
 				{
-					Titanium.App.exit(test_failures ? 1 : 0);
+					Tide.App.exit(test_failures ? 1 : 0);
 				}
 				return;
 			}
@@ -545,5 +545,5 @@
 		}
 	};
 	
-	Titanium.Drillbit = new Drillbit();
+	Tide.Drillbit = new Drillbit();
 })();

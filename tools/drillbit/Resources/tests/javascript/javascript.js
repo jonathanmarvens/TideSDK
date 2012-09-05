@@ -2,24 +2,24 @@ describe("javascript",
 {
 	test_javascript_functions_no_window: function()
 	{
-		value_of(Titanium.setTimeout).should_be_function();
-		value_of(Titanium.setInterval).should_be_function();
-		value_of(Titanium.clearTimeout).should_be_function();
-		value_of(Titanium.clearInterval).should_be_function();
+		value_of(Tide.setTimeout).should_be_function();
+		value_of(Tide.setInterval).should_be_function();
+		value_of(Tide.clearTimeout).should_be_function();
+		value_of(Tide.clearInterval).should_be_function();
 		
-		value_of(Titanium.setTimeout).should_not_be(setTimeout);
-		value_of(Titanium.setInterval).should_not_be(setInterval);
-		value_of(Titanium.clearTimeout).should_not_be(clearTimeout);
-		value_of(Titanium.clearInterval).should_not_be(clearInterval);
+		value_of(Tide.setTimeout).should_not_be(setTimeout);
+		value_of(Tide.setInterval).should_not_be(setInterval);
+		value_of(Tide.clearTimeout).should_not_be(clearTimeout);
+		value_of(Tide.clearInterval).should_not_be(clearInterval);
 	},
 	
 	test_setTimeout_as_async: function(callback)
 	{
 		var timer = 0;
-		Titanium.setTimeout(function() {
+		Tide.setTimeout(function() {
 			try
 			{
-				value_of(clearTimeout).should_not_be(Titanium.clearTimeout);
+				value_of(clearTimeout).should_not_be(Tide.clearTimeout);
 			}
 			catch (e)
 			{
@@ -39,7 +39,7 @@ describe("javascript",
 	{
 		var times = 0;
 		var timer = 0;
-		Titanium.setInterval(function() {
+		Tide.setInterval(function() {
 			times++;
 			if (times == 5)
 			{
@@ -55,12 +55,12 @@ describe("javascript",
 	
 	test_clearTimeout_as_async: function(callback)
 	{
-		var timer = Titanium.setTimeout(function() {
+		var timer = Tide.setTimeout(function() {
 			callback.failed("timer wasn't cleared correctly");
 		}, 500);
 		
-		Titanium.clearTimeout(timer);
-		var timer2 = Titanium.setTimeout(function() {
+		Tide.clearTimeout(timer);
+		var timer2 = Tide.setTimeout(function() {
 			callback.passed();
 		}, 1500);
 	},
@@ -68,11 +68,11 @@ describe("javascript",
 	test_clearInterval_as_async: function(callback)
 	{
 		var times = 0;
-		var timer = Titanium.setInterval(function() {
+		var timer = Tide.setInterval(function() {
 			times++;
 			if (times == 5)
 			{
-				Titanium.clearInterval(timer);
+				Tide.clearInterval(timer);
 			}
 			else if (times > 5)
 			{
@@ -80,7 +80,7 @@ describe("javascript",
 			}
 		}, 500);
 		
-		var timer2 = Titanium.setTimeout(function() {
+		var timer2 = Tide.setTimeout(function() {
 			callback.passed();
 		}, 4000);
 	}

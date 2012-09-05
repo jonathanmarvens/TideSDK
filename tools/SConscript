@@ -21,7 +21,7 @@ def package_app_builder(target, source, env):
 		app.run()
 
 def package_sdkinstaller(target, source, env):
-	print "Packaging Titanium SDK Installer..."
+	print "Packaging Tide SDK Installer..."
 
 	# Create a staged application, but don't bundle it, because we
 	# want to force the installer to run and install the new SDK.
@@ -50,16 +50,16 @@ build.env['BUILDERS']['PackageSDKInstaller'] = build.env.Builder(
 	multi=0)
 
 def make_app_target(name, path):
-	t = build.env.PackageApp('#titanium-app-' + name, [], PATH=path)
+	t = build.env.PackageApp('#Tide-app-' + name, [], PATH=path)
 	Depends(t, build.build_targets + build.staging_targets)
 	Alias(name, t)
 
-make_app_target('developer', path.normpath("%s/../../titanium_developer" % build.cwd()))
+make_app_target('developer', path.normpath("%s/../../Tide_developer" % build.cwd()))
 make_app_target('testapp', path.join(build.cwd(), 'testapp'))
 make_app_target('drillbit', path.join(build.cwd(), 'drillbit'))
 make_app_target('sandbox', path.join(build.cwd(), 'sandbox'))
 
-t = build.env.PackageSDKInstaller('#titanium-app-sdk-installer', [],
+t = build.env.PackageSDKInstaller('#Tide-app-sdk-installer', [],
 	PATH=path.join(build.cwd(), 'sdkinstaller'))
 Depends(t, build.build_targets + build.staging_targets + build.dist_targets)
 Alias('sdkinstaller', t)

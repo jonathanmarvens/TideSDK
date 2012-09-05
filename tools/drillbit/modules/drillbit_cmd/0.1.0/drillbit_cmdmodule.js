@@ -1,12 +1,12 @@
 (function(){
-	var ti = Titanium;
+	var ti = Tide;
 	var tiFS = ti.Filesystem;
 	var print = ti.API.print;
 	var println = ti.App.stdout;
 	var errPrint = ti.App.stderr;
 	
 	// Javascript with ANSI color, this might be a first.
-	var ansi = (Titanium.platform != "win32" || 'MANPATH' in Titanium.API.getEnvironment());
+	var ansi = (Tide.platform != "win32" || 'MANPATH' in Tide.API.getEnvironment());
 	var show_log = false;
 	
 	var frontend = {
@@ -48,8 +48,8 @@
 			if (test_files.length == 1 && show_log)
 			{
 				var editor = null;
-				if (Titanium.platform == "win32") editor = "C:\\Windows\\system32\\notepad.exe";
-				else if (Titanium.platform == "osx") editor = "/usr/bin/open";
+				if (Tide.platform == "win32") editor = "C:\\Windows\\system32\\notepad.exe";
+				else if (Tide.platform == "osx") editor = "/usr/bin/open";
 				else editor = "/usr/bin/gedit";
 
 				if ('EDITOR' in ti.API.getEnvironment())
@@ -57,11 +57,11 @@
 					editor = ti.API.getEnvironment()['EDITOR'];
 				}
 
-				var app = Titanium.API.getApplication();
+				var app = Tide.API.getApplication();
 				var path = ti.App.appURLToPath('app://test_results/'+tests[0].suite+'.log');
 				println("opening log: " + path);
 
-				Titanium.Process.createProcess([editor, path])();
+				Tide.Process.createProcess([editor, path])();
 
 			}
 		}
@@ -96,7 +96,7 @@
 			if (!file.exists())
 			{
 				var src_file = null;
-				if (Titanium.platform=="osx") {
+				if (Tide.platform=="osx") {
 					src_file = tiFS.getFile(ti.API.getApplication().getPath(), '..', '..', "..", "..",
 						'apps', 'drillbit', 'Resources', 'tests', fname, fname+'.js');
 				} else {

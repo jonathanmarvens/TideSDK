@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #         --Common SConscripts--
 # Things below here will be shared between libtide and
-# any parent builds (ie Titanium) -- so basically no
+# any parent builds (ie Tide) -- so basically no
 # libtide-specific stuff below here
 import os.path as path
 Import('build')

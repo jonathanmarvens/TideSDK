@@ -3,7 +3,7 @@ describe("ti.API.Application tests",
 	validate_properties: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		
 		value_of(app).should_not_be_null();
 		if ( app ) 
@@ -41,7 +41,7 @@ describe("ti.API.Application tests",
 	test_loaded_components: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		
 		// get the components loaded by the application
@@ -67,7 +67,7 @@ describe("ti.API.Application tests",
 			// loaded components should always indicate so...
 			value_of(item.isLoaded()).should_be_true();
 
-			Titanium.API.info("processing loaded component '" + item.getName() + 
+			Tide.API.info("processing loaded component '" + item.getName() + 
 							  "' type: '"+item.getType()+
 							  "' version: '"+item.getVersion()+
 							  "' path '" + item.getPath() + "'");
@@ -77,7 +77,7 @@ describe("ti.API.Application tests",
 	test_installed_components: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		
 		// get the components loaded by the application
@@ -98,20 +98,20 @@ describe("ti.API.Application tests",
 			value_of(item.isBundled).should_be_function();
 			value_of(item.isLoaded).should_be_function();
 			
-			Titanium.API.info("processing installed component '" + item.getName() + 
+			Tide.API.info("processing installed component '" + item.getName() + 
 							  "' type: '"+item.getType()+
 							  "' version: '"+item.getVersion()+
 							  "' path '" + item.getPath() + "'");
 							  
 			// installed components cannot be bundled.
-			Titanium.API.info("item "+item.getName()+".isBundled() returned "+item.isBundled().toString());
+			Tide.API.info("item "+item.getName()+".isBundled() returned "+item.isBundled().toString());
 		}
 	},
 
 	test_loaded_components: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		
 		// get the components loaded by the application
@@ -140,7 +140,7 @@ describe("ti.API.Application tests",
 			// loaded components should always indicate so...
 			value_of(item.isLoaded()).should_be_true();
 
-			Titanium.API.info("processing loaded component '" + item.getName() + 
+			Tide.API.info("processing loaded component '" + item.getName() + 
 							  "' type: '"+item.getType()+
 							  "' version: '"+item.getVersion()+
 							  "' path '" + item.getPath() + "'");
@@ -170,7 +170,7 @@ describe("ti.API.Application tests",
 	test_bundled_components: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		
 		// get the components loaded by the application
@@ -195,7 +195,7 @@ describe("ti.API.Application tests",
 			value_of(item.isBundled).should_be_function();
 			value_of(item.isLoaded).should_be_function();
 			
-			Titanium.API.info("processing bundled component '" + item.getName() + 
+			Tide.API.info("processing bundled component '" + item.getName() + 
 							  "' type: '"+item.getType()+
 							  "' version: '"+item.getVersion()+
 							  "' path '" + item.getPath() + "'");
@@ -221,7 +221,7 @@ describe("ti.API.Application tests",
 			// loaded components should always indicate so...
 			value_of(item.isLoaded()).should_be_true();
 
-			Titanium.API.info("processing loaded component '" + item.getName() + 
+			Tide.API.info("processing loaded component '" + item.getName() + 
 							  "' type: '"+item.getType()+
 							  "' version: '"+item.getVersion()+
 							  "' path '" + item.getPath() + "'");
@@ -261,7 +261,7 @@ describe("ti.API.Application tests",
 	test_dependancies: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 
 		var dependancies = app.getDependencies();
@@ -281,7 +281,7 @@ describe("ti.API.Application tests",
 			value_of(dependancy.getType).should_be_function();
 			value_of(dependancy.getVersion).should_be_function();
 			
-			Titanium.API.info("processing dependancy '" + dependancy.getName() + 
+			Tide.API.info("processing dependancy '" + dependancy.getName() + 
 							  "' type: '"+dependancy.getType()+
 							  "' version: '"+dependancy.getVersion()+"'");
 			if (components)
@@ -307,14 +307,14 @@ describe("ti.API.Application tests",
 					
 					if ( bName && bType && bVersion)
 					{
-						Titanium.API.trace("match dependancy "+name+" to component");
+						Tide.API.trace("match dependancy "+name+" to component");
 						break;
 					}
 					
 					// don't spam the log file
 					if ( !bName || !bType || !bVersion)
 					{
-						Titanium.API.trace("match dependancy "+name+" to component");
+						Tide.API.trace("match dependancy "+name+" to component");
 					}
 				}
 			}
@@ -325,7 +325,7 @@ describe("ti.API.Application tests",
 	test_runtime_component: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 
 		// every module, runtime object and SDK should have a component entry		
@@ -338,14 +338,14 @@ describe("ti.API.Application tests",
 		
 		var bFound = false;
 		
-		Titanium.API.info("testing runtime component '" + runtime.getName() + 
+		Tide.API.info("testing runtime component '" + runtime.getName() + 
 						  "' type: '"+runtime.getType()+
 						  "' version: '"+runtime.getVersion()+
 						  "' path '" +runtime.getPath() + "'");
 						  
 		for ( i=0; i<components.length; i++ )
 		{
-			Titanium.API.info("processing component '" + components[i].getName() + 
+			Tide.API.info("processing component '" + components[i].getName() + 
 							  "' type: '"+components[i].getType()+
 							  "' version: '"+components[i].getVersion()+
 							  "' path '" +components[i].getPath() + "'");
@@ -354,7 +354,7 @@ describe("ti.API.Application tests",
 				 runtime.getType() == components[i].getType() &&
 				 runtime.getPath() == components[i].getPath())
 			{
-				Titanium.API.info("match runtime '" + runtime.getName() + "' to component entry");
+				Tide.API.info("match runtime '" + runtime.getName() + "' to component entry");
 				bFound = true;
 				break;
 			}
@@ -362,7 +362,7 @@ describe("ti.API.Application tests",
 		
 		if ( !bFound )
 		{
-			Titanium.API.error("failed to match runtime object '" + runtime.getName() + "' to list of loaded components");
+			Tide.API.error("failed to match runtime object '" + runtime.getName() + "' to list of loaded components");
 			value_of(bFound).should_be_true();
 		}
 
@@ -371,9 +371,9 @@ describe("ti.API.Application tests",
 	// test the installed runtime component functions
 	test_available_runtime_component: function()
 	{
-		Titanium.API.info("checking availableRuntimes[] ");
+		Tide.API.info("checking availableRuntimes[] ");
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 
 		var runtime = app.getRuntime();
@@ -387,7 +387,7 @@ describe("ti.API.Application tests",
 
 		for ( i=0; i<availableRuntimes.length; i++ )
 		{
-			Titanium.API.info("processing available runtime component '" + availableRuntimes[i].getName() + 
+			Tide.API.info("processing available runtime component '" + availableRuntimes[i].getName() + 
 							  "' type: '"+availableRuntimes[i].getType()+
 							  "' version: '"+availableRuntimes[i].getVersion()+
 							  "' path '" + availableRuntimes[i].getPath() + "'");
@@ -396,7 +396,7 @@ describe("ti.API.Application tests",
 				 runtime.getType() == availableRuntimes[i].getType() &&
 				 runtime.getPath() == availableRuntimes[i].getPath())
 			{
-				Titanium.API.info("match runtime '" + runtime.getName() + "' to available Runtimes entry");
+				Tide.API.info("match runtime '" + runtime.getName() + "' to available Runtimes entry");
 				bFound = true;
 				break;
 			}
@@ -404,7 +404,7 @@ describe("ti.API.Application tests",
 		if ( !bFound )
 		{
 			// fail the test if we don't find a value.						
-			Titanium.API.error("failed to match runtime object '" + runtime.getName() + "' to list of available runtime objects");
+			Tide.API.error("failed to match runtime object '" + runtime.getName() + "' to list of available runtime objects");
 			value_of(bFound).should_be_true();
 		}
 	},
@@ -412,9 +412,9 @@ describe("ti.API.Application tests",
 	// test the installed runtime component functions
 	test_bundled_runtime_component: function()
 	{
-		Titanium.API.info("checking bundledRuntimes[] ");
+		Tide.API.info("checking bundledRuntimes[] ");
 
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 
 		var runtime = app.getRuntime();
@@ -424,13 +424,13 @@ describe("ti.API.Application tests",
 		var bundledRuntimes = app.getBundledRuntimes();
 		value_of(bundledRuntimes).should_be_array();
 
-		Titanium.API.info("bundledRuntimes.length = "+bundledRuntimes.length);
+		Tide.API.info("bundledRuntimes.length = "+bundledRuntimes.length);
 		
 		var bFound = false;
 		
 		for ( i=0; i<bundledRuntimes.length; i++ )
 		{
-			Titanium.API.info("processing bundled runtime component '" + bundledRuntimes[i].getName() + 
+			Tide.API.info("processing bundled runtime component '" + bundledRuntimes[i].getName() + 
 							  "' type: '"+bundledRuntimes[i].getType()+
 							  "' version: '"+bundledRuntimes[i].getVersion()+
 							  "' path '" + bundledRuntimes[i].getPath() + "'");
@@ -438,7 +438,7 @@ describe("ti.API.Application tests",
 				 runtime.getType() == bundledRuntimes[i].getType() &&
 				 runtime.getPath() == bundledRuntimes[i].getPath())
 			{
-				Titanium.API.info("match runtime '" + runtime.getName() + "' to bundled Runtimes entry");
+				Tide.API.info("match runtime '" + runtime.getName() + "' to bundled Runtimes entry");
 				bFound = true;
 				break;
 			}
@@ -446,7 +446,7 @@ describe("ti.API.Application tests",
 		if ( !bFound )
 		{
 			// fail the test if we don't find a value.						
-			Titanium.API.error("failed to match runtime object '" + runtime.getName() + "' to list of bundled runtime objects");
+			Tide.API.error("failed to match runtime object '" + runtime.getName() + "' to list of bundled runtime objects");
 			value_of(bFound).should_be_true();
 		}
 	},
@@ -454,7 +454,7 @@ describe("ti.API.Application tests",
 	test_installed_modules: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		// every module, runtime object and SDK should have a component entry		
 		var components = app.getComponents();
@@ -471,12 +471,12 @@ describe("ti.API.Application tests",
 			value_of(module).should_not_be_null();
 			if (!module)
 			{
-				Titanium.API.error("failed to retrieve module from modules["+j+"]");
+				Tide.API.error("failed to retrieve module from modules["+j+"]");
 			}
 			else 
 			{
 				bFound = false;
-				Titanium.API.info("processing module '" + module.getName() + 
+				Tide.API.info("processing module '" + module.getName() + 
 								  "' type: '"+module.getType()+
 								  "' version: '"+module.getVersion()+
 								  "' path '" + module.getPath() + "'");
@@ -487,7 +487,7 @@ describe("ti.API.Application tests",
 						 module.getType() == components[i].getType() &&
 						 module.getPath() == components[i].getPath())
 					{
-						Titanium.API.trace("match module "+module.getName() +" to component entry");
+						Tide.API.trace("match module "+module.getName() +" to component entry");
 						bFound = true;
 						break;
 					}
@@ -496,7 +496,7 @@ describe("ti.API.Application tests",
 				if ( !bFound )
 				{
 					// fail the test if we don't find a value.						
-					Titanium.API.fatal("failed to match modules object to list of loaded components");
+					Tide.API.fatal("failed to match modules object to list of loaded components");
 					value_of(bFound).should_be_true();
 				}
 			}
@@ -505,10 +505,10 @@ describe("ti.API.Application tests",
 	// test the installed modules component functions
 	test_installed_modules: function()
 	{
-		Titanium.API.info("checking bundledModules[] ");
+		Tide.API.info("checking bundledModules[] ");
 		
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		var modules = app.getModules();
 		value_of(modules).should_be_array();
@@ -523,7 +523,7 @@ describe("ti.API.Application tests",
 		{
 			var module = modules[j];
 			
-			Titanium.API.info("processing module '" + module.getName() + 
+			Tide.API.info("processing module '" + module.getName() + 
 							  "' type: '"+module.getType()+
 							  "' version: '"+module.getVersion()+
 							  "' path '" + module.getPath() + "'");
@@ -533,7 +533,7 @@ describe("ti.API.Application tests",
 				var m = bundledModules[i];
 				value_of(m).should_not_be_null();
 				
-				Titanium.API.info("processing bundled module component '" + m.getName() + 
+				Tide.API.info("processing bundled module component '" + m.getName() + 
 								  "' type: '"+m.getType()+
 								  "' version: '"+m.getVersion()+
 								  "' path '" + m.getPath() + "'");
@@ -542,7 +542,7 @@ describe("ti.API.Application tests",
 					 module.getType() == m.getType() &&
 					 module.getPath() == m.getPath())
 				{
-					Titanium.API.trace("match bundled module "+module.getName() +" to modules entry");
+					Tide.API.trace("match bundled module "+module.getName() +" to modules entry");
 					bFound = true;
 					break;
 				}
@@ -552,9 +552,9 @@ describe("ti.API.Application tests",
 	// test the installed modules component functions
 	test_installed_modules: function()
 	{
-		Titanium.API.info("checking availableModules[] ");
+		Tide.API.info("checking availableModules[] ");
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		var modules = app.getModules();
 		value_of(modules).should_be_array();
@@ -568,7 +568,7 @@ describe("ti.API.Application tests",
 		{
 			var module = modules[j];
 			
-			Titanium.API.info("processing module component '" + module.getName() + 
+			Tide.API.info("processing module component '" + module.getName() + 
 							  "' type: '"+module.getType()+
 							  "' version: '"+module.getVersion()+
 							  "' path '" + module.getPath() + "'");
@@ -578,7 +578,7 @@ describe("ti.API.Application tests",
 				var m = availableModules[i];
 				value_of(m).should_not_be_null();
 				
-				Titanium.API.info("processing available module component '" + m.getName() + 
+				Tide.API.info("processing available module component '" + m.getName() + 
 								  "' type: '"+m.getType()+
 								  "' version: '"+m.getVersion()+
 								  "' path '" + m.getPath() + "'");
@@ -587,14 +587,14 @@ describe("ti.API.Application tests",
 					 module.getType() == m.getType() &&
 					 module.getPath() == m.getPath())
 				{
-					Titanium.API.trace("match avialable module "+module.getName() +" to modules entry");
+					Tide.API.trace("match avialable module "+module.getName() +" to modules entry");
 					bFound = true;
 					break;
 				}
 			}
 			if ( !bFound )
 			{
-				Titanium.API.fatal("failed to match module "+module.getName() +" to list of available modules");
+				Tide.API.fatal("failed to match module "+module.getName() +" to list of available modules");
 				// fail the test if we don't find a value.						
 				value_of(bFound).should_be_true();
 			}
@@ -605,7 +605,7 @@ describe("ti.API.Application tests",
 	test_api_sdk: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 
 		// every module, runtime object and SDK should have a component entry		
@@ -616,16 +616,16 @@ describe("ti.API.Application tests",
 		// object, we need to  verify that the lists are the same 
 		// that we get through the application object.
 
-		Titanium.API.info("checking installed SDKs[] ");
+		Tide.API.info("checking installed SDKs[] ");
 		
-		var sdks = Titanium.API.getInstalledSDKs();
+		var sdks = Tide.API.getInstalledSDKs();
 		value_of(sdks).should_be_array();
 		
 		var bFound = false;
 		for (j=0; j<sdks.length; j++ )
 		{
 			var module = sdks[j];
-			Titanium.API.info("processing SDK component '" + module.getName() + 
+			Tide.API.info("processing SDK component '" + module.getName() + 
 							  "' type: '"+module.getType()+
 							  "' version: '"+module.getVersion()+
 							  "' path '" + module.getPath() + "'");
@@ -636,7 +636,7 @@ describe("ti.API.Application tests",
 				var am = components[i];
 				value_of(am).should_not_be_null();
 				
-				Titanium.API.info("processing component '" + am.getName() + 
+				Tide.API.info("processing component '" + am.getName() + 
 								  "' type: '"+am.getType()+
 								  "' version: '"+am.getVersion()+
 								  "' path '" +am.getPath() + "'");
@@ -645,7 +645,7 @@ describe("ti.API.Application tests",
 					 module.getType() == am.getType() &&
 					 module.getPath() == am.getPath())
 				{
-					Titanium.API.trace("match SDK  "+module.getName() +" to component entry");
+					Tide.API.trace("match SDK  "+module.getName() +" to component entry");
 					bFound = true;
 					break;
 				}
@@ -655,7 +655,7 @@ describe("ti.API.Application tests",
 		if ( !bFound )
 		{
 			// fail the test if we don't find a value.						
-			Titanium.API.fatal("failed to match SDK object to list of loaded components");
+			Tide.API.fatal("failed to match SDK object to list of loaded components");
 			// this is not a real bug.  this is only meant for developer environments.
 		}
 	},
@@ -664,21 +664,21 @@ describe("ti.API.Application tests",
 	test_installed_mobile_sdks: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 
 		// every module, runtime object and SDK should have a component entry		
 		var components = app.getComponents();
 		value_of(components).should_be_object();
 
-		var mobileSDKs = Titanium.API.getInstalledMobileSDKs();
+		var mobileSDKs = Tide.API.getInstalledMobileSDKs();
 		value_of(mobileSDKs).should_be_array();
 		var bFound = false;
 
 		for (j=0; j<mobileSDKs.length; j++ )
 		{
 			var module = mobileSDKs[j];
-			Titanium.API.info("processing mobile SDK module '" + module.getName() + 
+			Tide.API.info("processing mobile SDK module '" + module.getName() + 
 							  "' type: '"+module.getType()+
 							  "' version: '"+module.getVersion()+
 							  "' path '" + module.getPath() + "'");
@@ -689,7 +689,7 @@ describe("ti.API.Application tests",
 					 module.getType() == components[i].getType() &&
 					 module.getPath() == components[i].getPath())
 				{
-					Titanium.API.trace("match avialable mobile SDK  "+module.getName() +" to components entry");
+					Tide.API.trace("match avialable mobile SDK  "+module.getName() +" to components entry");
 					bFound = true;
 					break;
 				}
@@ -697,8 +697,8 @@ describe("ti.API.Application tests",
 			
 			if ( !bFound )
 			{
-				// don't fail the test if we don't find a value.  this is really just for titanium development.
-				Titanium.API.warn("failed to match mobile SDK object to list of loaded components");
+				// don't fail the test if we don't find a value.  this is really just for Tide development.
+				Tide.API.warn("failed to match mobile SDK object to list of loaded components");
 				// this is not a real bug.  this is only meant for developer environments.
 			}
 		}
@@ -707,7 +707,7 @@ describe("ti.API.Application tests",
 	test_api_arguments: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_be_object();
 		
 		var argv = app.getArguments();
@@ -718,7 +718,7 @@ describe("ti.API.Application tests",
 		// print out all the arguments to drillbit.
 		for (i=0; i<argv.length; i++)
 		{
-			Titanium.API.info("argv["+i+"] = "+argv[i]);
+			Tide.API.info("argv["+i+"] = "+argv[i]);
 		}
 		
 		var bHasit = app.hasArgument("results");
@@ -731,7 +731,7 @@ describe("ti.API.Application tests",
 	test_api_module: function()
 	{
 		// test the objects in API		
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 	  
 		value_of(app).should_not_be_null();
 		if ( app ) 
@@ -745,7 +745,7 @@ describe("ti.API.Application tests",
 			{
 				// the PID should not be null when we are the current app
 				value_of(pid).should_not_be_null();
-				Titanium.API.info("Application PID = "+pid);
+				Tide.API.info("Application PID = "+pid);
 			}
 			else
 			{
@@ -759,18 +759,18 @@ describe("ti.API.Application tests",
 	test_api_application_Datapath: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 		
 		var dataPath = app.getDataPath();
 		value_of(dataPath).should_not_be_null();
-		Titanium.API.info("data path = "+dataPath);
+		Tide.API.info("data path = "+dataPath);
 	},
 	
 	test_api_application_Arguments: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 
 		var argv = app.getArguments();
@@ -791,31 +791,31 @@ describe("ti.API.Application tests",
 	test_api_application_manifest_path: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 
 		var manifestPath = app.getManifestPath();
 		value_of(manifestPath).should_not_be_null();
-		Titanium.API.info("application Manifest path = "+manifestPath);
+		Tide.API.info("application Manifest path = "+manifestPath);
 		
 	},
 	
 	test_api_application_path: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 
 		var path = app.getPath();
 		value_of(path).should_not_be_null();
-		Titanium.API.info("application path = "+path);	
+		Tide.API.info("application path = "+path);	
 	},
 
 	// test the manifest functions
 	test_api_manifest: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 
 		var manifest  = app.getManifest();
@@ -833,7 +833,7 @@ describe("ti.API.Application tests",
 	test_api_app_version: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 		
 		var ver = app.getVersion();
@@ -846,27 +846,27 @@ describe("ti.API.Application tests",
 	test_api_app_GUID: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 		
 		var guid = app.getGUID();
 		value_of(guid).should_be_string();
 		
 		// this is the GUID for the test harness app, not drillbit.
-		value_of(guid).should_be(Titanium.App.getGUID());
+		value_of(guid).should_be(Tide.App.getGUID());
 	},
 	
 	test_api_app_ID: function()
 	{
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 		
 		var appid = app.getID();
 		value_of(appid).should_be_string();
 		
 		// this is the ID for the test harness app, not drillbit.
-		value_of(appid).should_be(Titanium.App.getID());
+		value_of(appid).should_be(Tide.App.getID());
 	}
 	
 });

@@ -1,6 +1,6 @@
-var TFS = Titanium.Filesystem;
+var TFS = Tide.Filesystem;
 
-Titanium.AppCreator = {
+Tide.AppCreator = {
 	
 	osx: function(assetsDir,destination,name,appid,install)
 	{
@@ -24,7 +24,7 @@ Titanium.AppCreator = {
 		var mainMenu = TFS.getFile(assetsDir,'MainMenu.nib');
 		mainMenu.copy(lproj);
 
-		var icns = TFS.getFile(assetsDir,'titanium.icns');
+		var icns = TFS.getFile(assetsDir,'Tide.icns');
 		icns.copy(lproj);
 
 		var plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
@@ -36,7 +36,7 @@ Titanium.AppCreator = {
 		"	<key>CFBundleExecutable</key>\n"+
 		"	<string>"+name+"</string>\n"+
 		"	<key>CFBundleIconFile</key>\n"+
-		"	<string>titanium.icns</string>\n"+
+		"	<string>Tide.icns</string>\n"+
 		"	<key>CFBundleIdentifier</key>\n"+
 		"	<string>"+appid+(install?'.installer':'')+"</string>\n"+
 		"	<key>CFBundleInfoDictionaryVersion</key>\n"+
@@ -137,17 +137,17 @@ Titanium.AppCreator = {
 };
 
 
-Titanium.createApp = function(destination,name,appid,install)
+Tide.createApp = function(destination,name,appid,install)
 {
 
 	// DRILLBIT ONLY: We just grab the bundled SDK here, since we know
 	// that's where the assets are.
-	var components = Titanium.API.getApplication().getComponents();
+	var components = Tide.API.getApplication().getComponents();
 	var assetsDir = null;
 	for (var i = 0; i < components.length; i++)
 	{
 		var c = components[i];
-		if (c.getType() == Titanium.API.SDK)
+		if (c.getType() == Tide.API.SDK)
 		{
 			assetsDir = TFS.getFile(components[i].getPath());
 			break;
@@ -156,18 +156,18 @@ Titanium.createApp = function(destination,name,appid,install)
 	
 	if (!assetsDir.exists())
 	{
-		Titanium.API.error("Could not find assets directory at: " + assetsDir);
+		Tide.API.error("Could not find assets directory at: " + assetsDir);
 	}
 	install = (typeof(install)=='undefined') ? true : install;
 
-	var platform = Titanium.platform;
-	var fn = Titanium.AppCreator[platform];
+	var platform = Tide.platform;
+	var fn = Tide.AppCreator[platform];
 	return fn(assetsDir,destination,name,appid,install);
 };
 
-Titanium.linkLibraries = function(runtimeDir)
+Tide.linkLibraries = function(runtimeDir)
 {
-	if (Titanium.platform == 'osx')
+	if (Tide.platform == 'osx')
 	{
 		var fw = ['WebKit','WebCore','JavaScriptCore'];
 		for (var c=0;c<fw.length;c++)

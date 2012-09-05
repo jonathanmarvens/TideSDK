@@ -3,7 +3,7 @@
  * http://license.appcelerator.com for full copy of the License.
  **/
 
-// A collection of JS patches for various UI functionality in Titanium
+// A collection of JS patches for various UI functionality in Tide
 
 //
 // execute in anonymous function block so now variables leak into the
@@ -14,13 +14,13 @@
 
     // ensure that the window.opener property is set when we open a native 
     // window in the same domain as this window (assuming this window is a child)
-    if (Titanium.UI.getCurrentWindow().getParent())
+    if (Tide.UI.getCurrentWindow().getParent())
     {
-        var d = Titanium.UI.getCurrentWindow().getParent().window.document;
+        var d = Tide.UI.getCurrentWindow().getParent().window.document;
         // make sure in the same domain
         if (typeof(d)!='undefined' && d.domain == document.domain)
         {
-            window.opener = Titanium.UI.getCurrentWindow().getParent().window;
+            window.opener = Tide.UI.getCurrentWindow().getParent().window;
         }
     }
 
@@ -29,7 +29,7 @@
         // append the platform (osx, linux, win32) to the body so we can dynamically
         // use platform specific CSS such as body.win32 div { } 
         var cn = (document.body.className || '');
-        document.body.className =  cn + (cn ? ' ': '') + Titanium.platform;
+        document.body.className =  cn + (cn ? ' ': '') + Tide.platform;
 
         //
         // insert our user specific stylesheet in a generic way
@@ -84,11 +84,11 @@
         };
         obj[methodName] = fn;
     }
-    replaceMethod(console, "debug", function(msg) { Titanium.API.debug(msg); });
-    replaceMethod(console, "log", function(msg) { Titanium.API.log(msg); });
-    replaceMethod(console, "info", function(msg) { Titanium.API.info(msg); });
-    replaceMethod(console, "warn", function(msg) { Titanium.API.warn(msg); });
-    replaceMethod(console, "error", function(msg) { Titanium.API.error(msg); });
+    replaceMethod(console, "debug", function(msg) { Tide.API.debug(msg); });
+    replaceMethod(console, "log", function(msg) { Tide.API.log(msg); });
+    replaceMethod(console, "info", function(msg) { Tide.API.info(msg); });
+    replaceMethod(console, "warn", function(msg) { Tide.API.warn(msg); });
+    replaceMethod(console, "error", function(msg) { Tide.API.error(msg); });
 
     // Exchange the open() method for a version which ensures that a blank
     // URL maps to app://__blank__ rather than about:blank.
@@ -119,20 +119,20 @@
     /**
      * @tiapi(property=True,name=UI.Window.isDialog,since=0.4) true if this window is a UI Dialog
      */
-    Titanium.UI.getCurrentWindow().isDialog = function()
+    Tide.UI.getCurrentWindow().isDialog = function()
     {
-        return Titanium.UI.getCurrentWindow()._isDialog;
+        return Tide.UI.getCurrentWindow()._isDialog;
     }
-    Titanium.UI.getCurrentWindow()._isDialog = false;
+    Tide.UI.getCurrentWindow()._isDialog = false;
 
     /**
      * @tiapi(method=True,name=UI.showDialog,since=0.4) create a UI dialog
      * @tiarg(for=UI.showDialog,name=params,type=Object) options to pass in to create window
      * @tiresult(for=UI.showDialog,type=UI.Dialog) dialog instance
      */
-    Titanium.UI.showDialog = function(params)
+    Tide.UI.showDialog = function(params)
     {
-        var dialogWindow = Titanium.UI.createWindow(params);
+        var dialogWindow = Tide.UI.createWindow(params);
 
         dialogWindow._dialogResult = null;
         dialogWindow._dialogParameters = params.parameters || {};
@@ -189,16 +189,16 @@
      * @tiarg(for=JSON.parse,name=json,type=String) JSON string to convert
      * @tiresult(for=JSON.parse,type=Object) Returns the object representation of the string 
      */
-    if (!Titanium.JSON)
-        Titanium.JSON = window.JSON;
+    if (!Tide.JSON)
+        Tide.JSON = window.JSON;
 
-    // Enable titanium notifications as a fallback when platform
+    // Enable Tide notifications as a fallback when platform
     // native notifications are not available.
-    if (Titanium.UI.nativeNotifications == false)
+    if (Tide.UI.nativeNotifications == false)
     {
         var notification_windows = 1;
 
-        function TitaniumNotification(window)
+        function TideNotification(window)
         {
             var self = this;
             var width = 300;
@@ -214,7 +214,7 @@
                 delay: 3000,
             };
 
-            var mywindow = Titanium.UI.mainWindow.createWindow(
+            var mywindow = Tide.UI.mainWindow.createWindow(
             {
                 width:width,
                 height:height,
@@ -264,9 +264,9 @@
                 animate = (animate==null) ? true : animate;
                 autohide = (autohide==null) ? true : autohide;
                 mywindow.setX(window.screen.availWidth-width-20);
-                if (Titanium.platform == "osx" || Titanium.platform == 'linux') {
+                if (Tide.platform == "osx" || Tide.platform == 'linux') {
                     mywindow.setY(25);
-                } else if (Titanium.platform == "win32") {
+                } else if (Tide.platform == "win32") {
                     mywindow.setY(window.screen.availHeight-height-10);
                 }
 
@@ -312,12 +312,12 @@
             };
         };
 
-        Titanium.UI.createNotification = function()
+        Tide.UI.createNotification = function()
         {
-            var window = Titanium.UI.mainWindow.getDOMWindow();
+            var window = Tide.UI.mainWindow.getDOMWindow();
             if (!window)
                 throw "Unable to get main window DOM!"
-            var n = new TitaniumNotification(window);
+            var n = new TideNotification(window);
             if (arguments.length == 1)
                 n.configure(arguments[0]);
             return n;

@@ -2,7 +2,7 @@ describe("UI Module Tests",{
 	test_user_window_title: function()
 	{
 		// get the current UserWindow object
-		var w = Titanium.UI.getCurrentWindow().createWindow('http://www.google.com');
+		var w = Tide.UI.getCurrentWindow().createWindow('http://www.google.com');
 
 		var title = "blahahahahahahahahahahahahaha";
 		w.setTitle(title);
@@ -38,7 +38,7 @@ describe("UI Module Tests",{
 	test_user_window_url: function()
 	{
 		// get the current UserWindow object
-		var w = Titanium.UI.getCurrentWindow().createWindow('http://www.google.com');
+		var w = Tide.UI.getCurrentWindow().createWindow('http://www.google.com');
 
 		var url = "http://www.google.com/";
 		w.setURL(url);
@@ -74,34 +74,34 @@ describe("UI Module Tests",{
 		// If these tests fail, perhaps the constant has changed. If that's
 		// the case, just update the tests below and be sure that nothing
 		// else in the system breaks! Hopefully apps do not rely on magic strings.
-		value_of(Titanium.FOCUSED).should_be("focused");
-		value_of(Titanium.UNFOCUSED).should_be("unfocused");
-		value_of(Titanium.OPEN).should_be("open");
-		value_of(Titanium.OPENED).should_be("opened");
-		value_of(Titanium.CLOSE).should_be("close");
-		value_of(Titanium.CLOSED).should_be("closed");
-		value_of(Titanium.HIDDEN).should_be("hidden");
-		value_of(Titanium.SHOWN).should_be("shown");
-		value_of(Titanium.FULLSCREENED).should_be("fullscreened");
-		value_of(Titanium.UNFULLSCREENED).should_be("unfullscreened");
-		value_of(Titanium.MAXIMIZED).should_be("maximized");
-		value_of(Titanium.MINIMIZED).should_be("minimized");
-		value_of(Titanium.RESIZED).should_be("resized");
-		value_of(Titanium.MOVED).should_be("moved");
-		value_of(Titanium.PAGE_INITIALIZED).should_be("page.init");
-		value_of(Titanium.PAGE_LOADED).should_be("page.load");
+		value_of(Tide.FOCUSED).should_be("focused");
+		value_of(Tide.UNFOCUSED).should_be("unfocused");
+		value_of(Tide.OPEN).should_be("open");
+		value_of(Tide.OPENED).should_be("opened");
+		value_of(Tide.CLOSE).should_be("close");
+		value_of(Tide.CLOSED).should_be("closed");
+		value_of(Tide.HIDDEN).should_be("hidden");
+		value_of(Tide.SHOWN).should_be("shown");
+		value_of(Tide.FULLSCREENED).should_be("fullscreened");
+		value_of(Tide.UNFULLSCREENED).should_be("unfullscreened");
+		value_of(Tide.MAXIMIZED).should_be("maximized");
+		value_of(Tide.MINIMIZED).should_be("minimized");
+		value_of(Tide.RESIZED).should_be("resized");
+		value_of(Tide.MOVED).should_be("moved");
+		value_of(Tide.PAGE_INITIALIZED).should_be("page.init");
+		value_of(Tide.PAGE_LOADED).should_be("page.load");
 	},
 	test_window_listener_as_async: function(callback)
 	{
 		// get the current UserWindow object
-		var w = Titanium.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
 
 		var messageLog = { };
-		messageLog[Titanium.CLOSE]  = false;
-		messageLog[Titanium.CLOSED]  = false;
-		messageLog[Titanium.OPEN]  = false;
-		messageLog[Titanium.OPENED]  = false;
-		messageLog[Titanium.HIDDEN]  = false;
+		messageLog[Tide.CLOSE]  = false;
+		messageLog[Tide.CLOSED]  = false;
+		messageLog[Tide.OPEN]  = false;
+		messageLog[Tide.OPENED]  = false;
+		messageLog[Tide.HIDDEN]  = false;
 
 		w.addEventListener(function(event)
 		{
@@ -112,11 +112,11 @@ describe("UI Module Tests",{
 		setTimeout(function()
 		{
 			w.close();
-			if (messageLog[Titanium.OPEN] !== true)
+			if (messageLog[Tide.OPEN] !== true)
 			{
 				callback.failed("Did not detect open message");
 			}
-			else if (messageLog[Titanium.OPENED] !== true)
+			else if (messageLog[Tide.OPENED] !== true)
 			{
 				callback.failed("Did not detect opened message");
 			}
@@ -129,7 +129,7 @@ describe("UI Module Tests",{
 	test_window_maximize_fires_resize_as_async: function(callback)
 	{
 		// get the current UserWindow object
-		var w = Titanium.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.open();
 
 		var resizedFired = false;
@@ -173,24 +173,24 @@ describe("UI Module Tests",{
 	
 	test_constants: function()
 	{
-		value_of(Titanium.UI.CENTERED).should_be_number();
-		value_of(Titanium.FOCUSED).should_be_string();
-		value_of(Titanium.UNFOCUSED).should_be_string();
-		value_of(Titanium.OPEN).should_be_string();
-		value_of(Titanium.OPENED).should_be_string();
-		value_of(Titanium.CLOSE).should_be_string();
-		value_of(Titanium.CLOSED).should_be_string();
-		value_of(Titanium.HIDDEN).should_be_string();
-		value_of(Titanium.SHOWN).should_be_string();
-		value_of(Titanium.FULLSCREENED).should_be_string();
-		value_of(Titanium.UNFULLSCREENED).should_be_string();
-		value_of(Titanium.MAXIMIZED).should_be_string();
-		value_of(Titanium.MINIMIZED).should_be_string();
-		value_of(Titanium.RESIZED).should_be_string();
-		value_of(Titanium.MOVED).should_be_string();
-		value_of(Titanium.PAGE_INITIALIZED).should_be_string();
-		value_of(Titanium.PAGE_LOADED).should_be_string();
-		value_of(Titanium.CREATED).should_be_string();
+		value_of(Tide.UI.CENTERED).should_be_number();
+		value_of(Tide.FOCUSED).should_be_string();
+		value_of(Tide.UNFOCUSED).should_be_string();
+		value_of(Tide.OPEN).should_be_string();
+		value_of(Tide.OPENED).should_be_string();
+		value_of(Tide.CLOSE).should_be_string();
+		value_of(Tide.CLOSED).should_be_string();
+		value_of(Tide.HIDDEN).should_be_string();
+		value_of(Tide.SHOWN).should_be_string();
+		value_of(Tide.FULLSCREENED).should_be_string();
+		value_of(Tide.UNFULLSCREENED).should_be_string();
+		value_of(Tide.MAXIMIZED).should_be_string();
+		value_of(Tide.MINIMIZED).should_be_string();
+		value_of(Tide.RESIZED).should_be_string();
+		value_of(Tide.MOVED).should_be_string();
+		value_of(Tide.PAGE_INITIALIZED).should_be_string();
+		value_of(Tide.PAGE_LOADED).should_be_string();
+		value_of(Tide.CREATED).should_be_string();
 	},
 	test_window_events_as_async: function(callback)
 	{
@@ -210,22 +210,22 @@ describe("UI Module Tests",{
 			observedEvents[event.getType()] = "Yakko";
 		}
 
-		var w = Titanium.UI.getCurrentWindow().createWindow('app://test.html');
+		var w = Tide.UI.getCurrentWindow().createWindow('app://test.html');
 		var listener = w.addEventListener(eventListener);
 		value_of(listener).should_be_function();
 
-		addEventTest(function() { w.open(); }, [Titanium.OPEN, Titanium.OPENED, Titanium.PAGE_LOADED], 2000);
-		addEventTest(function() { w.setVisible(false); }, [Titanium.HIDDEN]);
-		addEventTest(function() { w.setVisible(true); }, [Titanium.SHOWN]);
-		addEventTest(function() { w.setFullscreen(true); }, [Titanium.FULLSCREENED]);
-		addEventTest(function() { w.setFullscreen(false); }, [Titanium.UNFULLSCREENED]);
-		addEventTest(function() { w.maximize(); }, [Titanium.MAXIMIZED]);
-		addEventTest(function() { w.unmaximize(); w.minimize(); }, [Titanium.MINIMIZED]);
-		addEventTest(function() { w.unminimize(); var b = w.getBounds(); w.setX(b.x+1);}, [Titanium.MOVED]);
-		addEventTest(function() {var b = w.getBounds(); w.setY(b.y+1); }, [Titanium.MOVED]);
-		addEventTest(function() {var b = w.getBounds(); w.setWidth(b.width*2); }, [Titanium.RESIZED]);
-		addEventTest(function() {var b = w.getBounds(); w.setHeight(b.height+1); }, [Titanium.RESIZED]);
-		addEventTest(function() {w.close();}, [Titanium.CLOSE, Titanium.CLOSED]);
+		addEventTest(function() { w.open(); }, [Tide.OPEN, Tide.OPENED, Tide.PAGE_LOADED], 2000);
+		addEventTest(function() { w.setVisible(false); }, [Tide.HIDDEN]);
+		addEventTest(function() { w.setVisible(true); }, [Tide.SHOWN]);
+		addEventTest(function() { w.setFullscreen(true); }, [Tide.FULLSCREENED]);
+		addEventTest(function() { w.setFullscreen(false); }, [Tide.UNFULLSCREENED]);
+		addEventTest(function() { w.maximize(); }, [Tide.MAXIMIZED]);
+		addEventTest(function() { w.unmaximize(); w.minimize(); }, [Tide.MINIMIZED]);
+		addEventTest(function() { w.unminimize(); var b = w.getBounds(); w.setX(b.x+1);}, [Tide.MOVED]);
+		addEventTest(function() {var b = w.getBounds(); w.setY(b.y+1); }, [Tide.MOVED]);
+		addEventTest(function() {var b = w.getBounds(); w.setWidth(b.width*2); }, [Tide.RESIZED]);
+		addEventTest(function() {var b = w.getBounds(); w.setHeight(b.height+1); }, [Tide.RESIZED]);
+		addEventTest(function() {w.close();}, [Tide.CLOSE, Tide.CLOSED]);
 		
 		var runNextTest = function() {
 			if (eventTests.length <= 0)
@@ -253,7 +253,7 @@ describe("UI Module Tests",{
 	},
 	test_set_x_sanity_as_async: function(callback)
 	{
-		var w = Titanium.UI.getCurrentWindow().createWindow({width: 500, height: 300});
+		var w = Tide.UI.getCurrentWindow().createWindow({width: 500, height: 300});
 		var orig_y = w.getY();
 		w.setX(100);
 
@@ -267,7 +267,7 @@ describe("UI Module Tests",{
 	},
 	test_set_y_sanity_as_async: function(callback)
 	{
-		var w = Titanium.UI.getCurrentWindow().createWindow({width: 500, height: 300});
+		var w = Tide.UI.getCurrentWindow().createWindow({width: 500, height: 300});
 		var orig_x = w.getX();
 		w.setY(100);
 
@@ -281,7 +281,7 @@ describe("UI Module Tests",{
 	},
 	test_set_width_sanity_as_async: function(callback)
 	{
-		var w = Titanium.UI.getCurrentWindow().createWindow({width: 500, height: 300});
+		var w = Tide.UI.getCurrentWindow().createWindow({width: 500, height: 300});
 		var orig_x = w.getX();
 		var orig_y = w.getY();
 		w.setWidth(400);
@@ -296,7 +296,7 @@ describe("UI Module Tests",{
 	},
 	test_set_height_sanity_as_async: function(callback)
 	{
-		var w = Titanium.UI.getCurrentWindow().createWindow({width: 500, height: 300});
+		var w = Tide.UI.getCurrentWindow().createWindow({width: 500, height: 300});
 		var orig_x = w.getX();
 		var orig_y = w.getY();
 		w.setHeight(400);
@@ -311,10 +311,10 @@ describe("UI Module Tests",{
 	},
 	test_cancel_close_with_stop_propagation_as_async: function(callback)
 	{
-		var w = Titanium.UI.getCurrentWindow().createWindow({width: 500, height: 300});
+		var w = Tide.UI.getCurrentWindow().createWindow({width: 500, height: 300});
 		var cancel = true;
 		var sawEvent = false;
-		w.addEventListener(Titanium.CLOSE, function(event) {
+		w.addEventListener(Tide.CLOSE, function(event) {
 			sawEvent = true;
 			if (cancel)
 			{
@@ -327,18 +327,18 @@ describe("UI Module Tests",{
 		setTimeout(function() {
 			w.close();
 			setTimeout(function () {
-				Titanium.API.debug("here1");
+				Tide.API.debug("here1");
 				if (!sawEvent)
 				{
 					callback.failed("Did not see CLOSE event.");
 				}
 
-				Titanium.API.debug("did see the event");
+				Tide.API.debug("did see the event");
 				if (w.isActive()) {
-					Titanium.API.debug("window is active");
+					Tide.API.debug("window is active");
 					callback.passed();
 				} else {
-					Titanium.API.debug("window is not active");
+					Tide.API.debug("window is not active");
 					callback.failed("Window close event was not cancelled.");
 				}
 				cancel = false;
@@ -348,10 +348,10 @@ describe("UI Module Tests",{
 	},
 	test_cancel_close_with_prevent_default_as_async: function(callback)
 	{
-		var w = Titanium.UI.getCurrentWindow().createWindow({width: 500, height: 300});
+		var w = Tide.UI.getCurrentWindow().createWindow({width: 500, height: 300});
 		var cancel = true;
 		var sawEvent = false;
-		w.addEventListener(Titanium.CLOSE, function(event) {
+		w.addEventListener(Tide.CLOSE, function(event) {
 			sawEvent = true;
 			if (cancel)
 			{

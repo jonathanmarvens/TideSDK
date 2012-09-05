@@ -1,16 +1,16 @@
 /*
- * Appcelerator Titanium - licensed under the Apache Public License 2
+ * Appcelerator Tide - licensed under the Apache Public License 2
  * see LICENSE in the root folder for details on the license.
  * Copyright (c) 2008-2009 Appcelerator, Inc. All Rights Reserved.
  */
 
 (function() {
     
-    var ti_createProcess = Titanium.Process.createProcess;
+    var ti_createProcess = Tide.Process.createProcess;
     
-    Titanium.Process.createProcess = function()
+    Tide.Process.createProcess = function()
     {
-        var process = ti_createProcess.apply(Titanium.Process, arguments);
+        var process = ti_createProcess.apply(Tide.Process, arguments);
         
         /**
          * @tiapi(method=True,name=Process.Process.setOnReadLine,since=0.5)
@@ -61,15 +61,15 @@
      * @tiarg[String, command] The command to launch
      * @tiarg[Array<String>, arguments] A list of arguments to the command
      */
-    Titanium.Process.launch = function(cmd, args)
+    Tide.Process.launch = function(cmd, args)
     {
-        Titanium.API.warn(
-            "Titanium.Process.launch is deprecated, please use Titanium.Process.createProcess instead");
+        Tide.API.warn(
+            "Tide.Process.launch is deprecated, please use Tide.Process.createProcess instead");
         
         if (!args) args = [];
         args.unshift(cmd);
         
-        var process = ti_createProcess.call(Titanium.Process, args);
+        var process = ti_createProcess.call(Tide.Process, args);
         var buffer = '';
         var onRead = null;
         var onExit = null;

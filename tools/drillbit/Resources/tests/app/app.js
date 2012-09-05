@@ -2,46 +2,46 @@ describe("ti.App tests",
 {
 	validate_app: function()
 	{
-		value_of(Titanium.platform).should_be_one_of(['win32','osx','linux']);
-		value_of(Titanium.version).should_be_string();
+		value_of(Tide.platform).should_be_one_of(['win32','osx','linux']);
+		value_of(Tide.version).should_be_string();
 		
-		value_of(Titanium.App.getID()).should_be('com.titaniumapp.unittest');
-		value_of(Titanium.App.getName()).should_be('foobar');
-		value_of(Titanium.App.getVersion()).should_be('1.2');
-		value_of(Titanium.App.getPublisher()).should_be('yoy');
-		value_of(Titanium.App.getURL()).should_be('blah.com');
-		value_of(Titanium.App.getCopyright()).should_be('2010');
-		value_of(Titanium.App.getDescription()).should_be('cool like dat');
-		value_of(Titanium.App.getGUID()).should_be('CF0D2CB7-B4BD-488F-9F8E-669E6B53E0C4');
+		value_of(Tide.App.getID()).should_be('com.Tideapp.unittest');
+		value_of(Tide.App.getName()).should_be('foobar');
+		value_of(Tide.App.getVersion()).should_be('1.2');
+		value_of(Tide.App.getPublisher()).should_be('yoy');
+		value_of(Tide.App.getURL()).should_be('blah.com');
+		value_of(Tide.App.getCopyright()).should_be('2010');
+		value_of(Tide.App.getDescription()).should_be('cool like dat');
+		value_of(Tide.App.getGUID()).should_be('CF0D2CB7-B4BD-488F-9F8E-669E6B53E0C4');
 
 		// No default icon set for the application.
-		var icon = Titanium.App.getIcon();
+		var icon = Tide.App.getIcon();
 		value_of(icon).should_be_null();
 
-		value_of(Titanium.App.exit).should_be_function();
-		value_of(Titanium.App.loadProperties).should_be_function();
-		value_of(Titanium.App.path).should_not_be_null();
-		value_of(Titanium.App.arguments).should_not_be_null();
-		value_of(Titanium.App.Properties).should_be_object();
+		value_of(Tide.App.exit).should_be_function();
+		value_of(Tide.App.loadProperties).should_be_function();
+		value_of(Tide.App.path).should_not_be_null();
+		value_of(Tide.App.arguments).should_not_be_null();
+		value_of(Tide.App.Properties).should_be_object();
 		
-		value_of(Titanium.App.home).should_not_be_null();
-		value_of(Titanium.App.stdout).should_be_function();
-		value_of(Titanium.App.stderr).should_be_function();
+		value_of(Tide.App.home).should_not_be_null();
+		value_of(Tide.App.stdout).should_be_function();
+		value_of(Tide.App.stderr).should_be_function();
 		
 		// this should be the default stream if not specified in the manifest
-		value_of(Titanium.App.getStreamURL()).should_be('https://api.appcelerator.net/p/v1');
+		value_of(Tide.App.getStreamURL()).should_be('https://api.appcelerator.net/p/v1');
 		// test passing arg
-		value_of(Titanium.App.getStreamURL('foo')).should_be('https://api.appcelerator.net/p/v1/foo');
+		value_of(Tide.App.getStreamURL('foo')).should_be('https://api.appcelerator.net/p/v1/foo');
 		// test passing multiple args
-		value_of(Titanium.App.getStreamURL('foo','bar')).should_be('https://api.appcelerator.net/p/v1/foo/bar');
+		value_of(Tide.App.getStreamURL('foo','bar')).should_be('https://api.appcelerator.net/p/v1/foo/bar');
 	},
 	
 	//comment out for now, this test function causes the app test to timeout in win32,
 	test_system_properties: function()
 	{
 		// test type conversion and parsing of system properties embedded in tiapp.xml
-		value_of(Titanium.App.getSystemProperties()).should_be_object();
-		var sysProps = Titanium.App.getSystemProperties();
+		value_of(Tide.App.getSystemProperties()).should_be_object();
+		var sysProps = Tide.App.getSystemProperties();
 		
 		value_of(sysProps.getString("teststring")).should_be("stringvalue");
 		value_of(sysProps.getInt("testint")).should_be(1);
@@ -53,7 +53,7 @@ describe("ti.App tests",
 	
 	test_create_properties_object: function()
 	{
-		var props = Titanium.App.createProperties();
+		var props = Tide.App.createProperties();
 		value_of(props).should_be_object();
 
 		value_of(props.getBool).should_be_function();
@@ -73,7 +73,7 @@ describe("ti.App tests",
 	
 	test_create_properties: function()
 	{
-		var props2 = Titanium.App.createProperties({
+		var props2 = Tide.App.createProperties({
 			"val1": true,
 			"val2": 1.1,
 			"val3": ['a', 'b', 'c'],
@@ -93,7 +93,7 @@ describe("ti.App tests",
 		value_of(props2.getList("val3")).should_match_array(['a','b','c']);
 		value_of(props2.getString("val4")).should_be("123");
 		
-		var TFS = Titanium.Filesystem;
+		var TFS = Tide.Filesystem;
 		var sep = TFS.getSeparator();
 		var appdir = TFS.getApplicationDataDirectory();
 		var path = appdir+sep+"_testing.properties";
@@ -104,7 +104,7 @@ describe("ti.App tests",
 
 	test_remove_properties: function()
 	{
-		var props = Titanium.App.createProperties({
+		var props = Tide.App.createProperties({
 			"val1": true,
 			"val2": 1.1,
 			"val3": ['a', 'b', 'c'],
@@ -122,11 +122,11 @@ describe("ti.App tests",
 	test_app_URLToPath: function ()
 	{
 	    // get the fully qualified absolute path to the properties.
-		var path = Titanium.App.appURLToPath("app://app.properties");
+		var path = Tide.App.appURLToPath("app://app.properties");
 		value_of(path).should_be_string();
 		
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 
 		// the application object will give us the exe path
@@ -139,15 +139,15 @@ describe("ti.App tests",
 		value_of(index).should_not_be(-1);
 		
 		// Lighthouse issue #90: Make sure app URLs with the appid in the host are stripped
-		var url = Titanium.UI.currentWindow.getURL();
+		var url = Tide.UI.currentWindow.getURL();
 		var urlNoHost = "app://index.html";
-		var urlPath = Titanium.App.appURLToPath(url);
-		value_of(urlPath).should_be(Titanium.App.appURLToPath(urlNoHost));
+		var urlPath = Tide.App.appURLToPath(url);
+		value_of(urlPath).should_be(Tide.App.appURLToPath(urlNoHost));
 	},
 
 	test_app_loadproperties: function ()
 	{
-		var props = Titanium.App.loadProperties(Titanium.App.appURLToPath("app://app.properties"));
+		var props = Tide.App.loadProperties(Tide.App.appURLToPath("app://app.properties"));
 		value_of(props).should_be_object();
 		value_of(props.getBool("trueval")).should_be_true();
 		value_of(props.getBool("falseval")).should_be_false();
@@ -159,14 +159,14 @@ describe("ti.App tests",
 	
 	test_app_arguments: function()
 	{
-		value_of(Titanium.App.arguments).should_be_array();
+		value_of(Tide.App.arguments).should_be_array();
 		// this is specific to the test harness args
-		value_of(Titanium.App.arguments.length).should_be(6); 
+		value_of(Tide.App.arguments.length).should_be(6); 
 
-		Titanium.API.debug("arguments[0] "+Titanium.App.arguments[0]);
+		Tide.API.debug("arguments[0] "+Tide.App.arguments[0]);
 
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 
 		var argv = app.getArguments();
@@ -178,18 +178,18 @@ describe("ti.App tests",
 		var subPath = argv[0].substr(0,argv[0].search(app.getName()));
 
 		// argv[0] is the fully qualified name and path to the exe
-		var index = Titanium.App.arguments[0].indexOf(subPath);
+		var index = Tide.App.arguments[0].indexOf(subPath);
 		value_of(index).should_not_be(-1);
 	},
 	
 	test_app_home_property: function()
 	{
-		value_of(Titanium.App.home).should_not_be_null();
-		Titanium.API.debug("home is "+Titanium.App.home);
-		Titanium.API.debug("Titanium.App.arguments[0] is "+Titanium.App.arguments[0]);
+		value_of(Tide.App.home).should_not_be_null();
+		Tide.API.debug("home is "+Tide.App.home);
+		Tide.API.debug("Tide.App.arguments[0] is "+Tide.App.arguments[0]);
 
 		// get the application object
-		var app = Titanium.API.getApplication();
+		var app = Tide.API.getApplication();
 		value_of(app).should_not_be_null();
 
 		var argv = app.getArguments();
@@ -201,16 +201,16 @@ describe("ti.App tests",
 		var subPath = argv[0].substr(0,argv[0].search(app.getName()));
 
 		// argv[0] is the fully qualified name and path to the exe
-		var index = Titanium.App.home.indexOf(subPath);
+		var index = Tide.App.home.indexOf(subPath);
 		value_of(index).should_not_be(-1);
 	},
 
 	test_app_path_property: function()
 	{
-		value_of(Titanium.App.path).should_not_be_null();
-		Titanium.API.debug("path is "+Titanium.App.path);
+		value_of(Tide.App.path).should_not_be_null();
+		Tide.API.debug("path is "+Tide.App.path);
 
-		var index = Titanium.App.path.indexOf(Titanium.App.home);
+		var index = Tide.App.path.indexOf(Tide.App.home);
 		value_of(index).should_not_be(-1);
 	},
 });

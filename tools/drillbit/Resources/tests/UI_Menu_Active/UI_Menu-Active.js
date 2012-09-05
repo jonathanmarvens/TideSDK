@@ -1,11 +1,11 @@
 describe("UI.Menu (Active)",{
 	test_basic_menu_append_and_getitemat_as_async: function(cb)
 	{
-		var w1 = Titanium.UI.getCurrentWindow();
-		var w2 = Titanium.UI.createWindow({url: 'blah.html'});
+		var w1 = Tide.UI.getCurrentWindow();
+		var w2 = Tide.UI.createWindow({url: 'blah.html'});
 		w2.open();
 
-		var tui = Titanium.UI;
+		var tui = Tide.UI;
 		var menu = tui.createMenu();
 		w1.setMenu(menu);
 		w2.setMenu(menu);
@@ -37,11 +37,11 @@ describe("UI.Menu (Active)",{
 	},
 	test_active_removeitem_at_as_async: function(cb)
 	{
-		var w1 = Titanium.UI.getCurrentWindow();
-		var w2 = Titanium.UI.createWindow({url: 'blah.html'});
+		var w1 = Tide.UI.getCurrentWindow();
+		var w2 = Tide.UI.createWindow({url: 'blah.html'});
 		w2.open();
 
-		var tui = Titanium.UI;
+		var tui = Tide.UI;
 		var menu = tui.createMenu();
 		w1.setMenu(menu);
 		w2.setMenu(menu);

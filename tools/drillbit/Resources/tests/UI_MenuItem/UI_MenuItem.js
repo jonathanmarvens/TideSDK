@@ -1,7 +1,7 @@
 describe("UI.MenuItem",{
 	test_basic_methods: function()
 	{
-		var tui = Titanium.UI;
+		var tui = Tide.UI;
 		value_of(tui.createMenuItem).should_be_function();
 		value_of(tui.createCheckMenuItem).should_be_function();
 		value_of(tui.createSeparatorMenuItem).should_be_function();
@@ -79,7 +79,7 @@ describe("UI.MenuItem",{
 	},
 	test_setlabel: function()
 	{
-		var tui = Titanium.UI;
+		var tui = Tide.UI;
 		value_of(tui.createMenuItem).should_be_
 		var menu = tui.createMenu();
 		var item = tui.createMenuItem("blah1");
@@ -110,7 +110,7 @@ describe("UI.MenuItem",{
 	},
 	test_enable_disable: function()
 	{
-		var tui = Titanium.UI;
+		var tui = Tide.UI;
 		value_of(tui.createMenuItem).should_be_
 		var menu = tui.createMenu();
 		var item = tui.createMenuItem("blah1");
@@ -141,7 +141,7 @@ describe("UI.MenuItem",{
 	},
 	test_set_submenu: function()
 	{
-		var tui = Titanium.UI;
+		var tui = Tide.UI;
 		var menu = tui.createMenu();
 		var mitem = tui.createMenuItem("blah1");
 
@@ -175,7 +175,7 @@ describe("UI.MenuItem",{
 	},
 	test_set_recursive_menu: function()
 	{
-		var menu = Titanium.UI.createMenu();
+		var menu = Tide.UI.createMenu();
 		menu.addItem("blah1");
 		menu.addItem("blah2");
 		menu.addItem("blah3");
@@ -193,7 +193,7 @@ describe("UI.MenuItem",{
 		try { item6.setSubmenu(menu);;exc = false } catch (e) { }
 		value_of(exc).should_be(true);
 
-		var itemz = Titanium.UI.createMenuItem();
+		var itemz = Tide.UI.createMenuItem();
 		itemz.setSubmenu(menu);
 		try {
 			item2.getSubmenu().appendItem(itemz);
