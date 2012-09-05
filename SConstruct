@@ -16,15 +16,10 @@ build = BuildConfig(
 EnsureSConsVersion(1,2,0)
 EnsurePythonVersion(2,5)
 
-build.set_libtide_source_dir(path.abspath('tide'))
+build.set_libtide_source_dir(path.abspath('src/tide'))
 
 build.titanium_source_dir = path.abspath('.')
 build.titanium_sdk_dir = path.join(build.titanium_source_dir, 'sdk')
-
-# This should only be used for accessing various
-# scripts in the tide build directory. All resources
-# should instead be built to build.dir
-build.libtide_build_dir = path.join(build.libtide_source_dir, 'build')
 
 build.env.Append(CPPPATH=[
 	build.titanium_source_dir,
@@ -55,7 +50,7 @@ clean = 'clean' in targets or ARGUMENTS.get('clean', 0)
 build.nopackage = ARGUMENTS.get('nopackage', 0)
 
 if clean:
-	print "Obliterating your build directory: %s" % build.dir
+	print "cleaning build directory: %s" % build.dir
 	if path.exists(build.dir):
 		dir_util.remove_tree(build.dir)
 	Exit(0)
@@ -65,14 +60,14 @@ if ARGUMENTS.get('test_crash', 0):
 	build.env.Append(CPPDEFINES = ('TEST_CRASH_DETECTION', 1))
 
 ## libtide *must not be required* for installation
-SConscript('tide/SConscript.thirdparty')
+SConscript('SConscript.thirdparty')
 SConscript('installer/SConscript')
 
 # After libtide builds, the environment will  link 
 # against libtide, so anything that should not be
 # linked against libtide should be above this point.
-SConscript('tide/SConscript', exports='debug')
-SConscript('modules/SConscript')
+SConscript('src/tide/SConscript', exports='debug')
+SConscript('src/modules/SConscript', exports='debug')
 SConscript('SConscript.dist')
 
 run = ARGUMENTS.get('run', 0)

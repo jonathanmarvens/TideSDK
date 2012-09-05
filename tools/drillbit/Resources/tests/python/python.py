@@ -86,14 +86,14 @@ def test_js_type_float(t):
 def test_js_type_list(t):
 	return type(t) == types.ListType
 
-def test_js_type_klist(t):
-	return type(t).__name__ == 'KList'
+def test_js_type_List(t):
+	return type(t).__name__ == 'List'
 
-def test_js_type_kmethod(t):
-	return type(t).__name__ == 'KMethod'
+def test_js_type_Method(t):
+	return type(t).__name__ == 'Method'
 
-def test_js_type_kobject(t):
-	return type(t).__name__ == 'KObject'
+def test_js_type_Object(t):
+	return type(t).__name__ == 'Object'
 
 def test_js_type_dict(t):
 	return type(t) == types.DictType

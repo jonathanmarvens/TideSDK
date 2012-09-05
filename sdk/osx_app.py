@@ -18,9 +18,9 @@ class OSXApp(App):
 		defaults_exec = "defaults write " + self.id + " WebKitDeveloperExtras -bool true";
 		os.system(defaults_exec);
 
-		self.env.log(u'Copying kboot to %s' % self.contents)
+		self.env.log(u'Copying tideboot to %s' % self.contents)
 		self.executable_path = p.join(self.contents, 'MacOS', self.name)
-		effess.copy(p.join(self.sdk_dir, 'kboot'), self.executable_path)
+		effess.copy(p.join(self.sdk_dir, 'tideboot'), self.executable_path)
 
 		self.env.log(u'Copying Mac resources to %s' % self.contents)
 		# Copy Info.plist to Contents
