@@ -311,7 +311,7 @@
                                 <key>PBXProjectModuleGUID</key>
                                 <string>1CE0B20306471E060097A5F4</string>
                                 <key>PBXProjectModuleLabel</key>
-                                <string>titanium.icns</string>
+                                <string>Ti.icns</string>
                                 <key>PBXSplitModuleInNavigatorKey</key>
                                 <dict>
                                     <key>Split0</key>
@@ -319,7 +319,7 @@
                                         <key>PBXProjectModuleGUID</key>
                                         <string>1CE0B20406471E060097A5F4</string>
                                         <key>PBXProjectModuleLabel</key>
-                                        <string>titanium.icns</string>
+                                        <string>Ti.icns</string>
                                         <key>_historyCapacity</key>
                                         <integer>0</integer>
                                         <key>bookmark</key>

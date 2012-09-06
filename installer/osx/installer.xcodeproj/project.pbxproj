@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
-		24291A370F318D7A00DCB70A /* titanium.icns in Resources */ = {isa = PBXBuildFile; fileRef = 24291A360F318D7A00DCB70A /* titanium.icns */; };
+		24291A370F318D7A00DCB70A /* Ti.icns in Resources */ = {isa = PBXBuildFile; fileRef = 24291A360F318D7A00DCB70A /* Ti.icns */; };
 		24BEA3820F312E6B00DFDA8B /* Controller.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24BEA3810F312E6B00DFDA8B /* Controller.mm */; };
 		24BEA3A90F3140F200DFDA8B /* Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BEA3A80F3140F200DFDA8B /* Downloader.m */; };
 		24BEA3D80F3145E300DFDA8B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BEA3D70F3145E300DFDA8B /* SystemConfiguration.framework */; };
@@ -25,7 +25,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		24291A360F318D7A00DCB70A /* titanium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = titanium.icns; sourceTree = "<group>"; };
+		24291A360F318D7A00DCB70A /* Ti.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Ti.icns; sourceTree = "<group>"; };
 		24BEA3800F312E6B00DFDA8B /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		24BEA3810F312E6B00DFDA8B /* Controller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Controller.mm; sourceTree = "<group>"; };
 		24BEA3A70F3140F200DFDA8B /* Downloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Downloader.h; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				5B40F3970F98FAF300CAEFD3 /* dialog-warning.png */,
-				24291A360F318D7A00DCB70A /* titanium.icns */,
+				24291A360F318D7A00DCB70A /* Ti.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -190,7 +190,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				24291A370F318D7A00DCB70A /* titanium.icns in Resources */,
+				24291A370F318D7A00DCB70A /* Ti.icns in Resources */,
 				5B40F3980F98FAF300CAEFD3 /* dialog-warning.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
