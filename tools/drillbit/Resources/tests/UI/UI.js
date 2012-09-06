@@ -1,43 +1,43 @@
 describe("UI Module Tests",{
 	test_ui_module_methods: function()
 	{
-		value_of(Tide.UI.addTray).should_be_function();
-		value_of(Tide.UI.clearTray).should_be_function();
-		value_of(Tide.UI.createMenu).should_be_function();
-		value_of(Tide.UI.getContextMenu).should_be_function();
-		value_of(Tide.UI.getIdleTime).should_be_function();
-		value_of(Tide.UI.getMenu).should_be_function();
-		value_of(Tide.UI.mainWindow).should_be_object();
-		value_of(Tide.UI.setContextMenu).should_be_function();
-		value_of(Tide.UI.setDockIcon).should_be_function();
-		value_of(Tide.UI.setDockMenu).should_be_function();
-		value_of(Tide.UI.setIcon).should_be_function();
-		value_of(Tide.UI.setMenu).should_be_function();
-		value_of(Tide.UI.setBadge).should_be_function();
-		value_of(Tide.UI.setBadgeImage).should_be_function();
+		value_of(Ti.UI.addTray).should_be_function();
+		value_of(Ti.UI.clearTray).should_be_function();
+		value_of(Ti.UI.createMenu).should_be_function();
+		value_of(Ti.UI.getContextMenu).should_be_function();
+		value_of(Ti.UI.getIdleTime).should_be_function();
+		value_of(Ti.UI.getMenu).should_be_function();
+		value_of(Ti.UI.mainWindow).should_be_object();
+		value_of(Ti.UI.setContextMenu).should_be_function();
+		value_of(Ti.UI.setDockIcon).should_be_function();
+		value_of(Ti.UI.setDockMenu).should_be_function();
+		value_of(Ti.UI.setIcon).should_be_function();
+		value_of(Ti.UI.setMenu).should_be_function();
+		value_of(Ti.UI.setBadge).should_be_function();
+		value_of(Ti.UI.setBadgeImage).should_be_function();
 	},
 	test_windows_array: function()
 	{
-		value_of(Tide.UI.getOpenWindows()).should_be_object();
-		value_of(Tide.UI.getOpenWindows().length).should_be(1);
+		value_of(Ti.UI.getOpenWindows()).should_be_object();
+		value_of(Ti.UI.getOpenWindows().length).should_be(1);
 
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
-		value_of(Tide.UI.getOpenWindows().length).should_be(1);
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		value_of(Ti.UI.getOpenWindows().length).should_be(1);
 		w.open();
-		value_of(Tide.UI.getOpenWindows().length).should_be(2);
-		value_of(Tide.UI.getCurrentWindow().equals(w.getParent())).should_be_true();
+		value_of(Ti.UI.getOpenWindows().length).should_be(2);
+		value_of(Ti.UI.getCurrentWindow().equals(w.getParent())).should_be_true();
 
-		var w2 = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
-		value_of(Tide.UI.getOpenWindows().length).should_be(2);
+		var w2 = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		value_of(Ti.UI.getOpenWindows().length).should_be(2);
 		w2.open();
-		value_of(Tide.UI.getOpenWindows().length).should_be(3);
-		value_of(Tide.UI.getCurrentWindow().equals(w2.getParent())).should_be_true();
+		value_of(Ti.UI.getOpenWindows().length).should_be(3);
+		value_of(Ti.UI.getCurrentWindow().equals(w2.getParent())).should_be_true();
 		value_of(w2.getParent().equals(w.getParent())).should_be_true();
 		value_of(w2 != w).should_be_true();
 	},
 	test_window_max_size: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.setHeight(700);
 		w.setWidth(700);
 
@@ -83,7 +83,7 @@ describe("UI Module Tests",{
 	},
 	test_window_min_size: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.setHeight(100);
 		w.setWidth(130);
 
@@ -130,7 +130,7 @@ describe("UI Module Tests",{
 	},
 	test_window_set_height: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.setHeight(100);
 		value_of(w.getHeight()).should_be(100);
 		w.setHeight(200);
@@ -165,7 +165,7 @@ describe("UI Module Tests",{
 	},
 	test_window_set_width: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.setWidth(100);
 		value_of(w.getWidth()).should_be(100);
 		w.setWidth(200);
@@ -200,7 +200,7 @@ describe("UI Module Tests",{
 	},
 	test_window_set_closeable: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'http://blahblah.html', closeable: false});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'http://blahblah.html', closeable: false});
 		value_of(w.isCloseable()).should_be_false();
 		w.setCloseable(true);
 		value_of(w.isCloseable()).should_be_true();
@@ -213,7 +213,7 @@ describe("UI Module Tests",{
 	},
 	test_window_set_minimizable: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', minimizable: false});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', minimizable: false});
 		value_of(w.isMinimizable()).should_be_false();
 		w.setMinimizable(true);
 		value_of(w.isMinimizable()).should_be_true();
@@ -226,7 +226,7 @@ describe("UI Module Tests",{
 	},
 	test_window_set_maximizable: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', maximizable: false});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', maximizable: false});
 		value_of(w.isMaximizable()).should_be_false();
 		w.setMaximizable(true);
 		value_of(w.isMaximizable()).should_be_true();
@@ -239,7 +239,7 @@ describe("UI Module Tests",{
 	},
 	test_window_set_using_chrome: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', usingChrome: false});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', usingChrome: false});
 		value_of(w.isUsingChrome()).should_be_false();
 		w.setUsingChrome(true);
 		value_of(w.isUsingChrome()).should_be_true();
@@ -252,13 +252,13 @@ describe("UI Module Tests",{
 	},
 	test_window_visibility_as_async: function(test)
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', visible: false});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', visible: false});
 		value_of(w.isVisible()).should_be_false();
 		w.open();
 		value_of(w.isVisible()).should_be_false();
 		w.close();
 
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', visible: true});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', visible: true});
 		value_of(w.isVisible()).should_be_false();
 		w.setVisible(true);
 		value_of(w.isVisible()).should_be_false();
@@ -266,7 +266,7 @@ describe("UI Module Tests",{
 		var timer = 0;
 		// may not be visible right away, we need to add an event listener
 		// for PAGE_LOADED
-		w.addEventListener(Tide.PAGE_LOADED, function(event)
+		w.addEventListener(Ti.PAGE_LOADED, function(event)
 		{
 			clearTimeout(timer);
 			try
@@ -294,7 +294,7 @@ describe("UI Module Tests",{
 	},
 	test_window_location: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', x: 100, y:200});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', x: 100, y:200});
 		value_of(w.getX()).should_be(100);
 		value_of(w.getY()).should_be(200);
 
@@ -324,7 +324,7 @@ describe("UI Module Tests",{
 	},
 	test_offscreen_window_locations: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', x: 100, y:200});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', x: 100, y:200});
 		value_of(w.getX()).should_be(100);
 		value_of(w.getY()).should_be(200);
 
@@ -369,7 +369,7 @@ describe("UI Module Tests",{
 		w.setX(100000);
 		w.setY(200000);
 		
-		if (Tide.platform != "win32") {
+		if (Ti.platform != "win32") {
 			value_of(w.getX()).should_be(100000);
 			value_of(w.getY()).should_be(200000);
 		}
@@ -380,7 +380,7 @@ describe("UI Module Tests",{
 	},
 	test_window_bounds: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({
+		var w = Ti.UI.getCurrentWindow().createWindow({
 			url: 'app://blahblah.html',
 			width: 444,
 			height: 333,
@@ -448,19 +448,19 @@ describe("UI Module Tests",{
 	},
 	test_window_maximize: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', maximized: true});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', maximized: true});
 		value_of(w.isMaximized()).should_be(true);
 		w.open();
 		value_of(w.isMaximized()).should_be(true);
 		w.close();
 
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', maximized: false});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', maximized: false});
 		value_of(w.isMaximized()).should_be(false);
 		w.open();
 		value_of(w.isMaximized()).should_be(false);
 		w.close();
 
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		value_of(w.isMaximized()).should_be(false);
 		w.maximize();
 		value_of(w.isMaximized()).should_be(true);
@@ -472,7 +472,7 @@ describe("UI Module Tests",{
 		value_of(w.isMaximized()).should_be(true);
 		w.close();
 
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		value_of(w.isMaximized()).should_be(false);
 		w.maximize();
 		value_of(w.isMaximized()).should_be(true);
@@ -488,19 +488,19 @@ describe("UI Module Tests",{
 	},
 	test_window_minimize: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', minimized: true});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', minimized: true});
 		value_of(w.isMinimized()).should_be(true);
 		w.open();
 		value_of(w.isMinimized()).should_be(true);
 		w.close();
 
-		var w = Tide.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', minimized: false});
+		var w = Ti.UI.getCurrentWindow().createWindow({url: 'app://blahblah.html', minimized: false});
 		value_of(w.isMinimized()).should_be(false);
 		w.open();
 		value_of(w.isMinimized()).should_be(false);
 		w.close();
 
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		value_of(w.isMinimized()).should_be(false);
 		w.minimize();
 		value_of(w.isMinimized()).should_be(true);
@@ -512,7 +512,7 @@ describe("UI Module Tests",{
 		value_of(w.isMinimized()).should_be(true);
 		w.close();
 
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		value_of(w.isMinimized()).should_be(false);
 		w.minimize();
 		value_of(w.isMinimized()).should_be(true);
@@ -544,7 +544,7 @@ describe("UI Module Tests",{
 			else
 			{
 				count = count - 1;
-				w = Tide.UI.getCurrentWindow().createWindow('app://multi_open.html');
+				w = Ti.UI.getCurrentWindow().createWindow('app://multi_open.html');
 				w.open();
 				setTimeout(function() { closeBlimpWindow(); }, 200);
 			}
@@ -553,12 +553,12 @@ describe("UI Module Tests",{
 	},
 	test_title_override_as_async: function(callback)
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://multi_open.html');
-		var w2 = Tide.UI.getCurrentWindow().createWindow('app://multi_open.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://multi_open.html');
+		var w2 = Ti.UI.getCurrentWindow().createWindow('app://multi_open.html');
 		w.setTitle("Set1!");
 		w.setTitle("Set2!");
 
-		w.addEventListener(Tide.PAGE_INITIALIZED, function(event) {
+		w.addEventListener(Ti.PAGE_INITIALIZED, function(event) {
 			w.setTitle("blah");
 		});
 
@@ -584,16 +584,16 @@ describe("UI Module Tests",{
 	},
 	test_close_message_on_originating_window_as_async: function(callback)
 	{
-		Tide.saw_close = false;
-		Tide.saw_closed = false;
+		Ti.saw_close = false;
+		Ti.saw_closed = false;
 
-		var w = Tide.UI.getCurrentWindow().createWindow('app://test_close_event_listener.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://test_close_event_listener.html');
 		w.open();
 
 		setTimeout(function() {
 			w.close();
 			setTimeout(function() {
-				if (Tide.API.saw_close) {
+				if (Ti.API.saw_close) {
 					callback.passed();
 				} else {
 					callback.failed("Closing window did not receive CLOSE event");
@@ -603,7 +603,7 @@ describe("UI Module Tests",{
 	},
 	test_window_top_most: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		
 		w.open();
 		value_of(w.isTopMost()).should_be(false);
@@ -635,7 +635,7 @@ describe("UI Module Tests",{
 	
 	test_window_resizable: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		value_of(w.isResizable()).should_be(true);
 		w.open();
 
@@ -654,14 +654,14 @@ describe("UI Module Tests",{
 	{
 		var hasFocus = false;
 		// get the current UserWindow object
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
-		var w2 = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w2 = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.open();
 		w2.open();
 
 		w.addEventListener(function(event)
 		{
-			if (event.type == Tide.FOCUSED)
+			if (event.type == Ti.FOCUSED)
 			{
 				hasFocus = true;
 			}
@@ -689,8 +689,8 @@ describe("UI Module Tests",{
 	{
 		var sawEvent = false;
 		// get the current UserWindow object
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
-		var w2 = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w2 = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.open();
 		w2.open();
 
@@ -698,11 +698,11 @@ describe("UI Module Tests",{
 		// the second window and wait for the unfocus event.
 		w2.addEventListener(function(event)
 		{
-			if (event.type == Tide.FOCUSED)
+			if (event.type == Ti.FOCUSED)
 			{
 				setTimeout(function() { w2.unfocus();}, 200);
 			}
-			if (event.type == Tide.UNFOCUSED)
+			if (event.type == Ti.UNFOCUSED)
 			{
 				sawEvent = true;
 			}
@@ -723,8 +723,8 @@ describe("UI Module Tests",{
 	},
 	test_window_mainWnd_by_ID: function()
 	{
-		var currentWnd = Tide.UI.getCurrentWindow();
-		var mainWnd = Tide.UI.getMainWindow();
+		var currentWnd = Ti.UI.getCurrentWindow();
+		var mainWnd = Ti.UI.getMainWindow();
 		value_of(mainWnd.getID() == currentWnd.getID()).should_be_true();
 
 		var w = currentWnd.createWindow('app://blahblah.html');
@@ -740,7 +740,7 @@ describe("UI Module Tests",{
 	},
 	test_window_icon: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.open();
 
 		// I expect that there is no icon defined for the test.
@@ -758,7 +758,7 @@ describe("UI Module Tests",{
 	},
 	test_window_getchildren: function()
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('app://blahblah.html');
+		var w = Ti.UI.getCurrentWindow().createWindow('app://blahblah.html');
 		w.open();
 
 		value_of(w.getChildren).should_be_function();
@@ -787,15 +787,15 @@ describe("UI Module Tests",{
 	},
 	test_window_opener_as_async: function(callback)
 	{
-		Tide.API.ui_test_opener_value = undefined;
-		var w = Tide.UI.getCurrentWindow().createWindow('app://test_window_opener.html');
+		Ti.API.ui_test_opener_value = undefined;
+		var w = Ti.UI.getCurrentWindow().createWindow('app://test_window_opener.html');
 		w.open();
 		setTimeout(function()
 		{
 			var failed = true;
 			try
 			{
-				value_of(Tide.API.ui_test_opener_value).should_be_true();
+				value_of(Ti.API.ui_test_opener_value).should_be_true();
 			}
 			catch(e)
 			{
@@ -819,7 +819,7 @@ describe("UI Module Tests",{
 	},
 	test_window_opener_different_domain_as_async: function(callback)
 	{
-		var w = Tide.UI.getCurrentWindow().createWindow('http://www.google.com/');
+		var w = Ti.UI.getCurrentWindow().createWindow('http://www.google.com/');
 		w.open();
 		setTimeout(function()
 		{
@@ -838,7 +838,7 @@ describe("UI Module Tests",{
 	test_yahoo_white_black_window_as_async:function(callback)
 	{
 		// this is a small variation (for automation purposes) of the yahoo white/black test case for controlling
-		// multiple Tide windows cross-domain and being able to inject variables/functions into
+		// multiple Ti windows cross-domain and being able to inject variables/functions into
 		// one or more cross domain ti windows and being able to do cross-window communication
 		
 		window.childWindows = {};
@@ -846,7 +846,7 @@ describe("UI Module Tests",{
 		
 		function openPage(page_name,run_test) 
 		{
-			var w = Tide.UI.createWindow("http://api.appcelerator.net/p/pages/unittest/"+page_name+".html");
+			var w = Ti.UI.createWindow("http://api.appcelerator.net/p/pages/unittest/"+page_name+".html");
 			w.setWidth(320);
 			w.setHeight(90);
 			w.addEventListener(function(e)
@@ -917,14 +917,14 @@ describe("UI Module Tests",{
 	},
 	issue32_unicode_in_title: function()
 	{
-		var win = Tide.UI.getCurrentWindow().createWindow('http://en.wikipedia.org/wiki/The_Evil_Dead');
+		var win = Ti.UI.getCurrentWindow().createWindow('http://en.wikipedia.org/wiki/The_Evil_Dead');
 		win.setTitle("'添加新帐户");
 		value_of(win.getTitle()).should_be("'添加新帐户");
 	},
 	TI224_test_mixcase_urls: function()
 	{
 		var url = 'http://en.wikipedia.org/wiki/The_Evil_Dead';
-		var w = Tide.UI.createWindow(url);
+		var w = Ti.UI.createWindow(url);
 		w.open();
 		
 		value_of(w.getURL()).should_be(url);

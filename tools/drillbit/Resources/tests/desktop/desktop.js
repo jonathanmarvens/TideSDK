@@ -1,18 +1,18 @@
 describe("Desktop tests", {
 	test_desktop_functions: function()
 	{
-		value_of(Tide.Desktop.openApplication).should_be_function();
-		value_of(Tide.Desktop.openURL).should_be_function();
-		value_of(Tide.Desktop.takeScreenshot).should_be_function();
+		value_of(Ti.Desktop.openApplication).should_be_function();
+		value_of(Ti.Desktop.openURL).should_be_function();
+		value_of(Ti.Desktop.takeScreenshot).should_be_function();
 	},
 	test_screenshot: function()
 	{
 		// not implemented in linux yet
-		if (Tide.platform == "linux") return;
+		if (Ti.platform == "linux") return;
 		
 		var invalid_args = false;
 		try {
-			Tide.Desktop.takeScreenshot();
+			Ti.Desktop.takeScreenshot();
 		} catch (E) {
 			invalid_args = true;
 		}
@@ -20,11 +20,11 @@ describe("Desktop tests", {
 		value_of(invalid_args).should_be_true();
 		
 		var ext = "png";
-		if (Tide.platform == "win32") { ext = "bmp"; }
+		if (Ti.platform == "win32") { ext = "bmp"; }
 		
-		var appdir = Tide.Filesystem.getApplicationDataDirectory();
-		var file = Tide.Filesystem.getFile(appdir, "screenshot."+ext);
-		Tide.Desktop.takeScreenshot(file.nativePath());
+		var appdir = Ti.Filesystem.getApplicationDataDirectory();
+		var file = Ti.Filesystem.getFile(appdir, "screenshot."+ext);
+		Ti.Desktop.takeScreenshot(file.nativePath());
 		
 		value_of(file.exists()).should_be_true();
 		

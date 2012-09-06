@@ -3,11 +3,11 @@ describe("Network.IPAddress",{
 
 	before: function()
 	{
-		value_of(Tide.Network).should_not_be_null();
-		value_of(Tide.Network.createIPAddress).should_be_function();
-		value_of(Tide.Network.IPAddress).should_not_be_null();
+		value_of(Ti.Network).should_not_be_null();
+		value_of(Ti.Network.createIPAddress).should_be_function();
+		value_of(Ti.Network.IPAddress).should_not_be_null();
 
-		this.ipAddr = Tide.Network.createIPAddress("127.0.0.1");
+		this.ipAddr = Ti.Network.createIPAddress("127.0.0.1");
 		
 		value_of(this.ipAddr).should_not_be_null();
 	},
@@ -40,23 +40,23 @@ describe("Network.IPAddress",{
 		value_of(this.ipAddr.isWildcard).should_be_function();
 		value_of(this.ipAddr.toString).should_be_function();
 		
-		Tide.API.debug("ipAddr.isBroadcast = "+this.ipAddr.isBroadcast().toString());
-		Tide.API.debug("ipAddr.isGlobalMC = "+this.ipAddr.isGlobalMC().toString());
-		Tide.API.debug("ipAddr.isIPV4 = "+this.ipAddr.isIPV4().toString());
-		Tide.API.debug("ipAddr.isIPV6 = "+this.ipAddr.isIPV6().toString());
-		Tide.API.debug("ipAddr.isInvalid = "+this.ipAddr.isInvalid().toString());
-		Tide.API.debug("ipAddr.isLinkLocal = "+this.ipAddr.isLinkLocal().toString());
-		Tide.API.debug("ipAddr.isLinkLocalMC = "+this.ipAddr.isLinkLocalMC().toString());
-		Tide.API.debug("ipAddr.isLoopback = "+this.ipAddr.isLoopback().toString());
-		Tide.API.debug("ipAddr.isMulticast = "+this.ipAddr.isMulticast().toString());
-		Tide.API.debug("ipAddr.isNodeLocalMC = "+this.ipAddr.isNodeLocalMC().toString());
-		Tide.API.debug("ipAddr.isOrgLocalMC = "+this.ipAddr.isOrgLocalMC().toString());
-		Tide.API.debug("ipAddr.isSiteLocal = "+this.ipAddr.isSiteLocal().toString());
-		Tide.API.debug("ipAddr.isSiteLocalMC = "+this.ipAddr.isSiteLocalMC().toString());
-		Tide.API.debug("ipAddr.isUnicast = "+this.ipAddr.isUnicast().toString());
-		Tide.API.debug("ipAddr.isWellKnownMC = "+this.ipAddr.isWellKnownMC().toString());
-		Tide.API.debug("ipAddr.isWildcard = "+this.ipAddr.isWildcard().toString());
-		Tide.API.debug("ipAddr.toString = "+this.ipAddr.toString().toString());
+		Ti.API.debug("ipAddr.isBroadcast = "+this.ipAddr.isBroadcast().toString());
+		Ti.API.debug("ipAddr.isGlobalMC = "+this.ipAddr.isGlobalMC().toString());
+		Ti.API.debug("ipAddr.isIPV4 = "+this.ipAddr.isIPV4().toString());
+		Ti.API.debug("ipAddr.isIPV6 = "+this.ipAddr.isIPV6().toString());
+		Ti.API.debug("ipAddr.isInvalid = "+this.ipAddr.isInvalid().toString());
+		Ti.API.debug("ipAddr.isLinkLocal = "+this.ipAddr.isLinkLocal().toString());
+		Ti.API.debug("ipAddr.isLinkLocalMC = "+this.ipAddr.isLinkLocalMC().toString());
+		Ti.API.debug("ipAddr.isLoopback = "+this.ipAddr.isLoopback().toString());
+		Ti.API.debug("ipAddr.isMulticast = "+this.ipAddr.isMulticast().toString());
+		Ti.API.debug("ipAddr.isNodeLocalMC = "+this.ipAddr.isNodeLocalMC().toString());
+		Ti.API.debug("ipAddr.isOrgLocalMC = "+this.ipAddr.isOrgLocalMC().toString());
+		Ti.API.debug("ipAddr.isSiteLocal = "+this.ipAddr.isSiteLocal().toString());
+		Ti.API.debug("ipAddr.isSiteLocalMC = "+this.ipAddr.isSiteLocalMC().toString());
+		Ti.API.debug("ipAddr.isUnicast = "+this.ipAddr.isUnicast().toString());
+		Ti.API.debug("ipAddr.isWellKnownMC = "+this.ipAddr.isWellKnownMC().toString());
+		Ti.API.debug("ipAddr.isWildcard = "+this.ipAddr.isWildcard().toString());
+		Ti.API.debug("ipAddr.toString = "+this.ipAddr.toString().toString());
 		
 	},
 	

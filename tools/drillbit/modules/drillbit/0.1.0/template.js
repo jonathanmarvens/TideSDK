@@ -1,14 +1,14 @@
 // ==UserScript==
-// @name	Tide App Tester
+// @name	Ti App Tester
 // @author	Appcelerator
-// @description	Tide Tests
-// @include	app://com.Tideapp.unittest/index.html
+// @description	Ti Tests
+// @include	app://com.Tiapp.unittest/index.html
 // @version	0.1
 // ==/UserScript==
 
 <%
-	var TFS = Tide.Filesystem;
-	var TA = Tide.App;
+	var TFS = Ti.Filesystem;
+	var TA = Ti.App;
 	
 	function add_line_numbers(entry,fname)
 	{
@@ -64,15 +64,15 @@
 
 <%= TFS.getFile(TA.appURLToPath('app://drillbit_func.js')).read() %>
 
-TideTest.NAME = "<%= entry.name %>";
-TideTest.SOURCE = "<%= entry.source_file.nativePath().replace(/\\/g, "\\\\") %>";
+TiTest.NAME = "<%= entry.name %>";
+TiTest.SOURCE = "<%= entry.source_file.nativePath().replace(/\\/g, "\\\\") %>";
 try
 {
-	<%= make_function(entry, 'before_all', 'TideTest.gscope') %>
+	<%= make_function(entry, 'before_all', 'TiTest.gscope') %>
 }
 catch (e)
 {
-	Tide.API.error('before_all caught error:'+e+' at line: '+e.line);
+	Ti.API.error('before_all caught error:'+e+' at line: '+e.line);
 }
 
 <% for (var f in entry.test) {
@@ -80,20 +80,20 @@ catch (e)
 	var run = (entry.tests_to_run == "all" || entry.tests_to_run.indexOf(f) != -1);
 	if (i == -1 && run) { %>
 
-		TideTest.tests.push(function(){
+		TiTest.tests.push(function(){
 			// <%= f %>
-			var xscope = new TideTest.Scope('<%= f %>');
+			var xscope = new TiTest.Scope('<%= f %>');
 			<%= make_function(entry, 'before', 'xscope') %>;
 
 			try {
-				TideTest.currentTest = '<%= f %>';
-				TideTest.runningTest('<%= entry.name %>', '<%= f %>');
+				TiTest.currentTest = '<%= f %>';
+				TiTest.runningTest('<%= entry.name %>', '<%= f %>');
 				<%= make_function(entry, f, 'xscope') %>;
 				<%
 				i = f.indexOf('_as_async');
 				if (i==-1)
 				{ %>
-					TideTest.testPassed('<%= f %>',TideTest.currentSubject.lineNumber);
+					TiTest.testPassed('<%= f %>',TiTest.currentSubject.lineNumber);
 				<% } %>
 			}
 			catch (___e)
@@ -101,10 +101,10 @@ catch (e)
 				// wrap the exception message so we can report the failed test's line number
 				var ___err = {
 					message: ___e.message || "Non-assertion exception: " + String(___e),
-					line: ___e.constructor == TideTest.Error ? ___e.line : <%= entry.line_offsets[f] %>,
+					line: ___e.constructor == TiTest.Error ? ___e.line : <%= entry.line_offsets[f] %>,
 					toString: function() { return this.message; }
 				};
-				TideTest.testFailed('<%= f %>', ___err);
+				TiTest.testFailed('<%= f %>', ___err);
 			}
 
 			<%= make_function(entry, 'after', 'xscope') %>
@@ -113,16 +113,16 @@ catch (e)
 <%	}
 } %>
 
-TideTest.on_complete = function(){
+TiTest.on_complete = function(){
 	try
 	{
-		<%= make_function(entry, 'after_all','TideTest.gscope') %>;
+		<%= make_function(entry, 'after_all','TiTest.gscope') %>;
 	}
 	catch (e)
 	{
-		Tide.API.error('after_all caught error:'+e+' at line: '+e.line);
+		Ti.API.error('after_all caught error:'+e+' at line: '+e.line);
 	}
-	TideTest.complete();
+	TiTest.complete();
 };
 
-TideTest.run_next_test();
+TiTest.run_next_test();

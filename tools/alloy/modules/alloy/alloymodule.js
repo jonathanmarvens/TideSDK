@@ -1,8 +1,8 @@
 (function(){
-	Tide.API.setLogLevel(Tide.API.ERROR);
+	Ti.API.setLogLevel(Ti.API.ERROR);
 
-	var stdout = Tide.App.stdout;
-	var stdin = Tide.App.stdin;
+	var stdout = Ti.App.stdout;
+	var stdin = Ti.App.stdin;
 
 	String.prototype.rtrim=function(){return this.replace(/\s+$/,'');}
 	String.prototype.endsWith = function endsWith(pattern)
@@ -30,8 +30,8 @@
 				stdout("Javascript error: " + e);
 			}
 		},
-		python: Tide.Python.evaluate,
-		ruby: Tide.Ruby.evaluate,
+		python: Ti.Python.evaluate,
+		ruby: Ti.Ruby.evaluate,
 	};
 
 	var activeEval = langEvals["javascript"];
@@ -77,5 +77,5 @@
 		command = "";
 	}
 
-	Tide.App.exit();
+	Ti.App.exit();
 })();

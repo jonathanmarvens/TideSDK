@@ -1,14 +1,14 @@
 describe("UI.Tray Tests",{
 	test_ui_module_methods: function()
 	{
-		value_of(Tide.UI.addTray).should_be_function();
-		value_of(Tide.UI.clearTray).should_be_function();
-		value_of(Tide.UI.Tray).should_not_be_null();
+		value_of(Ti.UI.addTray).should_be_function();
+		value_of(Ti.UI.clearTray).should_be_function();
+		value_of(Ti.UI.Tray).should_not_be_null();
 	},
 	
 	test_tray_object: function()
 	{
-	    var trayObj = Tide.UI.addTray("app://logo_small.png", function(){});
+	    var trayObj = Ti.UI.addTray("app://logo_small.png", function(){});
 	    
 	    value_of(trayObj).should_be_object();
 
@@ -20,24 +20,24 @@ describe("UI.Tray Tests",{
 	    value_of(trayObj.setIcon).should_be_function();
 	    value_of(trayObj.setMenu).should_be_function();
 	    
-	    Tide.UI.clearTray();
+	    Ti.UI.clearTray();
 	},
 	
 	test_tray_hint: function()
 	{
-	    var trayObj = Tide.UI.addTray("app://logo_small.png", function(){});
+	    var trayObj = Ti.UI.addTray("app://logo_small.png", function(){});
 	    
 	    value_of(trayObj).should_be_object();
 
 	    trayObj.setHint("get a clue");
 	    value_of(trayObj.getHint()).should_be("get a clue");
 	    
-	    Tide.UI.clearTray();
+	    Ti.UI.clearTray();
 	},
 	
 	test_tray_icon: function()
 	{
-	    var trayObj = Tide.UI.addTray("app://logo_small.png", function(){});
+	    var trayObj = Ti.UI.addTray("app://logo_small.png", function(){});
 	    
 	    value_of(trayObj).should_be_object();
 	    value_of(trayObj.setIcon).should_be_function();
@@ -48,13 +48,13 @@ describe("UI.Tray Tests",{
 	    trayObj.setIcon("app://tray.png");
 	    value_of(trayObj.getIcon()).should_be("app://tray.png");
 	    
-	    Tide.UI.clearTray();
+	    Ti.UI.clearTray();
 	},
 	
 	test_tray_menu: function()
 	{
-	    var trayObj = Tide.UI.addTray("app://logo_small.png", function(){});
-   		var menu = Tide.UI.createMenu();
+	    var trayObj = Ti.UI.addTray("app://logo_small.png", function(){});
+   		var menu = Ti.UI.createMenu();
 
 	    value_of(trayObj).should_be_object();
 	    value_of(menu).should_be_object();
@@ -72,12 +72,12 @@ describe("UI.Tray Tests",{
 	    
 	    value_of(theMenu.equals(menu)).should_be_true();
 
-	    Tide.UI.clearTray();
+	    Ti.UI.clearTray();
 	},
 	
 	test_tray_remove: function()
 	{
-	    var trayObj = Tide.UI.addTray("app://logo_small.png", function(){});
+	    var trayObj = Ti.UI.addTray("app://logo_small.png", function(){});
 	    
 	    value_of(trayObj).should_be_object();
 	    value_of(trayObj.remove).should_be_function();

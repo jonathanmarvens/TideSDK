@@ -1,6 +1,6 @@
-var TFS = Tide.Filesystem;
+var TFS = Ti.Filesystem;
 
-Tide.AppCreator = {
+Ti.AppCreator = {
 	
 	osx: function(assetsDir,destination,name,appid,install)
 	{
@@ -15,16 +15,16 @@ Tide.AppCreator = {
 		var lproj = TFS.getFile(resources,'English.lproj');
 		lproj.createDirectory(true);
 
-		var fromMacos = TFS.getFile(assetsDir,'tideboot');
+		var fromMacos = TFS.getFile(assetsDir,'Tiboot');
 		fromMacos.copy(macos);
-		var boot = TFS.getFile(macos,'tideboot');
+		var boot = TFS.getFile(macos,'Tiboot');
 		boot.rename(name);
 		boot.setExecutable(true);
 
 		var mainMenu = TFS.getFile(assetsDir,'MainMenu.nib');
 		mainMenu.copy(lproj);
 
-		var icns = TFS.getFile(assetsDir,'Tide.icns');
+		var icns = TFS.getFile(assetsDir,'Ti.icns');
 		icns.copy(lproj);
 
 		var plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
@@ -36,7 +36,7 @@ Tide.AppCreator = {
 		"	<key>CFBundleExecutable</key>\n"+
 		"	<string>"+name+"</string>\n"+
 		"	<key>CFBundleIconFile</key>\n"+
-		"	<string>Tide.icns</string>\n"+
+		"	<string>Ti.icns</string>\n"+
 		"	<key>CFBundleIdentifier</key>\n"+
 		"	<string>"+appid+(install?'.installer':'')+"</string>\n"+
 		"	<key>CFBundleInfoDictionaryVersion</key>\n"+
@@ -84,9 +84,9 @@ Tide.AppCreator = {
 		var resources = TFS.getFile(appDir,'Resources');
 		resources.createDirectory(true);
 
-		var tideboot = TFS.getFile(assetsDir,'tideboot');
+		var Tiboot = TFS.getFile(assetsDir,'Tiboot');
 		var appExecutable = TFS.getFile(appDir, name);
-		tideboot.copy(appExecutable);
+		Tiboot.copy(appExecutable);
 
 		// set our marker file
 		var marker = TFS.getFile(appDir,'.installed');
@@ -113,9 +113,9 @@ Tide.AppCreator = {
 		var resources = TFS.getFile(appDir,'Resources');
 		resources.createDirectory(true);
 
-		var tideboot = TFS.getFile(assetsDir,'tideboot.exe');
+		var Tiboot = TFS.getFile(assetsDir,'Tiboot.exe');
 		var appExecutable = TFS.getFile(appDir, name + '.exe');
-		tideboot.copy(appExecutable);
+		Tiboot.copy(appExecutable);
 		
 		// set our marker file
 		var marker = TFS.getFile(appDir,'.installed');
@@ -137,17 +137,17 @@ Tide.AppCreator = {
 };
 
 
-Tide.createApp = function(destination,name,appid,install)
+Ti.createApp = function(destination,name,appid,install)
 {
 
 	// DRILLBIT ONLY: We just grab the bundled SDK here, since we know
 	// that's where the assets are.
-	var components = Tide.API.getApplication().getComponents();
+	var components = Ti.API.getApplication().getComponents();
 	var assetsDir = null;
 	for (var i = 0; i < components.length; i++)
 	{
 		var c = components[i];
-		if (c.getType() == Tide.API.SDK)
+		if (c.getType() == Ti.API.SDK)
 		{
 			assetsDir = TFS.getFile(components[i].getPath());
 			break;
@@ -156,18 +156,18 @@ Tide.createApp = function(destination,name,appid,install)
 	
 	if (!assetsDir.exists())
 	{
-		Tide.API.error("Could not find assets directory at: " + assetsDir);
+		Ti.API.error("Could not find assets directory at: " + assetsDir);
 	}
 	install = (typeof(install)=='undefined') ? true : install;
 
-	var platform = Tide.platform;
-	var fn = Tide.AppCreator[platform];
+	var platform = Ti.platform;
+	var fn = Ti.AppCreator[platform];
 	return fn(assetsDir,destination,name,appid,install);
 };
 
-Tide.linkLibraries = function(runtimeDir)
+Ti.linkLibraries = function(runtimeDir)
 {
-	if (Tide.platform == 'osx')
+	if (Ti.platform == 'osx')
 	{
 		var fw = ['WebKit','WebCore','JavaScriptCore'];
 		for (var c=0;c<fw.length;c++)

@@ -2,7 +2,7 @@ describe("Window specific stuff",
 {
 	test_app_url_with_query_string_as_async: function(callback)
 	{
-		Tide.page_loaded_callback = function()
+		Ti.page_loaded_callback = function()
 		{
 			callback.passed();
 		}
@@ -12,12 +12,12 @@ describe("Window specific stuff",
 			callback.failed("Could not load app:// URL with query string.");
 		}, 500);
 
-		var w = Tide.UI.createWindow("app://querystring.html?param=1");
+		var w = Ti.UI.createWindow("app://querystring.html?param=1");
 		w.open();
 	},
 	test_app_url_with_fragment_as_async: function(callback)
 	{
-		Tide.page_loaded_callback = function()
+		Ti.page_loaded_callback = function()
 		{
 			callback.passed();
 		}
@@ -27,12 +27,12 @@ describe("Window specific stuff",
 			callback.failed("Could not load app:// URL with URL fragment.");
 		}, 500);
 
-		var w = Tide.UI.createWindow("app://querystring.html#fooness");
+		var w = Ti.UI.createWindow("app://querystring.html#fooness");
 		w.open();
 	},
 	test_app_url_with_fragment_and_query_string_as_async: function(callback)
 	{
-		Tide.page_loaded_callback = function()
+		Ti.page_loaded_callback = function()
 		{
 			callback.passed();
 		}
@@ -42,12 +42,12 @@ describe("Window specific stuff",
 			callback.failed("Could not load app:// URL with URL fragment and query string.");
 		}, 500);
 
-		var w = Tide.UI.createWindow("app://querystring.html?param=1#fooness");
+		var w = Ti.UI.createWindow("app://querystring.html?param=1#fooness");
 		w.open();
 	},
 	test_relative_url_with_query_string_as_async: function(callback)
 	{
-		Tide.page_loaded_callback = function()
+		Ti.page_loaded_callback = function()
 		{
 			callback.passed();
 		}
@@ -57,14 +57,14 @@ describe("Window specific stuff",
 			callback.failed("Could not load app:// URL with URL fragment and query string.");
 		}, 500);
 
-		var w = Tide.UI.createWindow("app://querystring2.html");
+		var w = Ti.UI.createWindow("app://querystring2.html");
 		w.open();
 	},
 	test_tool_window_as_async: function(callback)
 	{
-		var w = Tide.UI.createWindow();
-		var w2 = Tide.UI.createWindow();
-		var w3 = Tide.UI.getCurrentWindow().createWindow({toolWindow:true});
+		var w = Ti.UI.createWindow();
+		var w2 = Ti.UI.createWindow();
+		var w3 = Ti.UI.getCurrentWindow().createWindow({toolWindow:true});
 		w.setToolWindow(true);
 
 		var verify = function()
@@ -97,7 +97,7 @@ describe("Window specific stuff",
 	},
 	test_tool_window_reverse_as_async: function(callback)
 	{
-		var w = Tide.UI.createWindow();
+		var w = Ti.UI.createWindow();
 		w.setToolWindow(true);
 		w.setToolWindow(false);
 
@@ -126,15 +126,15 @@ describe("Window specific stuff",
 	},
 	test_set_contents_as_async: function(callback)
 	{
-		var w = Tide.UI.createWindow();
+		var w = Ti.UI.createWindow();
 		var one = '<html><body><div id="content">Hello.</div>' +
-			'<script>Tide.WindowContentsTest.phaseOne(document.getElementById("content").innerText);</script>' +
+			'<script>Ti.WindowContentsTest.phaseOne(document.getElementById("content").innerText);</script>' +
 			'</body></html>';
 		var two = '<html><body><div id="content">Hello.</div>' +
-			'<script>Tide.WindowContentsTest.success();</script>' +
+			'<script>Ti.WindowContentsTest.success();</script>' +
 			'</body></html>';
 
-		Tide.WindowContentsTest = {
+		Ti.WindowContentsTest = {
 			phaseOne: function(text)
 			{
 				if (text != "Hello.")
@@ -158,14 +158,14 @@ describe("Window specific stuff",
 	},
 	test_set_self_contents_as_async: function(callback)
 	{
-		Tide.WindowContentsTest = {
+		Ti.WindowContentsTest = {
 			success: function() { callback.passed(); },
-			nextPage: "<html><body><script>Tide.WindowContentsTest.success();</script></body></html>"
+			nextPage: "<html><body><script>Ti.WindowContentsTest.success();</script></body></html>"
 		};
-		var w = Tide.UI.createWindow();
+		var w = Ti.UI.createWindow();
 		var contents = '<html><body><div id="content">Hello.</div>' +
 			'<script>\n' +
-			'Tide.UI.currentWindow.setContents(Tide.WindowContentsTest.nextPage);\n' +
+			'Ti.UI.currentWindow.setContents(Ti.WindowContentsTest.nextPage);\n' +
 			'</script></body></html>';
 		w.setContents(contents);
 		w.open();
@@ -178,7 +178,7 @@ describe("Window specific stuff",
 	},
 	test_set_contents_relative_urls_as_async: function(callback)
 	{
-		Tide.WindowContentsTest = {
+		Ti.WindowContentsTest = {
 			success: function(text) {
 				if (text == "foo")
 					callback.passed();
@@ -187,7 +187,7 @@ describe("Window specific stuff",
 			}
 		};
 
-		var w = Tide.UI.createWindow();
+		var w = Ti.UI.createWindow();
 		w.setContents(
 			'<html><head>' +
 			'<meta http-equiv="refresh" content="1;URL=relative.html">' + 
@@ -203,7 +203,7 @@ describe("Window specific stuff",
 	test_set_window_height_with_menu_as_async: function(callback)
 	{
 
-		var w = Tide.UI.createWindow();
+		var w = Ti.UI.createWindow();
 
 		var checkHeight = function()
 		{
@@ -219,9 +219,9 @@ describe("Window specific stuff",
 			setTimeout(checkHeight, 200);
 		};
 
-		Tide.WindowCallback = function()
+		Ti.WindowCallback = function()
 		{
-			var menu = Tide.UI.createMenu();
+			var menu = Ti.UI.createMenu();
 			menu.addItem("Foo1");
 			menu.getItemAt(0).addItem("Foo");
 			w.setMenu(menu);
@@ -229,7 +229,7 @@ describe("Window specific stuff",
 		};
 
 		var contents = '<html><body><div id="content">Hello.</div>' +
-			'<script>\nTide.WindowCallback();\n' +
+			'<script>\nTi.WindowCallback();\n' +
 			'</script></body></html>';
 		w.setContents(contents);
 		w.open();

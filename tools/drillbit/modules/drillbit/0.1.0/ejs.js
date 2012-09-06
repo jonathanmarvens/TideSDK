@@ -425,7 +425,7 @@ EJS.prototype = {
 }
 
 	EJS.newRequest = function(){
-	   var factories = [function() { return Tide.Network.createHTTPClient(); }, function() { return new ActiveXObject("Msxml2.XMLHTTP"); },function() { return new XMLHttpRequest(); },function() { return new ActiveXObject("Microsoft.XMLHTTP"); }];
+	   var factories = [function() { return Ti.Network.createHTTPClient(); }, function() { return new ActiveXObject("Msxml2.XMLHTTP"); },function() { return new XMLHttpRequest(); },function() { return new ActiveXObject("Microsoft.XMLHTTP"); }];
 	   for(var i = 0; i < factories.length; i++) {
 	        try {
 	            var request = factories[i]();

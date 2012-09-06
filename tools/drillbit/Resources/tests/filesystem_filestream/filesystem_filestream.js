@@ -2,7 +2,7 @@ describe("Ti.Filesystem FileStream tests",{
 	before_all:function()
 	{
 		// clean up testing folder if needed
-		var base = Tide.Filesystem.getFile(Tide.Filesystem.getApplicationDataDirectory(), "unittest_filesystem_filestream");
+		var base = Ti.Filesystem.getFile(Ti.Filesystem.getApplicationDataDirectory(), "unittest_filesystem_filestream");
 		if(base.exists() && base.isDirectory()) {
 			base.deleteDirectory(true);
 		}
@@ -17,33 +17,33 @@ describe("Ti.Filesystem FileStream tests",{
 	
 	other_props:function()
 	{
-		value_of(Tide.Filesystem.getLineEnding).should_be_function();
-		value_of(Tide.Filesystem.getSeparator).should_be_function();
+		value_of(Ti.Filesystem.getLineEnding).should_be_function();
+		value_of(Ti.Filesystem.getSeparator).should_be_function();
 		
 		// these constants are boundt to the same constants bound to Ti.Filesystem
-		value_of(Tide.Filesystem.MODE_READ).should_not_be_null();
-		value_of(Tide.Filesystem.MODE_WRITE).should_not_be_null();
-		value_of(Tide.Filesystem.MODE_APPEND).should_not_be_null();
+		value_of(Ti.Filesystem.MODE_READ).should_not_be_null();
+		value_of(Ti.Filesystem.MODE_WRITE).should_not_be_null();
+		value_of(Ti.Filesystem.MODE_APPEND).should_not_be_null();
 				
-		value_of(Tide.Filesystem.getLineEnding()).should_not_be_null();
-		value_of(Tide.Filesystem.getSeparator()).should_not_be_null();
+		value_of(Ti.Filesystem.getLineEnding()).should_not_be_null();
+		value_of(Ti.Filesystem.getSeparator()).should_not_be_null();
 	},
 	
 	write_read:function()
 	{
 		var textToWrite = "This is the text to write in the file";
-		var fs = Tide.Filesystem.getFileStream(this.base, "writeTestFile.txt");
+		var fs = Ti.Filesystem.getFileStream(this.base, "writeTestFile.txt");
 
 		// these are only defined when you have an instance of filesystem.
-		value_of(fs.MODE_APPEND).should_be(Tide.Filesystem.MODE_APPEND);
-		value_of(fs.MODE_READ).should_be(Tide.Filesystem.MODE_READ);
-		value_of(fs.MODE_WRITE).should_be(Tide.Filesystem.MODE_WRITE);
+		value_of(fs.MODE_APPEND).should_be(Ti.Filesystem.MODE_APPEND);
+		value_of(fs.MODE_READ).should_be(Ti.Filesystem.MODE_READ);
+		value_of(fs.MODE_WRITE).should_be(Ti.Filesystem.MODE_WRITE);
 
 		// this should return false, file isn't open
 		value_of(fs.isOpen()).should_be_false();
 		value_of(fs.ready()).should_be_false();
 			
-		fs.open(Tide.Filesystem.MODE_WRITE);
+		fs.open(Ti.Filesystem.MODE_WRITE);
 	
 		// bug #36 - isOpen should return true here.
 		// both isOpen() and ready() should return true here.
@@ -54,12 +54,12 @@ describe("Ti.Filesystem FileStream tests",{
 
 		fs.close();
 		
-		var f = Tide.Filesystem.getFile(this.base, "writeTestFile.txt");
+		var f = Ti.Filesystem.getFile(this.base, "writeTestFile.txt");
 		value_of(f).should_not_be_null();
 		value_of(f.exists()).should_be_true();
 		
 		// read back the file contents
-		fs.open(Tide.Filesystem.MODE_READ);
+		fs.open(Ti.Filesystem.MODE_READ);
 		var textRead = fs.read();
 		fs.close();
 		value_of(textRead).should_be_object();
@@ -83,27 +83,27 @@ describe("Ti.Filesystem FileStream tests",{
 		var filename = "writeAppendTestFile.txt";
 		var textToWrite = "Line";
 		
-		var fs = Tide.Filesystem.getFileStream(this.base, filename);
-		fs.open(Tide.Filesystem.MODE_WRITE);
+		var fs = Ti.Filesystem.getFileStream(this.base, filename);
+		fs.open(Ti.Filesystem.MODE_WRITE);
 		fs.writeLine(textToWrite);
 		fs.close();
 		
-		var fs2 = Tide.Filesystem.getFileStream(this.base, filename);
-		fs2.open(Tide.Filesystem.MODE_READ);
+		var fs2 = Ti.Filesystem.getFileStream(this.base, filename);
+		fs2.open(Ti.Filesystem.MODE_READ);
 		var expectedText = fs2.readLine();
 		fs2.close();
 
 
 		value_of(expectedText).should_be(textToWrite);
 
-		var fs3 = Tide.Filesystem.getFileStream(this.base, filename);
-		fs3.open(Tide.Filesystem.MODE_READ);
+		var fs3 = Ti.Filesystem.getFileStream(this.base, filename);
+		fs3.open(Ti.Filesystem.MODE_READ);
 		var expectedText2 = fs3.read();
 		fs3.close();
 
 		// must exclude the new line
 		value_of(expectedText2).should_not_be(textToWrite);
-		if (Tide.platform == 'win32')
+		if (Ti.platform == 'win32')
 		{
 			value_of(expectedText2).should_be(textToWrite+'\r\n');
 		}
@@ -119,22 +119,22 @@ describe("Ti.Filesystem FileStream tests",{
 		var textToWrite = "This is the text to write in the file.";
 		var textToAppend = "This is the text to append.";
 		
-		var fs = Tide.Filesystem.getFileStream(this.base, filename);
-		fs.open(Tide.Filesystem.MODE_WRITE);
+		var fs = Ti.Filesystem.getFileStream(this.base, filename);
+		fs.open(Ti.Filesystem.MODE_WRITE);
 		fs.write(textToWrite);
 		fs.close();
 		
-		fs = Tide.Filesystem.getFileStream(this.base, filename);
-		fs.open(Tide.Filesystem.MODE_APPEND);
+		fs = Ti.Filesystem.getFileStream(this.base, filename);
+		fs.open(Ti.Filesystem.MODE_APPEND);
 		fs.write(textToAppend);
 		fs.close();
 		
-		var f = Tide.Filesystem.getFile(this.base, filename);
+		var f = Ti.Filesystem.getFile(this.base, filename);
 		value_of(f).should_not_be_null();
 		value_of(f.exists()).should_be_true();
 		
 		// read back the file contents
-		fs.open(Tide.Filesystem.MODE_READ);
+		fs.open(Ti.Filesystem.MODE_READ);
 		var textRead = fs.read();
 		fs.close();
 		value_of(textToWrite+textToAppend).should_be(textRead);	
@@ -144,10 +144,10 @@ describe("Ti.Filesystem FileStream tests",{
 	{
 		var filename = ".data.txt";
 		var contents = "this is some data";
-		var userDir = Tide.Filesystem.getUserDirectory();
-		var sessionFile = Tide.Filesystem.getFile(userDir, filename);
-		var sessionStream = Tide.Filesystem.getFileStream(sessionFile);
-		sessionStream.open(Tide.Filesystem.MODE_WRITE);
+		var userDir = Ti.Filesystem.getUserDirectory();
+		var sessionFile = Ti.Filesystem.getFile(userDir, filename);
+		var sessionStream = Ti.Filesystem.getFileStream(sessionFile);
+		sessionStream.open(Ti.Filesystem.MODE_WRITE);
 		sessionStream.write(contents);
 		sessionStream.close();
 		
@@ -159,8 +159,8 @@ describe("Ti.Filesystem FileStream tests",{
 
 	test_read_partial: function()
 	{
-		var f = Tide.Filesystem.getFile(Tide.Filesystem.getResourcesDirectory(), "test.txt");
-		var s = f.open(Tide.Filesystem.MODE_READ);
+		var f = Ti.Filesystem.getFile(Ti.Filesystem.getResourcesDirectory(), "test.txt");
+		var s = f.open(Ti.Filesystem.MODE_READ);
 
 		var one = s.read(3);
 		value_of(one.toString()).should_be("one");
@@ -174,8 +174,8 @@ describe("Ti.Filesystem FileStream tests",{
 
 	test_seek_tell: function()
 	{
-		var f = Tide.Filesystem.getFile(Tide.Filesystem.getResourcesDirectory(), "test.txt");
-		var s = f.open(Tide.Filesystem.MODE_READ);
+		var f = Ti.Filesystem.getFile(Ti.Filesystem.getResourcesDirectory(), "test.txt");
+		var s = f.open(Ti.Filesystem.MODE_READ);
 
 		// Seek from start
 		s.seek(11);
@@ -184,7 +184,7 @@ describe("Ti.Filesystem FileStream tests",{
 		value_of(four.toString()).should_be("four");
 
 		// Seek from current position
-		s.seek(-12, Tide.Filesystem.SEEK_CURRENT);
+		s.seek(-12, Ti.Filesystem.SEEK_CURRENT);
 		value_of(s.tell()).should_be(3);
 		var two = s.read(3);
 		value_of(two.toString()).should_be("two");

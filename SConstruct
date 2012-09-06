@@ -5,8 +5,8 @@ from tide import BuildConfig
 
 build = BuildConfig(
 	PRODUCT_VERSION = sdk.get_titanium_version(),
-	PRODUCT_NAME = 'Tide',
-	GLOBAL_NS_VARNAME = 'Tide',
+	PRODUCT_NAME = 'Ti',
+	GLOBAL_NS_VARNAME = 'Ti',
 	CONFIG_FILENAME = 'tiapp.xml',
 	BUILD_DIR = path.abspath('build'),
 	THIRD_PARTY_DIR = path.join(path.abspath('tide'), 'thirdparty'),

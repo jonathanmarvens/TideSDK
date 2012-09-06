@@ -2,13 +2,13 @@ describe("Database Module",{
 	
 	before_all:function()
 	{
-		var datadir = Tide.Filesystem.getApplicationDataDirectory();
+		var datadir = Ti.Filesystem.getApplicationDataDirectory();
 
 		//
 		// delete any existing files we may have created related to DB
 		// so we can ensure that the code below is running fresh on this app
 		//
-		var listing = Tide.Filesystem.getFile(datadir).getDirectoryListing();
+		var listing = Ti.Filesystem.getFile(datadir).getDirectoryListing();
 		for (var c=0;c<listing.length;c++)
 		{
 			var f = listing[c];
@@ -25,13 +25,13 @@ describe("Database Module",{
 	
 	check_types:function()
 	{
-    	value_of(Tide.Database).should_be_object();
-		value_of(Tide.Database.open).should_be_function();
+    	value_of(Ti.Database).should_be_object();
+		value_of(Ti.Database.open).should_be_function();
 	},
 	
 	before: function()
 	{
-		this.db = Tide.Database.open("test_db");
+		this.db = Ti.Database.open("test_db");
 		
 		// we should do a null check here, the rest of the 
 		// object properties are handled elsewhere.
@@ -46,7 +46,7 @@ describe("Database Module",{
 	
 	after_all: function()
 	{
-		var db = Tide.Database.open("test_db");
+		var db = Ti.Database.open("test_db");
 		db.remove();
 	},
 	
@@ -271,9 +271,9 @@ describe("Database Module",{
 	},
 	test_file_database:function()
 	{
-		var datadir = Tide.Filesystem.getApplicationDataDirectory();
-		var testFile = Tide.Filesystem.getFile(datadir, "test_database.db");
-		var fileDB = Tide.Database.openFile(testFile);
+		var datadir = Ti.Filesystem.getApplicationDataDirectory();
+		var testFile = Ti.Filesystem.getFile(datadir, "test_database.db");
+		var fileDB = Ti.Database.openFile(testFile);
 
 		rs = fileDB.execute("CREATE TABLE TEST (name TEXT, size INT)");
 		rs.close();
@@ -286,7 +286,7 @@ describe("Database Module",{
 
 		value_of(testFile.exists()).should_be_true();
 
-		fileDB = Tide.Database.openFile(testFile);
+		fileDB = Ti.Database.openFile(testFile);
 		rs = fileDB.execute("select * from TEST");
 		value_of(rs).should_be_object();
 		value_of(rs.rowCount()).should_be(3);
@@ -308,24 +308,24 @@ describe("Database Module",{
 	},
 	test_file_database_remove:function()
 	{
-		var datadir = Tide.Filesystem.getApplicationDataDirectory();
-		var testFile = Tide.Filesystem.getFile(datadir, "test_database.db");
+		var datadir = Ti.Filesystem.getApplicationDataDirectory();
+		var testFile = Ti.Filesystem.getFile(datadir, "test_database.db");
 
-		var fileDB = Tide.Database.openFile(testFile);
+		var fileDB = Ti.Database.openFile(testFile);
 		fileDB.close();
 		value_of(testFile.exists()).should_be_true();
 
 		// Remove with no close
-		fileDB = Tide.Database.openFile(testFile);
+		fileDB = Ti.Database.openFile(testFile);
 		fileDB.remove();
 		value_of(testFile.exists()).should_be_false();
 
-		var fileDB = Tide.Database.openFile(testFile);
+		var fileDB = Ti.Database.openFile(testFile);
 		fileDB.close();
 		value_of(testFile.exists()).should_be_true();
 
 		// Remove after close
-		fileDB = Tide.Database.openFile(testFile);
+		fileDB = Ti.Database.openFile(testFile);
 		fileDB.close();
 		fileDB.remove();
 		value_of(testFile.exists()).should_be_false();
@@ -334,24 +334,24 @@ describe("Database Module",{
 	{
 		var name = "test_database_again";
 
-		var datab = Tide.Database.open(name);
-		var file = Tide.Filesystem.getFile(datab.path);
+		var datab = Ti.Database.open(name);
+		var file = Ti.Filesystem.getFile(datab.path);
 		datab.close();
 
 		value_of(file.exists()).should_be_true();
 
 		// Remove with no close
-		datab = Tide.Database.open(name);
+		datab = Ti.Database.open(name);
 		datab.remove();
 		value_of(file.exists()).should_be_false();
 
-		var datab = Tide.Database.open(name);
-		file = Tide.Filesystem.getFile(datab.path);
+		var datab = Ti.Database.open(name);
+		file = Ti.Filesystem.getFile(datab.path);
 		datab.close();
 		value_of(file.exists()).should_be_true();
 
 		// Remove after close
-		datab = Tide.Database.open(name);
+		datab = Ti.Database.open(name);
 		datab.close();
 		datab.remove();
 		value_of(file.exists()).should_be_false();

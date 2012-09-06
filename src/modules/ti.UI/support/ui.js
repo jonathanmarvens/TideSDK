@@ -14,13 +14,13 @@
 
     // ensure that the window.opener property is set when we open a native 
     // window in the same domain as this window (assuming this window is a child)
-    if (Tide.UI.getCurrentWindow().getParent())
+    if (Ti.UI.getCurrentWindow().getParent())
     {
-        var d = Tide.UI.getCurrentWindow().getParent().window.document;
+        var d = Ti.UI.getCurrentWindow().getParent().window.document;
         // make sure in the same domain
         if (typeof(d)!='undefined' && d.domain == document.domain)
         {
-            window.opener = Tide.UI.getCurrentWindow().getParent().window;
+            window.opener = Ti.UI.getCurrentWindow().getParent().window;
         }
     }
 
@@ -29,7 +29,7 @@
         // append the platform (osx, linux, win32) to the body so we can dynamically
         // use platform specific CSS such as body.win32 div { } 
         var cn = (document.body.className || '');
-        document.body.className =  cn + (cn ? ' ': '') + Tide.platform;
+        document.body.className =  cn + (cn ? ' ': '') + Ti.platform;
 
         //
         // insert our user specific stylesheet in a generic way
@@ -84,11 +84,11 @@
         };
         obj[methodName] = fn;
     }
-    replaceMethod(console, "debug", function(msg) { Tide.API.debug(msg); });
-    replaceMethod(console, "log", function(msg) { Tide.API.log(msg); });
-    replaceMethod(console, "info", function(msg) { Tide.API.info(msg); });
-    replaceMethod(console, "warn", function(msg) { Tide.API.warn(msg); });
-    replaceMethod(console, "error", function(msg) { Tide.API.error(msg); });
+    replaceMethod(console, "debug", function(msg) { Ti.API.debug(msg); });
+    replaceMethod(console, "log", function(msg) { Ti.API.log(msg); });
+    replaceMethod(console, "info", function(msg) { Ti.API.info(msg); });
+    replaceMethod(console, "warn", function(msg) { Ti.API.warn(msg); });
+    replaceMethod(console, "error", function(msg) { Ti.API.error(msg); });
 
     // Exchange the open() method for a version which ensures that a blank
     // URL maps to app://__blank__ rather than about:blank.
@@ -119,20 +119,20 @@
     /**
      * @tiapi(property=True,name=UI.Window.isDialog,since=0.4) true if this window is a UI Dialog
      */
-    Tide.UI.getCurrentWindow().isDialog = function()
+    Ti.UI.getCurrentWindow().isDialog = function()
     {
-        return Tide.UI.getCurrentWindow()._isDialog;
+        return Ti.UI.getCurrentWindow()._isDialog;
     }
-    Tide.UI.getCurrentWindow()._isDialog = false;
+    Ti.UI.getCurrentWindow()._isDialog = false;
 
     /**
      * @tiapi(method=True,name=UI.showDialog,since=0.4) create a UI dialog
      * @tiarg(for=UI.showDialog,name=params,type=Object) options to pass in to create window
      * @tiresult(for=UI.showDialog,type=UI.Dialog) dialog instance
      */
-    Tide.UI.showDialog = function(params)
+    Ti.UI.showDialog = function(params)
     {
-        var dialogWindow = Tide.UI.createWindow(params);
+        var dialogWindow = Ti.UI.createWindow(params);
 
         dialogWindow._dialogResult = null;
         dialogWindow._dialogParameters = params.parameters || {};
@@ -189,16 +189,16 @@
      * @tiarg(for=JSON.parse,name=json,type=String) JSON string to convert
      * @tiresult(for=JSON.parse,type=Object) Returns the object representation of the string 
      */
-    if (!Tide.JSON)
-        Tide.JSON = window.JSON;
+    if (!Ti.JSON)
+        Ti.JSON = window.JSON;
 
     // Enable Tide notifications as a fallback when platform
     // native notifications are not available.
-    if (Tide.UI.nativeNotifications == false)
+    if (Ti.UI.nativeNotifications == false)
     {
         var notification_windows = 1;
 
-        function TideNotification(window)
+        function TiNotification(window)
         {
             var self = this;
             var width = 300;
@@ -214,7 +214,7 @@
                 delay: 3000,
             };
 
-            var mywindow = Tide.UI.mainWindow.createWindow(
+            var mywindow = Ti.UI.mainWindow.createWindow(
             {
                 width:width,
                 height:height,
@@ -264,9 +264,9 @@
                 animate = (animate==null) ? true : animate;
                 autohide = (autohide==null) ? true : autohide;
                 mywindow.setX(window.screen.availWidth-width-20);
-                if (Tide.platform == "osx" || Tide.platform == 'linux') {
+                if (Ti.platform == "osx" || Ti.platform == 'linux') {
                     mywindow.setY(25);
-                } else if (Tide.platform == "win32") {
+                } else if (Ti.platform == "win32") {
                     mywindow.setY(window.screen.availHeight-height-10);
                 }
 
@@ -312,12 +312,12 @@
             };
         };
 
-        Tide.UI.createNotification = function()
+        Ti.UI.createNotification = function()
         {
-            var window = Tide.UI.mainWindow.getDOMWindow();
+            var window = Ti.UI.mainWindow.getDOMWindow();
             if (!window)
                 throw "Unable to get main window DOM!"
-            var n = new TideNotification(window);
+            var n = new TiNotification(window);
             if (arguments.length == 1)
                 n.configure(arguments[0]);
             return n;

@@ -1,17 +1,17 @@
 (function()
 {
-    Tide.Analytics.sendEvent = function(data)
+    Ti.Analytics.sendEvent = function(data)
     {
         // If we're offline we don't even attempt to send Analytics.
         //TODO: we need to place these in DB and re-send later
-        if (Tide.Network.online === false)
+        if (Ti.Network.online === false)
         {
-            Tide.API.debug("Not online -- skipping analytics");
+            Ti.API.debug("Not online -- skipping analytics");
             return;
         }
-        if (!Tide.App.analyticsEnabled)
+        if (!Ti.App.analyticsEnabled)
         {
-            Tide.API.debug("Analytics disabled via tiapp.xml, skipping");
+            Ti.API.debug("Analytics disabled via tiapp.xml, skipping");
             return;
         }
 
@@ -19,11 +19,11 @@
         for (var key in data)
         {
             queryString += key + "=" + (data[key] === undefined ?
-                 '' : Tide.Network.encodeURIComponent(data[key])) + '&';
+                 '' : Ti.Network.encodeURIComponent(data[key])) + '&';
         }
 
         // Send the event natively and asynchronously.
-        Tide.Analytics._sendEvent(queryString);
+        Ti.Analytics._sendEvent(queryString);
     };
     
     /** Undocumented, perhaps to be deprecated
@@ -33,9 +33,9 @@
      * @no_tiarg[String, event] event name
      * @no_tiarg[String. data] event data
      */
-    Tide.Analytics.addEvent = function(event,data)
+    Ti.Analytics.addEvent = function(event,data)
     {
-        Tide.Analytics.sendEvent({type:'app.addEvent',event:event,data:data});
+        Ti.Analytics.sendEvent({type:'app.addEvent',event:event,data:data});
     };
 
     /**
@@ -46,12 +46,12 @@
      * @tiarg[String, name] Event name.
      * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
      */
-    Tide.Analytics.navEvent = function(from, to, name, data)
+    Ti.Analytics.navEvent = function(from, to, name, data)
     {
         if (from === undefined || to === undefined)
             return;
 
-        Tide.Analytics.sendEvent({
+        Ti.Analytics.sendEvent({
             type: 'app.nav', 
             event: name === undefined ? "app.nav" : name,
             data: JSON.stringify({from:from, to:to, data:data})
@@ -64,12 +64,12 @@
      * @tiarg[String, name] Feature name.
      * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
      */
-    Tide.Analytics.featureEvent = function(name, data)
+    Ti.Analytics.featureEvent = function(name, data)
     {
         if (name === undefined)
             return;
 
-        Tide.Analytics.sendEvent({
+        Ti.Analytics.sendEvent({
             type: 'app.feature',
             event: name,
             data: data === undefined ? null : JSON.stringify(data)
@@ -82,12 +82,12 @@
      * @tiarg[String, name] Setting name.
      * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
      */
-    Tide.Analytics.settingsEvent = function(name,data)
+    Ti.Analytics.settingsEvent = function(name,data)
     {
         if (name === undefined)
             return;
 
-        Tide.Analytics.sendEvent({
+        Ti.Analytics.sendEvent({
             type: 'app.settings',
             event: name,
             data: data === undefined ? null : JSON.stringify(data)
@@ -104,7 +104,7 @@
      * @tiarg are specified)
      * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
      */
-    Tide.Analytics.timedEvent = function(name,start,stop,duration,data)
+    Ti.Analytics.timedEvent = function(name,start,stop,duration,data)
     {
         // Number in, two-digit (or more) string out
         var zeropad = function(maybe_small_number)
@@ -113,7 +113,7 @@
         }
 
         // format to yyyy-MM-dd'T'HH:mm:ss.SSSZ to be consistent with
-        // Tide Mobile UTC timestamp strings.
+        // Ti Mobile UTC timestamp strings.
         var formatUTCstring = function(d)
         {
             return d.getUTCFullYear().toString() + '-' +
@@ -136,7 +136,7 @@
             payload.duration = duration;
         if (data !== undefined)
             payload.data = data;
-        Tide.Analytics.sendEvent({
+        Ti.Analytics.sendEvent({
             type: 'app.timed_event',
             event: name,
             data: JSON.stringify(payload)
@@ -149,19 +149,19 @@
      * @tiarg[String, name] Event name.
      * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
      */
-    Tide.Analytics.userEvent = function(name,data)
+    Ti.Analytics.userEvent = function(name,data)
     {
         if (name === undefined)
             return;
 
-        Tide.Analytics.sendEvent({
+        Ti.Analytics.sendEvent({
             type: 'app.user',
             event: name,
             data: data === undefined ? null : JSON.stringify(data)
         });
     };
 
-    Tide.UpdateManager = {};
+    Ti.UpdateManager = {};
 
     /**
      * @tiapi(method=True,name=UpdateManager.startMonitor,since=0.4) Check the update service for a new version
@@ -170,7 +170,7 @@
      * @tiarg(for=UpdateManager.startMonitor,name=interval,type=Number) Interval in milliseconds for how often to check for an update
      * @tiresult(for=UpdateManager.startMonitor,type=Number) Returns a handle which should use used to cancel the monitor
      */
-    Tide.UpdateManager.startMonitor = function(components,callback,interval)
+    Ti.UpdateManager.startMonitor = function(components,callback,interval)
     {
         if (interval == undefined || interval == null || interval < (60000) * 5)
         {
@@ -186,7 +186,7 @@
                 {
                     if (success)
                     {
-                        var list = Tide.API.getInstalledComponents(refreshComponents);
+                        var list = Ti.API.getInstalledComponents(refreshComponents);
                         var matches = [];
                         for (var x=0;x<list.length;x++)
                         {
@@ -217,10 +217,10 @@
         };
         
         // schedule the timer to fire
-        var timer = Tide.setInterval(runCheck,interval);
+        var timer = Ti.setInterval(runCheck,interval);
 
         // go ahead and schedule
-        Tide.setTimeout(runCheck,1000);
+        Ti.setTimeout(runCheck,1000);
         
         return timer;
     };
@@ -229,23 +229,23 @@
      * @tiapi(method=True,name=UpdateManager.cancelMonitor,since=0.4) Check the update service for a new version
      * @tiarg(for=UpdateManager.cancelMonitor,name=id,type=Number) The monitor id returned from startMonitor
      */
-    Tide.UpdateManager.cancelMonitor = function(id)
+    Ti.UpdateManager.cancelMonitor = function(id)
     {
-        Tide.clearInterval(id);
+        Ti.clearInterval(id);
     };
 
     /**
      * @tiapi(property=True,name=UpdateManager.onupdate,since=0.4) Set the update handler implementation function that will be invoked when an update is detected
      */
-    Tide.UpdateManager.onupdate = null;
+    Ti.UpdateManager.onupdate = null;
         
     
     // NOTE: this is a private api and is not documented
-    Tide.UpdateManager.install = function(components,callback)
+    Ti.UpdateManager.install = function(components,callback)
     {
-        Tide.API.installDependencies(components,function()
+        Ti.API.installDependencies(components,function()
         {
-            var components = Tide.API.getInstalledComponents(true);
+            var components = Ti.API.getInstalledComponents(true);
             if (callback)
             {
                 callback(components);
@@ -259,12 +259,12 @@
      * @tiapi method will cause the process to first be restarted for the update to begin.
      * @tiarg[Object, updateSpec] Update spec object received from update service.
      */
-    Tide.UpdateManager.installAppUpdate = function(updateSpec)
+    Ti.UpdateManager.installAppUpdate = function(updateSpec)
     {
         installAppUpdate(updateSpec);
     };
 
-    Tide.UpdateManager.compareVersions = function(newVersion, oldVersion)
+    Ti.UpdateManager.compareVersions = function(newVersion, oldVersion)
     {
         // 1. Split on dots.
         // 2. For every dot do a comparison.
@@ -312,12 +312,12 @@
     function installAppUpdate(updateSpec)
     {
         // write our the new manifest for the update
-        var datadir = Tide.Filesystem.getApplicationDataDirectory();
-        var update = Tide.Filesystem.getFile(datadir,'.update');
+        var datadir = Ti.Filesystem.getApplicationDataDirectory();
+        var update = Ti.Filesystem.getFile(datadir,'.update');
         update.write(updateSpec.manifest);
         
         // restart ourselves to cause the install
-        Tide.App.restart();
+        Ti.App.restart();
     }
     
 
@@ -325,31 +325,31 @@
     {
         try
         {
-            if (!Tide.Network.online)
+            if (!Ti.Network.online)
             {
                 return;
             }
             limit = (limit==undefined) ? 1 : limit;
-            var url = Tide.App.getStreamURL("release-list");
-            var xhr = Tide.Network.createHTTPClient();
+            var url = Ti.App.getStreamURL("release-list");
+            var xhr = Ti.Network.createHTTPClient();
             xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-            var qs = 'version=' + Tide.Network.encodeURIComponent(version) +
-                '&name=' + Tide.Network.encodeURIComponent(component) + 
-                '&mid=' + Tide.Network.encodeURIComponent(Tide.Platform.id) +
+            var qs = 'version=' + Ti.Network.encodeURIComponent(version) +
+                '&name=' + Ti.Network.encodeURIComponent(component) + 
+                '&mid=' + Ti.Network.encodeURIComponent(Ti.Platform.id) +
                 '&limit=' + limit +
-                '&guid=' + Tide.Network.encodeURIComponent(Tide.App.getGUID()) +
-                '&os=' + Tide.platform +
-                '&ostype=' + Tide.Platform.ostype;
+                '&guid=' + Ti.Network.encodeURIComponent(Ti.App.getGUID()) +
+                '&os=' + Ti.platform +
+                '&ostype=' + Ti.Platform.ostype;
             xhr.onreadystatechange = function()
             {
                 if (this.readyState==4)
                 {
                     try
                     {
-                        var json = Tide.JSON.parse(this.responseText);
+                        var json = Ti.JSON.parse(this.responseText);
                         if (!json.success)
                         {
-                            Tide.API.error("Error response from update service: "+json.message);
+                            Ti.API.error("Error response from update service: "+json.message);
                             callback(false);
                             return;
                         }
@@ -368,7 +368,7 @@
                     }
                     catch(e)
                     {
-                        Tide.API.error("Exception communicating to update service: "+e);
+                        Ti.API.error("Exception communicating to update service: "+e);
                         callback(false);
                     }
                 }
@@ -378,7 +378,7 @@
         }
         catch(e)
         {
-            Tide.API.error("Error performing update check = "+e);
+            Ti.API.error("Error performing update check = "+e);
             callback(false);
         }
     }
@@ -398,16 +398,16 @@
         }
         catch(e)
         {
-            Tide.API.error("Error updating update db = "+e);
+            Ti.API.error("Error updating update db = "+e);
         }
     }
     function updateDetected(updateSpec)
     {
         // if we have a handler, delegate to that dude
         // and he's now responsible for doing the update stuff
-        if (typeof Tide.UpdateManager.onupdate == 'function')
+        if (typeof Ti.UpdateManager.onupdate == 'function')
         {
-            Tide.UpdateManager.onupdate(updateSpec);
+            Ti.UpdateManager.onupdate(updateSpec);
             return;
         }
         
@@ -424,15 +424,15 @@
         }
     
         // ok, we'll handle it then...
-        Tide.UI.showDialog({
+        Ti.UI.showDialog({
             'url': 'ti://tinetwork/update.html',
             'width': width,
             'height': height,
             'resizable':false,
             'parameters':{
-                'name':Tide.App.getName(),
-                'icon':'file://'+Tide.App.getIcon(),
-                'ver_from':Tide.App.getVersion(),
+                'name':Ti.App.getName(),
+                'icon':'file://'+Ti.App.getIcon(),
+                'ver_from':Ti.App.getVersion(),
                 'ver_to':updateSpec.version,
                 'notes_url':notes_url 
             },
@@ -453,7 +453,7 @@
 
         try
         {
-            db = Tide.Database.open("app_updates");
+            db = Ti.Database.open("app_updates");
             db.execute("create table if not exists last_check(time long)");
 
             // Seconds since the last update check or null if we've never done a check.
@@ -463,7 +463,7 @@
         }
         catch (e)
         {
-            Tide.API.error("Could not read UpdateManager last_check table: " + e);
+            Ti.API.error("Could not read UpdateManager last_check table: " + e);
             if (db)
                 db.close();
             return;
@@ -475,10 +475,10 @@
             if (duration && duration < UPDATE_CHECK_INTERVAL)
                 return;
 
-            updateCheck('app-update', Tide.App.getVersion(), function(success, update)
+            updateCheck('app-update', Ti.App.getVersion(), function(success, update)
             {
-                if (success && Tide.UpdateManager.compareVersions(
-                    update.version,Tide.App.getVersion()) > 0)
+                if (success && Ti.UpdateManager.compareVersions(
+                    update.version,Ti.App.getVersion()) > 0)
                 {
                     updateDetected(update);
                 }
@@ -486,7 +486,7 @@
         }
         catch(e)
         {
-            Tide.API.error("UpdateManager app update check failed: " + e);
+            Ti.API.error("UpdateManager app update check failed: " + e);
             db.close();
             return;
         }
@@ -499,26 +499,26 @@
         }
         catch (e)
         {
-            Tide.API.error("Could not update UpdateManager last_check table: " + e);
+            Ti.API.error("Could not update UpdateManager last_check table: " + e);
         }
 
         db.close();
     }
 
-    Tide.API.addEventListener(Tide.APP_EXIT, function(event)
+    Ti.API.addEventListener(Ti.APP_EXIT, function(event)
     {
         if (updateCheckTimer)
         {
-            Tide.clearTimeout(updateCheckTimer);
+            Ti.clearTimeout(updateCheckTimer);
             updateCheckTimer = null;
         }
 
-        Tide.Analytics.sendEvent({'event': 'ti.end', type: 'ti.end'});
+        Ti.Analytics.sendEvent({'event': 'ti.end', type: 'ti.end'});
     });
 
-    Tide.Analytics.sendEvent({'event': 'ti.start', 'type': 'ti.start'});
+    Ti.Analytics.sendEvent({'event': 'ti.start', 'type': 'ti.start'});
 
-    if (Tide.App.updateMonitorEnabled)
+    if (Ti.App.updateMonitorEnabled)
     {
         // How often to actually check for updates on the network in seconds.
         // 900 seconds == every 15 minutes.
@@ -531,6 +531,6 @@
 
         var refreshComponents = true;
         var updateCheckTimer = updateCheckTimer = 
-            Tide.setTimeout(function() { checkForUpdate(); }, UPDATE_CHECK_TIMER_INTERVAL);
+            Ti.setTimeout(function() { checkForUpdate(); }, UPDATE_CHECK_TIMER_INTERVAL);
     }
 })();

@@ -1,15 +1,15 @@
 describe("Update manager object tests",{
 	test_object: function()
 	{
-		value_of(Tide.UpdateManager).should_not_be_null();
-		value_of(Tide.UpdateManager.cancelMonitor).should_be_function();
-		value_of(Tide.UpdateManager.installAppUpdate).should_be_function();
-		value_of(Tide.UpdateManager.onupdate).should_be_null();
-		value_of(Tide.UpdateManager.startMonitor).should_be_function();
+		value_of(Ti.UpdateManager).should_not_be_null();
+		value_of(Ti.UpdateManager.cancelMonitor).should_be_function();
+		value_of(Ti.UpdateManager.installAppUpdate).should_be_function();
+		value_of(Ti.UpdateManager.onupdate).should_be_null();
+		value_of(Ti.UpdateManager.startMonitor).should_be_function();
 	},
 	test_version_comparison: function()
 	{
-		var compare = Tide.UpdateManager.compareVersions;
+		var compare = Ti.UpdateManager.compareVersions;
 		value_of(compare("0.8.0", "0.8.0")).should_be(0);
 		value_of(compare("0.8.0", "0.8.1")).should_be_less_than(0);
 		value_of(compare("0.8.0", "0.8.0.0")).should_be_less_than(0);

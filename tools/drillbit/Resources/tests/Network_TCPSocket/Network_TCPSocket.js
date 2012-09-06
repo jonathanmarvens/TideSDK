@@ -4,10 +4,10 @@ describe("Network.TCPSocket",{
 	before_all: function()
 	{
         // Launch testing server on port 8080
-        this.testServer = Tide.Process.createProcess(
+        this.testServer = Ti.Process.createProcess(
         {
          args: [
-             'python', Tide.API.application.resourcesPath + "/testserver.py"
+             'python', Ti.API.application.resourcesPath + "/testserver.py"
          ]
         });
         this.testServer.launch();
@@ -33,7 +33,7 @@ describe("Network.TCPSocket",{
 	before: function()
 	{
 		// Create a test socket client
-		this.socket = Tide.Network.createTCPSocket("127.0.0.1", 8080);
+		this.socket = Ti.Network.createTCPSocket("127.0.0.1", 8080);
 	},
 
 	// test the network object and properties.

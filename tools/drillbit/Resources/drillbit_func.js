@@ -249,7 +249,7 @@ if (!this.JSON) {
     }
 }());
 
-TideTest = 
+TiTest = 
 {
 	currentTest:null,
 	results:[],
@@ -260,14 +260,14 @@ TideTest =
 	
 	runningTest:function(suite,name)
 	{
-		Tide.App.stdout('DRILLBIT_TEST: '+suite+','+name);
-		Tide.API.debug('DRILLBIT_TEST: '+suite+','+name);
+		Ti.App.stdout('DRILLBIT_TEST: '+suite+','+name);
+		Ti.API.debug('DRILLBIT_TEST: '+suite+','+name);
 	},
 	
 	assertion:function(subject)
 	{
-		Tide.App.stdout('DRILLBIT_ASSERTION: ' + TideTest.currentTest + "," + subject.lineNumber);
-		TideTest.totalAssertions++;
+		Ti.App.stdout('DRILLBIT_ASSERTION: ' + TiTest.currentTest + "," + subject.lineNumber);
+		TiTest.totalAssertions++;
 	},
 	
 	testPassed:function(name, lineNumber)
@@ -279,9 +279,9 @@ TideTest =
 			message: "Success",
 			lineNumber: lineNumber
 		});
-		Tide.App.stdout("DRILLBIT_PASS: "+name);
-		Tide.API.debug("DRILLBIT_PASS: "+name);
-		TideTest.run_next_test();
+		Ti.App.stdout("DRILLBIT_PASS: "+name);
+		Ti.API.debug("DRILLBIT_PASS: "+name);
+		TiTest.run_next_test();
 	},
 	
 	testFailed:function(name,e)
@@ -294,41 +294,41 @@ TideTest =
 			message:e.message || String(e)
 		});
 		
-		Tide.App.stdout("DRILLBIT_FAIL: "+name+","+e.line+" --- "+String(e).replace("\n","\\n"));
-		Tide.API.debug("DRILLBIT_FAIL: "+name+","+e.line+" --- "+e);
-		TideTest.run_next_test();
+		Ti.App.stdout("DRILLBIT_FAIL: "+name+","+e.line+" --- "+String(e).replace("\n","\\n"));
+		Ti.API.debug("DRILLBIT_FAIL: "+name+","+e.line+" --- "+e);
+		TiTest.run_next_test();
 	},
 	
 	complete: function()
 	{
 		try
 		{
-			Tide.API.info("test complete");
-			var results_dir = Tide.API.getApplication().getArgumentValue('results-dir');
+			Ti.API.info("test complete");
+			var results_dir = Ti.API.getApplication().getArgumentValue('results-dir');
 			if (results_dir==null)
 			{
-				Tide.API.error("INVALID ARGUMENT VALUE FOUND FOR ARG: results-dir");
+				Ti.API.error("INVALID ARGUMENT VALUE FOUND FOR ARG: results-dir");
 			}
-			var rd = Tide.Filesystem.getFile(results_dir);
+			var rd = Ti.Filesystem.getFile(results_dir);
 			if (!rd.exists())
 			{
 				rd.createDirectory(true);
 			}
-			var f = Tide.Filesystem.getFile(rd.nativePath(), TideTest.NAME+'.json');
+			var f = Ti.Filesystem.getFile(rd.nativePath(), TiTest.NAME+'.json');
 			this.write_results_to_json(f);
 
 			// Only write the failure report HTML if we have failed -- it's very expensive
-			var f = Tide.Filesystem.getFile(rd.nativePath(), TideTest.NAME+'.html');
+			var f = Ti.Filesystem.getFile(rd.nativePath(), TiTest.NAME+'.html');
 			this.write_results_to_single_html(f);
 			
-			var f = Tide.Filesystem.getFile(rd.nativePath(), "results.html");
+			var f = Ti.Filesystem.getFile(rd.nativePath(), "results.html");
 			this.write_results_to_results_html(f);
 		}
 		catch(e)
 		{
-			Tide.API.error("Exception on completion: "+e);
+			Ti.API.error("Exception on completion: "+e);
 		}
-		Tide.App.exit(0);
+		Ti.App.exit(0);
 	},
 	
 	write_results_to_json: function(f)
@@ -395,10 +395,10 @@ TideTest =
 
 		if (failed)
 		{
-			var app = Tide.API.getApplication();
-			//var script = Tide.Filesystem.getFile(
-			//app.getResourcesPath(), "userscripts", TideTest.NAME + "_driver.js");
-			var scriptText = Tide.Filesystem.getFile(TideTest.SOURCE).read();
+			var app = Ti.API.getApplication();
+			//var script = Ti.Filesystem.getFile(
+			//app.getResourcesPath(), "userscripts", TiTest.NAME + "_driver.js");
+			var scriptText = Ti.Filesystem.getFile(TiTest.SOURCE).read();
 			var lines = scriptText.toString().split("\n");
 
 			text.push('<table style="font-family: monospace; font-size: 10pt;">');
@@ -424,7 +424,7 @@ TideTest =
 	
 	run_next_test:function()
 	{
-		Tide.API.info("test run_next_test "+this.tests.length);
+		Ti.API.info("test run_next_test "+this.tests.length);
 		if (this.tests.length == 0)
 		{
 			this.on_complete();
@@ -437,337 +437,337 @@ TideTest =
 	}
 };
 
-TideTest.gscope = {};
-TideTest.currentSubject = null;
+TiTest.gscope = {};
+TiTest.currentSubject = null;
 
 function value_of(obj)
 {
-	var subject = new TideTest.Subject(obj);
-	TideTest.currentSubject = subject;
+	var subject = new TiTest.Subject(obj);
+	TiTest.currentSubject = subject;
 	return subject;
 }
 
-TideTest.Error = function(message,line)
+TiTest.Error = function(message,line)
 {
 	this.message = message;
 	this.line = line;
 };
 
-TideTest.Error.prototype.toString = function()
+TiTest.Error.prototype.toString = function()
 {
 	return this.message;
 };
 
-TideTest.Subject = function(target) {
+TiTest.Subject = function(target) {
 	this.target = target;
 	this.lineNumber = 0;
 };
 
-TideTest.Subject.prototype.toString = function()
+TiTest.Subject.prototype.toString = function()
 {
 	return 'Subject[target='+this.target+',line='+this.lineNumber+']';
 };
 
-TideTest.Scope = function(name) {
+TiTest.Scope = function(name) {
 	this._testName = name;
 	this._completed = false;
 	// copy in the global scope
-	for (var p in TideTest.gscope)
+	for (var p in TiTest.gscope)
 	{
-		this[p] = TideTest.gscope[p];
+		this[p] = TiTest.gscope[p];
 	}
 }
 
-TideTest.Scope.prototype.passed = function()
+TiTest.Scope.prototype.passed = function()
 {
 	if (!this._completed)
 	{
 		this._completed = true;
-		if (TideTest.currentSubject)
+		if (TiTest.currentSubject)
 		{
-			TideTest.testPassed(this._testName,TideTest.currentSubject.lineNumber);
+			TiTest.testPassed(this._testName,TiTest.currentSubject.lineNumber);
 		}
 		else
 		{
-			TideTest.testPassed(this._testName,-1);
+			TiTest.testPassed(this._testName,-1);
 		}
-		TideTest.currentSubject = null;
+		TiTest.currentSubject = null;
 	}
 }
 
-TideTest.Scope.prototype.failed = function(ex)
+TiTest.Scope.prototype.failed = function(ex)
 {
 	if (!this._completed)
 	{
 		this._completed = true;
-		TideTest.testFailed(this._testName,ex);
-		TideTest.currentSubject = null;
+		TiTest.testFailed(this._testName,ex);
+		TiTest.currentSubject = null;
 	}
 }
 
-TideTest.Subject.prototype.should_be = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target != expected)
 	{
-		throw new TideTest.Error('should be: "'+expected+'", was: "'+this.target+'"',lineNumber);
+		throw new TiTest.Error('should be: "'+expected+'", was: "'+this.target+'"',lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_not_be = function(expected,lineNumber)
+TiTest.Subject.prototype.should_not_be = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target == expected)
 	{
-		throw new TideTest.Error('should not be: '+expected+', was: '+this.target,lineNumber);
+		throw new TiTest.Error('should not be: '+expected+', was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_not_be_null = function(expected,lineNumber)
+TiTest.Subject.prototype.should_not_be_null = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target === null)
 	{
-		throw new TideTest.Error('should not be null, was: '+this.target,lineNumber);
+		throw new TiTest.Error('should not be null, was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_not_be_undefined = function(expected,lineNumber)
+TiTest.Subject.prototype.should_not_be_undefined = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target === undefined)
 	{
-		throw new TideTest.Error('should not be undefined, was: '+this.target,lineNumber);
+		throw new TiTest.Error('should not be undefined, was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_exactly = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_exactly = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target !== expected)
 	{
-		throw new TideTest.Error('should be exactly: '+expected+', was: '+this.target,lineNumber);
+		throw new TiTest.Error('should be exactly: '+expected+', was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_null = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_null = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target !== null)
 	{
-		throw new TideTest.Error('should be null, was: '+this.target,lineNumber);
+		throw new TiTest.Error('should be null, was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_string = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_string = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (typeof this.target !== 'string')
 	{
-		throw new TideTest.Error('should be string, was: '+typeof(this.target),lineNumber);
+		throw new TiTest.Error('should be string, was: '+typeof(this.target),lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_undefined = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_undefined = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target !== undefined)
 	{
-		throw new TideTest.Error('should be undefined, was: '+this.target,lineNumber);
+		throw new TiTest.Error('should be undefined, was: '+this.target,lineNumber);
 	}
 };
 
 
-TideTest.Subject.prototype.should_be_function = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_function = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (typeof(this.target) != 'function')
 	{
-		throw new TideTest.Error('should be a function, was: '+typeof(this.target),lineNumber);
+		throw new TiTest.Error('should be a function, was: '+typeof(this.target),lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_object = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_object = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (typeof(this.target) != 'object')
 	{
-		throw new TideTest.Error('should be a object, was: '+typeof(this.target),lineNumber);
+		throw new TiTest.Error('should be a object, was: '+typeof(this.target),lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_number = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_number = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (typeof(this.target) != 'number')
 	{
-		throw new TideTest.Error('should be a number, was: '+typeof(this.target),lineNumber);
+		throw new TiTest.Error('should be a number, was: '+typeof(this.target),lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_boolean = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_boolean = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (typeof(this.target) != 'boolean')
 	{
-		throw new TideTest.Error('should be a boolean, was: '+typeof(this.target),lineNumber);
+		throw new TiTest.Error('should be a boolean, was: '+typeof(this.target),lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_true = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_true = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target!==true)
 	{
-		throw new TideTest.Error('should be true, was: '+this.target,lineNumber);
+		throw new TiTest.Error('should be true, was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_false = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_false = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target!==false)
 	{
-		throw new TideTest.Error('should be false, was: '+this.target,lineNumber);
+		throw new TiTest.Error('should be false, was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_zero = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_zero = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target!==0)
 	{
-		throw new TideTest.Error('should be 0 (zero), was: '+this.target+' ('+typeof(this.target)+')',lineNumber);
+		throw new TiTest.Error('should be 0 (zero), was: '+this.target+' ('+typeof(this.target)+')',lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_array = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_array = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	// better way to check? we need to support our duck-typing too..
 	if (this.target.constructor != Array)
 	{
-		throw new TideTest.Error('should be an array, was: '+this.target,lineNumber);
+		throw new TiTest.Error('should be an array, was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_contain = function(expected,lineNumber)
+TiTest.Subject.prototype.should_contain = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target.indexOf(expected)==-1)
 	{
-		throw new TideTest.Error('should contain: '+expected+', was: '+this.target,lineNumber);
+		throw new TiTest.Error('should contain: '+expected+', was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_one_of = function(expected,lineNumber)
+TiTest.Subject.prototype.should_be_one_of = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (expected.indexOf(this.target)==-1)
 	{
-		throw new TideTest.Error('should contain one of: ['+expected.join(",")+'] was: '+this.target,lineNumber);
+		throw new TiTest.Error('should contain one of: ['+expected.join(",")+'] was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_match_array = function(expected,lineNumber)
+TiTest.Subject.prototype.should_match_array = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target.length && expected.length && this.target.length == expected.length) {
 		for (var i = 0; i < expected.length; i++) {
 			if (expected[i] != this.target[i]) {
-				throw new TideTest.Error('element ' + i + ' should be: '+expected[i]+' was: '+this.target[i],lineNumber);
+				throw new TiTest.Error('element ' + i + ' should be: '+expected[i]+' was: '+this.target[i],lineNumber);
 			}
 		}
 	}
 	else {
-		throw new TideTest.Error('array lengths differ, expected: '+expected+', was: '+this.target,lineNumber);
+		throw new TiTest.Error('array lengths differ, expected: '+expected+', was: '+this.target,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_greater_than = function(expected, lineNumber)
+TiTest.Subject.prototype.should_be_greater_than = function(expected, lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target <= expected)
 	{
-		throw new TideTest.Error('should be greater than, was ' + this.target + ' <= ' + expected,lineNumber);
+		throw new TiTest.Error('should be greater than, was ' + this.target + ' <= ' + expected,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_less_than = function(expected, lineNumber)
+TiTest.Subject.prototype.should_be_less_than = function(expected, lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target >= expected)
 	{
-		throw new TideTest.Error('should be less than, was ' + this.target + ' >= ' + expected,lineNumber);
+		throw new TiTest.Error('should be less than, was ' + this.target + ' >= ' + expected,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_greater_than_equal = function(expected, lineNumber)
+TiTest.Subject.prototype.should_be_greater_than_equal = function(expected, lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target < expected)
 	{
-		throw new TideTest.Error('should be greater than equal, was ' + this.target + ' < ' + expected,lineNumber);
+		throw new TiTest.Error('should be greater than equal, was ' + this.target + ' < ' + expected,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_be_less_than_equal = function(expected, lineNumber)
+TiTest.Subject.prototype.should_be_less_than_equal = function(expected, lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (this.target > expected)
 	{
-		throw new TideTest.Error('should be greater than, was ' + this.target + ' > ' + expected,lineNumber);
+		throw new TiTest.Error('should be greater than, was ' + this.target + ' > ' + expected,lineNumber);
 	}
 };
 
-TideTest.Subject.prototype.should_throw_exception = function(expected,lineNumber)
+TiTest.Subject.prototype.should_throw_exception = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (typeof(this.target) == 'function')
 	{
 		try {
 			this.target();
 		} catch (e) { return; }
-		throw new TideTest.Error("should throw exception, but didn't",lineNumber);
+		throw new TiTest.Error("should throw exception, but didn't",lineNumber);
 	}
-	else throw new TideTest.Error("should throw exception, but target isn't a function",lineNumber);
+	else throw new TiTest.Error("should throw exception, but target isn't a function",lineNumber);
 };
 
-TideTest.Subject.prototype.should_not_throw_exception = function(expected,lineNumber)
+TiTest.Subject.prototype.should_not_throw_exception = function(expected,lineNumber)
 {
 	this.lineNumber = lineNumber;
-	TideTest.assertion(this);
+	TiTest.assertion(this);
 	if (typeof(this.target) == 'function')
 	{
 		try {
 			this.target();
 		} catch (e) { 
-			throw new TideTest.Error("should not throw exception, but did",lineNumber);	
+			throw new TiTest.Error("should not throw exception, but did",lineNumber);	
 		}
 	}
-	else throw new TideTest.Error("should not throw exception, but target isn't a function",lineNumber);
+	else throw new TiTest.Error("should not throw exception, but target isn't a function",lineNumber);
 };

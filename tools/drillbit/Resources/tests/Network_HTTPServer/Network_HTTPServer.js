@@ -1,7 +1,7 @@
 describe('Network.HTTPServer', {
   get_request_as_async: function(callback) {
-    value_of(Tide.Network.createHTTPServer).should_be_function();
-    var server = Tide.Network.createHTTPServer();
+    value_of(Ti.Network.createHTTPServer).should_be_function();
+    var server = Ti.Network.createHTTPServer();
     value_of(server).should_be_object();
     value_of(server.bind).should_be_function();
     
@@ -24,13 +24,13 @@ describe('Network.HTTPServer', {
       }
     });
     
-    var xhr = Tide.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.open('GET', 'http://127.0.0.1:8082/foo');
     xhr.send(null);
     
   },
   post_request_with_body_as_async: function(callback) {
-    var server = Tide.Network.createHTTPServer();
+    var server = Ti.Network.createHTTPServer();
     server.bind(8082, function(request, response) {
       try {
         value_of(request.getMethod()).should_be('POST');
@@ -51,14 +51,14 @@ describe('Network.HTTPServer', {
       }
     });
     
-    var xhr = Tide.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.setRequestHeader('Foo','Bar');
     xhr.open('POST','http://127.0.0.1:8082/foo');
     xhr.send('a=b');
   },
   get_request_simple_response_as_async: function(callback) {
-    var server = Tide.Network.createHTTPServer();
+    var server = Ti.Network.createHTTPServer();
     server.bind(8082,function(request, response) {
       try {
         value_of(request.getMethod()).should_be('GET');
@@ -74,7 +74,7 @@ describe('Network.HTTPServer', {
       }
     });
     
-    var xhr = Tide.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.onreadystatechange = function() {
       if (this.readyState === 4) {
         try {
@@ -94,10 +94,10 @@ describe('Network.HTTPServer', {
     xhr.send(null);
   },
   get_request_blob_response_as_async: function(callback) {
-    var blob = Tide.Filesystem.getFile(
-      Tide.API.application.resourcesPath, 'test.bin').read();
+    var blob = Ti.Filesystem.getFile(
+      Ti.API.application.resourcesPath, 'test.bin').read();
     
-    var server = Tide.Network.createHTTPServer();
+    var server = Ti.Network.createHTTPServer();
     server.bind(8082, function(request,response) {
       try {
         value_of(request.getMethod()).should_be('GET');
@@ -113,7 +113,7 @@ describe('Network.HTTPServer', {
       }
     });
     
-    var xhr = Tide.Network.createHTTPClient();
+    var xhr = Ti.Network.createHTTPClient();
     xhr.onreadystatechange = function() {
       if (this.readyState === 4) {
         try {

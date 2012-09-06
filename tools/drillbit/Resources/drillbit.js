@@ -1,7 +1,7 @@
 
-var TFS = Tide.Filesystem;
-var TA  = Tide.App;
-var Drillbit = Tide.Drillbit;
+var TFS = Ti.Filesystem;
+var TA  = Ti.App;
+var Drillbit = Ti.Drillbit;
 
 var run_link_disabled = false;
 var frontend = {
@@ -56,7 +56,7 @@ var frontend = {
 
 function show_test_details(name)
 {
-	var w = Tide.UI.currentWindow.createWindow();
+	var w = Ti.UI.currentWindow.createWindow();
 	w.setHeight(600);
 	w.setWidth(850);
 	w.setURL('app://test_results/' + name + '.html');
@@ -188,9 +188,9 @@ $(window).ready(function()
 	});
 	
 	// if you pass in --autorun, just go ahead and start
-	for (var c=0;c<Tide.App.arguments.length;c++)
+	for (var c=0;c<Ti.App.arguments.length;c++)
 	{
-		var arg = Tide.App.arguments[c];
+		var arg = Ti.App.arguments[c];
 		
 		if (arg == '--autorun')
 		{
@@ -206,7 +206,7 @@ $(window).ready(function()
 		}
 		else if (arg == '--console')
 		{
-			Tide.UI.currentWindow.showInspector(true);
+			Ti.UI.currentWindow.showInspector(true);
 		}
 		else if (arg.indexOf('--tests=')==0)
 		{
