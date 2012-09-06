@@ -15,9 +15,9 @@ Ti.AppCreator = {
 		var lproj = TFS.getFile(resources,'English.lproj');
 		lproj.createDirectory(true);
 
-		var fromMacos = TFS.getFile(assetsDir,'Tiboot');
+		var fromMacos = TFS.getFile(assetsDir,'tideboot');
 		fromMacos.copy(macos);
-		var boot = TFS.getFile(macos,'Tiboot');
+		var boot = TFS.getFile(macos,'tideboot');
 		boot.rename(name);
 		boot.setExecutable(true);
 
@@ -84,9 +84,9 @@ Ti.AppCreator = {
 		var resources = TFS.getFile(appDir,'Resources');
 		resources.createDirectory(true);
 
-		var Tiboot = TFS.getFile(assetsDir,'Tiboot');
+		var tideboot = TFS.getFile(assetsDir,'tideboot');
 		var appExecutable = TFS.getFile(appDir, name);
-		Tiboot.copy(appExecutable);
+		tideboot.copy(appExecutable);
 
 		// set our marker file
 		var marker = TFS.getFile(appDir,'.installed');
@@ -113,9 +113,9 @@ Ti.AppCreator = {
 		var resources = TFS.getFile(appDir,'Resources');
 		resources.createDirectory(true);
 
-		var Tiboot = TFS.getFile(assetsDir,'Tiboot.exe');
+		var tideboot = TFS.getFile(assetsDir,'tideboot.exe');
 		var appExecutable = TFS.getFile(appDir, name + '.exe');
-		Tiboot.copy(appExecutable);
+		tideboot.copy(appExecutable);
 		
 		// set our marker file
 		var marker = TFS.getFile(appDir,'.installed');
