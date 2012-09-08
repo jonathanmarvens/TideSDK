@@ -161,20 +161,27 @@ namespace UTILS_NS
 		return string();
 	}
 
-	string Application::GetComponentPath(string name)
+  std::string Application::getRuntimePath() const
+  {
+    return GetComponentPath("runtime");
+  }
+
+
+  std::string Application::GetComponentPath(const std::string& name) const
 	{
-		std::transform(name.begin(), name.end(), name.begin(), tolower);
-		if (name == "runtime")
+    std::string name_lower(name);
+		std::transform(name_lower.begin(), name_lower.end(), name_lower.begin(), tolower);
+		if (name_lower == "runtime")
 		{
 			return this->runtime->path;
 		}
 		else
 		{
-			vector<SharedComponent>::iterator i = this->modules.begin();
+			vector<SharedComponent>::const_iterator i = this->modules.begin();
 			while (i != this->modules.end())
 			{
 				SharedComponent comp = *i++;
-				if (comp->name == name)
+				if (comp->name == name_lower)
 				{
 					return comp->path;
 				}
