@@ -5,11 +5,11 @@
  */
 #include "../kroll.h"
 #include "net.h"
+#include <string>
 #include <sstream>
 
-using std::string;
-using std::vector;
-using Poco::Net::IPAddress;
+#include <vector>
+
 using Poco::StringTokenizer;
 using Poco::NumberParser;
 using Poco::URI;
@@ -42,7 +42,7 @@ static std::string& ProxyTypeToString(ProxyType type)
 }
 
 /*static*/
-ProxyType Proxy::SchemeToProxyType(string scheme)
+ProxyType Proxy::SchemeToProxyType(std::string scheme)
 {
 	scheme = FileUtils::Trim(scheme);
 	Poco::toLowerInPlace(scheme);
@@ -191,7 +191,7 @@ static bool ShouldBypassWithEntry(URI& uri, SharedPtr<BypassEntry> entry)
 	return false;
 }
 
-bool ShouldBypass(URI& uri, vector<SharedPtr<BypassEntry> >& bypassList)
+bool ShouldBypass(URI& uri, std::vector<SharedPtr<BypassEntry> >& bypassList)
 {
 	GetLogger()->Debug("Checking whether %s should be bypassed.", 
 		uri.toString().c_str());
@@ -325,7 +325,7 @@ SharedProxy ParseProxyEntry(string entry, const string& urlScheme,
 }
 
 void ParseProxyList(string proxyListString,
-	vector<SharedProxy>& proxyList, const string& urlScheme)
+	std::vector<SharedProxy>& proxyList, const string& urlScheme)
 {
 	string sep = "; ";
 	StringTokenizer proxyTokens(proxyListString, sep,
