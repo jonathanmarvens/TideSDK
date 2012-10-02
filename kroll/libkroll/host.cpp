@@ -52,7 +52,6 @@ using Poco::Environment;
 extern "C"
 {
 #ifdef OS_WIN32
-	// We have to maintain ABI compatibility with pre-1.1.0 in win32
 	int Execute(HINSTANCE hInstance, int argc, const char **argv)
 #else
 	int Execute(int argc, const char **argv)
@@ -186,7 +185,7 @@ namespace kroll
 		}
 		else if (this->logFilePath.empty())
 		{
-			string dataDir = FileUtils::GetApplicationDataDirectory(this->application->id);
+			string dataDir = FileUtils::GetApplicationDataDirectory(this->application->name);
 			this->logFilePath = FileUtils::Join(dataDir.c_str(), "tiapp.log", 0);
 		}
 
