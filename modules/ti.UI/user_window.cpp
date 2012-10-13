@@ -1537,26 +1537,36 @@ static KValueRef DeferredGarbageCollection(const ValueList& args)
 
 void UserWindow::RegisterJSContext(JSGlobalContextRef context)
 {
+		std::cerr << "RegisterJSContext called" << std::endl;
 	JSObjectRef globalObject = JSContextGetGlobalObject(context);
 	KJSUtil::RegisterGlobalContext(globalObject, context);
+		std::cerr << "RegisterJSContext 1 called" << std::endl;
 
 	// Get the global object as a KKJSObject
 	KObjectRef frameGlobal = new KKJSObject(context, globalObject);
 
+		std::cerr << "RegisterJSContext 2 called" << std::endl;
 	// We only want to set this UserWindow's DOM window property if the
 	// particular frame that just loaded was the main frame. Each frame
 	// that loads on a page will follow this same code path.
 	if (IsMainFrame(context, globalObject))
 		this->domWindow = frameGlobal->GetObject("window", 0);
+		std::cerr << "RegisterJSContext 3 called" << std::endl;
 
 	// Only certain pages should get the Titanium object. This is to prevent
 	// malicious sites from always getting access to the user's system. This
 	// can be overridden by any other API that calls InsertAPI on this DOM window.
 	bool hasTitaniumObject = ShouldHaveTitaniumObject(context, globalObject);
+		std::cerr << "RegisterJSContext 4 called" << std::endl;
 	if (hasTitaniumObject)
 	{
+		std::cerr << "hasTitaniumObject: true" << std::endl;
 		this->InsertAPI(frameGlobal);
 		UserWindow::LoadUIJavaScript(context);
+	}
+	else
+	{
+		std::cerr << "hasTitaniumObject: false" << std::endl;
 	}
 
 	AutoPtr<Event> event = this->CreateEvent(Event::PAGE_INITIALIZED);

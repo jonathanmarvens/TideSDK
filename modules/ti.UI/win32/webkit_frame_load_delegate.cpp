@@ -42,6 +42,7 @@ HRESULT STDMETHODCALLTYPE Win32WebKitFrameLoadDelegate::didClearWindowObject(
 	IWebView *webView, JSContextRef context, JSObjectRef windowScriptObject,
 	IWebFrame *frame)
 {
+	std::cout << "didClearWindowObject called" << std::endl;
 	this->window->RegisterJSContext((JSGlobalContextRef) context);
 	return S_OK;
 }

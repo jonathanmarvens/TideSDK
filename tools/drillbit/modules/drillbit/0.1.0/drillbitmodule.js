@@ -528,5 +528,5 @@
     }
   };
 
-  Titanium.Drillbit = new Drillbit();
+  Ti.Drillbit = new Drillbit();
 })();
