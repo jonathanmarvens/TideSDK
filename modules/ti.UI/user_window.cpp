@@ -19,7 +19,7 @@ UserWindow::UserWindow(AutoPtr<WindowConfig> config, AutoUserWindow parent) :
 	active(false),
 	initialized(false)
 {
-	// This method is on Titanium.UI, but will be delegated to this class.
+	// This method is on Ti.UI, but will be delegated to this class.
 	this->SetMethod("getCurrentWindow", &UserWindow::_GetCurrentWindow);
 
 	this->SetMethod("insertAPI", &UserWindow::_InsertAPI);
@@ -1233,7 +1233,7 @@ void UserWindow::ReadChooserDialogObject(
 
 {
 	// Pass in a set of properties for chooser dialogs like this:
-	// var selected = Titanium.UI.OpenFileChooserDialog(callback,
+	// var selected = Ti.UI.OpenFileChooserDialog(callback,
 	// {
 	//    multiple:true,
 	//    title: "Select file to delete...",

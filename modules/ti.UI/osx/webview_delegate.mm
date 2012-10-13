@@ -192,7 +192,7 @@
 {
 	// If this NULL value is registered when the load finishes, we need
 	// to manually inject Titanium into the frame. if the frame isn't in
-	// the map at all -- an error happened and we shouldn't inject Titanium.
+	// the map at all -- an error happened and we shouldn't inject Ti.
 	[self registerGlobalObject:NULL forFrame:frame];
 }
 
