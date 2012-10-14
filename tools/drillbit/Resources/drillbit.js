@@ -14,7 +14,6 @@
 * limitations under the License.
 **/
 
-var Ti = Titanium;
 var Drillbit = Ti.Drillbit;
 
 var run_link_disabled = false;

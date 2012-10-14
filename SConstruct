@@ -5,7 +5,7 @@ from kroll import BuildConfig
 
 build = BuildConfig(
 	PRODUCT_VERSION = sdk.get_titanium_version(),
-	PRODUCT_NAME = 'TideSDK',
+	PRODUCT_NAME = 'Titanium',
 	GLOBAL_NS_VARNAME = 'Ti',
 	CONFIG_FILENAME = 'tiapp.xml',
 	BUILD_DIR = path.abspath('build'),

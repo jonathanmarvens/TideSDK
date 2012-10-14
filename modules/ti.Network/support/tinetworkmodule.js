@@ -1,17 +1,17 @@
 (function()
 {
-	Ti.Analytics.sendEvent = function(data)
+	Titanium.Analytics.sendEvent = function(data)
 	{
 		// If we're offline we don't even attempt to send Analytics.
 		//TODO: we need to place these in DB and re-send later
-		if (Ti.Network.online === false)
+		if (Titanium.Network.online === false)
 		{
-			Ti.API.debug("Not online -- skipping analytics");
+			Titanium.API.debug("Not online -- skipping analytics");
 			return;
 		}
-		if (!Ti.App.analyticsEnabled)
+		if (!Titanium.App.analyticsEnabled)
 		{
-			Ti.API.debug("Analytics disabled via tiapp.xml, skipping");
+			Titanium.API.debug("Analytics disabled via tiapp.xml, skipping");
 			return;
 		}
 
@@ -19,11 +19,11 @@
 		for (var key in data)
 		{
 			queryString += key + "=" + (data[key] === undefined ?
-				 '' : Ti.Network.encodeURIComponent(data[key])) + '&';
+				 '' : Titanium.Network.encodeURIComponent(data[key])) + '&';
 		}
 
 		// Send the event natively and asynchronously.
-		Ti.Analytics._sendEvent(queryString);
+		Titanium.Analytics._sendEvent(queryString);
 	};
 	
 	/** Undocumented, perhaps to be deprecated
@@ -33,9 +33,9 @@
 	 * @no_tiarg[String, event] event name
 	 * @no_tiarg[String. data] event data
 	 */
-	Ti.Analytics.addEvent = function(event,data)
+	Titanium.Analytics.addEvent = function(event,data)
 	{
-		Ti.Analytics.sendEvent({type:'app.addEvent',event:event,data:data});
+		Titanium.Analytics.sendEvent({type:'app.addEvent',event:event,data:data});
 	};
 
 	/**
@@ -46,12 +46,12 @@
 	 * @tiarg[String, name] Event name.
 	 * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
 	 */
-	Ti.Analytics.navEvent = function(from, to, name, data)
+	Titanium.Analytics.navEvent = function(from, to, name, data)
 	{
 		if (from === undefined || to === undefined)
 			return;
 
-		Ti.Analytics.sendEvent({
+		Titanium.Analytics.sendEvent({
 			type: 'app.nav', 
 			event: name === undefined ? "app.nav" : name,
 			data: JSON.stringify({from:from, to:to, data:data})
@@ -64,12 +64,12 @@
 	 * @tiarg[String, name] Feature name.
 	 * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
 	 */
-	Ti.Analytics.featureEvent = function(name, data)
+	Titanium.Analytics.featureEvent = function(name, data)
 	{
 		if (name === undefined)
 			return;
 
-		Ti.Analytics.sendEvent({
+		Titanium.Analytics.sendEvent({
 			type: 'app.feature',
 			event: name,
 			data: data === undefined ? null : JSON.stringify(data)
@@ -82,12 +82,12 @@
 	 * @tiarg[String, name] Setting name.
 	 * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
 	 */
-	Ti.Analytics.settingsEvent = function(name,data)
+	Titanium.Analytics.settingsEvent = function(name,data)
 	{
 		if (name === undefined)
 			return;
 
-		Ti.Analytics.sendEvent({
+		Titanium.Analytics.sendEvent({
 			type: 'app.settings',
 			event: name,
 			data: data === undefined ? null : JSON.stringify(data)
@@ -104,7 +104,7 @@
 	 * @tiarg are specified)
 	 * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
 	 */
-	Ti.Analytics.timedEvent = function(name,start,stop,duration,data)
+	Titanium.Analytics.timedEvent = function(name,start,stop,duration,data)
 	{
 		// Number in, two-digit (or more) string out
 		var zeropad = function(maybe_small_number)
@@ -136,7 +136,7 @@
 			payload.duration = duration;
 		if (data !== undefined)
 			payload.data = data;
-		Ti.Analytics.sendEvent({
+		Titanium.Analytics.sendEvent({
 			type: 'app.timed_event',
 			event: name,
 			data: JSON.stringify(payload)
@@ -149,19 +149,19 @@
 	 * @tiarg[String, name] Event name.
 	 * @tiarg[Object, data] Extra event data to pass along. This will be converted to JSON.
 	 */
-	Ti.Analytics.userEvent = function(name,data)
+	Titanium.Analytics.userEvent = function(name,data)
 	{
 		if (name === undefined)
 			return;
 
-		Ti.Analytics.sendEvent({
+		Titanium.Analytics.sendEvent({
 			type: 'app.user',
 			event: name,
 			data: data === undefined ? null : JSON.stringify(data)
 		});
 	};
 
-	Ti.UpdateManager = {};
+	Titanium.UpdateManager = {};
 
 	/**
 	 * @tiapi(method=True,name=UpdateManager.startMonitor,since=0.4) Check the update service for a new version
@@ -170,7 +170,7 @@
 	 * @tiarg(for=UpdateManager.startMonitor,name=interval,type=Number) Interval in milliseconds for how often to check for an update
 	 * @tiresult(for=UpdateManager.startMonitor,type=Number) Returns a handle which should use used to cancel the monitor
 	 */
-	Ti.UpdateManager.startMonitor = function(components,callback,interval)
+	Titanium.UpdateManager.startMonitor = function(components,callback,interval)
 	{
 		if (interval == undefined || interval == null || interval < (60000) * 5)
 		{
@@ -186,7 +186,7 @@
 				{
 					if (success)
 					{
-						var list = Ti.API.getInstalledComponents(refreshComponents);
+						var list = Titanium.API.getInstalledComponents(refreshComponents);
 						var matches = [];
 						for (var x=0;x<list.length;x++)
 						{
@@ -217,10 +217,10 @@
 		};
 		
 		// schedule the timer to fire
-		var timer = Ti.setInterval(runCheck,interval);
+		var timer = Titanium.setInterval(runCheck,interval);
 
 		// go ahead and schedule
-		Ti.setTimeout(runCheck,1000);
+		Titanium.setTimeout(runCheck,1000);
 		
 		return timer;
 	};
@@ -229,23 +229,23 @@
 	 * @tiapi(method=True,name=UpdateManager.cancelMonitor,since=0.4) Check the update service for a new version
 	 * @tiarg(for=UpdateManager.cancelMonitor,name=id,type=Number) The monitor id returned from startMonitor
 	 */
-	Ti.UpdateManager.cancelMonitor = function(id)
+	Titanium.UpdateManager.cancelMonitor = function(id)
 	{
-		Ti.clearInterval(id);
+		Titanium.clearInterval(id);
 	};
 
 	/**
 	 * @tiapi(property=True,name=UpdateManager.onupdate,since=0.4) Set the update handler implementation function that will be invoked when an update is detected
 	 */
-	Ti.UpdateManager.onupdate = null;
+	Titanium.UpdateManager.onupdate = null;
 		
 	
 	// NOTE: this is a private api and is not documented
-	Ti.UpdateManager.install = function(components,callback)
+	Titanium.UpdateManager.install = function(components,callback)
 	{
-		Ti.API.installDependencies(components,function()
+		Titanium.API.installDependencies(components,function()
 		{
-			var components = Ti.API.getInstalledComponents(true);
+			var components = Titanium.API.getInstalledComponents(true);
 			if (callback)
 			{
 				callback(components);
@@ -259,12 +259,12 @@
 	 * @tiapi method will cause the process to first be restarted for the update to begin.
 	 * @tiarg[Object, updateSpec] Update spec object received from update service.
 	 */
-	Ti.UpdateManager.installAppUpdate = function(updateSpec)
+	Titanium.UpdateManager.installAppUpdate = function(updateSpec)
 	{
 		installAppUpdate(updateSpec);
 	};
 
-	Ti.UpdateManager.compareVersions = function(newVersion, oldVersion)
+	Titanium.UpdateManager.compareVersions = function(newVersion, oldVersion)
 	{
 		// 1. Split on dots.
 		// 2. For every dot do a comparison.
@@ -312,12 +312,12 @@
 	function installAppUpdate(updateSpec)
 	{
 		// write our the new manifest for the update
-		var datadir = Ti.Filesystem.getApplicationDataDirectory();
-		var update = Ti.Filesystem.getFile(datadir,'.update');
+		var datadir = Titanium.Filesystem.getApplicationDataDirectory();
+		var update = Titanium.Filesystem.getFile(datadir,'.update');
 		update.write(updateSpec.manifest);
 		
 		// restart ourselves to cause the install
-		Ti.App.restart();
+		Titanium.App.restart();
 	}
 	
 
@@ -325,31 +325,31 @@
 	{
 		try
 		{
-			if (!Ti.Network.online)
+			if (!Titanium.Network.online)
 			{
 				return;
 			}
 			limit = (limit==undefined) ? 1 : limit;
-			var url = Ti.App.getStreamURL("release-list");
-			var xhr = Ti.Network.createHTTPClient();
+			var url = Titanium.App.getStreamURL("release-list");
+			var xhr = Titanium.Network.createHTTPClient();
 			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-			var qs = 'version=' + Ti.Network.encodeURIComponent(version) +
-				'&name=' + Ti.Network.encodeURIComponent(component) + 
-				'&mid=' + Ti.Network.encodeURIComponent(Ti.Platform.id) +
+			var qs = 'version=' + Titanium.Network.encodeURIComponent(version) +
+				'&name=' + Titanium.Network.encodeURIComponent(component) + 
+				'&mid=' + Titanium.Network.encodeURIComponent(Titanium.Platform.id) +
 				'&limit=' + limit +
-				'&guid=' + Ti.Network.encodeURIComponent(Ti.App.getGUID()) +
-				'&os=' + Ti.platform +
-				'&ostype=' + Ti.Platform.ostype;
+				'&guid=' + Titanium.Network.encodeURIComponent(Titanium.App.getGUID()) +
+				'&os=' + Titanium.platform +
+				'&ostype=' + Titanium.Platform.ostype;
 			xhr.onreadystatechange = function()
 			{
 				if (this.readyState==4)
 				{
 					try
 					{
-						var json = Ti.JSON.parse(this.responseText);
+						var json = Titanium.JSON.parse(this.responseText);
 						if (!json.success)
 						{
-							Ti.API.error("Error response from update service: "+json.message);
+							Titanium.API.error("Error response from update service: "+json.message);
 							callback(false);
 							return;
 						}
@@ -368,7 +368,7 @@
 					}
 					catch(e)
 					{
-						Ti.API.error("Exception communicating to update service: "+e);
+						Titanium.API.error("Exception communicating to update service: "+e);
 						callback(false);
 					}
 				}
@@ -378,7 +378,7 @@
 		}
 		catch(e)
 		{
-			Ti.API.error("Error performing update check = "+e);
+			Titanium.API.error("Error performing update check = "+e);
 			callback(false);
 		}
 	}
@@ -398,16 +398,16 @@
 		}
 		catch(e)
 		{
-			Ti.API.error("Error updating update db = "+e);
+			Titanium.API.error("Error updating update db = "+e);
 		}
 	}
 	function updateDetected(updateSpec)
 	{
 		// if we have a handler, delegate to that dude
 		// and he's now responsible for doing the update stuff
-		if (typeof Ti.UpdateManager.onupdate == 'function')
+		if (typeof Titanium.UpdateManager.onupdate == 'function')
 		{
-			Ti.UpdateManager.onupdate(updateSpec);
+			Titanium.UpdateManager.onupdate(updateSpec);
 			return;
 		}
 		
@@ -424,15 +424,15 @@
 		}
 	
 		// ok, we'll handle it then...
-		Ti.UI.showDialog({
+		Titanium.UI.showDialog({
 			'url': 'ti://tinetwork/update.html',
 			'width': width,
 			'height': height,
 			'resizable':false,
 			'parameters':{
-				'name':Ti.App.getName(),
-				'icon':'file://'+Ti.App.getIcon(),
-				'ver_from':Ti.App.getVersion(),
+				'name':Titanium.App.getName(),
+				'icon':'file://'+Titanium.App.getIcon(),
+				'ver_from':Titanium.App.getVersion(),
 				'ver_to':updateSpec.version,
 				'notes_url':notes_url 
 			},
@@ -453,7 +453,7 @@
 
 		try
 		{
-			db = Ti.Database.open("app_updates");
+			db = Titanium.Database.open("app_updates");
 			db.execute("create table if not exists last_check(time long)");
 
 			// Seconds since the last update check or null if we've never done a check.
@@ -463,7 +463,7 @@
 		}
 		catch (e)
 		{
-			Ti.API.error("Could not read UpdateManager last_check table: " + e);
+			Titanium.API.error("Could not read UpdateManager last_check table: " + e);
 			if (db)
 				db.close();
 			return;
@@ -475,10 +475,10 @@
 			if (duration && duration < UPDATE_CHECK_INTERVAL)
 				return;
 
-			updateCheck('app-update', Ti.App.getVersion(), function(success, update)
+			updateCheck('app-update', Titanium.App.getVersion(), function(success, update)
 			{
-				if (success && Ti.UpdateManager.compareVersions(
-					update.version,Ti.App.getVersion()) > 0)
+				if (success && Titanium.UpdateManager.compareVersions(
+					update.version,Titanium.App.getVersion()) > 0)
 				{
 					updateDetected(update);
 				}
@@ -486,7 +486,7 @@
 		}
 		catch(e)
 		{
-			Ti.API.error("UpdateManager app update check failed: " + e);
+			Titanium.API.error("UpdateManager app update check failed: " + e);
 			db.close();
 			return;
 		}
@@ -499,26 +499,26 @@
 		}
 		catch (e)
 		{
-			Ti.API.error("Could not update UpdateManager last_check table: " + e);
+			Titanium.API.error("Could not update UpdateManager last_check table: " + e);
 		}
 
 		db.close();
 	}
 
-	Ti.API.addEventListener(Ti.APP_EXIT, function(event)
+	Titanium.API.addEventListener(Titanium.APP_EXIT, function(event)
 	{
 		if (updateCheckTimer)
 		{
-			Ti.clearTimeout(updateCheckTimer);
+			Titanium.clearTimeout(updateCheckTimer);
 			updateCheckTimer = null;
 		}
 
-		Ti.Analytics.sendEvent({'event': 'ti.end', type: 'ti.end'});
+		Titanium.Analytics.sendEvent({'event': 'ti.end', type: 'ti.end'});
 	});
 
-	Ti.Analytics.sendEvent({'event': 'ti.start', 'type': 'ti.start'});
+	Titanium.Analytics.sendEvent({'event': 'ti.start', 'type': 'ti.start'});
 
-	if (Ti.App.updateMonitorEnabled)
+	if (Titanium.App.updateMonitorEnabled)
 	{
 		// How often to actually check for updates on the network in seconds.
 		// 900 seconds == every 15 minutes.
@@ -531,6 +531,6 @@
 
 		var refreshComponents = true;
 		var updateCheckTimer = updateCheckTimer = 
-			Ti.setTimeout(function() { checkForUpdate(); }, UPDATE_CHECK_TIMER_INTERVAL);
+			Titanium.setTimeout(function() { checkForUpdate(); }, UPDATE_CHECK_TIMER_INTERVAL);
 	}
 })();

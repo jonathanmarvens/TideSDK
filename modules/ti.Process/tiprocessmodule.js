@@ -6,11 +6,11 @@
 
 (function() {
 	
-	var ti_createProcess = Ti.Process.createProcess;
+	var ti_createProcess = Titanium.Process.createProcess;
 	
-	Ti.Process.createProcess = function()
+	Titanium.Process.createProcess = function()
 	{
-		var process = ti_createProcess.apply(Ti.Process, arguments);
+		var process = ti_createProcess.apply(Titanium.Process, arguments);
 		
 		/**
 		 * @tiapi(method=True,name=Process.Process.setOnReadLine,since=0.5)
@@ -61,15 +61,15 @@
 	 * @tiarg[String, command] The command to launch
 	 * @tiarg[Array<String>, arguments] A list of arguments to the command
 	 */
-	Ti.Process.launch = function(cmd, args)
+	Titanium.Process.launch = function(cmd, args)
 	{
-		Ti.API.warn(
-			"Ti.Process.launch is deprecated, please use Ti.Process.createProcess instead");
+		Titanium.API.warn(
+			"Titanium.Process.launch is deprecated, please use Titanium.Process.createProcess instead");
 		
 		if (!args) args = [];
 		args.unshift(cmd);
 		
-		var process = ti_createProcess.call(Ti.Process, args);
+		var process = ti_createProcess.call(Titanium.Process, args);
 		var buffer = '';
 		var onRead = null;
 		var onExit = null;

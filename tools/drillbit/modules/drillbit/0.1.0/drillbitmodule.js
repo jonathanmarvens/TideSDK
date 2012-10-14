@@ -43,12 +43,12 @@
     var specific_tests = null;
     var executing_tests = [];
 
-    this.results_dir = Ti.Filesystem.getFile(Ti.App.appURLToPath('app://test_results'));
-    var app_dir = Ti.Filesystem.getApplicationDirectory();
-    var drillbit_funcs = Ti.Filesystem.getFile(Ti.App.appURLToPath('app://drillbit_func.js'))
+    this.results_dir = Titanium.Filesystem.getFile(Titanium.App.appURLToPath('app://test_results'));
+    var app_dir = Titanium.Filesystem.getApplicationDirectory();
+    var drillbit_funcs = Titanium.Filesystem.getFile(Titanium.App.appURLToPath('app://drillbit_func.js'))
       .read();
     var user_scripts_dir = null;
-    var app = Ti.API.getApplication();
+    var app = Titanium.API.getApplication();
     var tiapp_backup = null,
       tiapp = null;
     var manifest_backup = null,
@@ -58,18 +58,18 @@
 
 
     this.require = function (app_url) {
-      this.include(Ti.App.appURLToPath(app_url));
+      this.include(Titanium.App.appURLToPath(app_url));
     }
 
     this.include = function (path) {
-      var code = Ti.Filesystem.getFile(path)
+      var code = Titanium.Filesystem.getFile(path)
         .read();
       try {
         with(this) {
           eval(code.toString());
         }
       } catch (e) {
-        Ti.App.stdout("Error: " + String(e) + ", " + path + ", line:" + e.line);
+        Titanium.App.stdout("Error: " + String(e) + ", " + path + ", line:" + e.line);
       }
     };
 
@@ -84,7 +84,7 @@
           this.frontend[fn_name].apply(this.frontend, args);
         }
       } catch (e) {
-        Ti.App.stderr("Error: " + e);
+        Titanium.App.stderr("Error: " + e);
       }
     }
 
@@ -110,7 +110,7 @@
       current_test_load.timeout = test.timeout || 5000;
       current_test_load.assertions = {};
       current_test_load.assertion_count = 0;
-      current_test_load.source_file = Ti.Filesystem.getFile(current_test_load.dir, current_test_load.name + ".js");
+      current_test_load.source_file = Titanium.Filesystem.getFile(current_test_load.dir, current_test_load.name + ".js");
       var testSource = current_test_load.source_file.read()
         .toString();
 
@@ -136,7 +136,7 @@
       var ext = test_file.extension();
       name = name.replace('.' + ext, '');
       var dir = test_file.parent();
-      var jsfile = Ti.Filesystem.getFile(dir, name + '.js');
+      var jsfile = Titanium.Filesystem.getFile(dir, name + '.js');
       if (!jsfile.exists() || dir.name() != name) {
         return;
       }
@@ -160,7 +160,7 @@
 
     this.loadTestDir = function (test_dir) {
       var dirname = test_dir.name();
-      var test_file = Ti.Filesystem.getFile(test_dir, dirname + ".js");
+      var test_file = Titanium.Filesystem.getFile(test_dir, dirname + ".js");
       if (test_file.exists()) {
         this.loadTestFile(test_file);
       }
@@ -169,13 +169,13 @@
     this.loadTests = function (test_files) {
       this.results_dir.createDirectory();
 
-      var f = Ti.Filesystem.getFile(this.results_dir, "results.html");
+      var f = Titanium.Filesystem.getFile(this.results_dir, "results.html");
       if (f.exists()) {
         f.deleteFile();
       }
 
       for (var c = 0; c < test_files.length; c++) {
-        var file = Ti.Filesystem.getFile(test_files[c]);
+        var file = Titanium.Filesystem.getFile(test_files[c]);
         if (file.isDirectory()) {
           this.loadTestDir(file);
         } else {
@@ -190,21 +190,21 @@
       this.require('app://js/app.js');
       this.require('app://js/project.js');
       // create app structure
-      app = Ti.createApp(
-      Ti.API.application.getResourcesPath(), // Stage in Resources directory
+      app = Titanium.createApp(
+      Titanium.API.application.getResourcesPath(), // Stage in Resources directory
       'test_harness', // app name
       'CF0D2CB7-B4BD-488F-9F8E-669E6B53E0C4', // app guid
       false);
-      tiapp_backup = Ti.Filesystem.getFile(app.base, '_tiapp.xml');
-      manifest_backup = Ti.Filesystem.getFile(app.base, '_manifest');
+      tiapp_backup = Titanium.Filesystem.getFile(app.base, '_tiapp.xml');
+      manifest_backup = Titanium.Filesystem.getFile(app.base, '_manifest');
 
-      //var mymanifest = Ti.Filesystem.getFile(Ti.Filesystem.getApplicationDirectory(),'manifest');
-      manifest = Ti.Filesystem.getFile(app.base, 'manifest');
+      //var mymanifest = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(),'manifest');
+      manifest = Titanium.Filesystem.getFile(app.base, 'manifest');
       manifest.write(harness_manifest.read()
         .toString());
 
-      tiapp_harness = Ti.Filesystem.getFile(Ti.Filesystem.getApplicationDirectory(), 'tiapp_harness.xml');
-      tiapp = Ti.Filesystem.getFile(app.base, 'tiapp.xml');
+      tiapp_harness = Titanium.Filesystem.getFile(Titanium.Filesystem.getApplicationDirectory(), 'tiapp_harness.xml');
+      tiapp = Titanium.Filesystem.getFile(app.base, 'tiapp.xml');
       tiapp_harness.copy(tiapp);
       tiapp.copy(tiapp_backup);
       manifest.copy(manifest_backup);
@@ -213,7 +213,7 @@
       non_visual_ti = ti_contents.replace('<visible>true</visible>', '<visible>false</visible>');
 
       // copy in our user script which is the driver
-      user_scripts_dir = Ti.Filesystem.getFile(app.resources, 'userscripts');
+      user_scripts_dir = Titanium.Filesystem.getFile(app.resources, 'userscripts');
       user_scripts_dir.createDirectory();
     };
 
@@ -265,7 +265,7 @@
       manifest_backup.copy(manifest);
 
       // make sure we have an index file always
-      var tofile = Ti.Filesystem.getFile(dir, 'index.html');
+      var tofile = Titanium.Filesystem.getFile(dir, 'index.html');
       var html = '<html><head><script type="text/javascript"></script></head><body>Running..' + entry.name + '</body></html>';
       tofile.write(html);
 
@@ -297,27 +297,27 @@
             }
           case 'html':
             {
-              var tofile = Ti.Filesystem.getFile(dir, 'index.html');
+              var tofile = Titanium.Filesystem.getFile(dir, 'index.html');
               src.copy(tofile);
               html_found = true;
               break;
             }
           case 'usjs':
             {
-              var tofile = Ti.Filesystem.getFile(user_scripts_dir, entry.name + '.js');
+              var tofile = Titanium.Filesystem.getFile(user_scripts_dir, entry.name + '.js');
               src.copy(tofile);
               break;
             }
           case 'manifest':
             {
-              var tofile = Ti.Filesystem.getFile(app.base, 'manifest');
+              var tofile = Titanium.Filesystem.getFile(app.base, 'manifest');
               src.copy(tofile);
               break;
             }
           default:
             {
               // just copy the file otherwise
-              Ti.API.debug("copying " + src + " to " + dir);
+              Titanium.API.debug("copying " + src + " to " + dir);
               src.copy(dir);
               break;
             }
@@ -333,7 +333,7 @@
         tiapp.write(non_visual_ti);
       }
 
-      var modules = Ti.API.getApplication()
+      var modules = Titanium.API.getApplication()
         .getModules();
       var module = null;
       for (var i = 0; i < modules.length; i++) {
@@ -343,13 +343,13 @@
         }
       }
 
-      var file = Ti.Filesystem.getFile(module.getPath(), "ejs.js");
-      var template = Ti.Filesystem.getFile(module.getPath(), "template.js")
+      var file = Titanium.Filesystem.getFile(module.getPath(), "ejs.js");
+      var template = Titanium.Filesystem.getFile(module.getPath(), "template.js")
         .read()
         .toString();
 
       this.include(file.nativePath());
-      var runner_js = Ti.Filesystem.getFile(user_scripts_dir, entry.name + '_driver.js');
+      var runner_js = Titanium.Filesystem.getFile(user_scripts_dir, entry.name + '_driver.js');
       var data = {
         entry: entry,
         Titanium: Titanium,
@@ -367,12 +367,12 @@
         this.frontend_do('error', "Error rendering template: " + e + ",line:" + e.line);
       }
 
-      Ti.Filesystem.getFile(module.getPath(), "template_out.js")
+      Titanium.Filesystem.getFile(module.getPath(), "template_out.js")
         .write(user_script);
       runner_js.write(user_script);
 
-      var profile_path = Ti.Filesystem.getFile(this.results_dir, entry.name + '.prof');
-      var log_path = Ti.Filesystem.getFile(this.results_dir, entry.name + '.log');
+      var profile_path = Titanium.Filesystem.getFile(this.results_dir, entry.name + '.prof');
+      var log_path = Titanium.Filesystem.getFile(this.results_dir, entry.name + '.log');
 
       profile_path.deleteFile();
       log_path.deleteFile();
@@ -387,8 +387,8 @@
       }
 
       args.push('--results-dir="' + this.results_dir + '"');
-      var process = Ti.Process.createProcess(args);
-      Ti.App.stdout("running: " + process);
+      var process = Titanium.Process.createProcess(args);
+      Titanium.App.stdout("running: " + process);
       var passed = 0;
       var failed = 0;
       process.setOnReadLine(function (data) {
@@ -469,12 +469,12 @@
         }, 1000);
       }
 
-      process.addEventListener(Ti.EXIT, function (event) {
+      process.addEventListener(Titanium.EXIT, function (event) {
         self.frontend_do('suite_finished', self.current_test.name);
         try {
           if (this.window) this.window.clearInterval(timer);
           if (!self.current_test.failed) {
-            var r = Ti.Filesystem.getFile(self.results_dir, self.current_test.name + '.json')
+            var r = Titanium.Filesystem.getFile(self.results_dir, self.current_test.name + '.json')
               .read();
             var rs = '(' + r + ');';
             var results = eval(rs);
@@ -503,10 +503,10 @@
         executing_tests = null;
         this.current_test = null;
         self.frontend_do('update_status', 'Testing complete .. took ' + this.test_duration + ' seconds', true);
-        var f = Ti.Filesystem.getFile(this.results_dir, 'drillbit.json');
+        var f = Titanium.Filesystem.getFile(this.results_dir, 'drillbit.json');
         f.write("{\"success\":" + String(!test_failures) + "}");
         if (self.auto_close) {
-          Ti.App.exit(test_failures ? 1 : 0);
+          Titanium.App.exit(test_failures ? 1 : 0);
         }
         return;
       }
@@ -528,5 +528,5 @@
     }
   };
 
-  Ti.Drillbit = new Drillbit();
+  Titanium.Drillbit = new Drillbit();
 })();
